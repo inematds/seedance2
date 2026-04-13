@@ -28,24 +28,190 @@ app/
 - Cache: `cache_control: ephemeral` no system prompt (5 min TTL, economiza ~89%).
 - Rate limit: 5 req/min por IP (in-memory por instância da função).
 
-## Setup local (5 minutos)
+## Testando localmente — passo a passo completo
+
+### Pré-requisitos
+
+Antes de começar, você precisa ter:
+
+| Item | Versão mínima | Como verificar |
+|---|---|---|
+| **Node.js** | 18+ (recomendado 20) | `node --version` |
+| **npm** | 9+ (vem com o Node) | `npm --version` |
+| **git** | qualquer recente | `git --version` |
+| **Chave Anthropic API** | — | [console.anthropic.com](https://console.anthropic.com) → API Keys |
+
+Se não tem Node, instale via [nodejs.org](https://nodejs.org) (LTS) ou via `nvm`:
 
 ```bash
-# 1. Instalar dependências
-cd app
-npm install
-
-# 2. Configurar .env
-cp .env.example .env
-# editar: ANTHROPIC_API_KEY=sk-ant-sua-chave-real
-
-# 3. Instalar Vercel CLI (se ainda não tiver)
-npm install -g vercel
-
-# 4. Rodar local
-vercel dev
-# abre http://localhost:3000
+# com nvm (recomendado no Linux/macOS)
+nvm install 20
+nvm use 20
 ```
+
+### Passo 1 — Obter uma chave da Anthropic API
+
+Você precisa de uma chave para rodar o app. **~$5 de crédito** é suficiente para ~200 testes locais.
+
+1. Acesse [console.anthropic.com](https://console.anthropic.com)
+2. Faça login (Google ou email)
+3. Vá em **API Keys** no menu lateral → **Create Key**
+4. Dê um nome (ex: `inema-local`) → **Create Key**
+5. **Copie a chave** (começa com `sk-ant-...`) — você só vai vê-la uma vez
+6. Em **Billing**, adicione $5 ou $10 de crédito (ou use o crédito grátis inicial se for nova conta)
+
+### Passo 2 — Clonar o repositório (se ainda não tem)
+
+```bash
+git clone https://github.com/inematds/seedance2.git
+cd seedance2/app
+```
+
+Se já clonou antes, só entre na pasta `app`:
+
+```bash
+cd caminho/para/seedance2/app
+```
+
+### Passo 3 — Instalar dependências
+
+```bash
+npm install
+```
+
+Isso instala `@anthropic-ai/sdk`, `@vercel/node` e `typescript` (~30-60s na primeira vez).
+
+**Se der erro de permissão:** não use `sudo`. Use `nvm` para instalar o Node sem permissões de root.
+
+### Passo 4 — Configurar variáveis de ambiente
+
+```bash
+cp .env.example .env
+```
+
+Agora edite o arquivo `.env` no seu editor e coloque a chave real:
+
+```
+ANTHROPIC_API_KEY=sk-ant-api03-abc123... (cole aqui a chave do Passo 1)
+ALLOWED_ORIGIN=*
+```
+
+**Importante:** o arquivo `.env` já está no `.gitignore` — nunca commite a chave.
+
+### Passo 5 — Instalar o Vercel CLI
+
+```bash
+npm install -g vercel
+```
+
+Se der erro de permissão global, use `nvm` (que instala em user-space) ou rode com prefix local:
+
+```bash
+npm install --prefix ~/.local vercel
+# e depois adicione ~/.local/bin ao PATH
+```
+
+Verifique:
+
+```bash
+vercel --version
+# deve mostrar algo como 37.x.x
+```
+
+### Passo 6 — Rodar o app localmente
+
+```bash
+vercel dev
+```
+
+Na primeira vez o CLI vai perguntar:
+- **"Set up and develop X?"** → responda `Y`
+- **"Which scope?"** → escolha sua conta pessoal
+- **"Link to existing project?"** → `N` (é a primeira vez)
+- **"What's your project name?"** → aceite o padrão (ex: `app`) ou nomeie
+- **"In which directory is your code located?"** → aceite `./`
+- Pode perguntar sobre framework → escolha **"Other"**
+
+Depois da configuração inicial, o servidor sobe em:
+
+```
+Ready! Available at http://localhost:3000
+```
+
+Abra `http://localhost:3000` no navegador. O app deve estar rodando. 🎉
+
+### Passo 7 — Testar a aplicação
+
+**Via navegador:**
+
+1. Abra `http://localhost:3000`
+2. Clique em um dos botões de exemplo (ex: "Épico") — vai preencher a textarea
+3. Clique em **"Gerar prompt cinematográfico"**
+4. Espere ~15-30 segundos (primeira vez é mais lenta por causa do cold start)
+5. Resultado estruturado deve aparecer com:
+   - Categoria INEMA (ex: `INEMA EPIC`)
+   - Sistema de cores + estilo de câmera + 4 técnicas
+   - Prompt em inglês (300-450 palavras)
+   - Prompt em português (tradução literal)
+   - 4 recomendações técnicas
+6. Teste os botões **"Copiar"**, **"Abrir na fal.ai"** e **"Abrir na kie.ai"**
+
+**Via curl (útil para debug sem abrir navegador):**
+
+```bash
+curl -X POST http://localhost:3000/api/generate \
+  -H "Content-Type: application/json" \
+  -d '{
+    "scene": "Uma bailarina de vestido branco girando em um campo de cerejeiras ao pôr do sol",
+    "opts": { "pt": true, "recs": true }
+  }' | jq
+```
+
+(Se não tiver `jq`, remova o `| jq` — vai aparecer o JSON cru.)
+
+Resposta esperada: JSON com `category`, `color_system`, `camera_style`, `techniques`, `english_prompt`, `portuguese_prompt`, `recommendations`.
+
+### Passo 8 — Conferir o cache e os logs
+
+No terminal do `vercel dev`, cada chamada aparece como log:
+
+```
+[generate] ip=::1 category=INEMA DREAM tokens_in=3127 tokens_out=1450 cache_read=0
+[generate] ip=::1 category=INEMA INTIMIST tokens_in=3128 tokens_out=1420 cache_read=2932
+```
+
+**Na segunda chamada (dentro de 5 min), `cache_read` deve ser > 0** — prova de que o prompt cache está funcionando (~89% de economia nos tokens de input).
+
+## Troubleshooting
+
+| Problema | Causa provável | Solução |
+|---|---|---|
+| `Error: Cannot find module '@anthropic-ai/sdk'` | `npm install` não rodou ou falhou | Rode `npm install` de novo dentro de `app/` |
+| `Error: ANTHROPIC_API_KEY is not set` | `.env` não existe ou variável não está lá | Confira `cat .env` mostra a chave com prefix `sk-ant-` |
+| `401 authentication_error` da Anthropic | Chave inválida ou sem crédito | Confira `console.anthropic.com` — regenere a chave ou adicione saldo |
+| `Rate limit exceeded` | Você fez > 5 requests em 1 minuto | Espere 60s ou reinicie o `vercel dev` (zera o bucket in-memory) |
+| Frontend abre mas clica e nada acontece | Abriu o arquivo diretamente em vez do servidor local | Use `http://localhost:3000`, NÃO `file://...` |
+| `vercel dev` pede login no navegador | Primeira vez usando o CLI | Faça login na conta Vercel (grátis) — não precisa criar projeto ainda |
+| Fica travado "Gerando..." indefinidamente | Internet ruim, API fora, ou cold start lento | Espere 30s. Se passar disso, olhe o terminal do `vercel dev` para ver o erro |
+| `Error: No scene provided` | Textarea vazia ou só espaços | Digite uma descrição de pelo menos 1 palavra |
+| `SyntaxError: Unexpected token '<'` | Endpoint retornou HTML em vez de JSON (geralmente 500 do servidor) | Olhe o terminal do `vercel dev` — há um erro Python/TS que mostra a stack trace |
+
+## Rodar sem Vercel CLI (alternativa)
+
+Se você não quer instalar o Vercel CLI e só quer testar a function, dá para rodar direto com `tsx`:
+
+```bash
+npm install -g tsx
+
+# Inicia um servidor HTTP simples que simula /api/generate
+npx tsx --tsconfig tsconfig.json api/generate.ts
+```
+
+**Mas é mais complicado** — você precisa montar o wrapper HTTP na mão, porque a função espera `VercelRequest`/`VercelResponse`. **Recomendo usar `vercel dev`** (que cuida de tudo).
+
+Alternativa ainda mais simples: deploy direto em produção (Passo "Deploy em produção" abaixo) e testar lá.
+
+---
 
 ## Deploy em produção
 
