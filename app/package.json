@@ -4,7 +4,9 @@
   "private": true,
   "description": "Gerador estruturado de prompts cinematograficos INEMA para Seedance 2.0",
   "scripts": {
-    "dev": "vercel dev",
+    "dev": "node dev-server.mjs",
+    "dev:local": "API_FILE=api/generate-local.ts node dev-server.mjs",
+    "dev:vercel": "vercel dev",
     "deploy": "vercel --prod"
   },
   "dependencies": {
@@ -12,6 +14,7 @@
     "@vercel/node": "^3.2.0"
   },
   "devDependencies": {
+    "tsx": "^4.21.0",
     "typescript": "^5.5.0"
   }
 }
