@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.3 — 7 estilos prontos | Seedance 2.0 Mastery</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .bg-emerald-600 { background-color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500:hover { background-color: #10b981; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Seedance 2.0 Mastery</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Leigo</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Prompt-Ready</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Profissional</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-emerald-400">Início</a><span>/</span>
+      <a href="index.html" class="hover:text-emerald-400">Trilha 1</a><span>/</span>
+      <span class="text-emerald-400">Módulo 1.3</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.3</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🎭 7 cenas, 7 estilos prontos</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Os 7 "moods" mais testados do Seedance. Cada um com quando usar, template em português e o mesmo em inglês pronto para colar. Mais um bônus: como fazer quando nenhum dos 7 combina.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">8</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">60</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Básico</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Prático</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section class="mb-10">
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Como usar este módulo</h3>
+        <p class="text-neutral-300 text-sm">Não leia os 7 estilos em sequência — escolha o que combina com sua ideia. Cada estilo tem um <strong>template em português</strong> (para você pensar) e o mesmo <strong>em inglês</strong> (para colar no playground). Substitua [COLCHETES] pelas suas escolhas.</p>
+      </div>
+    </section>
+
+    <!-- 1. DUNE EPIC -->
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🏜️ Estilo Duna — quando você quer grandeza</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Use quando sua ideia tem escala enorme: paisagens épicas, deserto, espaço, oceano, paisagens naturais, figuras pequenas em cenário imenso. É o estilo <strong class="text-emerald-400">"o mundo é o protagonista"</strong>.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-emerald-400 mb-3">📝 Template em português</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-sm text-neutral-300 border border-dark-600 whitespace-pre-wrap">[QUEM, pequeno contra o cenário] em [ONDE, paisagem vasta] ao [HORA DO DIA]. Vista aérea que se afasta, luz âmbar direta e baixa, apenas âmbar queimado e preto puro. Figura tiny contra o mundo. Cinematográfico épico.</div>
+      </div>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-emerald-400 mb-3">🌍 Em inglês — pronto para colar</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-sm text-neutral-300 border border-dark-600 whitespace-pre-wrap">[WHO, tiny against landscape] in [WHERE, vast landscape] at [TIME OF DAY]. Aerial pull-back, burnt amber+pure black only, hard directional low sun, human tiny vs world. Cinematic epic.</div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+        <p class="text-sm text-neutral-400"><strong class="text-neutral-300">Exemplos de cenas que cabem:</strong> viajante num deserto infinito · astronauta na Lua · monge em montanhas gigantes · navio pequeno no oceano · explorador em canyon.</p>
+      </div>
+    </section>
+
+    <!-- 2. JOHN WICK -->
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🥊 Estilo John Wick — quando tem luta ou ação</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Use sempre que a cena envolve <strong class="text-emerald-400">combate, perseguição, armas, artes marciais</strong>. Cores saturadas azul + vermelho, superfícies molhadas refletindo neon, câmera tracking dramática. A cor pode ser adaptada se o cenário pedir (kung fu em bambuzal usa verde-bambu).</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-emerald-400 mb-3">📝 Template em português</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-sm text-neutral-300 border border-dark-600 whitespace-pre-wrap">[QUEM, lutador] enfrenta [OPONENTES] em [LUGAR MOLHADO/ESCURO], câmera baixa seguindo o movimento, cores azul+vermelho hiper-saturadas, superfícies molhadas com reflexos neon, câmera lenta 120fps, aspecto cinematográfico 2.39:1.</div>
+      </div>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-emerald-400 mb-3">🌍 Em inglês — pronto para colar</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-sm text-neutral-300 border border-dark-600 whitespace-pre-wrap">[WHO, fighter] faces [OPPONENTS] in [WET/DARK LOCATION], extreme low-angle tracking, hyper-saturated blue+red+black, wet neon surfaces, 120fps slow-motion, anamorphic 2.39:1.</div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+        <p class="text-sm text-neutral-400"><strong class="text-neutral-300">Exemplos:</strong> samurai no metrô de Tóquio · assassino num corredor de hotel · kung fu no bambuzal (adaptar para verde) · dois robôs lutando no telhado.</p>
+      </div>
+    </section>
+
+    <!-- 3. BLADE RUNNER -->
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🌃 Estilo Blade Runner — urbano noturno, íntimo</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Use para <strong class="text-emerald-400">cenas urbanas noturnas ou interiores íntimos</strong> que não têm ação. Cyberpunk, neons, mood dramático mas calmo. É o único estilo onde você pode <strong>trocar a paleta livremente</strong> (vermelha de vela, âmbar retro, verde de bar) — desde que mantenha o aspecto cinematográfico.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-emerald-400 mb-3">📝 Template em português</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-sm text-neutral-300 border border-dark-600 whitespace-pre-wrap">[QUEM] em [AMBIENTE URBANO NOTURNO ou INTERIOR MOLHADO], câmera em dolly lento se aproximando, [COR PREDOMINANTE — neon, vela, chrome]. Reflexos de poças no chão, reflexos anamórficos, clima íntimo e melancólico, 2.39:1.</div>
+      </div>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-emerald-400 mb-3">🌍 Em inglês — pronto para colar</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-sm text-neutral-300 border border-dark-600 whitespace-pre-wrap">[WHO] in [URBAN NIGHT SCENE or MOODY INTERIOR], slow dolly-in, [PALETTE — neon / candlelight amber / retro chrome]. Floor puddle mirror reflection, anamorphic lens flares, intimate melancholy mood, 2.39:1.</div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+        <p class="text-sm text-neutral-400"><strong class="text-neutral-300">Exemplos:</strong> hacker sozinho num bar cyberpunk · detetive num corredor de hotel velho · músico em café vazio à noite · tocando piano à luz de velas.</p>
+      </div>
+    </section>
+
+    <!-- 4. SILENT HILL -->
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">👻 Estilo Silent Hill — horror e sobrenatural</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Use para <strong class="text-emerald-400">horror, sobrenatural, lugares abandonados, criaturas, neblina densa</strong>. Cinza quase total, vermelho profundo para transições dramáticas, dessaturação completa exceto sangue. O vocabulário específico é o que passa pelo filtro de moderação sem perder peso dramático.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-emerald-400 mb-3">📝 Template em português</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-sm text-neutral-300 border border-dark-600 whitespace-pre-wrap">[QUEM] em [LUGAR ABANDONADO/ASSOMBRADO], envolto em neblina cinza densa (visibilidade ~3m), vermelho profundo vindo de [FONTE — sirene, luz de emergência, fogo], tudo dessaturado exceto sangue. Câmera em ângulo baixo, mão trêmula, momentos de pausa dramática.</div>
+      </div>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-emerald-400 mb-3">🌍 Em inglês — pronto para colar</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-sm text-neutral-300 border border-dark-600 whitespace-pre-wrap">[WHO] in [ABANDONED/HAUNTED PLACE], grey fog 3m visibility, deep red emergency lighting from [SOURCE], complete desaturation except blood. Extreme low-angle, handheld natural lag, stop-motion freeze at peak dread.</div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+        <p class="text-sm text-neutral-400"><strong class="text-neutral-300">Exemplos:</strong> exorcista em igreja vazia · criança em corredor de hospital abandonado · criatura emergindo da neblina · exploradora num porão.</p>
+      </div>
+    </section>
+
+    <!-- 5. STORM -->
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">⛈️ Estilo Tempestade — natureza violenta</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Use quando <strong class="text-emerald-400">a própria natureza é o protagonista</strong>: tempestades, raios, tsunamis, furacões, tornados. A tempestade carrega a cena, o personagem é secundário ao cenário.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-emerald-400 mb-3">📝 Template em português</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-sm text-neutral-300 border border-dark-600 whitespace-pre-wrap">[QUEM] enfrenta [TEMPESTADE/ONDA/TORNADO], nuvens escuras cobrindo tudo, raios são a única fonte de luz (flashes de 0,7s cada), água azul-preto profunda, vista aérea que se afasta, câmera lenta no pico do impacto.</div>
+      </div>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-emerald-400 mb-3">🌍 Em inglês — pronto para colar</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-sm text-neutral-300 border border-dark-600 whitespace-pre-wrap">[WHO] faces [STORM/WAVE/TORNADO], dark overcast storm clouds, lightning only light source 0.7s each flash, deep ocean blue-black water. Aerial pull-back, water surface tension physics, 120fps slow-motion, STOP MOTION at peak impact.</div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+        <p class="text-sm text-neutral-400"><strong class="text-neutral-300">Exemplos:</strong> pescador num barco pegando tempestade · casal no farol durante furacão · fazenda sendo atingida por tornado · cidade sendo engolida por tsunami.</p>
+      </div>
+    </section>
+
+    <!-- 6. FAIRY TALE -->
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🌸 Estilo Conto de Fadas — suave, pastoral</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Use para <strong class="text-emerald-400">fantasia suave, pastoral, princesas, animais fofos, primavera, conteúdo wholesome</strong>. Paleta pastel, hora dourada, tecidos fluindo, flores caindo. É o estilo para conteúdo infantil, publicidade de beleza, casamento.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-emerald-400 mb-3">📝 Template em português</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-sm text-neutral-300 border border-dark-600 whitespace-pre-wrap">[QUEM, com roupa fluindo] em [CAMPO/JARDIM/PRADO] ao pôr do sol, flores de cerejeira caindo ao redor, grama verde esmeralda, tecido branco esvoaçante, câmera em dolly onírico, luz dourada rasante.</div>
+      </div>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-emerald-400 mb-3">🌍 Em inglês — pronto para colar</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-sm text-neutral-300 border border-dark-600 whitespace-pre-wrap">[WHO, flowing fabric] in [FIELD/GARDEN/MEADOW] at golden hour. Pastel spring palette, soft pink cherry blossoms, emerald grass, flowing white fabric, dreamy slow dolly, cloth inertia, petal drift particle system, golden hour rim lighting.</div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+        <p class="text-sm text-neutral-400"><strong class="text-neutral-300">Exemplos:</strong> princesa correndo por campo de cerejeiras · criança brincando com coelhinhos · casamento num jardim · bailarina girando em jardim de flores.</p>
+      </div>
+    </section>
+
+    <!-- 7. ANIME SHONEN -->
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">7</span>
+        <h2 class="text-2xl font-bold">⚡ Estilo Anime Shonen — energia e transformação</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Use para <strong class="text-emerald-400">anime estilo Dragon Ball, Naruto, Demon Slayer, Jujutsu Kaisen</strong>. Transformações, power-ups, batalhas épicas de anime. Aura elétrica azul, raios dourados, explosões brancas contra fundo preto.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-emerald-400 mb-3">📝 Template em português</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-sm text-neutral-300 border border-dark-600 whitespace-pre-wrap">[QUEM, guerreiro anime] [TRANSFORMAÇÃO ou ATAQUE], aura azul elétrica envolvendo o corpo, raios dourados crepitando, explosões de energia branca contra vazio preto profundo, câmera em ângulo baixo extremo com orbit de 360 graus, câmera lenta no acúmulo de energia.</div>
+      </div>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-emerald-400 mb-3">🌍 Em inglês — pronto para colar</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-sm text-neutral-300 border border-dark-600 whitespace-pre-wrap">[WHO, anime warrior] [TRANSFORMATION or ATTACK]. Electric blue core aura + golden lightning crackling + pure white energy bursts against deep black void. Extreme low-angle, 360° orbit, crash zoom, cloth inertia on uniform, electrical particle physics, 120fps slow-motion energy buildup, anamorphic lens flares.</div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+        <p class="text-sm text-neutral-400"><strong class="text-neutral-300">Exemplos:</strong> super saiyajin carregando energia · ninja fazendo jutsu · demon slayer desembainhando espada · estudante com stand aparecendo pela primeira vez.</p>
+      </div>
+    </section>
+
+    <!-- 8. INVENTAR GÊNERO -->
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">8</span>
+        <h2 class="text-2xl font-bold">🎨 E se minha cena não encaixar em nenhum?</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Tem um truque simples. Quando nenhum dos 7 estilos combina, você pode dizer "<strong class="text-emerald-400">estilo [NOME DE DIRETOR OU FRANQUIA FAMOSA]</strong>" e o modelo preenche o resto sozinho, usando o que ele sabe de cinema.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Exemplos que funcionam</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>"estilo Wes Anderson simétrico"</strong> — cores pastel, composições perfeitamente centradas, paleta rosa+menta.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>"estilo Tim Burton gótico"</strong> — sombras azul-escuras, contrastes altos, atmosfera de sonho estranho.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>"estilo Sergio Leone western"</strong> — closes extremos nos olhos, sol a pino, areia, standoff dramático.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>"estilo Studio Ghibli Miyazaki"</strong> — céu azul com nuvens, vento nos cabelos, crianças correndo.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>"estilo synthwave retro anos 80"</strong> — neon magenta, silhuetas negras, pôr do sol digital.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>"estilo found footage horror"</strong> — visão noturna, granulado, câmera trêmula.</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 A regra</h3>
+        <p class="text-neutral-300 text-sm">Funciona melhor quando você diz <strong>"estilo [X]"</strong> e depois acrescenta o que você lembra visualmente desse estilo. O modelo tem conhecimento de milhares de diretores, franquias, e períodos. Aproveite isso.</p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📚</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">7 estilos cobrem a maior parte dos casos</strong> <span class="text-neutral-400">— Duna, John Wick, Blade Runner, Silent Hill, Tempestade, Conto de Fadas, Anime Shonen.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Cada estilo tem template PT → EN pronto</strong> <span class="text-neutral-400">— substitua os colchetes, traduza (ou use a versão EN), cole.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Blade Runner é o único com paleta flexível</strong> <span class="text-neutral-400">— os outros 6 têm cor fixa que você deve preservar.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">"Estilo [diretor famoso]" resolve o resto</strong> <span class="text-neutral-400">— Wes Anderson, Tim Burton, Leone, Miyazaki, synthwave, found footage.</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-emerald-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">1.4 — Fazendo e publicando. Conta na fal.ai, playground, correção de erros comuns, edição mínima e publicação ética.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-1-2.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
+          <a href="modulo-1-4.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Seedance 2.0 Mastery · INEMA.CLUB · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
