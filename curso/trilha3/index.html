@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trilha 3 — A Lógica do Seedance | Seedance 2.0 Mastery</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FACC15',
+            dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Blue (Trilha 3) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37, 99, 235, 0.18); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .bg-blue-600 { background-color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500:hover { background-color: #3b82f6; }
+
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎬</span>
+            <span class="font-bold text-lg hidden sm:inline">Seedance 2.0 Mastery</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">
+            <span class="sm:hidden">T1</span>
+            <span class="hidden sm:inline">Leigo</span>
+          </a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors">
+            <span class="sm:hidden">T2</span>
+            <span class="hidden sm:inline">Prompt-Ready</span>
+          </a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10">
+            <span class="sm:hidden">T3</span>
+            <span class="hidden sm:inline">Profissional</span>
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">
+        TRILHA 3 · TÉCNICO
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🔬 A Lógica por Trás do Seedance</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Para devs, agências e prompt engineers. Engenharia reversa do produto comercial, system prompt reconstruído em 8 camadas, clone production-ready com Netlify + Claude tool use, método para derivar sua própria taxonomia, e pipeline de produção em escala.
+      </p>
+
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-blue-400">6</div>
+          <div class="text-xs text-neutral-400">Módulos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-blue-400">38</div>
+          <div class="text-xs text-neutral-400">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-blue-400">~8h</div>
+          <div class="text-xs text-neutral-400">Duração</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-blue-400">Avanç.</div>
+          <div class="text-xs text-neutral-400">Nível</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold mb-2">Conteúdo da trilha</h2>
+      <p class="text-neutral-400 text-sm">Clique em um tópico para expandir. Cada módulo tem página completa acessível pelo "Ver Completo".</p>
+    </div>
+
+    <!-- MÓDULO 3.1 — SEEDANCE COMO MODELO -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-blue-400 font-bold">3.1</span>
+          <span class="text-xs text-neutral-500">~50 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🧠 Seedance 2.0 como modelo (sem mitos)</h3>
+        <p class="text-neutral-400 text-sm">Arquitetura geral, por que é sensível à forma do prompt, timeline prompting oficial, diferenças v1→v2, benchmarks reais.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🏗️</span>
+            <div><span class="font-medium">Arquitetura geral de text-to-video</span><span class="text-neutral-500 text-sm ml-2">- onde Seedance difere de Kling/Veo/Runway</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Modelos text-to-video são difusões treinadas em pares (texto, vídeo) com condicionamento temporal. Seedance 2.0 usa encoder multimodal conjunto (texto + imagem + áudio), diferente de Runway (foco em image-to-video) e Veo (foco em longo prazo).</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Saber a arquitetura explica por que certos prompts funcionam. Seedance foi treinado com audio-text-video conjunto → descrições de áudio no prompt têm efeito real na v2.0.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Diffusion temporal · encoder multimodal · distribuição de treinamento · condicionamento.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">📊</span>
+            <div><span class="font-medium">Por que o Seedance é sensível à forma do prompt</span><span class="text-neutral-500 text-sm ml-2">- distribuição de treinamento</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Todo modelo de linguagem/vídeo aprende a "modo" de escrita que aparece mais em seus dados. Seedance foi exposto a legendas cinematográficas estruturadas, então prompts que seguem essa forma caem na "distribuição conhecida" e geram melhor.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Entender isso desmistifica prompts mágicos. Não existe "frase secreta" — existe frase que se parece com o que o modelo viu mais.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">In-distribution vs out-of-distribution · convenções aprendidas · prior de estilo.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">📖</span>
+            <div><span class="font-medium">Timeline prompting — técnica oficial documentada</span><span class="text-neutral-500 text-sm ml-2">- redreamality, MindStudio</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">A estrutura [0s][3s][6s][8s] é <strong>oficialmente documentada</strong> por guias públicos (MindStudio, redreamality). O produto estudado usa variante de 3 beats, mas a ideia é pública. Fórmula universal: Subject + Action + Scene + Lighting + Camera Movement + Style + Quality + Constraints.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A honestidade arquitetural do curso: o aluno precisa saber o que é público (timeline prompting, vocabulário cinematográfico) vs autoral (STOP MOTION, 3 audio phases, 7 presets específicos).</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">50% público / 50% autoral · redreamality como fonte mais completa · style line global.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">⬆️</span>
+            <div><span class="font-medium">O que mudou da v1 para v2</span><span class="text-neutral-500 text-sm ml-2">- áudio nativo, 9 refs, faces reais</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Seedance 1.0 (jun/2025) gerava só vídeo silencioso. 2.0 (fev/2026): áudio nativo conjunto · aceita 9 imagens + 3 clipes de 15s como referência · suporte a faces humanas reais · controle fino de iluminação/sombra/movimento · variante "Fast" para latência menor.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A maior parte do material de reverse engineering foi feita contra v1.x. Saber o que mudou evita ensinar técnicas obsoletas. <span class="inline-block px-2 py-0.5 bg-red-500/20 text-red-400 text-xs font-semibold rounded">Revalidar v2.0</span></p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Áudio nativo muda tudo · 9 refs = consistência visual · faces reais = compliance crítico.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">🏆</span>
+            <div><span class="font-medium">Benchmarks — #1 global em T2V e I2V</span><span class="text-neutral-500 text-sm ml-2">- Artificial Analysis Video Arena</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Em abril/2026: Elo 1269 em text-to-video e Elo 1351 em image-to-video, ambos #1 globais no Artificial Analysis Video Arena. À frente de Kling 3.0, Google Veo 3, Runway Gen-4.5.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Números justificam investir tempo em Seedance especificamente. Benchmark muda, então saber ler ELO e arenas permite reavaliar no futuro.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">ELO rating · arena de comparação pairwise · benchmarks mudam rápido em IA.</p></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-1')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-1.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 3.2 — ENGENHARIA REVERSA COMO MÉTODO -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-blue-400 font-bold">3.2</span>
+          <span class="text-xs text-neutral-500">~75 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🔎 Engenharia reversa como método</h3>
+        <p class="text-neutral-400 text-sm">O caso seedance-gen.netlify.app. Forense estática + 51 sondas comportamentais, taxonomia descoberta, rigidez medida, achados de segurança, curva de saturação.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🎯</span>
+            <div><span class="font-medium">O caso seedance-gen.netlify.app</span><span class="text-neutral-500 text-sm ml-2">- o que é, por que vale estudar</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Produto comercial pago (iDall Lite na Skool): static HTML + 1 Netlify Function chamando Claude. Interface simples gerando prompts cinematográficos estruturados para Seedance. 5 grátis por IP, 100 para assinantes. Um exemplo perfeito de "embrulhar conhecimento em SaaS".</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A metodologia de reverse engineering é transferível: qualquer produto de IA embalado como SaaS pode ser reversado comportamentalmente. Aprender aqui aplica para Suno, Midjourney, Runway, etc.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">SaaS de prompt engineering · wrapper de API · paywall cosmético · valor está no prompt.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">🔧</span>
+            <div><span class="font-medium">Forense estática — HTML, JS, endpoints, headers</span><span class="text-neutral-500 text-sm ml-2">- sem tocar no backend</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Análise do que é público: view-source do HTML (339 linhas vanilla JS), DevTools para ver endpoints chamados, headers HTTP para identificar stack (Netlify Functions), localStorage para entender quota client-side.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">90% do que importa para reverse engineer um SaaS está no cliente. Saber olhar é 80% do trabalho.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">view-source · DevTools Network · localStorage · Server headers.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🧪</span>
+            <div><span class="font-medium">As 51 sondas comportamentais em 5 rodadas</span><span class="text-neutral-500 text-sm ml-2">- como desenhar o experimento</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">51 chamadas POST /api/generate com cenas progressivamente diversas. Rodada 1 (12 genéricas) → Rodada 2 (arquétipos) → Rodada 3 (exóticos + relocks) → Rodada 4 (estilos cinematográficos) → Rodada 5 (diretores específicos). Cada rodada refina hipóteses.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Hit rate de descoberta sobe com rodadas mais dirigidas: 0% → 8% → 20% → 67% → 75%. Saber paralelizar sondas em rodadas estruturadas economiza horas.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Design experimental iterativo · paralelismo de chamadas · registro de hipóteses.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">📊</span>
+            <div><span class="font-medium">Taxonomia descoberta — 17 gêneros, 5 hard-coded</span><span class="text-neutral-500 text-sm ml-2">- prova via repetição literal</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">17 gêneros distintos observados. 5 core (DUNE EPIC, JOHN WICK ACTION, BLADE RUNNER NOIR, SILENT HILL HORROR, STORM EPIC) confirmados como hard-coded via repetição literal de strings: DUNE EPIC retornou a string exata "burnt amber+pure black only..." em 13 de 16 amostras.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Repetição literal é a assinatura de hard-coding. Variação alta é a assinatura de geração on-the-fly. Saber distinguir os dois via análise estatística é central.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Strings canônicas · variância como sinal · separação core vs secundário.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">📏</span>
+            <div><span class="font-medium">Medindo rigidez — 100% STOP MOTION, 97.9% opening</span><span class="text-neutral-500 text-sm ml-2">- estatística como prova</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">48 prompts medidos: 97.9% com "same character throughout all shots", 100% com [0s] e [6s] beats, 100% com STOP MOTION freeze, 91.7% com [3s], 93.8% com Phase 1/2/3 audio, 89.6% com "cloth inertia", 64.6% com "anamorphic 2.39:1".</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Essas frequências são impossíveis sem instruções explícitas. 100% de STOP MOTION só acontece se há regra "SEMPRE use STOP MOTION" no prompt. É como você prova hard-coding sem ver o código.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Contagem de ocorrências · frequência como prova · rigidez mensurável.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🔒</span>
+            <div><span class="font-medium">Achados de segurança — os 6 furos do original</span><span class="text-neutral-500 text-sm ml-2">- quota client-side, CORS *, etc.</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Quota enforced só no client (localStorage, bypass via DevTools) · CORS * (qualquer site queima a API key do dono) · sem rate limit servidor · debug field vazando tamanho da allowlist · allowlist por email puro sem token assinado · sem CSRF check.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Mostrar hands-on como cada furo é explorável (e como corrigir) é aula de segurança prática. O clone reconstruído corrige os 6.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Client-side nunca é fonte de verdade · CORS como superfície de ataque · tokens assinados.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">7</span>
+            <span class="text-lg">📈</span>
+            <div><span class="font-medium">Curva de saturação — quando parar de sondar</span><span class="text-neutral-500 text-sm ml-2">- custo-benefício honesto</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Após 51 sondas, macro-arquitetura está 95% saturada. Taxonomia de gêneros ainda abre indefinidamente (Claude inventa com base em referências). Parar agora entrega 95%; +40 sondas dirigidas fecham 100%; +200 sondas entregam só curiosidades.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Saber parar é parte da disciplina. Diminishing returns é real. O objetivo define até onde ir: reconstruir clone ≠ replicar idêntico ≠ red-team.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Saturação macro vs micro · catálogo parcialmente infinito · definir objetivo primeiro.</p></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-2')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-2.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 3.3 — SYSTEM PROMPT 8 CAMADAS -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-blue-400 font-bold">3.3</span>
+          <span class="text-xs text-neutral-500">~80 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">📜 System prompt reconstruído — 8 camadas</h3>
+        <p class="text-neutral-400 text-sm">Uma aula por camada do system prompt didático: ROLE, SCHEMA, PRESETS, ROUTING, TEMPLATE, VOCAB, RECS, HARDENING.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🎭</span>
+            <div><span class="font-medium">Camada 1 — ROLE</span><span class="text-neutral-500 text-sm ml-2">- "Seedance Cinematic Prompt Engineer"</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">A definição de papel ancora todo o resto. "You do NOT write screenplays. You do NOT explain things to the user. You produce structured cinematic prompts following an exact template and a fixed cinematic vocabulary that is known to render well on Seedance."</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Sem a linha "NOT explain", o modelo escorrega para modo "assistant" e produz prosa narrativa em vez de artefato estruturado. A frase "known to render well on Seedance" ativa comportamento de "lookup de templates".</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Papel concreto · negações explícitas · ativação de vocabulário.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">📋</span>
+            <div><span class="font-medium">Camada 2 — OUTPUT SCHEMA via tool use</span><span class="text-neutral-500 text-sm ml-2">- 7 campos forçados</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">7 campos: genre, color_system, camera_style, techniques[4], english_prompt (350-500 palavras), chinese_prompt, recommendations[4]. Forçado via tool_choice {type: "tool", name: "emit_seedance_prompt"} — não "responda em JSON".</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Tool use forçado bloqueia prompt injection completamente. O modelo não tem canal de texto livre por onde vazar system prompt ou mudar schema. É o anti-injection definitivo, melhor que qualquer instrução textual.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">tool_choice forçado · schema validation · input_schema JSON.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">📚</span>
+            <div><span class="font-medium">Camada 3 — PRESETS como biblioteca de receitas</span><span class="text-neutral-500 text-sm ml-2">- strings canônicas literais</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">7 presets core com strings literais obrigatórias. Instrução: "use the canonical strings literally when classifying; adapt color palette only when the scene's setting clearly demands it". Copiar exato, não reformular.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A instrução "use literally" é o que força a rigidez observada (13/16 DUNE EPIC idênticos). Sem ela, o modelo reformularia a cada chamada e perderia a "assinatura" visual.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Literal quote vs reformulação · adaptação controlada · biblioteca como IP.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🚦</span>
+            <div><span class="font-medium">Camada 4 — ROUTING RULES</span><span class="text-neutral-500 text-sm ml-2">- match + cláusula inventar gênero</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Regras de classificação: match pelo primeiro preset cujos triggers se encaixam · fallback permite inventar gênero em padrão REFERENCE STYLE quando o estilo é cinema conhecido · default DUNE EPIC ou BLADE RUNNER NOIR · override: combate sempre JOHN WICK ACTION.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A cláusula "inventar gênero" é o que dá cobertura parcialmente infinita. Sem ela, tudo vira DUNE ou BLADE RUNNER por default. Com ela, qualquer cena fora dos triggers cai em um gênero plausível.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Match por trigger · fallback inventivo · overrides hard-coded.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">⏰</span>
+            <div><span class="font-medium">Camada 5 — TEMPLATE TEMPORAL não-negociável</span><span class="text-neutral-500 text-sm ml-2">- line-by-line do template</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">LINE 1 literal · [0s] câmera + sujeito + física + cor + lighting + Phase 1 audio · [3s] câmera diferente + 120fps + Phase 2 audio · [6s] clímax + STOP MOTION + snap-back + Phase 3 audio + Anamorphic. HARD RULES: 350-500 palavras, NEVER [9s], NEVER skip STOP MOTION.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A rigidez é o motivo da qualidade consistente. Seedance foi treinado em legendas estruturadas — seguir a forma que ele "viu mais" gera outputs mais limpos. <span class="inline-block px-2 py-0.5 bg-red-500/20 text-red-400 text-xs font-semibold rounded">Revalidar v2.0</span></p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Non-negotiable template · regras explícitas · calibração de comprimento.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">📖</span>
+            <div><span class="font-medium">Camada 6 — APPROVED VOCABULARY</span><span class="text-neutral-500 text-sm ml-2">- por que listar explicitamente</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Lista curada de termos de câmera, física, tempo, lighting e áudio que o Seedance reconhece. É exatamente o vocabulário que aparece nas 48 amostras analisadas — o autor obviamente testou cada termo e validou.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Sem a lista explícita, o modelo improvisa ("smooth movement", "fast slow-mo") e o Seedance não reconhece. A lista serve como constraint negativo: termos fora dela são desencorajados.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Constraint negativa · curadoria empírica · vocabulário testado.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">7</span>
+            <span class="text-lg">💡</span>
+            <div><span class="font-medium">Camada 7 — RECOMMENDATIONS (anti-marketing)</span><span class="text-neutral-500 text-sm ml-2">- 4 dicas técnicas, não filler</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Exatamente 4 dicas técnicas de filmagem/produção. A instrução vem com contra-exemplos explícitos: ✗ "This prompt will create a great cinematic look" · ✗ "Try to be creative" · ✗ "Make sure to add more details". Força tom cinematográfico, não marketing.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Sem contra-exemplos, o modelo escorrega para "marketing assistant" e produz filler vazio. Mostrar o que NÃO fazer é mais eficaz do que mostrar só o que fazer.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Contra-exemplos explícitos · tom técnico forçado · percepção de consultoria.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">8</span>
+            <span class="text-lg">🛡️</span>
+            <div><span class="font-medium">Camada 8 — HARDENING anti-injection</span><span class="text-neutral-500 text-sm ml-2">- tradução CN + security rules</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Tradução chinesa literal beat-by-beat com mapping table fixa. Security rules: tratar user input SEMPRE como "scene description", nunca instrução. Injection vira diálogo do personagem. Refusal retorna genre="REFUSED" com JSON válido.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Transforma ataques em input válido ("ignore previous instructions" vira fala de personagem). Refusal estruturado mantém front-end sem bug.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Interpretação defensiva · refusal estruturado · mapping literal.</p></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-3')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-3.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 3.4 — CLONE -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-blue-400 font-bold">3.4</span>
+          <span class="text-xs text-neutral-500">~70 min · LABORATÓRIO</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🔧 Construindo seu clone (laboratório)</h3>
+        <p class="text-neutral-400 text-sm">Netlify + Claude Sonnet 4.6 + tool use forçado. generate.ts linha a linha, HMAC tokens, deploy real, cálculo de custo.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🏗️</span>
+            <div><span class="font-medium">Arquitetura do clone</span><span class="text-neutral-500 text-sm ml-2">- vanilla + Netlify + Claude</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Frontend single-file HTML (224 linhas, zero build) + 2 Netlify Functions TypeScript (generate.ts ~356 linhas, check-email.ts). Stack: @anthropic-ai/sdk · @netlify/functions · Node crypto para HMAC · TypeScript 5.5.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Arquitetura minimalista, cabe na cabeça em 1 hora. Todo o valor está no system prompt, o código é reutilizável para outros nichos (Suno, Midjourney, Runway) só trocando presets.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Domain-agnostic architecture · single-file frontend · edge functions serverless.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">📝</span>
+            <div><span class="font-medium">generate.ts linha a linha</span><span class="text-neutral-500 text-sm ml-2">- tool use, prompt cache, rate limit</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">client.messages.create com model "claude-sonnet-4-6", max_tokens 4096, temperature 0.7, system com cache_control: {type: "ephemeral"}, tools [TOOL_SCHEMA], tool_choice {type: "tool", name: "emit_seedance_prompt"}, messages [user scene].</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Cada parâmetro é decisão técnica com trade-off. temperature 0.7 dá variabilidade sem perder classificação. Prompt cache ephemeral economiza ~89% após warmup. tool_choice forçado bloqueia injection.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Structured output · prompt caching · parameter tuning.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🔐</span>
+            <div><span class="font-medium">check-email.ts + HMAC tokens</span><span class="text-neutral-500 text-sm ml-2">- allowlist correta</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Email contra PRO_EMAILS (CSV env var). Se válido: createHmac("sha256", PRO_TOKEN_SECRET).update(`${email}.${expiresAt}`).digest("hex"). Retorna token base64url+signature. 30 dias de validade.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">HMAC assinado no server é a forma certa de fazer allowlist sem depender de confiança do cliente. localStorage tamperproof via cryptographic signature.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">HMAC-SHA256 · env var secret · expiração embutida no token.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🚀</span>
+            <div><span class="font-medium">Deploy — netlify deploy --prod</span><span class="text-neutral-500 text-sm ml-2">- custo real $0.024/geração</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Setup: ANTHROPIC_API_KEY + PRO_EMAILS + PRO_TOKEN_SECRET (openssl rand -hex 32). npm install, netlify dev para local, netlify deploy --prod para produção. Custo pós-warmup: ~$0.024 por geração (3000 tokens system cacheados + ~500 tokens variáveis).</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Deploy real em 10 minutos é o momento "funcionou". Custo transparente permite precificação realista para cliente.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Env vars de produção · netlify CLI · cálculo de custo por request.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">🛡️</span>
+            <div><span class="font-medium">Segurança — as 6 correções do clone</span><span class="text-neutral-500 text-sm ml-2">- vs. original</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">1) Rate limit servidor 5 req/min por IP · 2) CORS restrito a domínio · 3) HMAC tokens em vez de email puro · 4) Sem debug field · 5) Input cap 4000 chars · 6) Refusal estruturado com genre="REFUSED".</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Cada correção é aula de segurança prática. Conhecer os 6 pontos torna qualquer clone futuro seguro por default.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Defense in depth · bucket in-memory rate limit · cap de input.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">➕</span>
+            <div><span class="font-medium">Extensões — streaming, webhook fal.ai, dashboard</span><span class="text-neutral-500 text-sm ml-2">- próximos passos</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Streaming response para mostrar tokens chegando · webhook para chamar fal.ai logo após o prompt ser gerado (pipeline completo) · dashboard de custo usando Anthropic usage API.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Streaming melhora UX percebida em ~40%. Webhook para fal.ai transforma o clone em "gera prompt + gera vídeo" em uma chamada só. Dashboard permite otimizar custo.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">SSE streaming · webhook orchestration · observability.</p></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-4')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-4.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 3.5 — SUA TAXONOMIA -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-blue-400 font-bold">3.5</span>
+          <span class="text-xs text-neutral-500">~60 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">✍️ Derivando SUA taxonomia</h3>
+        <p class="text-neutral-400 text-sm">O ofício autoral: copiar 1:1 é replicar produto comercial. Fazer a sua é o que diferencia aluno de clone. Metodologia, nichos, validação empírica, documentação.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">⚖️</span>
+            <div><span class="font-medium">A observação ética — copiar vs. derivar</span><span class="text-neutral-500 text-sm ml-2">- replicação comercial</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Copiar o system prompt 1:1 é replicar o produto comercial de outra pessoa. O caminho saudável é usar a estrutura como referência arquitetural e escrever sua própria taxonomia (seus gêneros, seu vocabulário, seu nicho).</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Ética não é opcional. Além de ser o certo, é o caminho que gera diferenciação real no mercado. O ofício é a curadoria + opinião, não o segredo.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Derivative work · opinião autoral · diferenciação de mercado.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">🎯</span>
+            <div><span class="font-medium">Metodologia — nicho → estilos → validação</span><span class="text-neutral-500 text-sm ml-2">- passo a passo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">1) Escolher nicho · 2) Listar 10-15 estilos visuais do nicho · 3) Rodar 3 sondas por estilo na fal.ai · 4) Cortar os 5-7 que rendem melhor · 5) Canonizar strings literais · 6) Documentar em biblioteca.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É o método que o autor do produto original seguiu. Replicável para qualquer nicho: UGC de beleza, gaming shorts, corporativo B2B, educação infantil, real estate, food porn.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Descoberta → validação → canonização · 5-7 é sweet spot · documentação obrigatória.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🏷️</span>
+            <div><span class="font-medium">Exercício guiado — escolha seu nicho</span><span class="text-neutral-500 text-sm ml-2">- 5 nichos exemplo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">5 nichos trabalhados como exemplo: UGC de beleza (testemunho falso, unboxing, before/after), gaming shorts (highlight reel, twitch clip, esports), corporativo B2B (product reveal, team culture, keynote b-roll), educação infantil (narração + animação, experimento), real estate (walkthrough, drone exterior, lifestyle shots).</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Nicho concreto evita paralisia. Cada exemplo mostra que a metodologia funciona em verticals muito diferentes. O aluno escolhe o mais próximo da sua realidade.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Nicho-as-constraint · exemplos transferíveis · vertical-specific vocab.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🧪</span>
+            <div><span class="font-medium">Validação empírica na fal.ai — 4-6h, ~$5</span><span class="text-neutral-500 text-sm ml-2">- plano de teste executável</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Plano: 5 cenas-teste diversas. Para cada uma, gerar 3 versões (oficial puro / clone 350-500 palavras / híbrido otimizado). Rodar 15 vídeos na fal.ai. Comparar lado a lado. Anotar quais técnicas geraram diferença visível. Custo: ~$5.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É a forma honesta de saber o que importa. Elimina placebo cinematográfico. Resultado: você sabe empiricamente quais dos 50% autorais do produto comercial realmente funcionam.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Side-by-side comparison · placebo test · documentação das diferenças.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">✒️</span>
+            <div><span class="font-medium">Escrevendo seus prompts canônicos</span><span class="text-neutral-500 text-sm ml-2">- strings literais como IP</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Depois de validar 5-7 estilos, você escreve as strings canônicas (color_system, camera_style, techniques) para cada um. As strings literais são sua IP — é o que você vende ou mantém como diferencial do seu serviço.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A biblioteca bem-escrita é o ativo intelectual real do serviço. Código pode ser copiado; a curadoria não.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Strings canonizadas · literal quoting · IP intelectual.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">📚</span>
+            <div><span class="font-medium">Documentando sua biblioteca</span><span class="text-neutral-500 text-sm ml-2">- reuso em equipe</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Estrutura recomendada: 1 arquivo .md por preset com triggers, string canônica, 4 exemplos, variações permitidas, vídeos de referência, data de última validação.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Documentação compartilhável transforma conhecimento individual em capital de equipe. Modelos mudam com frequência; "última validação" é campo crítico.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">1 arquivo por preset · campo de validação · vídeos de referência obrigatórios.</p></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-5')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-5.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 3.6 — PRODUÇÃO EM ESCALA -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-blue-400 font-bold">3.6</span>
+          <span class="text-xs text-neutral-500">~65 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🏭 Produção em escala e pipeline comercial</h3>
+        <p class="text-neutral-400 text-sm">Integração com DaVinci/Premiere, batch generation, custos comparativos, vendas, compliance, red-team de output.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🎬</span>
+            <div><span class="font-medium">Integração DaVinci/Premiere/After Effects</span><span class="text-neutral-500 text-sm ml-2">- onde encaixa no fluxo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Seedance entra como "gerador de b-roll cinematográfico" no pipeline: render de 10s na fal.ai → upscale no Topaz Video AI → edit final no DaVinci Resolve (color grading + cortes) → finishing no After Effects (sobreposições, textos).</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">IA sozinha raramente gera entrega final. Pipeline híbrido (IA + edição tradicional) é o que torna o output comercialmente viável.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">IA como b-roll · upscaling · color grading final · compositing.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">⚙️</span>
+            <div><span class="font-medium">Batch generation e controle de qualidade</span><span class="text-neutral-500 text-sm ml-2">- script Python/TS para 50 variantes</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Script que recebe uma cena e gera 50 variantes (5 câmera × 5 paleta × 2 lighting), roda todas na fal.ai em paralelo, usa CLIP ou similar para ranquear visualmente contra uma imagem de referência, retorna top 5.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Batch com ranking automático é a forma de escalar quando o cliente quer "10 opções". Manual dá 1h por opção; automatizado dá 50 em 10 min.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Paralelismo de API · ranking automático · CLIP score · quality gate.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">💰</span>
+            <div><span class="font-medium">Custos comparativos — fal.ai × Dreamina × concorrentes</span><span class="text-neutral-500 text-sm ml-2">- por segundo de vídeo final</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Tabela comparativa: fal.ai Seedance 2.0 ~$X/s, Dreamina ~$Y/s, Runway Gen-4.5 ~$Z/s, Kling 3.0 ~$W/s, Veo 3 ~$V/s. Custo de "vídeo final utilizável" inclui taxa de rejeição (gerar 5 e usar 1 é diferente de gerar 1 e usar 1).</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Custo real é "por vídeo aprovado pelo cliente", não "por render". A conta muda radicalmente quando você inclui iterações.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Taxa de rejeição · custo efetivo · comparação multi-plataforma.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🤝</span>
+            <div><span class="font-medium">Vendendo vídeo-IA para clientes</span><span class="text-neutral-500 text-sm ml-2">- precificação, briefing, entrega</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Estrutura de venda: briefing em 4 perguntas (quem, para quem, clima, referência visual) · cotação por pacote (5 vídeos / 15 vídeos / campanha completa) · entrega em 48h com revisão · precificação 10-30x o custo de API (serviço, não venda de vídeo).</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Cliente paga pelo ofício + curadoria, não pela API. Precificar só pela fal.ai vira race to the bottom. Precificar como consultoria cinematográfica escala.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Valor percebido · pacotes fechados · revisões limitadas · markup como serviço.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">⚖️</span>
+            <div><span class="font-medium">Compliance — imagem, deepfake, marcas</span><span class="text-neutral-500 text-sm ml-2">- uso comercial seguro</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Direitos de imagem (consentimento escrito para face real) · marcas registradas (evitar logos, produtos icônicos) · deepfake (pessoas públicas só em contexto editorial) · LGPD/GDPR (não armazenar face sem base legal).</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Processo por direito de imagem é o maior risco comercial de vídeo-IA. Saber os limites evita o problema antes dele existir.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Release de imagem · direito de uso comercial · LGPD face = dado sensível.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🔍</span>
+            <div><span class="font-medium">Red-team — auditando output antes da entrega</span><span class="text-neutral-500 text-sm ml-2">- drift, refusal, qualidade</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Checklist de auditoria antes de enviar para cliente: identity drift (personagem mudou?) · frame corrupt (blur, artefato, ghosting?) · unintended content (texto estranho na cena, marca no fundo, gestos obscenos?) · aspect ratio (bateu com o pedido?) · duração (cortada?).</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Cliente lembra do pior vídeo. Auditoria rápida de 2 minutos por vídeo antes de enviar é o que separa agência pro de freelancer caótico.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Quality gate · checklist pré-entrega · red-team do output.</p></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-6')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-6.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- PROJETO FINAL -->
+    <section class="mb-8">
+      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-4 flex items-center"><span class="mr-3">🏆</span> Projeto final da Trilha 3</h2>
+        <p class="text-neutral-300 mb-4">Entregue um <strong>micro-SaaS funcional</strong> derivado do clone: seu próprio nicho, sua taxonomia autoral de 5-7 presets, 30 gerações validadas empiricamente, README de arquitetura e análise de custo por geração.</p>
+        <ul class="space-y-2 text-sm text-neutral-300 mb-6">
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">✓</span><span>Nicho próprio (não copiar os 7 presets originais)</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">✓</span><span>Clone deployado em Netlify com as 6 correções de segurança</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">✓</span><span>Validação empírica de pelo menos 3 dos seus presets na fal.ai</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">✓</span><span>README com arquitetura, custo por geração e plano de monetização</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+      <a href="../trilha2/index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">
+        ← Anterior: Trilha 2 (Prompt-Ready)
+      </a>
+      <a href="../../index.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">
+        Voltar ao início →
+      </a>
+    </div>
+  </main>
+
+  <footer class="border-t border-dark-600 py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Seedance 2.0 Mastery · INEMA.CLUB · 2026</p>
+    </div>
+  </footer>
+
+  <!-- MODALS -->
+  <div id="modal-3-1" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">3.1</span><span class="font-semibold">Seedance como modelo</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-3-1.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-3-2" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">3.2</span><span class="font-semibold">Engenharia reversa</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-3-2.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-3-3" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">3.3</span><span class="font-semibold">System prompt 8 camadas</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-3-3.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-3-4" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">3.4</span><span class="font-semibold">Construindo seu clone</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-3-4.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-3-5" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">3.5</span><span class="font-semibold">Derivando sua taxonomia</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-3-5.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-3-6" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">3.6</span><span class="font-semibold">Produção em escala</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-3-6.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function toggleTopic(button) {
+      const topicItem = button.closest('.topic-item');
+      const explanation = topicItem.querySelector('.topic-explanation');
+      const moduleCard = button.closest('.bg-dark-800');
+      moduleCard.querySelectorAll('.topic-explanation.active').forEach(exp => {
+        if (exp !== explanation) exp.classList.remove('active');
+      });
+      explanation.classList.toggle('active');
+    }
+
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) { modal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+    }
+    function closeModal() {
+      document.querySelectorAll('.modal').forEach(modal => modal.classList.add('hidden'));
+      document.body.style.overflow = 'auto';
+    }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>
