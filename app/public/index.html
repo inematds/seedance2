@@ -100,6 +100,7 @@
         <span class="font-bold text-lg tracking-tight">INEMA <span class="text-primary">Prompt Engine</span></span>
       </div>
       <div class="flex items-center space-x-3 text-sm">
+        <span id="llm-indicator" class="hidden sm:inline text-xs text-neutral-500 font-mono"></span>
         <a href="https://inema.club" target="_blank" class="text-neutral-400 hover:text-primary transition-colors hidden sm:inline">inema.club</a>
         <button onclick="openSettings()" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors" title="Configurações">
           <svg class="w-4 h-4 text-neutral-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -435,46 +436,95 @@
       </div>
 
       <p class="text-sm text-neutral-400 mb-6">
-        Configure chaves de API para <strong class="text-neutral-300">renderizar vídeos diretamente</strong> pela app. As chaves ficam salvas só no seu navegador (localStorage).
+        Tudo fica salvo só no seu navegador (<code>localStorage</code>). Nada é enviado ao servidor exceto quando você clica em gerar.
       </p>
 
-      <div class="space-y-5">
-        <!-- fal.ai key -->
+      <div class="max-h-[60vh] overflow-y-auto pr-2 space-y-6">
+
+        <!-- LLM SECTION -->
         <div>
-          <label class="flex items-center justify-between mb-2">
-            <span class="text-sm font-medium text-neutral-300">fal.ai API Key</span>
-            <a href="https://fal.ai/dashboard/keys" target="_blank" class="text-xs text-primary hover:text-yellow-300">pegar chave →</a>
-          </label>
-          <input
-            id="fal-key"
-            type="password"
-            class="w-full p-3 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm font-mono"
-            placeholder="fal-..."
-          >
+          <h3 class="text-xs font-semibold text-primary uppercase tracking-wider mb-3">🧠 LLM (geração de prompts)</h3>
+
+          <div class="mb-3">
+            <label class="block text-sm text-neutral-400 mb-2">Método de autenticação</label>
+            <select id="llm-auth" onchange="toggleLlmKeyField()" class="w-full p-3 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm">
+              <option value="oauth">Claude OAuth (local, Max/Pro)</option>
+              <option value="anthropic-api">Anthropic API direta</option>
+              <option value="openrouter">OpenRouter (unificado)</option>
+            </select>
+            <p class="text-xs text-neutral-500 mt-1.5" id="llm-auth-hint">
+              Usa seu login Claude Code local. Custo $0. Compartilha quota com Claude Code CLI.
+            </p>
+          </div>
+
+          <div id="llm-key-wrap" class="mb-3 hidden">
+            <label class="flex items-center justify-between mb-2">
+              <span class="text-sm text-neutral-300" id="llm-key-label">API Key</span>
+              <a href="#" target="_blank" class="text-xs text-primary hover:text-yellow-300" id="llm-key-link">pegar chave →</a>
+            </label>
+            <input
+              id="llm-key"
+              type="password"
+              class="w-full p-3 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm font-mono"
+              placeholder="sk-..."
+            >
+          </div>
+
+          <div class="mb-2">
+            <label class="block text-sm text-neutral-400 mb-2">Modelo</label>
+            <select id="llm-model" class="w-full p-3 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm">
+              <option value="claude-sonnet-4-5">Claude Sonnet 4.5 (rápido, padrão)</option>
+              <option value="claude-sonnet-4-6">Claude Sonnet 4.6</option>
+              <option value="claude-opus-4-6">Claude Opus 4.6 (mais caro)</option>
+            </select>
+          </div>
         </div>
 
-        <!-- kie.ai key -->
+        <div class="border-t border-dark-600"></div>
+
+        <!-- VIDEO RENDER SECTION -->
         <div>
-          <label class="flex items-center justify-between mb-2">
-            <span class="text-sm font-medium text-neutral-300">kie.ai API Key</span>
-            <a href="https://kie.ai/dashboard/api-keys" target="_blank" class="text-xs text-primary hover:text-yellow-300">pegar chave →</a>
-          </label>
-          <input
-            id="kie-key"
-            type="password"
-            class="w-full p-3 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm font-mono"
-            placeholder="sk-..."
-          >
+          <h3 class="text-xs font-semibold text-primary uppercase tracking-wider mb-3">🎬 Renderização de vídeo</h3>
+          <p class="text-xs text-neutral-500 mb-4">Chaves para o botão "Gerar via API" renderizar o vídeo direto.</p>
+
+          <!-- fal.ai key -->
+          <div class="mb-3">
+            <label class="flex items-center justify-between mb-2">
+              <span class="text-sm text-neutral-300">fal.ai API Key</span>
+              <a href="https://fal.ai/dashboard/keys" target="_blank" class="text-xs text-primary hover:text-yellow-300">pegar chave →</a>
+            </label>
+            <input
+              id="fal-key"
+              type="password"
+              class="w-full p-3 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm font-mono"
+              placeholder="fal-..."
+            >
+          </div>
+
+          <!-- kie.ai key -->
+          <div class="mb-3">
+            <label class="flex items-center justify-between mb-2">
+              <span class="text-sm text-neutral-300">kie.ai API Key</span>
+              <a href="https://kie.ai/dashboard/api-keys" target="_blank" class="text-xs text-primary hover:text-yellow-300">pegar chave →</a>
+            </label>
+            <input
+              id="kie-key"
+              type="password"
+              class="w-full p-3 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm font-mono"
+              placeholder="sk-..."
+            >
+          </div>
+
+          <!-- Default provider -->
+          <div>
+            <label class="block text-sm text-neutral-400 mb-2">Provider padrão do botão "Gerar via API"</label>
+            <select id="default-provider" class="w-full p-3 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm">
+              <option value="fal">fal.ai</option>
+              <option value="kie">kie.ai</option>
+            </select>
+          </div>
         </div>
 
-        <!-- Default provider -->
-        <div>
-          <label class="block text-sm font-medium text-neutral-300 mb-2">Provider padrão para "Gerar via API"</label>
-          <select id="default-provider" class="w-full p-3 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm">
-            <option value="fal">fal.ai</option>
-            <option value="kie">kie.ai</option>
-          </select>
-        </div>
       </div>
 
       <div class="flex gap-3 mt-8">
@@ -526,7 +576,7 @@
     // ═══════════════════════════════════════════════════════
     // SETTINGS (localStorage)
     // ═══════════════════════════════════════════════════════
-    const SETTINGS_KEY = 'inema_settings_v1';
+    const SETTINGS_KEY = 'inema_settings_v2';
 
     function getSettings() {
       try {
@@ -537,13 +587,43 @@
     function setSettings(s) {
       localStorage.setItem(SETTINGS_KEY, JSON.stringify(s));
       updateRenderApiButton();
+      updateLlmIndicator();
+    }
+
+    function toggleLlmKeyField() {
+      const auth = document.getElementById('llm-auth').value;
+      const wrap = document.getElementById('llm-key-wrap');
+      const label = document.getElementById('llm-key-label');
+      const link = document.getElementById('llm-key-link');
+      const hint = document.getElementById('llm-auth-hint');
+
+      if (auth === 'oauth') {
+        wrap.classList.add('hidden');
+        hint.textContent = 'Usa seu login Claude Code local. Custo $0. Compartilha quota com Claude Code CLI.';
+      } else if (auth === 'anthropic-api') {
+        wrap.classList.remove('hidden');
+        label.textContent = 'Anthropic API Key';
+        link.href = 'https://console.anthropic.com/settings/keys';
+        link.textContent = 'pegar chave →';
+        hint.textContent = 'Chamada direta à API da Anthropic. Cobra por token (~$0,02/geração).';
+      } else if (auth === 'openrouter') {
+        wrap.classList.remove('hidden');
+        label.textContent = 'OpenRouter API Key';
+        link.href = 'https://openrouter.ai/keys';
+        link.textContent = 'pegar chave →';
+        hint.textContent = 'Unificado. Roteia Claude (e outros modelos) via OpenRouter. Preço varia.';
+      }
     }
 
     function openSettings() {
       const s = getSettings();
+      document.getElementById('llm-auth').value = s.llmAuth || 'oauth';
+      document.getElementById('llm-key').value = s.llmKey || '';
+      document.getElementById('llm-model').value = s.llmModel || 'claude-sonnet-4-5';
       document.getElementById('fal-key').value = s.falKey || '';
       document.getElementById('kie-key').value = s.kieKey || '';
       document.getElementById('default-provider').value = s.defaultProvider || 'fal';
+      toggleLlmKeyField();
       document.getElementById('settings-modal').classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     }
@@ -555,29 +635,72 @@
     }
 
     function saveSettings() {
+      const llmAuth = document.getElementById('llm-auth').value;
+      const llmKey = document.getElementById('llm-key').value.trim();
+      const llmModel = document.getElementById('llm-model').value;
       const falKey = document.getElementById('fal-key').value.trim();
       const kieKey = document.getElementById('kie-key').value.trim();
       const defaultProvider = document.getElementById('default-provider').value;
-      setSettings({ falKey, kieKey, defaultProvider });
+
+      // Validate: if user picked anthropic-api or openrouter, key is required
+      if ((llmAuth === 'anthropic-api' || llmAuth === 'openrouter') && !llmKey) {
+        const status = document.getElementById('settings-status');
+        status.textContent = `✗ Chave obrigatória para ${llmAuth}. Ou selecione "Claude OAuth".`;
+        status.className = 'mt-4 p-3 rounded-lg text-sm bg-red-900/20 border border-red-500/40 text-red-300';
+        status.classList.remove('hidden');
+        return;
+      }
+
+      setSettings({ llmAuth, llmKey, llmModel, falKey, kieKey, defaultProvider });
 
       const status = document.getElementById('settings-status');
-      status.textContent = '✓ Salvo. Feche o modal para continuar.';
+      status.textContent = '✓ Salvo. Fechando...';
       status.className = 'mt-4 p-3 rounded-lg text-sm bg-emerald-900/20 border border-emerald-500/40 text-emerald-300';
       status.classList.remove('hidden');
-      setTimeout(closeSettings, 1200);
+      setTimeout(closeSettings, 1000);
     }
 
     function clearSettings() {
-      if (!confirm('Limpar todas as chaves salvas?')) return;
+      if (!confirm('Limpar todas as configurações (LLM + rendering keys)?')) return;
       localStorage.removeItem(SETTINGS_KEY);
+      // Also remove the old v1 key for backwards compat
+      localStorage.removeItem('inema_settings_v1');
+      document.getElementById('llm-auth').value = 'oauth';
+      document.getElementById('llm-key').value = '';
+      document.getElementById('llm-model').value = 'claude-sonnet-4-5';
       document.getElementById('fal-key').value = '';
       document.getElementById('kie-key').value = '';
       document.getElementById('default-provider').value = 'fal';
+      toggleLlmKeyField();
       updateRenderApiButton();
+      updateLlmIndicator();
       const status = document.getElementById('settings-status');
-      status.textContent = 'Configurações limpas.';
+      status.textContent = 'Configurações limpas. OAuth local ainda funciona como padrão.';
       status.className = 'mt-4 p-3 rounded-lg text-sm bg-amber-900/20 border border-amber-500/40 text-amber-300';
       status.classList.remove('hidden');
+    }
+
+    function buildLlmPayload() {
+      const s = getSettings();
+      const provider = s.llmAuth || 'oauth';
+      return {
+        provider,
+        apiKey: provider === 'oauth' ? undefined : (s.llmKey || undefined),
+        model: s.llmModel || 'claude-sonnet-4-5',
+      };
+    }
+
+    function updateLlmIndicator() {
+      const s = getSettings();
+      const provider = s.llmAuth || 'oauth';
+      const model = s.llmModel || 'claude-sonnet-4-5';
+      const labels = {
+        'oauth': '🔐 Claude OAuth',
+        'anthropic-api': '🔑 Anthropic API',
+        'openrouter': '🌐 OpenRouter'
+      };
+      const el = document.getElementById('llm-indicator');
+      if (el) el.textContent = `${labels[provider] || provider} · ${model}`;
     }
 
     function updateRenderApiButton() {
@@ -762,7 +885,11 @@
         const res = await fetch('/api/generate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ scene, opts: { pt: true, recs: true } })
+          body: JSON.stringify({
+            scene,
+            opts: { pt: true, recs: true },
+            llm: buildLlmPayload()
+          })
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
@@ -952,7 +1079,7 @@
         const res = await fetch('/api/scenes', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ story })
+          body: JSON.stringify({ story, llm: buildLlmPayload() })
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
@@ -1014,7 +1141,11 @@
         const res = await fetch('/api/generate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ scene: sceneDesc, opts: { pt: true, recs: false } })
+          body: JSON.stringify({
+            scene: sceneDesc,
+            opts: { pt: true, recs: false },
+            llm: buildLlmPayload()
+          })
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
@@ -1062,6 +1193,7 @@
     // INIT
     // ═══════════════════════════════════════════════════════
     updateRenderApiButton();
+    updateLlmIndicator();
 
     // Cmd+Enter shortcut (single mode)
     input.addEventListener('keydown', (e) => {

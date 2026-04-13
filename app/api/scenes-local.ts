@@ -1,10 +1,8 @@
 // LOCAL-ONLY: Workflow mode — converte uma história/ideia em um fluxo de 5-8 cenas.
-// Usa OAuth credentials (Max/Pro) igual generate-local.ts.
+// Usa o LLM client unificado (OAuth / Anthropic API / OpenRouter).
 
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import fs from "node:fs";
-import path from "node:path";
-import os from "node:os";
+import { callLLM, parseLLMConfig, buildSystemBlocks } from "./llm-client-local.ts";
 
 const STORY_SYSTEM = `You are an INEMA Story Architect.
 
@@ -59,35 +57,6 @@ const TOOL_SCHEMA = {
   },
 };
 
-const CLAUDE_CODE_IDENTITY = "You are Claude Code, Anthropic's official CLI for Claude.";
-
-// OAuth credentials loader (same as generate-local.ts)
-interface ClaudeOAuthCredentials {
-  accessToken: string;
-  refreshToken: string;
-  expiresAt: number;
-  scopes: string[];
-}
-
-const CREDENTIALS_PATH = path.join(os.homedir(), ".claude", ".credentials.json");
-
-function loadOAuthCredentials(): ClaudeOAuthCredentials | null {
-  try {
-    if (!fs.existsSync(CREDENTIALS_PATH)) return null;
-    const raw = fs.readFileSync(CREDENTIALS_PATH, "utf-8");
-    const parsed = JSON.parse(raw);
-    const oauth = parsed?.claudeAiOauth;
-    if (!oauth || !oauth.accessToken) return null;
-    return oauth as ClaudeOAuthCredentials;
-  } catch {
-    return null;
-  }
-}
-
-function isTokenValid(creds: ClaudeOAuthCredentials): boolean {
-  return creds.expiresAt > Date.now() + 60_000;
-}
-
 // Rate limiting (shared in-memory but separate bucket namespace)
 const ipBuckets = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT = 5;
@@ -129,7 +98,10 @@ export default async function handler(
     return;
   }
 
-  let body: { story?: string };
+  let body: {
+    story?: string;
+    llm?: { provider?: string; apiKey?: string; model?: string };
+  };
   try {
     body = typeof req.body === "string" ? JSON.parse(req.body) : (req.body as typeof body) || {};
   } catch {
@@ -144,45 +116,19 @@ export default async function handler(
     return;
   }
 
-  const creds = loadOAuthCredentials();
-  if (!creds || !isTokenValid(creds)) {
-    res.status(500).json({ error: "OAuth credentials missing or expired. Run `claude login`." });
-    return;
-  }
+  const llmConfig = parseLLMConfig(body.llm);
 
-  const requestBody = {
-    model: "claude-sonnet-4-5",
+  const requestBody: any = {
     max_tokens: 4096,
     temperature: 0.7,
-    system: [
-      { type: "text", text: CLAUDE_CODE_IDENTITY },
-      { type: "text", text: STORY_SYSTEM, cache_control: { type: "ephemeral" } },
-    ],
+    system: buildSystemBlocks(llmConfig, STORY_SYSTEM),
     tools: [TOOL_SCHEMA],
     tool_choice: { type: "tool", name: "emit_scene_flow" },
     messages: [{ role: "user", content: `Story: ${story}` }],
   };
 
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${creds.accessToken}`,
-        "anthropic-version": "2023-06-01",
-        "anthropic-beta": "oauth-2025-04-20",
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(requestBody),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      const errMsg = (data as any)?.error?.message || `HTTP ${response.status}`;
-      console.error("[scenes-local] API error:", errMsg);
-      res.status(502).json({ error: `Anthropic: ${errMsg}` });
-      return;
-    }
+    const data = await callLLM(llmConfig, requestBody);
 
     const contentArr = ((data as any).content || []) as Array<any>;
     const toolUse = contentArr.find((b) => b.type === "tool_use");
@@ -193,13 +139,23 @@ export default async function handler(
     }
 
     const result = toolUse.input;
+    const provider = data._provider || "oauth";
     console.log(
-      `[scenes-local] title="${result.title}" scenes=${result.scenes?.length ?? 0}`
+      `[scenes-local] title="${result.title}" scenes=${result.scenes?.length ?? 0} provider=${provider}`
     );
 
     res.status(200).json(result);
   } catch (err: any) {
-    console.error("[scenes-local] error:", err?.message);
-    res.status(502).json({ error: `Generation failed: ${err?.message || err}` });
+    const msg = err?.message || String(err);
+    console.error("[scenes-local] error:", msg);
+    if (err?.status === 401) {
+      res.status(500).json({ error: `Auth falhou (${llmConfig.auth.type}). Confira ⚙️.` });
+      return;
+    }
+    if (err?.status === 429) {
+      res.status(429).json({ error: `Rate limit (${llmConfig.auth.type}). Aguarde ou troque em ⚙️.` });
+      return;
+    }
+    res.status(502).json({ error: `Generation failed: ${msg}` });
   }
 }
