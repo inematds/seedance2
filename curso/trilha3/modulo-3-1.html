@@ -228,6 +228,36 @@
       </div>
     </section>
 
+    <!-- GLOSSÁRIO -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📖</span> Glossário do módulo</h2>
+        <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
+          <div><dt class="text-blue-400 font-semibold">Text-to-video (T2V)</dt><dd class="text-neutral-300">Modelo que gera vídeo a partir de descrição em texto. Seedance, Runway, Kling, Veo são exemplos.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Image-to-video (I2V)</dt><dd class="text-neutral-300">Modelo que anima uma imagem estática em vídeo. Muitos T2V fazem I2V também.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Modelo de difusão</dt><dd class="text-neutral-300">Arquitetura de IA generativa que parte de ruído e "limpa" progressivamente até formar o output.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Difusão temporal</dt><dd class="text-neutral-300">Difusão aplicada a vídeo — precisa manter coerência entre frames consecutivos.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Encoder multimodal</dt><dd class="text-neutral-300">Componente que transforma múltiplos tipos de input (texto, imagem, áudio) em um espaço latente comum.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Espaço latente</dt><dd class="text-neutral-300">Representação numérica interna do modelo onde significados são codificados como vetores.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Temporal coherence</dt><dd class="text-neutral-300">Consistência visual entre frames de um vídeo. O maior desafio técnico de T2V.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Identity drift</dt><dd class="text-neutral-300">Quando personagem ou objeto muda de aparência ao longo do vídeo. Falha de temporal coherence.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Distribuição de treinamento</dt><dd class="text-neutral-300">O conjunto de dados que o modelo viu durante o treino. Prompts próximos dessa distribuição performam melhor.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">In-distribution</dt><dd class="text-neutral-300">Input que se parece com o que o modelo viu no treino — gera outputs mais confiáveis.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Out-of-distribution</dt><dd class="text-neutral-300">Input diferente do que o modelo viu no treino — resultados imprevisíveis.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Timeline prompting</dt><dd class="text-neutral-300">Técnica documentada de estruturar prompts em beats temporais [0s][3s][6s][8s]. Oficial em redreamality/MindStudio.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Seedance 1.0 / 2.0</dt><dd class="text-neutral-300">Versões do modelo da ByteDance. v1 silenciosa (jun/2025), v2 com áudio nativo (fev/2026).</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Áudio nativo</dt><dd class="text-neutral-300">Áudio gerado junto do vídeo pelo mesmo modelo, sem pós-processamento.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Controle fino</dt><dd class="text-neutral-300">Parâmetros específicos (iluminação, sombra, movimento de câmera) além do prompt textual.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Variante Fast</dt><dd class="text-neutral-300">Versão otimizada para latência. Qualidade levemente inferior, custo ~50% menor.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">ELO rating</dt><dd class="text-neutral-300">Sistema de pontuação baseado em comparações pairwise. Usado em arenas de benchmark de IA.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Artificial Analysis Video Arena</dt><dd class="text-neutral-300">Plataforma de benchmark pairwise para modelos T2V/I2V, com votação humana.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Kling / Runway / Veo</dt><dd class="text-neutral-300">Concorrentes diretos do Seedance 2.0 no espaço de T2V comercial.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Dreamina</dt><dd class="text-neutral-300">Interface oficial da ByteDance para o Seedance, em dreamina.jianying.com.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">fal.ai</dt><dd class="text-neutral-300">Plataforma aberta que disponibiliza o Seedance (e outros modelos) via API pay-per-use.</dd></div>
+        </dl>
+      </div>
+    </section>
+
   </main>
 
   <footer class="border-t border-dark-600 py-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>Seedance 2.0 Mastery · INEMA.CLUB · 2026</p></div></footer>

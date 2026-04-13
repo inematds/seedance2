@@ -410,6 +410,35 @@
       </div>
     </section>
 
+    <!-- GLOSSÁRIO -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📖</span> Glossário do módulo</h2>
+        <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
+          <div><dt class="text-amber-400 font-semibold">Preset canônico</dt><dd class="text-neutral-300">Configuração pré-validada que deve ser copiada literalmente, sem reformulação.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">String literal</dt><dd class="text-neutral-300">Texto que deve ser usado exatamente como está, letra por letra. O modelo copia, não parafraseia.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">color_system</dt><dd class="text-neutral-300">Campo do schema que define a paleta de cores e iluminação canônica do preset.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">camera_style</dt><dd class="text-neutral-300">Campo que lista 3 movimentos de câmera canônicos do preset, separados por " / ".</dd></div>
+          <div><dt class="text-amber-400 font-semibold">techniques</dt><dd class="text-neutral-300">Array de 4 tags técnicas canônicas (física, tempo, lighting).</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Triggers (gatilhos)</dt><dd class="text-neutral-300">Palavras no input que ativam um preset específico. Ex: "combate" ativa JOHN WICK ACTION.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">DUNE EPIC</dt><dd class="text-neutral-300">Preset canônico para cenas épicas/escala grande. "burnt amber+pure black only, hard directional low sun".</dd></div>
+          <div><dt class="text-amber-400 font-semibold">JOHN WICK ACTION</dt><dd class="text-neutral-300">Preset canônico de ação/combate. Override hard-coded: combate sempre roteia aqui.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">BLADE RUNNER NOIR</dt><dd class="text-neutral-300">Preset canônico urbano noturno íntimo. Único com paleta adaptável livremente.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">SILENT HILL HORROR</dt><dd class="text-neutral-300">Preset canônico de horror. "grey fog 3m visibility, deep red Otherworld transitions".</dd></div>
+          <div><dt class="text-amber-400 font-semibold">STORM EPIC</dt><dd class="text-neutral-300">Preset canônico de tempestades. "lightning only light source 0.7s each flash".</dd></div>
+          <div><dt class="text-amber-400 font-semibold">FAIRY TALE CINEMATIC</dt><dd class="text-neutral-300">Preset canônico de fantasia suave. Exclusivo de "petal drift particle system".</dd></div>
+          <div><dt class="text-amber-400 font-semibold">ANIME SHONEN EPIC</dt><dd class="text-neutral-300">Preset canônico de anime com auras e transformações. "electric blue core aura".</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Adaptação de paleta</dt><dd class="text-neutral-300">Técnica de trocar cores de um preset preservando câmera e vocabulário. Ex: JOHN WICK verde-bambu.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">cloth inertia</dt><dd class="text-neutral-300">Física de tecido respondendo com atraso ao movimento (capa voando, kimono trás). Universal.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">water surface tension</dt><dd class="text-neutral-300">Física de gotas d'água como esferas perfeitas. Usado em cenas de chuva/splash.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">floor puddle mirror reflection</dt><dd class="text-neutral-300">Poça no chão refletindo o sujeito. Truque visual de BLADE RUNNER e SILENT HILL.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">anamorphic lens flares</dt><dd class="text-neutral-300">Reflexos horizontais esticados característicos de lentes anamórficas cinematográficas.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">hyper-saturated</dt><dd class="text-neutral-300">Cores extremamente saturadas. Marcador de JOHN WICK, BLADE RUNNER, ANIME SHONEN.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Override hard-coded</dt><dd class="text-neutral-300">Regra absoluta que sobrepõe o matching normal. "Combat ALWAYS routes to JOHN WICK".</dd></div>
+        </dl>
+      </div>
+    </section>
+
   </main>
 
   <footer class="border-t border-dark-600 py-8">
