@@ -107,15 +107,15 @@
 
       <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
         <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
-          <div class="text-xl font-bold text-blue-400">6</div>
+          <div class="text-xl font-bold text-blue-400">7</div>
           <div class="text-xs text-neutral-400">Módulos</div>
         </div>
         <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
-          <div class="text-xl font-bold text-blue-400">38</div>
+          <div class="text-xl font-bold text-blue-400">45</div>
           <div class="text-xs text-neutral-400">Tópicos</div>
         </div>
         <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
-          <div class="text-xl font-bold text-blue-400">~8h</div>
+          <div class="text-xl font-bold text-blue-400">~10h</div>
           <div class="text-xs text-neutral-400">Duração</div>
         </div>
         <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
@@ -217,92 +217,80 @@
           <span class="text-blue-400 font-bold">3.2</span>
           <span class="text-xs text-neutral-500">~75 min</span>
         </div>
-        <h3 class="text-2xl font-bold mb-2">🔎 Engenharia reversa como método</h3>
-        <p class="text-neutral-400 text-sm">O caso seedance-gen.netlify.app. Forense estática + 51 sondas comportamentais, taxonomia descoberta, rigidez medida, achados de segurança, curva de saturação.</p>
+        <h3 class="text-2xl font-bold mb-2">🔎 Os elementos de um sistema de geração</h3>
+        <p class="text-neutral-400 text-sm">Os 6 blocos conceituais que todo sistema de geração estruturada de prompts tem: ROLE, SCHEMA, PRESETS, ROUTING, TEMPLATE, HARDENING. Explicados como padrão universal — você aprende a reconhecer para desenhar o seu.</p>
       </div>
       <div class="divide-y divide-dark-600">
         <div class="topic-item">
           <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
             <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
-            <span class="text-lg">🎯</span>
-            <div><span class="font-medium">O caso seedance-gen.netlify.app</span><span class="text-neutral-500 text-sm ml-2">- o que é, por que vale estudar</span></div>
+            <span class="text-lg">🎭</span>
+            <div><span class="font-medium">O papel (ROLE)</span><span class="text-neutral-500 text-sm ml-2">- identidade funcional do modelo</span></div>
           </button>
           <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
-            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Produto comercial pago (iDall Lite na Skool): static HTML + 1 Netlify Function chamando Claude. Interface simples gerando prompts cinematográficos estruturados para Seedance. 5 grátis por IP, 100 para assinantes. Um exemplo perfeito de "embrulhar conhecimento em SaaS".</p></div>
-            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A metodologia de reverse engineering é transferível: qualquer produto de IA embalado como SaaS pode ser reversado comportamentalmente. Aprender aqui aplica para Suno, Midjourney, Runway, etc.</p></div>
-            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">SaaS de prompt engineering · wrapper de API · paywall cosmético · valor está no prompt.</p></div>
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Uma identidade funcional dada ao modelo: quem é, o que recebe, o que produz, o que NÃO faz. Ancora todo o comportamento posterior.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Sem papel definido, o modelo escorrega para "assistant genérico" que explica, pergunta e conversa. Com papel, ele produz artefatos.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Título concreto · entrada/saída esperadas · negações explícitas ("do NOT explain").</p></div>
           </div></div>
         </div>
         <div class="topic-item">
           <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
             <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
-            <span class="text-lg">🔧</span>
-            <div><span class="font-medium">Forense estática — HTML, JS, endpoints, headers</span><span class="text-neutral-500 text-sm ml-2">- sem tocar no backend</span></div>
+            <span class="text-lg">📋</span>
+            <div><span class="font-medium">O esquema de saída (OUTPUT SCHEMA)</span><span class="text-neutral-500 text-sm ml-2">- tool use forçado</span></div>
           </button>
           <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
-            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Análise do que é público: view-source do HTML (339 linhas vanilla JS), DevTools para ver endpoints chamados, headers HTTP para identificar stack (Netlify Functions), localStorage para entender quota client-side.</p></div>
-            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">90% do que importa para reverse engineer um SaaS está no cliente. Saber olhar é 80% do trabalho.</p></div>
-            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">view-source · DevTools Network · localStorage · Server headers.</p></div>
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">A forma exata do que sai: campos nomeados, tipos, limites de tamanho. Implementado via tool use forçado, nunca "responda em JSON".</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">3 funções: (1) previsibilidade — o app não quebra no parse. (2) segurança — bloqueia texto livre, injection vira impossível. (3) contrato estável entre LLM e frontend.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">tool_choice forçado · schema validation · 5-8 campos é sweet spot.</p></div>
           </div></div>
         </div>
         <div class="topic-item">
           <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
             <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
-            <span class="text-lg">🧪</span>
-            <div><span class="font-medium">As 51 sondas comportamentais em 5 rodadas</span><span class="text-neutral-500 text-sm ml-2">- como desenhar o experimento</span></div>
+            <span class="text-lg">📚</span>
+            <div><span class="font-medium">A biblioteca de receitas (PRESETS)</span><span class="text-neutral-500 text-sm ml-2">- a propriedade intelectual</span></div>
           </button>
           <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
-            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">51 chamadas POST /api/generate com cenas progressivamente diversas. Rodada 1 (12 genéricas) → Rodada 2 (arquétipos) → Rodada 3 (exóticos + relocks) → Rodada 4 (estilos cinematográficos) → Rodada 5 (diretores específicos). Cada rodada refina hipóteses.</p></div>
-            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Hit rate de descoberta sobe com rodadas mais dirigidas: 0% → 8% → 20% → 67% → 75%. Saber paralelizar sondas em rodadas estruturadas economiza horas.</p></div>
-            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Design experimental iterativo · paralelismo de chamadas · registro de hipóteses.</p></div>
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Conjunto de 5-10 configurações pré-validadas com strings canônicas literais. É onde mora o "ofício autoral" do seu app.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É o único bloco que torna seu app diferenciado. Código é commodity; taxonomia curada não. Quanto mais validada empiricamente, mais valiosa.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Nome em CAPS · gatilhos · valores canônicos · validação empírica.</p></div>
           </div></div>
         </div>
         <div class="topic-item">
           <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
             <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
-            <span class="text-lg">📊</span>
-            <div><span class="font-medium">Taxonomia descoberta — 17 gêneros, 5 hard-coded</span><span class="text-neutral-500 text-sm ml-2">- prova via repetição literal</span></div>
+            <span class="text-lg">🚦</span>
+            <div><span class="font-medium">As regras de roteamento (ROUTING)</span><span class="text-neutral-500 text-sm ml-2">- como input escolhe preset</span></div>
           </button>
           <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
-            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">17 gêneros distintos observados. 5 core (DUNE EPIC, JOHN WICK ACTION, BLADE RUNNER NOIR, SILENT HILL HORROR, STORM EPIC) confirmados como hard-coded via repetição literal de strings: DUNE EPIC retornou a string exata "burnt amber+pure black only..." em 13 de 16 amostras.</p></div>
-            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Repetição literal é a assinatura de hard-coding. Variação alta é a assinatura de geração on-the-fly. Saber distinguir os dois via análise estatística é central.</p></div>
-            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Strings canônicas · variância como sinal · separação core vs secundário.</p></div>
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">A lógica de decisão que mapeia input do usuário ao preset correto. Padrão clássico: match sequencial + fallback inventivo + default + overrides hard-coded.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Sem regras claras, a escolha fica indeterminada. Com o fallback inventivo você ganha cobertura parcialmente infinita sem precisar enumerar tudo.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Match sequencial · fallback inventivo · default · overrides.</p></div>
           </div></div>
         </div>
         <div class="topic-item">
           <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
             <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
-            <span class="text-lg">📏</span>
-            <div><span class="font-medium">Medindo rigidez — 100% STOP MOTION, 97.9% opening</span><span class="text-neutral-500 text-sm ml-2">- estatística como prova</span></div>
+            <span class="text-lg">⏰</span>
+            <div><span class="font-medium">O template rígido (TEMPLATE)</span><span class="text-neutral-500 text-sm ml-2">- forma obrigatória do artefato</span></div>
           </button>
           <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
-            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">48 prompts medidos: 97.9% com "same character throughout all shots", 100% com [0s] e [6s] beats, 100% com STOP MOTION freeze, 91.7% com [3s], 93.8% com Phase 1/2/3 audio, 89.6% com "cloth inertia", 64.6% com "anamorphic 2.39:1".</p></div>
-            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Essas frequências são impossíveis sem instruções explícitas. 100% de STOP MOTION só acontece se há regra "SEMPRE use STOP MOTION" no prompt. É como você prova hard-coding sem ver o código.</p></div>
-            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Contagem de ocorrências · frequência como prova · rigidez mensurável.</p></div>
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Abertura literal + seções numeradas + placeholders + fechamento literal + hard rules. Define a "assinatura" reconhecível do seu sistema.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Template flexível = output inconsistente. Template rígido = output consistente reconhecível. O sweet spot tem 3-5 elementos não-negociáveis.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">LINE 1 literal · placeholders instrucionados · hard rules ALWAYS/NEVER · fechamento literal.</p></div>
           </div></div>
         </div>
         <div class="topic-item">
           <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
             <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
-            <span class="text-lg">🔒</span>
-            <div><span class="font-medium">Achados de segurança — os 6 furos do original</span><span class="text-neutral-500 text-sm ml-2">- quota client-side, CORS *, etc.</span></div>
+            <span class="text-lg">🛡️</span>
+            <div><span class="font-medium">As regras de segurança (HARDENING)</span><span class="text-neutral-500 text-sm ml-2">- defesa contra uso adversarial</span></div>
           </button>
           <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
-            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Quota enforced só no client (localStorage, bypass via DevTools) · CORS * (qualquer site queima a API key do dono) · sem rate limit servidor · debug field vazando tamanho da allowlist · allowlist por email puro sem token assinado · sem CSRF check.</p></div>
-            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Mostrar hands-on como cada furo é explorável (e como corrigir) é aula de segurança prática. O clone reconstruído corrige os 6.</p></div>
-            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Client-side nunca é fonte de verdade · CORS como superfície de ataque · tokens assinados.</p></div>
-          </div></div>
-        </div>
-        <div class="topic-item">
-          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
-            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">7</span>
-            <span class="text-lg">📈</span>
-            <div><span class="font-medium">Curva de saturação — quando parar de sondar</span><span class="text-neutral-500 text-sm ml-2">- custo-benefício honesto</span></div>
-          </button>
-          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
-            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Após 51 sondas, macro-arquitetura está 95% saturada. Taxonomia de gêneros ainda abre indefinidamente (Claude inventa com base em referências). Parar agora entrega 95%; +40 sondas dirigidas fecham 100%; +200 sondas entregam só curiosidades.</p></div>
-            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Saber parar é parte da disciplina. Diminishing returns é real. O objetivo define até onde ir: reconstruir clone ≠ replicar idêntico ≠ red-team.</p></div>
-            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Saturação macro vs micro · catálogo parcialmente infinito · definir objetivo primeiro.</p></div>
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">4 defesas em camada: tool use forçado, interpretação defensiva do input, non-revelation do system prompt, refusal estruturado.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Qualquer app comercial lida com tentativas de injection. Cada camada é barata (10 linhas de instrução) e cobre um vetor diferente. Defense in depth.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Tool use como primeira linha · interpretação defensiva · refusal estruturado com category=REFUSED.</p></div>
           </div></div>
         </div>
       </div>
@@ -319,8 +307,8 @@
           <span class="text-blue-400 font-bold">3.3</span>
           <span class="text-xs text-neutral-500">~80 min</span>
         </div>
-        <h3 class="text-2xl font-bold mb-2">📜 System prompt reconstruído — 8 camadas</h3>
-        <p class="text-neutral-400 text-sm">Uma aula por camada do system prompt didático: ROLE, SCHEMA, PRESETS, ROUTING, TEMPLATE, VOCAB, RECS, HARDENING.</p>
+        <h3 class="text-2xl font-bold mb-2">📜 System prompt em 8 camadas</h3>
+        <p class="text-neutral-400 text-sm">Uma aula por camada, com padrões reutilizáveis: ROLE, SCHEMA, PRESETS, ROUTING, TEMPLATE, VOCAB, RECS, HARDENING.</p>
       </div>
       <div class="divide-y divide-dark-600">
         <div class="topic-item">
@@ -431,10 +419,10 @@
       <div class="p-6 border-b border-dark-600">
         <div class="flex items-center justify-between mb-2">
           <span class="text-blue-400 font-bold">3.4</span>
-          <span class="text-xs text-neutral-500">~70 min · LABORATÓRIO</span>
+          <span class="text-xs text-neutral-500">~70 min · ARQUITETURA</span>
         </div>
-        <h3 class="text-2xl font-bold mb-2">🔧 Construindo seu clone (laboratório)</h3>
-        <p class="text-neutral-400 text-sm">Netlify + Claude Sonnet 4.6 + tool use forçado. generate.ts linha a linha, HMAC tokens, deploy real, cálculo de custo.</p>
+        <h3 class="text-2xl font-bold mb-2">🏗️ Construindo sua aplicação</h3>
+        <p class="text-neutral-400 text-sm">Decisões arquiteturais de uma app de geração estruturada de prompts. Por que serverless, por que tool use forçado, por que prompt cache, por que HMAC. Blueprint para construir a sua.</p>
       </div>
       <div class="divide-y divide-dark-600">
         <div class="topic-item">
@@ -516,87 +504,99 @@
       </div>
     </div>
 
-    <!-- MÓDULO 3.5 — SUA TAXONOMIA -->
+    <!-- MÓDULO 3.5 — PASSO A PASSO CONSTRUINDO SUA APP -->
     <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
       <div class="p-6 border-b border-dark-600">
         <div class="flex items-center justify-between mb-2">
           <span class="text-blue-400 font-bold">3.5</span>
-          <span class="text-xs text-neutral-500">~60 min</span>
+          <span class="text-xs text-neutral-500">~75 min · HANDS-ON</span>
         </div>
-        <h3 class="text-2xl font-bold mb-2">✍️ Derivando SUA taxonomia</h3>
-        <p class="text-neutral-400 text-sm">O ofício autoral: copiar 1:1 é replicar produto comercial. Fazer a sua é o que diferencia aluno de clone. Metodologia, nichos, validação empírica, documentação.</p>
+        <h3 class="text-2xl font-bold mb-2">🛠️ Passo a passo: construindo sua app</h3>
+        <p class="text-neutral-400 text-sm">Tutorial linear do zero ao deploy. 7 passos: setup, system prompt, tool use, frontend, rodar local, deploy em produção, iteração. Cada passo com o código exato para copiar.</p>
       </div>
       <div class="divide-y divide-dark-600">
         <div class="topic-item">
           <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
             <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
-            <span class="text-lg">⚖️</span>
-            <div><span class="font-medium">A observação ética — copiar vs. derivar</span><span class="text-neutral-500 text-sm ml-2">- replicação comercial</span></div>
+            <span class="text-lg">📦</span>
+            <div><span class="font-medium">Setup do projeto</span><span class="text-neutral-500 text-sm ml-2">- 5 minutos, 5 arquivos</span></div>
           </button>
           <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
-            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Copiar o system prompt 1:1 é replicar o produto comercial de outra pessoa. O caminho saudável é usar a estrutura como referência arquitetural e escrever sua própria taxonomia (seus gêneros, seu vocabulário, seu nicho).</p></div>
-            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Ética não é opcional. Além de ser o certo, é o caminho que gera diferenciação real no mercado. O ofício é a curadoria + opinião, não o segredo.</p></div>
-            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Derivative work · opinião autoral · diferenciação de mercado.</p></div>
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Criar a pasta, <code>npm init</code>, instalar Anthropic SDK + Netlify Functions, criar <code>index.html</code>, <code>netlify.toml</code>, <code>.env.example</code> e <code>netlify/functions/generate.ts</code>.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É o menor setup possível para uma app funcional. 5 arquivos cobrem frontend, config, env e função serverless.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">npm install · estrutura de pastas Netlify · .gitignore para .env.</p></div>
           </div></div>
         </div>
         <div class="topic-item">
           <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
             <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
-            <span class="text-lg">🎯</span>
-            <div><span class="font-medium">Metodologia — nicho → estilos → validação</span><span class="text-neutral-500 text-sm ml-2">- passo a passo</span></div>
+            <span class="text-lg">📝</span>
+            <div><span class="font-medium">Escrevendo seu system prompt</span><span class="text-neutral-500 text-sm ml-2">- as 8 camadas em código</span></div>
           </button>
           <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
-            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">1) Escolher nicho · 2) Listar 10-15 estilos visuais do nicho · 3) Rodar 3 sondas por estilo na fal.ai · 4) Cortar os 5-7 que rendem melhor · 5) Canonizar strings literais · 6) Documentar em biblioteca.</p></div>
-            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É o método que o autor do produto original seguiu. Replicável para qualquer nicho: UGC de beleza, gaming shorts, corporativo B2B, educação infantil, real estate, food porn.</p></div>
-            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Descoberta → validação → canonização · 5-7 é sweet spot · documentação obrigatória.</p></div>
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Template de system prompt com placeholders para o seu nicho. ROLE + 2-3 PRESETS + TEMPLATE curto + SECURITY RULES. Comece pequeno, expanda depois.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">MVP real tem 2 presets, não 10. Você valida arquitetura primeiro, depois adiciona complexidade.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">MVP · placeholders [NICHO]/[MODELO ALVO] · iteração posterior.</p></div>
           </div></div>
         </div>
         <div class="topic-item">
           <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
             <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
-            <span class="text-lg">🏷️</span>
-            <div><span class="font-medium">Exercício guiado — escolha seu nicho</span><span class="text-neutral-500 text-sm ml-2">- 5 nichos exemplo</span></div>
+            <span class="text-lg">🔧</span>
+            <div><span class="font-medium">Implementando tool use forçado</span><span class="text-neutral-500 text-sm ml-2">- schema + handler</span></div>
           </button>
           <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
-            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">5 nichos trabalhados como exemplo: UGC de beleza (testemunho falso, unboxing, before/after), gaming shorts (highlight reel, twitch clip, esports), corporativo B2B (product reveal, team culture, keynote b-roll), educação infantil (narração + animação, experimento), real estate (walkthrough, drone exterior, lifestyle shots).</p></div>
-            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Nicho concreto evita paralisia. Cada exemplo mostra que a metodologia funciona em verticals muito diferentes. O aluno escolhe o mais próximo da sua realidade.</p></div>
-            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Nicho-as-constraint · exemplos transferíveis · vertical-specific vocab.</p></div>
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">A parte crítica: o <code>TOOL_SCHEMA</code> (input_schema JSON) e o handler da função que chama <code>client.messages.create</code> com <code>tool_choice</code> forçado.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É onde mora a segurança (tool use anti-injection) e a qualidade (schema validation). Cada parâmetro tem trade-off explicado.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">TOOL_SCHEMA · tool_choice forçado · temperature 0.7 · cache ephemeral.</p></div>
           </div></div>
         </div>
         <div class="topic-item">
           <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
             <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
-            <span class="text-lg">🧪</span>
-            <div><span class="font-medium">Validação empírica na fal.ai — 4-6h, ~$5</span><span class="text-neutral-500 text-sm ml-2">- plano de teste executável</span></div>
+            <span class="text-lg">🎨</span>
+            <div><span class="font-medium">Frontend mínimo em HTML puro</span><span class="text-neutral-500 text-sm ml-2">- 1 arquivo, sem build</span></div>
           </button>
           <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
-            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Plano: 5 cenas-teste diversas. Para cada uma, gerar 3 versões (oficial puro / clone 350-500 palavras / híbrido otimizado). Rodar 15 vídeos na fal.ai. Comparar lado a lado. Anotar quais técnicas geraram diferença visível. Custo: ~$5.</p></div>
-            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É a forma honesta de saber o que importa. Elimina placebo cinematográfico. Resultado: você sabe empiricamente quais dos 50% autorais do produto comercial realmente funcionam.</p></div>
-            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Side-by-side comparison · placebo test · documentação das diferenças.</p></div>
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Uma textarea, um botão, um div de output. Vanilla JS em 1 arquivo <code>index.html</code>. Tailwind via CDN. Sem framework, sem npm install.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Complexidade de frontend é excesso para MVP. 50 linhas de HTML vanilla resolvem. Focar energia no system prompt, não em React.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Vanilla JS · fetch API · Tailwind CDN · zero build.</p></div>
           </div></div>
         </div>
         <div class="topic-item">
           <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
             <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
-            <span class="text-lg">✒️</span>
-            <div><span class="font-medium">Escrevendo seus prompts canônicos</span><span class="text-neutral-500 text-sm ml-2">- strings literais como IP</span></div>
+            <span class="text-lg">▶️</span>
+            <div><span class="font-medium">Rodando local</span><span class="text-neutral-500 text-sm ml-2">- netlify dev + smoke test</span></div>
           </button>
           <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
-            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Depois de validar 5-7 estilos, você escreve as strings canônicas (color_system, camera_style, techniques) para cada um. As strings literais são sua IP — é o que você vende ou mantém como diferencial do seu serviço.</p></div>
-            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A biblioteca bem-escrita é o ativo intelectual real do serviço. Código pode ser copiado; a curadoria não.</p></div>
-            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Strings canonizadas · literal quoting · IP intelectual.</p></div>
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm"><code>netlify dev</code> serve HTML + roda função local com <code>ANTHROPIC_API_KEY</code> do <code>.env</code>, em <code>localhost:8888</code>. Smoke test com um input simples.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Iteração local é 10x mais rápida que deploy a cada mudança. Você quer validar arquitetura antes de ir para produção.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Netlify CLI · hot reload · debug via terminal logs.</p></div>
           </div></div>
         </div>
         <div class="topic-item">
           <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
             <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
-            <span class="text-lg">📚</span>
-            <div><span class="font-medium">Documentando sua biblioteca</span><span class="text-neutral-500 text-sm ml-2">- reuso em equipe</span></div>
+            <span class="text-lg">🚀</span>
+            <div><span class="font-medium">Deploy em produção</span><span class="text-neutral-500 text-sm ml-2">- 10 minutos para URL pública</span></div>
           </button>
           <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
-            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Estrutura recomendada: 1 arquivo .md por preset com triggers, string canônica, 4 exemplos, variações permitidas, vídeos de referência, data de última validação.</p></div>
-            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Documentação compartilhável transforma conhecimento individual em capital de equipe. Modelos mudam com frequência; "última validação" é campo crítico.</p></div>
-            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">1 arquivo por preset · campo de validação · vídeos de referência obrigatórios.</p></div>
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm"><code>netlify login</code> → <code>netlify init</code> → <code>netlify env:set ANTHROPIC_API_KEY</code> → <code>netlify deploy --prod</code>. Retorna URL pública <code>.netlify.app</code>.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">O momento "funcionou". Checklist de produção: .env no .gitignore, env vars setadas server-side, teste real contra URL pública.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">netlify CLI · env vars de produção · checklist pré-deploy.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">7</span>
+            <span class="text-lg">🔄</span>
+            <div><span class="font-medium">Iteração — melhorando seu system prompt</span><span class="text-neutral-500 text-sm ml-2">- loop contínuo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Loop de 7 passos: teste 10 inputs → anote os 2-3 piores → identifique padrão → edite UM problema → deploy → teste de novo → repita.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">MVP no ar é o começo, não o fim. O system prompt é seu ativo intelectual mais valioso — versione no git como código de produção.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Uma mudança por iteração · versionamento git · regressão controlada.</p></div>
           </div></div>
         </div>
       </div>
@@ -696,16 +696,119 @@
       </div>
     </div>
 
+    <!-- MÓDULO 3.7 — FLUXO COMPLETO END-TO-END -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-blue-400 font-bold">3.7</span>
+          <span class="text-xs text-neutral-500">~60 min · END-TO-END</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🔄 Fluxo completo end-to-end</h3>
+        <p class="text-neutral-400 text-sm">Um caso real integrado: cliente → briefing → sua app gera prompt → fal.ai renderiza vídeo → DaVinci finaliza → entrega. Cada etapa com o que fazer, quanto custa e quanto leva. Fecha o ciclo de aprendizado do curso.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">📞</span>
+            <div><span class="font-medium">Briefing em 4 perguntas</span><span class="text-neutral-500 text-sm ml-2">- 20 minutos de call</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Quem é o sujeito, onde/ambiente, o que acontece, que clima/referência. Mais 3-5 imagens de referência do cliente. 20 minutos máximo.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Briefing enxuto evita reuniões arrastadas. 4 perguntas resolvem 90% dos casos reais.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Call focada · mood board · referências visuais.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">🤖</span>
+            <div><span class="font-medium">Sua app gera 10 prompts</span><span class="text-neutral-500 text-sm ml-2">- 15 minutos, ~$0.24 em API</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Cola o briefing na sua app (construída no módulo 3.5). Gera 10 variantes: 5 de um mood + 5 de outro. Output estruturado em JSON. Cada geração custa ~$0.024.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A app resolve a etapa de "pensar prompt" em minutos. Você foca no ofício (curadoria), não em escrever 400 palavras manualmente.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Input → app → JSON estruturado · 10 variantes para escolher depois · custo marginal baixo.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🎬</span>
+            <div><span class="font-medium">Renderização no Seedance 2.0</span><span class="text-neutral-500 text-sm ml-2">- 30 min + ~$2 em renders</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Cola os 10 prompts no playground da fal.ai em paralelo. ~30s cada render. Descarta os que falharam filtro ou têm drift. 5-8 usáveis + 2-3 extras.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Taxa de rejeição é 20-30% em beauty, 40-50% em ação. Já orce os extras no seu tempo.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Paralelização · taxa de rejeição · regeração de falhas.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🔍</span>
+            <div><span class="font-medium">Auditoria red-team</span><span class="text-neutral-500 text-sm ml-2">- 15 minutos, checklist</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Checklist de ~2min por vídeo: identity drift, texto estranho na cena, número de dedos, marcas acidentais, aspect ratio, duração exata.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Cliente lembra do pior vídeo. 15 minutos de auditoria salvam reputação.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Quality gate · checklist sistemático · pre-delivery audit.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">📤</span>
+            <div><span class="font-medium">Apresentação side-by-side</span><span class="text-neutral-500 text-sm ml-2">- 10 minutos, 5 opções</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Escolha os 5 melhores dos 8 aprovados. Grid visual (Miro, Slides, README com GIFs). Envie ao cliente com nomes claros e opções de alteração.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">5 opções é o sweet spot — menos parece preguiça, mais vira paralisia. Facilita decisão rápida do cliente.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Side-by-side · nomes descritivos · limite de revisões embutido.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">✂️</span>
+            <div><span class="font-medium">Finishing no DaVinci Resolve</span><span class="text-neutral-500 text-sm ml-2">- 45 min para 3 vídeos</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Import → trim 0.3-0.5s início/fim → color grading → sound design → export H.264 9:16 1080p. ~15 min por vídeo. DaVinci gratuito cobre tudo.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">IA sozinha raramente entrega final. Pipeline híbrido IA+edição tradicional é o que torna o output comercialmente viável.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Trim frames artefato · color grade · sound design · export aspect ratio correto.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">7</span>
+            <span class="text-lg">📦</span>
+            <div><span class="font-medium">Entrega + contabilidade do projeto</span><span class="text-neutral-500 text-sm ml-2">- margem 98%, hora ~R$ 1.000</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-blue-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Upload WeTransfer/Drive → email curto com links e disclosure #IA. Contabilidade: ~2.5h trabalhadas + ~R$ 26 custos diretos + R$ 2.500 cobrado = margem ~98%.</p></div>
+            <div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Cliente paga pelo ofício (curadoria, auditoria, finishing), não pela API. Qualquer um abre conta na fal.ai; poucos sabem usar bem.</p></div>
+            <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Hora efetiva · margem comercial · precificação por ofício · adaptações por nicho.</p></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-7')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-7.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
     <!-- PROJETO FINAL -->
     <section class="mb-8">
       <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
         <h2 class="text-2xl font-bold mb-4 flex items-center"><span class="mr-3">🏆</span> Projeto final da Trilha 3</h2>
-        <p class="text-neutral-300 mb-4">Entregue um <strong>micro-SaaS funcional</strong> derivado do clone: seu próprio nicho, sua taxonomia autoral de 5-7 presets, 30 gerações validadas empiricamente, README de arquitetura e análise de custo por geração.</p>
+        <p class="text-neutral-300 mb-4">Entregue uma <strong>aplicação funcional de geração de prompts</strong> para o seu nicho: arquitetura serverless, system prompt em 8 camadas, 3-7 presets próprios, deploy em Netlify, e um fluxo completo demonstrado (do briefing à entrega) com contabilidade real.</p>
         <ul class="space-y-2 text-sm text-neutral-300 mb-6">
-          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">✓</span><span>Nicho próprio (não copiar os 7 presets originais)</span></li>
-          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">✓</span><span>Clone deployado em Netlify com as 6 correções de segurança</span></li>
-          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">✓</span><span>Validação empírica de pelo menos 3 dos seus presets na fal.ai</span></li>
-          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">✓</span><span>README com arquitetura, custo por geração e plano de monetização</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">✓</span><span>Nicho próprio escolhido e documentado</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">✓</span><span>App deployada em Netlify com as 6 decisões de segurança do módulo 3.4</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">✓</span><span>System prompt em 8 camadas, versionado no git</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">✓</span><span>Demonstração do fluxo completo (módulo 3.7) com 1 projeto fictício</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">✓</span><span>README com arquitetura, custo por geração e margem comercial</span></li>
         </ul>
       </div>
     </section>
@@ -739,7 +842,7 @@
   <div id="modal-3-2" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
     <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
       <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
-        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">3.2</span><span class="font-semibold">Engenharia reversa</span></div>
+        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">3.2</span><span class="font-semibold">Elementos de um sistema de geração</span></div>
         <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
       </div>
       <iframe src="modulo-3-2.html" class="flex-1 w-full rounded-b-xl"></iframe>
@@ -757,7 +860,7 @@
   <div id="modal-3-4" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
     <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
       <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
-        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">3.4</span><span class="font-semibold">Construindo seu clone</span></div>
+        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">3.4</span><span class="font-semibold">Construindo sua aplicação</span></div>
         <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
       </div>
       <iframe src="modulo-3-4.html" class="flex-1 w-full rounded-b-xl"></iframe>
@@ -766,10 +869,19 @@
   <div id="modal-3-5" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
     <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
       <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
-        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">3.5</span><span class="font-semibold">Derivando sua taxonomia</span></div>
+        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">3.5</span><span class="font-semibold">Passo a passo: construindo sua app</span></div>
         <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
       </div>
       <iframe src="modulo-3-5.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-3-7" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">3.7</span><span class="font-semibold">Fluxo completo end-to-end</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-3-7.html" class="flex-1 w-full rounded-b-xl"></iframe>
     </div>
   </div>
   <div id="modal-3-6" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">

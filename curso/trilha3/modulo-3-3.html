@@ -277,6 +277,33 @@ Return to client</div>
       </div>
     </section>
 
+    <!-- GLOSSÁRIO -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📖</span> Glossário do módulo</h2>
+        <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
+          <div><dt class="text-blue-400 font-semibold">System prompt</dt><dd class="text-neutral-300">Instruções completas enviadas ao modelo antes da mensagem do usuário. Aqui, divididas em 8 camadas.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Camada 1 — ROLE</dt><dd class="text-neutral-300">Identidade funcional com entrada, saída e negações explícitas. Âncora do comportamento.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Camada 2 — OUTPUT SCHEMA</dt><dd class="text-neutral-300">Formato da saída via tool use forçado. Bloqueia canal de texto livre.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Camada 3 — PRESETS</dt><dd class="text-neutral-300">Biblioteca de receitas canônicas com strings literais obrigatórias.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Camada 4 — ROUTING</dt><dd class="text-neutral-300">Regras de decisão: match, fallback inventivo, defaults, overrides.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Camada 5 — TEMPLATE</dt><dd class="text-neutral-300">Forma rígida do artefato com abertura/fechamento literal e hard rules.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Camada 6 — APPROVED VOCABULARY</dt><dd class="text-neutral-300">Lista curada de termos validados empiricamente contra o modelo alvo.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Camada 7 — RECOMMENDATIONS</dt><dd class="text-neutral-300">Dicas técnicas com contra-exemplos explícitos para evitar filler genérico.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Camada 8 — HARDENING</dt><dd class="text-neutral-300">Security rules anti-injection.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Constraint positiva</dt><dd class="text-neutral-300">Instrução que encoraja comportamento desejado ("use termos da lista").</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Constraint negativa</dt><dd class="text-neutral-300">Instrução que desencoraja comportamento indesejado, implícita ao listar apenas o aprovado.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Negative prompting</dt><dd class="text-neutral-300">Técnica de mostrar exemplos do que NÃO fazer junto com os bons exemplos. Mais eficaz em LLM.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Prompt cache ephemeral</dt><dd class="text-neutral-300">Mecanismo da Anthropic de cachear blocos do system prompt por 5 minutos (TTL). Economiza ~89%.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Tool input_schema</dt><dd class="text-neutral-300">Definição JSON Schema dos campos que a tool aceita como input. Validada automaticamente.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Non-revelation</dt><dd class="text-neutral-300">Regra explícita que instrui o modelo a nunca revelar o conteúdo do system prompt.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Security rules</dt><dd class="text-neutral-300">Bloco de regras anti-adversarial que vive dentro do próprio system prompt.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Refusal estruturado</dt><dd class="text-neutral-300">Retorno de JSON válido com category="REFUSED" quando o modelo precisa recusar, sem texto solto explicativo.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">TTL (Time To Live)</dt><dd class="text-neutral-300">Tempo de vida de um cache. 5 min para cache ephemeral Anthropic.</dd></div>
+        </dl>
+      </div>
+    </section>
+
   </main>
 
   <footer class="border-t border-dark-600 py-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>Seedance 2.0 Mastery · INEMA.CLUB · 2026</p></div></footer>

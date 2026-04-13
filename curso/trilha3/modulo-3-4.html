@@ -229,6 +229,38 @@
       </div>
     </section>
 
+    <!-- GLOSSÁRIO -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📖</span> Glossário do módulo</h2>
+        <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
+          <div><dt class="text-blue-400 font-semibold">Serverless function</dt><dd class="text-neutral-300">Código que roda sob demanda em infraestrutura gerenciada. Escala automaticamente e cobra por execução.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Edge function</dt><dd class="text-neutral-300">Variante de serverless que roda na borda da rede (mais perto do usuário). Menor latência.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Netlify Functions</dt><dd class="text-neutral-300">Plataforma serverless da Netlify, simples para casos como este.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Vercel Serverless</dt><dd class="text-neutral-300">Alternativa à Netlify com funcionalidade similar. Free tier generoso.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Cloudflare Workers</dt><dd class="text-neutral-300">Outra alternativa, com presença global (latência menor). Usa V8 isolates.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">AWS Lambda</dt><dd class="text-neutral-300">Serverless da AWS. Mais flexível mas mais complexo de configurar.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">VPS</dt><dd class="text-neutral-300">Virtual Private Server. Máquina virtual permanente com custo fixo. Alternativa a serverless.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Cold start</dt><dd class="text-neutral-300">Primeira chamada de uma função serverless após período inativo. Mais lenta que chamadas warm.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Tool use forçado</dt><dd class="text-neutral-300"><code>tool_choice: {type: "tool", name: "X"}</code> — obriga o modelo a chamar exatamente essa tool.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">JSON mode / response_format</dt><dd class="text-neutral-300">Alternativa ao tool use que força JSON válido, mas não força schema específico. Menos seguro.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Prompt caching</dt><dd class="text-neutral-300">Mecanismo de reusar tokens de system prompt entre chamadas. Economiza custo.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">cache_control ephemeral</dt><dd class="text-neutral-300">Tipo de cache com TTL de 5 minutos. Ideal para uso ocasional.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Warmup</dt><dd class="text-neutral-300">Período após o qual o cache está ativo e as chamadas pagam apenas tokens variáveis.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Margem comercial</dt><dd class="text-neutral-300">Razão entre preço cobrado e custo direto. 20x significa que você cobra 20 vezes o custo de API.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">HMAC-SHA256</dt><dd class="text-neutral-300">Algoritmo criptográfico que gera assinatura a partir de payload + secret. Tamperproof.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">JWT (JSON Web Token)</dt><dd class="text-neutral-300">Padrão de token com payload JSON assinado. Alternativa ao HMAC puro, mais complexa.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Allowlist</dt><dd class="text-neutral-300">Lista de usuários/emails autorizados a usar funcionalidades específicas (ex: "pro").</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Rate limit</dt><dd class="text-neutral-300">Limite de chamadas por unidade de tempo por IP/usuário. Protege contra abuso.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">CORS (Cross-Origin Resource Sharing)</dt><dd class="text-neutral-300">Política que define quais domínios podem chamar sua API. Nunca use <code>*</code> em produção.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Streaming response (SSE)</dt><dd class="text-neutral-300">Server-Sent Events — stream de tokens em tempo real. Melhora UX percebida.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Webhook orchestration</dt><dd class="text-neutral-300">Encadear chamadas entre serviços via webhooks para pipeline automático.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Observability</dt><dd class="text-neutral-300">Visibilidade sobre o que seu app está fazendo em produção: logs, métricas, traces.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Upstash Redis</dt><dd class="text-neutral-300">Redis serverless pay-per-use. Ideal para rate limit distribuído em multi-region.</dd></div>
+        </dl>
+      </div>
+    </section>
+
   </main>
 
   <footer class="border-t border-dark-600 py-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>Seedance 2.0 Mastery · INEMA.CLUB · 2026</p></div></footer>

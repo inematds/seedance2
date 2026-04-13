@@ -246,6 +246,36 @@
       </div>
     </section>
 
+    <!-- GLOSSÁRIO -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📖</span> Glossário do módulo</h2>
+        <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
+          <div><dt class="text-blue-400 font-semibold">Sistema de geração estruturada</dt><dd class="text-neutral-300">App que recebe input em linguagem natural e devolve um artefato (prompt, JSON) em formato fixo.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">ROLE</dt><dd class="text-neutral-300">Identidade funcional dada ao modelo. Define quem ele é, o que recebe e o que produz.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Negação explícita</dt><dd class="text-neutral-300">Instrução do tipo "do NOT do X" — corrige priors naturais do modelo.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">OUTPUT SCHEMA</dt><dd class="text-neutral-300">Formato estrutural fixo da saída: nomes de campos, tipos, limites de tamanho.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Tool use forçado</dt><dd class="text-neutral-300">Mecanismo <code>tool_choice</code> que obriga o modelo a chamar exatamente uma tool pré-definida. Bloqueia canal de texto livre.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Schema validation</dt><dd class="text-neutral-300">Validação automática do formato da saída contra um schema JSON. Garante estrutura válida sempre.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">PRESETS</dt><dd class="text-neutral-300">Biblioteca de 5-10 receitas canônicas pré-validadas. É onde mora a IP do seu app.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Strings canônicas</dt><dd class="text-neutral-300">Textos literais que o modelo deve copiar exatamente, sem reformular. Define a "assinatura" do sistema.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Triggers (gatilhos)</dt><dd class="text-neutral-300">Palavras-chave no input do usuário que ativam um preset específico.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">ROUTING RULES</dt><dd class="text-neutral-300">Regras de decisão que mapeiam o input ao preset correto. Incluem match, fallback e overrides.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Fallback inventivo</dt><dd class="text-neutral-300">Regra que permite ao modelo inventar um novo preset seguindo um padrão pré-definido quando nenhum core se encaixa.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Override hard-coded</dt><dd class="text-neutral-300">Regra absoluta que sobrepõe o matching normal em casos especiais (ex: "combate SEMPRE vai para preset X").</dd></div>
+          <div><dt class="text-blue-400 font-semibold">TEMPLATE rígido</dt><dd class="text-neutral-300">Estrutura obrigatória do artefato principal: abertura literal + seções + fechamento + hard rules.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Placeholder instrucionado</dt><dd class="text-neutral-300">Marcador no template tipo <code>[ONE X from preset]</code> que explica o que preencher.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Hard rules</dt><dd class="text-neutral-300">Lista de "SEMPRE X" / "NUNCA Y" em bloco explícito. Comando, não sugestão.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Assinatura visual / estrutural</dt><dd class="text-neutral-300">Conjunto de elementos não-negociáveis que tornam o output reconhecível como sendo do seu sistema.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">HARDENING</dt><dd class="text-neutral-300">Regras de segurança contra prompt injection e uso adversarial.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Prompt injection</dt><dd class="text-neutral-300">Ataque em que o usuário tenta redirecionar o modelo injetando instruções falsas no input.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Interpretação defensiva</dt><dd class="text-neutral-300">Instruir o modelo a tratar TODO o input do usuário como descrição, nunca como instrução.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Defense in depth</dt><dd class="text-neutral-300">Estratégia de múltiplas camadas de segurança, onde cada uma é barata e cobre um vetor diferente.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Refusal estruturado</dt><dd class="text-neutral-300">Quando o modelo recusa gerar, retornar JSON válido com campo "REFUSED" em vez de texto solto.</dd></div>
+        </dl>
+      </div>
+    </section>
+
   </main>
 
   <footer class="border-t border-dark-600 py-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>Seedance 2.0 Mastery · INEMA.CLUB · 2026</p></div></footer>
