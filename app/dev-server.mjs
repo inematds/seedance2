@@ -13,9 +13,20 @@ import { tsImport } from "tsx/esm/api";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = parseInt(process.env.PORT || "3030", 10);
 const PUBLIC_DIR = path.join(__dirname, "public");
-// API file can be overridden via env var (e.g., API_FILE=api/generate-local.ts for OAuth mode)
+
+// API files — the dev server can route multiple endpoints.
+// API_FILE (default /api/generate) can be overridden via env var (e.g., API_FILE=api/generate-local.ts for OAuth mode)
 const API_FILE_REL = process.env.API_FILE || "api/generate.ts";
 const API_FILE = path.join(__dirname, API_FILE_REL);
+
+// Workflow/scenes endpoint — picks local version automatically when in OAuth mode
+const IS_LOCAL_MODE = API_FILE_REL.includes("-local");
+const SCENES_FILE_REL = IS_LOCAL_MODE ? "api/scenes-local.ts" : "api/scenes.ts";
+const SCENES_FILE = path.join(__dirname, SCENES_FILE_REL);
+
+// Render (video submission to fal.ai/kie.ai) endpoint — same file works for both modes
+const RENDER_FILE_REL = IS_LOCAL_MODE ? "api/render-local.ts" : "api/render.ts";
+const RENDER_FILE = path.join(__dirname, RENDER_FILE_REL);
 
 // ---------- Carrega .env ----------
 const envPath = path.join(__dirname, ".env");
@@ -34,7 +45,7 @@ if (fs.existsSync(envPath)) {
 }
 
 // Modo local via OAuth (generate-local.ts) não precisa de .env
-const IS_LOCAL_OAUTH = API_FILE_REL.includes("generate-local");
+const IS_LOCAL_OAUTH = IS_LOCAL_MODE;
 if (IS_LOCAL_OAUTH) {
   console.log("\x1b[35m[dev-server] MODO OAUTH LOCAL — usando ~/.claude/.credentials.json\x1b[0m");
   console.log("  Backed by your Claude Max/Pro subscription (zero cost per call)");
@@ -60,32 +71,41 @@ if (IS_LOCAL_OAUTH) {
   console.warn("     npm run dev:local\n");
 }
 
-// ---------- Carrega o handler da API via tsx ----------
-let apiHandler = null;
-console.log(`[dev-server] carregando ${API_FILE_REL}...`);
-try {
-  const mod = await tsImport(API_FILE, import.meta.url);
-  // tsx faz double-wrap do default export — desempacotar
-  apiHandler =
-    typeof mod.default === "function"
-      ? mod.default
-      : typeof mod.default?.default === "function"
-        ? mod.default.default
-        : null;
-  if (typeof apiHandler !== "function") {
-    throw new Error(
-      "api/generate.ts não exporta default function (encontrado: " +
-        JSON.stringify(Object.keys(mod)) +
-        " / default=" +
-        typeof mod.default +
-        ")"
-    );
+// ---------- Carrega handlers via tsx ----------
+
+async function loadHandler(filePath, label) {
+  try {
+    if (!fs.existsSync(filePath)) {
+      console.warn(`[dev-server] ${label}: arquivo não encontrado (${filePath})`);
+      return null;
+    }
+    const mod = await tsImport(filePath, import.meta.url);
+    // tsx faz double-wrap do default export — desempacotar
+    const handler =
+      typeof mod.default === "function"
+        ? mod.default
+        : typeof mod.default?.default === "function"
+          ? mod.default.default
+          : null;
+    if (typeof handler !== "function") {
+      throw new Error(
+        `${label} não exporta default function (encontrado: ${JSON.stringify(
+          Object.keys(mod)
+        )} / default=${typeof mod.default})`
+      );
+    }
+    console.log(`[dev-server] ✓ ${label} carregado`);
+    return handler;
+  } catch (err) {
+    console.error(`[dev-server] ✗ erro ao carregar ${label}:`, err.message);
+    return null;
   }
-  console.log("[dev-server] ✓ api/generate.ts carregado");
-} catch (err) {
-  console.error("[dev-server] ✗ erro ao carregar api/generate.ts:", err.message);
-  console.error("   O frontend ainda vai carregar, mas a API retorna 500.");
 }
+
+console.log(`[dev-server] carregando handlers...`);
+const generateHandler = await loadHandler(API_FILE, API_FILE_REL);
+const scenesHandler = await loadHandler(SCENES_FILE, SCENES_FILE_REL);
+const renderHandler = await loadHandler(RENDER_FILE, RENDER_FILE_REL);
 
 // ---------- Wrappers para VercelRequest/VercelResponse ----------
 
@@ -182,43 +202,56 @@ function serveStatic(req, res) {
 
 // ---------- HTTP server ----------
 
-const server = http.createServer(async (req, res) => {
-  const url = req.url || "/";
+// Route an API call to the appropriate handler
+async function routeApi(req, res, handler, handlerName) {
+  if (!handler) {
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(
+      JSON.stringify({ error: `${handlerName} handler not loaded — check server logs` })
+    );
+    return;
+  }
 
-  // API route
-  if (url.startsWith("/api/generate")) {
-    if (!apiHandler) {
-      res.writeHead(500, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ error: "API handler not loaded — check server logs" }));
+  let raw = "";
+  req.on("data", (chunk) => (raw += chunk));
+  req.on("end", async () => {
+    let parsedBody;
+    try {
+      parsedBody = raw ? JSON.parse(raw) : {};
+    } catch {
+      res.writeHead(400, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: "Invalid JSON body" }));
       return;
     }
 
-    // ler body
-    let raw = "";
-    req.on("data", (chunk) => (raw += chunk));
-    req.on("end", async () => {
-      let parsedBody;
-      try {
-        parsedBody = raw ? JSON.parse(raw) : {};
-      } catch {
-        res.writeHead(400, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ error: "Invalid JSON body" }));
-        return;
+    const vreq = makeVercelRequest(req, parsedBody);
+    const vres = makeVercelResponse(res);
+    try {
+      await handler(vreq, vres);
+    } catch (err) {
+      console.error(`[dev-server] ${handlerName} threw:`, err);
+      if (!res.headersSent) {
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(
+          JSON.stringify({ error: "Handler threw: " + (err?.message || err) })
+        );
       }
+    }
+  });
+}
 
-      const vreq = makeVercelRequest(req, parsedBody);
-      const vres = makeVercelResponse(res);
-      try {
-        await apiHandler(vreq, vres);
-      } catch (err) {
-        console.error("[dev-server] handler error:", err);
-        if (!res.headersSent) {
-          res.writeHead(500, { "Content-Type": "application/json" });
-          res.end(JSON.stringify({ error: "Handler threw: " + (err?.message || err) }));
-        }
-      }
-    });
-    return;
+const server = http.createServer(async (req, res) => {
+  const url = req.url || "/";
+
+  // API routes
+  if (url.startsWith("/api/generate")) {
+    return routeApi(req, res, generateHandler, "generate");
+  }
+  if (url.startsWith("/api/scenes")) {
+    return routeApi(req, res, scenesHandler, "scenes");
+  }
+  if (url.startsWith("/api/render")) {
+    return routeApi(req, res, renderHandler, "render");
   }
 
   // Static files
@@ -236,8 +269,11 @@ server.listen(PORT, () => {
   console.log(`  🎬 \x1b[1mINEMA Prompt Engine\x1b[0m — dev server`);
   console.log("");
   console.log(`  \x1b[36mLocal:\x1b[0m   http://localhost:${PORT}`);
-  console.log(`  \x1b[36mAPI:\x1b[0m     http://localhost:${PORT}/api/generate`);
-  console.log(`  \x1b[36mModo:\x1b[0m    ${IS_LOCAL_OAUTH ? "OAuth (Max/Pro)" : "API key"}`);
+  console.log(`  \x1b[36mEndpoints:\x1b[0m`);
+  console.log(`    · POST /api/generate  (prompt estruturado)`);
+  console.log(`    · POST /api/scenes    (workflow — história → fluxo de cenas)`);
+  console.log(`    · POST /api/render    (renderiza video via fal.ai / kie.ai)`);
+  console.log(`  \x1b[36mModo:\x1b[0m    ${IS_LOCAL_OAUTH ? "OAuth (Max/Pro) — zero custo" : "API key"}`);
   console.log("");
   console.log("  Ctrl+C para parar");
   console.log("\x1b[32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\x1b[0m\n");

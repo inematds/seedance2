@@ -128,10 +128,51 @@ AUDIO PHRASING (use literally):
   Phase 3: "full emotional resolution with layered sound"
 
 ═══════════════════════════════════════════════════════════════════
+DIALOGUE FIELD (opcional)
+═══════════════════════════════════════════════════════════════════
+
+Decide per scene: is this a dialogue-driven scene (interview, conversation, monologue, someone speaking to camera), or a purely visual/ambient scene?
+
+- If dialogue-driven: produce 1-3 short spoken lines, each line ≤ 15 palavras, natural Brazilian Portuguese OR English depending on input language. Format each line as an object in the array: {speaker: "character name or role", line: "literal spoken text"}.
+- If NOT dialogue-driven: return an empty array [].
+
+Default: empty array. Only fill when the scene clearly requires someone to speak.
+
+Examples of dialogue-driven:
+  "avó ensinando neta a fazer pão" → yes, dialogue fits
+  "profissional dando depoimento" → yes
+  "monólogo interno narrado" → yes
+
+Examples of NOT dialogue-driven:
+  "bailarina girando em campo" → no, visual
+  "tempestade sobre o mar" → no
+  "corrida na praia ao amanhecer" → no
+
+═══════════════════════════════════════════════════════════════════
 RECOMMENDATIONS FIELD
 ═══════════════════════════════════════════════════════════════════
 
 Generate exactly 4 practical filming/production tips, scene-specific, from a cinematographer's perspective. NOT marketing copy. NOT generic advice.
+
+═══════════════════════════════════════════════════════════════════
+NEXT SCENE SUGGESTIONS FIELD
+═══════════════════════════════════════════════════════════════════
+
+Generate exactly 4 suggestions for what to generate NEXT, to extend this into a mini-narrative. Each suggestion is a SHORT scene idea (máximo 15 palavras) that creatively continues, contrasts, or deepens the current scene.
+
+The 4 suggestions should cover different angles:
+  1. Continuação direta — o que vem logo depois da cena atual
+  2. Contraste emocional — uma cena oposta que dá profundidade ao arco
+  3. Detalhe/close — um momento específico merecendo destaque
+  4. Transição ou reveal — mudança de cenário ou revelação
+
+Write in the same language as the user's input (Portuguese if input is PT, English if EN).
+
+Example for "bailarina girando em cerejeiras":
+  1. "A bailarina para de girar e olha direto para a câmera"
+  2. "Uma criança pequena assiste escondida atrás de uma árvore"
+  3. "Close-up: pétala caindo sobre sapatilha desgastada de ponta"
+  4. "Câmera recua revelando teatro abandonado ao redor do campo"
 
 ═══════════════════════════════════════════════════════════════════
 PORTUGUESE PROMPT FIELD
@@ -173,11 +214,32 @@ const TOOL_SCHEMA = {
       },
       english_prompt: { type: "string" },
       portuguese_prompt: { type: "string" },
+      dialogue: {
+        type: "array",
+        items: {
+          type: "object",
+          properties: {
+            speaker: { type: "string" },
+            line: { type: "string" },
+          },
+          required: ["speaker", "line"],
+        },
+        description:
+          "Array of 0-3 dialogue lines. Empty [] if scene is not dialogue-driven.",
+      },
       recommendations: {
         type: "array",
         items: { type: "string" },
         minItems: 4,
         maxItems: 4,
+      },
+      next_scene_suggestions: {
+        type: "array",
+        items: { type: "string" },
+        minItems: 4,
+        maxItems: 4,
+        description:
+          "Exactly 4 short scene ideas (max 15 words each) to extend this into a mini-narrative.",
       },
     },
     required: [
@@ -187,7 +249,9 @@ const TOOL_SCHEMA = {
       "techniques",
       "english_prompt",
       "portuguese_prompt",
+      "dialogue",
       "recommendations",
+      "next_scene_suggestions",
     ],
   },
 };
@@ -449,7 +513,9 @@ export default async function handler(
       techniques: string[];
       english_prompt: string;
       portuguese_prompt: string;
+      dialogue: Array<{ speaker: string; line: string }>;
       recommendations: string[];
+      next_scene_suggestions: string[];
     };
 
     if (!opts.pt) result.portuguese_prompt = "";

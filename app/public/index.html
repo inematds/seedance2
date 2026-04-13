@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>INEMA Prompt Engine · Cinematográfico para Seedance 2.0</title>
-  <meta name="description" content="Transforme sua ideia em prompt cinematográfico estruturado para Seedance 2.0. Gerado pela taxonomia autoral INEMA.">
+  <meta name="description" content="Transforme sua ideia em prompt cinematográfico estruturado para Seedance 2.0. Taxonomia autoral INEMA + workflow de histórias.">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -33,7 +33,6 @@
     .dark body { color: #e5e5e5; }
     .serif { font-family: 'Cormorant Garamond', serif; }
 
-    /* Glass card */
     .glass {
       background: rgba(20, 20, 32, 0.6);
       backdrop-filter: blur(12px);
@@ -41,7 +40,6 @@
       border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    /* Loader */
     .skeleton {
       background: linear-gradient(90deg, #1f1f30 0%, #2a2a40 50%, #1f1f30 100%);
       background-size: 200% 100%;
@@ -53,218 +51,352 @@
       100% { background-position: -200% 0; }
     }
 
-    /* Fade-in for results */
-    .fade-in {
-      animation: fadeIn 0.5s ease-out;
-    }
+    .fade-in { animation: fadeIn 0.5s ease-out; }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Copy button feedback */
-    .copied {
-      background-color: #059669 !important;
-      color: white !important;
-    }
+    .copied { background-color: #059669 !important; color: white !important; }
 
-    /* Smooth scroll */
     html { scroll-behavior: smooth; }
 
-    /* Category badge glow */
-    .category-glow {
-      text-shadow: 0 0 20px rgba(250, 204, 21, 0.4);
+    .category-glow { text-shadow: 0 0 20px rgba(250, 204, 21, 0.4); }
+
+    /* Modal backdrop */
+    .modal-backdrop {
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Mode tabs */
+    .mode-tab {
+      transition: all 0.2s;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .mode-tab.active {
+      background: rgba(250, 204, 21, 0.1);
+      border-color: rgba(250, 204, 21, 0.4);
+      color: #FACC15;
+    }
+
+    /* Scene card (workflow) */
+    .scene-card {
+      transition: all 0.2s;
+    }
+    .scene-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(250, 204, 21, 0.3);
     }
   </style>
 </head>
 <body class="text-neutral-100 min-h-screen">
 
   <!-- NAVBAR -->
-  <nav class="sticky top-0 z-50 backdrop-blur-sm border-b border-dark-600/50" style="background-color: rgba(10, 10, 15, 0.8);">
+  <nav class="sticky top-0 z-40 backdrop-blur-sm border-b border-dark-600/50" style="background-color: rgba(10, 10, 15, 0.8);">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
       <div class="flex items-center space-x-3">
         <span class="text-2xl">🎬</span>
         <span class="font-bold text-lg tracking-tight">INEMA <span class="text-primary">Prompt Engine</span></span>
       </div>
-      <div class="flex items-center space-x-4 text-sm">
+      <div class="flex items-center space-x-3 text-sm">
         <a href="https://inema.club" target="_blank" class="text-neutral-400 hover:text-primary transition-colors hidden sm:inline">inema.club</a>
-        <a href="#como-funciona" class="text-neutral-400 hover:text-primary transition-colors hidden sm:inline">Como funciona</a>
-        <a href="https://github.com/inematds/seedance2" target="_blank" class="text-neutral-400 hover:text-primary transition-colors">
-          <svg class="w-5 h-5 inline" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.41-4.04-1.41-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.77.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.17 0 0 1-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.3-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.82.58C20.56 21.8 24 17.31 24 12 24 5.37 18.63 0 12 0z"/></svg>
-        </a>
+        <button onclick="openSettings()" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors" title="Configurações">
+          <svg class="w-4 h-4 text-neutral-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </button>
       </div>
     </div>
   </nav>
 
   <!-- HERO -->
-  <header class="pt-16 pb-10 px-4 sm:px-6">
+  <header class="pt-14 pb-8 px-4 sm:px-6">
     <div class="max-w-3xl mx-auto text-center">
       <div class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/30 mb-6">
-        SEEDANCE 2.0 · #1 GLOBAL EM ABR/2026
+        SEEDANCE 2.0 · TAXONOMIA INEMA v1.0
       </div>
       <h1 class="text-4xl sm:text-6xl font-bold mb-5 tracking-tight leading-tight">
         Do briefing ao prompt<br>
         <span class="serif italic text-primary">cinematográfico</span> em 30 segundos.
       </h1>
-      <p class="text-lg sm:text-xl text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-        Descreva sua cena em português. Receba um prompt estruturado de 300-450 palavras pronto para colar na fal.ai ou kie.ai — com os 6 presets autorais da taxonomia INEMA.
+      <p class="text-lg text-neutral-400 max-w-2xl mx-auto leading-relaxed mb-10">
+        Escolha: prompt único para uma cena, ou <strong class="text-primary">workflow</strong> — conte uma história e receba um fluxo de cenas conectadas.
       </p>
+
+      <!-- MODE TABS -->
+      <div class="inline-flex rounded-xl bg-dark-800/60 p-1 gap-1">
+        <button id="tab-single" onclick="switchMode('single')" class="mode-tab active px-5 py-2.5 rounded-lg text-sm font-semibold">
+          🎬 Cena única
+        </button>
+        <button id="tab-workflow" onclick="switchMode('workflow')" class="mode-tab px-5 py-2.5 rounded-lg text-sm font-semibold text-neutral-400">
+          📖 Workflow (história)
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- GENERATOR -->
   <main class="px-4 sm:px-6 pb-20">
     <div class="max-w-3xl mx-auto">
 
-      <!-- INPUT CARD -->
-      <section class="glass rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl">
-        <label class="block text-sm font-medium text-neutral-400 mb-3">
-          Descreva sua cena
-        </label>
-        <textarea
-          id="scene-input"
-          rows="4"
-          class="w-full p-4 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none transition-colors placeholder-neutral-600"
-          placeholder="Ex: Uma bailarina de vestido branco girando em um campo de cerejeiras ao pôr do sol. Pétalas caindo ao redor, luz dourada, atmosfera etérea e contemplativa."
-        ></textarea>
+      <!-- ━━━━━━━━━━━━━━━━━━ MODO CENA ÚNICA ━━━━━━━━━━━━━━━━━━ -->
+      <div id="mode-single">
 
-        <div class="flex items-center justify-between mt-3 text-xs text-neutral-500">
-          <span id="char-count">0 / 4000 caracteres</span>
-          <span>Português ou inglês · Qualquer nicho · 6 presets INEMA</span>
-        </div>
+        <!-- INPUT CARD -->
+        <section class="glass rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl">
+          <label class="block text-sm font-medium text-neutral-400 mb-3">
+            Descreva sua cena
+          </label>
+          <textarea
+            id="scene-input"
+            rows="4"
+            class="w-full p-4 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none transition-colors placeholder-neutral-600"
+            placeholder="Ex: Uma bailarina de vestido branco girando em um campo de cerejeiras ao pôr do sol. Pétalas caindo ao redor, luz dourada, atmosfera etérea."
+          ></textarea>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-5">
-          <button onclick="useExample('epic')" class="text-xs px-3 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-400 hover:text-primary transition-colors border border-dark-600">Épico</button>
-          <button onclick="useExample('intimist')" class="text-xs px-3 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-400 hover:text-primary transition-colors border border-dark-600">Íntimo</button>
-          <button onclick="useExample('urban')" class="text-xs px-3 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-400 hover:text-primary transition-colors border border-dark-600">Urbano</button>
-          <button onclick="useExample('elemental')" class="text-xs px-3 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-400 hover:text-primary transition-colors border border-dark-600">Elemental</button>
-          <button onclick="useExample('dream')" class="text-xs px-3 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-400 hover:text-primary transition-colors border border-dark-600">Onírico</button>
-          <button onclick="useExample('documentary')" class="text-xs px-3 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-400 hover:text-primary transition-colors border border-dark-600">Documentário</button>
-        </div>
-
-        <button
-          id="generate-btn"
-          onclick="generate()"
-          class="w-full mt-6 px-6 py-4 bg-primary text-dark-900 font-bold text-base rounded-lg hover:bg-yellow-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
-        >
-          <span id="btn-label">⚡ Gerar prompt cinematográfico</span>
-          <svg id="btn-spinner" class="hidden w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" class="opacity-25"></circle>
-            <path fill="currentColor" class="opacity-75" d="M4 12a8 8 0 018-8V0C5.37 0 0 5.37 0 12h4z"></path>
-          </svg>
-        </button>
-
-        <div id="error-msg" class="hidden mt-4 p-3 bg-red-900/20 border border-red-500/40 rounded-lg text-sm text-red-300"></div>
-      </section>
-
-      <!-- LOADING SKELETON -->
-      <section id="loading-state" class="hidden glass rounded-2xl p-6 sm:p-8 mb-8 fade-in">
-        <div class="skeleton h-4 w-32 mb-6"></div>
-        <div class="skeleton h-8 w-64 mb-6"></div>
-        <div class="grid grid-cols-2 gap-4 mb-6">
-          <div class="skeleton h-20"></div>
-          <div class="skeleton h-20"></div>
-        </div>
-        <div class="skeleton h-48 mb-4"></div>
-        <div class="text-center text-sm text-neutral-500 mt-6">
-          Gerando prompt cinematográfico · ~20-30s
-        </div>
-      </section>
-
-      <!-- RESULT -->
-      <section id="result" class="hidden fade-in">
-
-        <!-- Analysis -->
-        <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
-          <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
-            <div>
-              <div class="text-xs uppercase tracking-wider text-neutral-500 mb-1">Categoria INEMA</div>
-              <div id="result-category" class="text-2xl sm:text-3xl font-bold text-primary category-glow"></div>
-            </div>
-            <button onclick="regenerate()" class="text-xs px-4 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-400 hover:text-primary transition-colors border border-dark-600 flex items-center space-x-2">
-              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
-              <span>Gerar outra</span>
-            </button>
+          <div class="flex items-center justify-between mt-3 text-xs text-neutral-500">
+            <span id="char-count">0 / 4000 caracteres</span>
+            <span>Português ou inglês · 6 presets INEMA</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-            <div class="bg-dark-900/50 rounded-lg p-4 border border-dark-600">
-              <div class="text-xs uppercase tracking-wider text-neutral-500 mb-2">Sistema de cores</div>
-              <div id="result-colors" class="text-sm text-neutral-300 leading-relaxed"></div>
-            </div>
-            <div class="bg-dark-900/50 rounded-lg p-4 border border-dark-600">
-              <div class="text-xs uppercase tracking-wider text-neutral-500 mb-2">Estilo de câmera</div>
-              <div id="result-camera" class="text-sm text-neutral-300 leading-relaxed"></div>
-            </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-5">
+            <button onclick="useExample('epic')" class="text-xs px-3 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-400 hover:text-primary transition-colors border border-dark-600">Épico</button>
+            <button onclick="useExample('intimist')" class="text-xs px-3 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-400 hover:text-primary transition-colors border border-dark-600">Íntimo</button>
+            <button onclick="useExample('urban')" class="text-xs px-3 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-400 hover:text-primary transition-colors border border-dark-600">Urbano</button>
+            <button onclick="useExample('elemental')" class="text-xs px-3 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-400 hover:text-primary transition-colors border border-dark-600">Elemental</button>
+            <button onclick="useExample('dream')" class="text-xs px-3 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-400 hover:text-primary transition-colors border border-dark-600">Onírico</button>
+            <button onclick="useExample('documentary')" class="text-xs px-3 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-400 hover:text-primary transition-colors border border-dark-600">Documentário</button>
           </div>
 
-          <div class="bg-dark-900/50 rounded-lg p-4 border border-dark-600">
-            <div class="text-xs uppercase tracking-wider text-neutral-500 mb-2">Técnicas</div>
-            <div id="result-techniques" class="flex flex-wrap gap-2"></div>
-          </div>
-        </div>
-
-        <!-- English prompt -->
-        <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-bold flex items-center space-x-2">
-              <span>🇬🇧</span>
-              <span>Prompt em inglês</span>
-              <span class="text-xs font-normal text-neutral-500">(cole na fal.ai / kie.ai)</span>
-            </h3>
-            <button onclick="copyField('result-en', this)" class="text-xs px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-300 border border-dark-600 transition-colors">📋 Copiar</button>
-          </div>
-          <pre id="result-en" class="bg-dark-900/80 rounded-lg p-4 text-xs sm:text-sm text-neutral-300 whitespace-pre-wrap font-mono leading-relaxed border border-dark-600 max-h-96 overflow-y-auto"></pre>
-        </div>
-
-        <!-- Portuguese prompt -->
-        <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-bold flex items-center space-x-2">
-              <span>🇧🇷</span>
-              <span>Prompt em português</span>
-              <span class="text-xs font-normal text-neutral-500">(para referência)</span>
-            </h3>
-            <button onclick="copyField('result-pt', this)" class="text-xs px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-300 border border-dark-600 transition-colors">📋 Copiar</button>
-          </div>
-          <pre id="result-pt" class="bg-dark-900/80 rounded-lg p-4 text-xs sm:text-sm text-neutral-300 whitespace-pre-wrap font-mono leading-relaxed border border-dark-600 max-h-96 overflow-y-auto"></pre>
-        </div>
-
-        <!-- Recommendations -->
-        <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
-          <h3 class="text-lg font-bold mb-4 flex items-center space-x-2">
-            <span>💡</span>
-            <span>Recomendações técnicas</span>
-          </h3>
-          <ol id="result-recs" class="space-y-3 text-sm text-neutral-300"></ol>
-        </div>
-
-        <!-- Action buttons -->
-        <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
-          <div class="text-xs uppercase tracking-wider text-neutral-500 mb-4">Rodar agora</div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <button onclick="openInFal()" class="px-5 py-3 bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold rounded-lg transition-colors flex items-center justify-center space-x-2">
-              <span>🎬</span>
-              <span>Abrir na fal.ai</span>
-            </button>
-            <button onclick="openInKie()" class="px-5 py-3 bg-gradient-to-br from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold rounded-lg transition-colors flex items-center justify-center space-x-2">
-              <span>🎬</span>
-              <span>Abrir na kie.ai</span>
-            </button>
-          </div>
-          <div class="mt-3 text-xs text-neutral-500 text-center">
-            O prompt em inglês é copiado automaticamente. Cole no campo do modelo Seedance 2.0.
-          </div>
-        </div>
-
-        <!-- New scene -->
-        <div class="text-center">
-          <button onclick="resetAll()" class="text-sm text-neutral-400 hover:text-primary transition-colors">
-            ← Nova cena
+          <button
+            id="generate-btn"
+            onclick="generate()"
+            class="w-full mt-6 px-6 py-4 bg-primary text-dark-900 font-bold text-base rounded-lg hover:bg-yellow-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+          >
+            <span id="btn-label">⚡ Gerar prompt cinematográfico</span>
+            <svg id="btn-spinner" class="hidden w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" class="opacity-25"></circle>
+              <path fill="currentColor" class="opacity-75" d="M4 12a8 8 0 018-8V0C5.37 0 0 5.37 0 12h4z"></path>
+            </svg>
           </button>
-        </div>
 
-      </section>
+          <div id="error-msg" class="hidden mt-4 p-3 bg-red-900/20 border border-red-500/40 rounded-lg text-sm text-red-300"></div>
+        </section>
+
+        <!-- LOADING SKELETON -->
+        <section id="loading-state" class="hidden glass rounded-2xl p-6 sm:p-8 mb-8 fade-in">
+          <div class="skeleton h-4 w-32 mb-6"></div>
+          <div class="skeleton h-8 w-64 mb-6"></div>
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="skeleton h-20"></div>
+            <div class="skeleton h-20"></div>
+          </div>
+          <div class="skeleton h-48 mb-4"></div>
+          <div class="text-center text-sm text-neutral-500 mt-6">
+            Gerando prompt cinematográfico · ~15-30s
+          </div>
+        </section>
+
+        <!-- RESULT -->
+        <section id="result" class="hidden fade-in">
+
+          <!-- Analysis -->
+          <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
+            <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
+              <div>
+                <div class="text-xs uppercase tracking-wider text-neutral-500 mb-1">Categoria INEMA</div>
+                <div id="result-category" class="text-2xl sm:text-3xl font-bold text-primary category-glow"></div>
+              </div>
+              <button onclick="regenerate()" class="text-xs px-4 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-400 hover:text-primary transition-colors border border-dark-600 flex items-center space-x-2">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+                <span>Gerar outra</span>
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              <div class="bg-dark-900/50 rounded-lg p-4 border border-dark-600">
+                <div class="text-xs uppercase tracking-wider text-neutral-500 mb-2">Sistema de cores</div>
+                <div id="result-colors" class="text-sm text-neutral-300 leading-relaxed"></div>
+              </div>
+              <div class="bg-dark-900/50 rounded-lg p-4 border border-dark-600">
+                <div class="text-xs uppercase tracking-wider text-neutral-500 mb-2">Estilo de câmera</div>
+                <div id="result-camera" class="text-sm text-neutral-300 leading-relaxed"></div>
+              </div>
+            </div>
+
+            <div class="bg-dark-900/50 rounded-lg p-4 border border-dark-600">
+              <div class="text-xs uppercase tracking-wider text-neutral-500 mb-2">Técnicas</div>
+              <div id="result-techniques" class="flex flex-wrap gap-2"></div>
+            </div>
+          </div>
+
+          <!-- English prompt -->
+          <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold flex items-center space-x-2">
+                <span>🇬🇧</span>
+                <span>Prompt em inglês</span>
+                <span class="text-xs font-normal text-neutral-500">(cole na fal.ai / kie.ai)</span>
+              </h3>
+              <button data-copy-target="result-en" class="copy-btn text-xs px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-300 border border-dark-600 transition-colors">📋 Copiar</button>
+            </div>
+            <pre id="result-en" class="bg-dark-900/80 rounded-lg p-4 text-xs sm:text-sm text-neutral-300 whitespace-pre-wrap font-mono leading-relaxed border border-dark-600 max-h-96 overflow-y-auto"></pre>
+          </div>
+
+          <!-- Portuguese prompt -->
+          <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold flex items-center space-x-2">
+                <span>🇧🇷</span>
+                <span>Prompt em português</span>
+                <span class="text-xs font-normal text-neutral-500">(referência)</span>
+              </h3>
+              <button data-copy-target="result-pt" class="copy-btn text-xs px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-300 border border-dark-600 transition-colors">📋 Copiar</button>
+            </div>
+            <pre id="result-pt" class="bg-dark-900/80 rounded-lg p-4 text-xs sm:text-sm text-neutral-300 whitespace-pre-wrap font-mono leading-relaxed border border-dark-600 max-h-96 overflow-y-auto"></pre>
+          </div>
+
+          <!-- Dialogue (optional) -->
+          <div id="result-dialogue-wrap" class="hidden glass rounded-2xl p-6 sm:p-8 mb-6">
+            <h3 class="text-lg font-bold mb-4 flex items-center space-x-2">
+              <span>💬</span>
+              <span>Diálogo</span>
+              <span class="text-xs font-normal text-neutral-500">(cena dialogada)</span>
+            </h3>
+            <div id="result-dialogue" class="space-y-3"></div>
+          </div>
+
+          <!-- Recommendations -->
+          <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
+            <h3 class="text-lg font-bold mb-4 flex items-center space-x-2">
+              <span>💡</span>
+              <span>Recomendações técnicas</span>
+            </h3>
+            <ol id="result-recs" class="space-y-3 text-sm text-neutral-300"></ol>
+          </div>
+
+          <!-- Action buttons -->
+          <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
+            <div class="text-xs uppercase tracking-wider text-neutral-500 mb-4">Rodar agora</div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <button id="btn-fal" class="open-btn px-5 py-3 bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold rounded-lg transition-colors flex items-center justify-center space-x-2" data-target="fal">
+                <span>🎬</span>
+                <span>Abrir na fal.ai</span>
+              </button>
+              <button id="btn-kie" class="open-btn px-5 py-3 bg-gradient-to-br from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold rounded-lg transition-colors flex items-center justify-center space-x-2" data-target="kie">
+                <span>🎬</span>
+                <span>Abrir na kie.ai</span>
+              </button>
+              <button id="btn-render-api" onclick="renderViaApi()" class="px-5 py-3 bg-gradient-to-br from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold rounded-lg transition-colors flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                <span>⚡</span>
+                <span>Gerar via API</span>
+              </button>
+            </div>
+            <div id="render-api-status" class="mt-3 text-xs text-neutral-500 text-center">
+              Configure uma API key no ⚙️ para ativar "Gerar via API"
+            </div>
+          </div>
+
+          <!-- Next scene suggestions -->
+          <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
+            <h3 class="text-lg font-bold mb-2 flex items-center space-x-2">
+              <span>✨</span>
+              <span>Continuar a história?</span>
+            </h3>
+            <p class="text-xs text-neutral-500 mb-4">Clique em uma sugestão para gerar o próximo prompt automaticamente</p>
+            <div id="result-next" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+          </div>
+
+          <!-- New scene -->
+          <div class="text-center">
+            <button onclick="resetAll()" class="text-sm text-neutral-400 hover:text-primary transition-colors">
+              ← Nova cena do zero
+            </button>
+          </div>
+
+        </section>
+      </div>
+
+      <!-- ━━━━━━━━━━━━━━━━━━ MODO WORKFLOW ━━━━━━━━━━━━━━━━━━ -->
+      <div id="mode-workflow" class="hidden">
+
+        <section class="glass rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl">
+          <label class="block text-sm font-medium text-neutral-400 mb-3">
+            Conte sua história (ideia, arco, narrativa)
+          </label>
+          <textarea
+            id="story-input"
+            rows="6"
+            class="w-full p-4 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none transition-colors placeholder-neutral-600"
+            placeholder="Ex: Uma avó no sertão mineiro acorda ao amanhecer. Ela prepara pão de queijo na cozinha antiga enquanto o neto chega do terreiro trazendo ovos frescos. Eles comem juntos à mesa de madeira, riem baixinho. Depois ela o leva pela mão pelo quintal onde florescem begônias. No final, o neto corre sozinho pelo milharal enquanto ela observa da porta, sorrindo."
+          ></textarea>
+
+          <div class="flex items-center justify-between mt-3 text-xs text-neutral-500">
+            <span id="story-char-count">0 / 8000 caracteres</span>
+            <span>O sistema cria 5-8 cenas conectadas</span>
+          </div>
+
+          <button
+            id="story-btn"
+            onclick="generateStory()"
+            class="w-full mt-6 px-6 py-4 bg-primary text-dark-900 font-bold text-base rounded-lg hover:bg-yellow-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+          >
+            <span id="story-btn-label">📖 Criar fluxo de cenas</span>
+            <svg id="story-btn-spinner" class="hidden w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" class="opacity-25"></circle>
+              <path fill="currentColor" class="opacity-75" d="M4 12a8 8 0 018-8V0C5.37 0 0 5.37 0 12h4z"></path>
+            </svg>
+          </button>
+
+          <div id="story-error" class="hidden mt-4 p-3 bg-red-900/20 border border-red-500/40 rounded-lg text-sm text-red-300"></div>
+        </section>
+
+        <!-- Loading scene list -->
+        <section id="story-loading" class="hidden glass rounded-2xl p-6 sm:p-8 mb-8 fade-in">
+          <div class="skeleton h-4 w-40 mb-4"></div>
+          <div class="skeleton h-20 mb-3"></div>
+          <div class="skeleton h-20 mb-3"></div>
+          <div class="skeleton h-20 mb-3"></div>
+          <div class="text-center text-sm text-neutral-500 mt-6">
+            Estruturando fluxo de cenas · ~20-40s
+          </div>
+        </section>
+
+        <!-- Scene flow result -->
+        <section id="story-result" class="hidden fade-in">
+          <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-lg font-bold flex items-center space-x-2">
+                <span>📖</span>
+                <span id="story-title">Fluxo de cenas</span>
+              </h3>
+              <button onclick="regenerateStory()" class="text-xs px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-300 border border-dark-600 transition-colors">🔄 Refazer</button>
+            </div>
+            <p id="story-synopsis" class="text-sm text-neutral-400 mb-6"></p>
+
+            <div id="scene-cards" class="space-y-4"></div>
+
+            <div class="mt-8 p-5 rounded-xl bg-dark-900/50 border border-dark-600">
+              <div class="flex items-start space-x-3">
+                <span class="text-xl">🚧</span>
+                <div class="text-sm text-neutral-400">
+                  <strong class="text-neutral-300">"Executar tudo via API"</strong> — botão de renderizar o fluxo inteiro na fal.ai/kie.ai em batch. <span class="text-primary">Próxima versão.</span>
+                </div>
+              </div>
+              <button disabled class="w-full mt-4 px-5 py-3 bg-dark-700 text-neutral-500 font-semibold rounded-lg cursor-not-allowed border border-dark-600">
+                ⚡ Executar tudo via API (em breve)
+              </button>
+            </div>
+          </div>
+
+          <div class="text-center mt-6">
+            <button onclick="resetStory()" class="text-sm text-neutral-400 hover:text-primary transition-colors">
+              ← Nova história
+            </button>
+          </div>
+        </section>
+      </div>
 
       <!-- COMO FUNCIONA -->
       <section id="como-funciona" class="mt-20 pt-10 border-t border-dark-600/50">
@@ -273,50 +405,314 @@
           <div class="glass rounded-xl p-5">
             <div class="text-3xl mb-3">1️⃣</div>
             <h3 class="font-bold mb-2">Você descreve</h3>
-            <p class="text-sm text-neutral-400">Em linguagem natural, português ou inglês. Não precisa saber jargão cinematográfico.</p>
+            <p class="text-sm text-neutral-400">Uma cena única ou uma história inteira — em português ou inglês.</p>
           </div>
           <div class="glass rounded-xl p-5">
             <div class="text-3xl mb-3">2️⃣</div>
             <h3 class="font-bold mb-2">A IA estrutura</h3>
-            <p class="text-sm text-neutral-400">Claude Sonnet 4.6 com a taxonomia INEMA aplica os 6 presets autorais + vocabulário validado.</p>
+            <p class="text-sm text-neutral-400">Claude Sonnet 4.6 + taxonomia INEMA gera prompt(s) no template [0s][3s][6s].</p>
           </div>
           <div class="glass rounded-xl p-5">
             <div class="text-3xl mb-3">3️⃣</div>
             <h3 class="font-bold mb-2">Você renderiza</h3>
-            <p class="text-sm text-neutral-400">Copie o prompt ou clique para abrir direto na fal.ai ou kie.ai. Seu vídeo sai em ~30s.</p>
+            <p class="text-sm text-neutral-400">Copie, abra na fal.ai/kie.ai, ou (com API key) gere direto na nossa app.</p>
           </div>
-        </div>
-        <div class="mt-10 p-6 rounded-xl bg-primary/5 border border-primary/20 text-center">
-          <div class="text-sm text-neutral-300 mb-3">Quer aprender como essa engine foi construída?</div>
-          <a href="https://inema.club" target="_blank" class="inline-block px-6 py-3 bg-primary text-dark-900 font-bold rounded-lg hover:bg-yellow-300 transition-colors">
-            Curso Seedance 2.0 Mastery →
-          </a>
         </div>
       </section>
 
     </div>
   </main>
 
+  <!-- SETTINGS MODAL -->
+  <div id="settings-modal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-start justify-center pt-20 px-4" onclick="if(event.target===this) closeSettings()">
+    <div class="glass rounded-2xl max-w-lg w-full p-6 sm:p-8 fade-in shadow-2xl">
+      <div class="flex items-center justify-between mb-5">
+        <h2 class="text-xl font-bold flex items-center space-x-2">
+          <span>⚙️</span>
+          <span>Configurações</span>
+        </h2>
+        <button onclick="closeSettings()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+
+      <p class="text-sm text-neutral-400 mb-6">
+        Configure chaves de API para <strong class="text-neutral-300">renderizar vídeos diretamente</strong> pela app. As chaves ficam salvas só no seu navegador (localStorage).
+      </p>
+
+      <div class="space-y-5">
+        <!-- fal.ai key -->
+        <div>
+          <label class="flex items-center justify-between mb-2">
+            <span class="text-sm font-medium text-neutral-300">fal.ai API Key</span>
+            <a href="https://fal.ai/dashboard/keys" target="_blank" class="text-xs text-primary hover:text-yellow-300">pegar chave →</a>
+          </label>
+          <input
+            id="fal-key"
+            type="password"
+            class="w-full p-3 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm font-mono"
+            placeholder="fal-..."
+          >
+        </div>
+
+        <!-- kie.ai key -->
+        <div>
+          <label class="flex items-center justify-between mb-2">
+            <span class="text-sm font-medium text-neutral-300">kie.ai API Key</span>
+            <a href="https://kie.ai/dashboard/api-keys" target="_blank" class="text-xs text-primary hover:text-yellow-300">pegar chave →</a>
+          </label>
+          <input
+            id="kie-key"
+            type="password"
+            class="w-full p-3 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm font-mono"
+            placeholder="sk-..."
+          >
+        </div>
+
+        <!-- Default provider -->
+        <div>
+          <label class="block text-sm font-medium text-neutral-300 mb-2">Provider padrão para "Gerar via API"</label>
+          <select id="default-provider" class="w-full p-3 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm">
+            <option value="fal">fal.ai</option>
+            <option value="kie">kie.ai</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex gap-3 mt-8">
+        <button onclick="saveSettings()" class="flex-1 px-5 py-3 bg-primary text-dark-900 font-bold rounded-lg hover:bg-yellow-300 transition-colors">
+          Salvar
+        </button>
+        <button onclick="clearSettings()" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 text-neutral-300 font-semibold rounded-lg border border-dark-600 transition-colors text-sm">
+          Limpar
+        </button>
+      </div>
+
+      <div id="settings-status" class="hidden mt-4 p-3 rounded-lg text-sm"></div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer class="border-t border-dark-600/50 py-8 mt-10">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center text-sm text-neutral-500">
       <p class="mb-2">INEMA Prompt Engine · <a href="https://inema.club" target="_blank" class="text-primary hover:text-yellow-300">inema.club</a> · 2026</p>
-      <p class="text-xs">Taxonomia autoral INEMA v1.0 · Powered by Claude Sonnet 4.6 · Deploy na Vercel</p>
-      <p class="text-xs mt-2 text-neutral-600">Não afiliado à ByteDance, Anthropic, fal.ai ou kie.ai.</p>
+      <p class="text-xs">Taxonomia autoral INEMA v1.0 · Powered by Claude Sonnet 4.6 · Open source</p>
     </div>
   </footer>
 
   <!-- SCRIPTS -->
   <script>
+    // ═══════════════════════════════════════════════════════
+    // EXAMPLES
+    // ═══════════════════════════════════════════════════════
     const EXAMPLES = {
       epic: "Uma figura solitária em capa marrom caminha lentamente por uma duna imensa ao amanhecer. O sol baixo projeta sombras longas sobre areia dourada. Vento leve. Paisagem vazia até o horizonte.",
       intimist: "Uma avó escrevendo uma carta à luz de uma janela de cozinha pela manhã. Mão idosa segurando caneta antiga, papel amarelado. Silêncio contemplativo.",
-      urban: "Skatistas em uma praça pública de São Paulo ao pôr do sol. Movimento urbano ao fundo, concreto cinzento, mas uma silhueta faz um manobra em câmera lenta destacada pela luz laranja que atravessa os prédios.",
+      urban: "Skatistas em uma praça pública de São Paulo ao pôr do sol. Movimento urbano ao fundo, concreto cinzento, mas uma silhueta faz uma manobra em câmera lenta destacada pela luz laranja que atravessa os prédios.",
       elemental: "Uma árvore solitária em um campo durante uma tempestade violenta. Raios cortando o céu preto, folhas voando, chuva forte. A árvore resiste.",
       dream: "Uma bailarina de vestido branco girando entre cerejeiras em flor ao pôr do sol. Pétalas rosa caindo ao redor dela como neve. Luz dourada mágica atravessando as flores.",
       documentary: "Um ceramista idoso moldando um vaso no torno em seu ateliê à luz natural da janela. Mãos cobertas de argila, concentração total, barulho do torno e da argila sendo trabalhada."
     };
 
+    const STORY_EXAMPLE = "Uma avó no sertão mineiro acorda ao amanhecer. Ela prepara pão de queijo na cozinha antiga enquanto o neto chega do terreiro trazendo ovos frescos. Eles comem juntos à mesa de madeira, riem baixinho. Depois ela o leva pela mão pelo quintal onde florescem begônias. No final, o neto corre sozinho pelo milharal enquanto ela observa da porta, sorrindo.";
+
+    // ═══════════════════════════════════════════════════════
+    // STATE
+    // ═══════════════════════════════════════════════════════
+    let currentMode = 'single';
+    let lastResult = null;
+    let lastScene = '';
+    let lastStory = '';
+    let lastStoryResult = null;
+
+    // ═══════════════════════════════════════════════════════
+    // SETTINGS (localStorage)
+    // ═══════════════════════════════════════════════════════
+    const SETTINGS_KEY = 'inema_settings_v1';
+
+    function getSettings() {
+      try {
+        return JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
+      } catch { return {}; }
+    }
+
+    function setSettings(s) {
+      localStorage.setItem(SETTINGS_KEY, JSON.stringify(s));
+      updateRenderApiButton();
+    }
+
+    function openSettings() {
+      const s = getSettings();
+      document.getElementById('fal-key').value = s.falKey || '';
+      document.getElementById('kie-key').value = s.kieKey || '';
+      document.getElementById('default-provider').value = s.defaultProvider || 'fal';
+      document.getElementById('settings-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSettings() {
+      document.getElementById('settings-modal').classList.add('hidden');
+      document.getElementById('settings-status').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    function saveSettings() {
+      const falKey = document.getElementById('fal-key').value.trim();
+      const kieKey = document.getElementById('kie-key').value.trim();
+      const defaultProvider = document.getElementById('default-provider').value;
+      setSettings({ falKey, kieKey, defaultProvider });
+
+      const status = document.getElementById('settings-status');
+      status.textContent = '✓ Salvo. Feche o modal para continuar.';
+      status.className = 'mt-4 p-3 rounded-lg text-sm bg-emerald-900/20 border border-emerald-500/40 text-emerald-300';
+      status.classList.remove('hidden');
+      setTimeout(closeSettings, 1200);
+    }
+
+    function clearSettings() {
+      if (!confirm('Limpar todas as chaves salvas?')) return;
+      localStorage.removeItem(SETTINGS_KEY);
+      document.getElementById('fal-key').value = '';
+      document.getElementById('kie-key').value = '';
+      document.getElementById('default-provider').value = 'fal';
+      updateRenderApiButton();
+      const status = document.getElementById('settings-status');
+      status.textContent = 'Configurações limpas.';
+      status.className = 'mt-4 p-3 rounded-lg text-sm bg-amber-900/20 border border-amber-500/40 text-amber-300';
+      status.classList.remove('hidden');
+    }
+
+    function updateRenderApiButton() {
+      const btn = document.getElementById('btn-render-api');
+      const status = document.getElementById('render-api-status');
+      if (!btn || !status) return;
+      const s = getSettings();
+      const hasKey = (s.defaultProvider === 'fal' && s.falKey) || (s.defaultProvider === 'kie' && s.kieKey);
+      btn.disabled = !hasKey;
+      if (hasKey) {
+        status.textContent = `Pronto: usará ${s.defaultProvider}.ai para renderizar o vídeo`;
+        status.className = 'mt-3 text-xs text-emerald-400 text-center';
+      } else {
+        status.textContent = 'Configure uma API key no ⚙️ para ativar "Gerar via API"';
+        status.className = 'mt-3 text-xs text-neutral-500 text-center';
+      }
+    }
+
+    // ═══════════════════════════════════════════════════════
+    // CLIPBOARD (defensive with fallback)
+    // ═══════════════════════════════════════════════════════
+    async function copyText(text) {
+      if (!text) return false;
+      // Try modern API first
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (err) {
+          console.warn('[copy] clipboard API failed, falling back:', err);
+        }
+      }
+      // Fallback: execCommand (deprecated but works on HTTP and older browsers)
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.top = '-9999px';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        return ok;
+      } catch (err) {
+        console.error('[copy] fallback failed:', err);
+        return false;
+      }
+    }
+
+    function feedbackCopy(btn, ok) {
+      if (!btn) return;
+      const orig = btn.textContent;
+      btn.textContent = ok ? '✓ Copiado!' : '✗ Erro';
+      btn.classList.add(ok ? 'copied' : 'error');
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.classList.remove('copied', 'error');
+      }, 1500);
+    }
+
+    // Delegated click handler for all .copy-btn
+    document.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.copy-btn');
+      if (!btn) return;
+      const targetId = btn.getAttribute('data-copy-target');
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      const text = target.textContent || '';
+      const ok = await copyText(text);
+      feedbackCopy(btn, ok);
+    });
+
+    // Delegated click handler for open-in-platform buttons
+    document.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.open-btn');
+      if (!btn) return;
+      const target = btn.getAttribute('data-target');
+      if (!lastResult || !lastResult.english_prompt) {
+        toast('Gere um prompt primeiro');
+        return;
+      }
+
+      const urls = {
+        fal: 'https://fal.ai/models/fal-ai/bytedance/seedance/v1/pro/text-to-video',
+        kie: 'https://kie.ai/playground/veo3/seedance'
+      };
+      const url = urls[target];
+      if (!url) return;
+
+      // CRITICAL: open window FIRST (sync, within user gesture),
+      // then copy (async) in the background
+      const win = window.open(url, '_blank', 'noopener,noreferrer');
+
+      const ok = await copyText(lastResult.english_prompt);
+      if (ok) {
+        toast(`Prompt copiado — cole no campo da ${target}.ai`);
+      } else {
+        toast('Abriu a plataforma. Copie manualmente o prompt do card acima.');
+      }
+
+      if (!win) {
+        // Popup blocked — fallback: tell user
+        toast('Popup bloqueado. Permita popups ou copie o link manualmente.');
+      }
+    });
+
+    // ═══════════════════════════════════════════════════════
+    // TOAST
+    // ═══════════════════════════════════════════════════════
+    function toast(msg) {
+      const t = document.createElement('div');
+      t.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 px-5 py-3 bg-primary text-dark-900 font-semibold rounded-lg shadow-2xl z-50 fade-in max-w-md text-center text-sm';
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 3500);
+    }
+
+    // ═══════════════════════════════════════════════════════
+    // MODE TABS
+    // ═══════════════════════════════════════════════════════
+    function switchMode(mode) {
+      currentMode = mode;
+      document.getElementById('mode-single').classList.toggle('hidden', mode !== 'single');
+      document.getElementById('mode-workflow').classList.toggle('hidden', mode !== 'workflow');
+      document.getElementById('tab-single').classList.toggle('active', mode === 'single');
+      document.getElementById('tab-single').classList.toggle('text-neutral-400', mode !== 'single');
+      document.getElementById('tab-workflow').classList.toggle('active', mode === 'workflow');
+      document.getElementById('tab-workflow').classList.toggle('text-neutral-400', mode !== 'workflow');
+    }
+
+    // ═══════════════════════════════════════════════════════
+    // SINGLE SCENE GENERATOR
+    // ═══════════════════════════════════════════════════════
     const input = document.getElementById('scene-input');
     const charCount = document.getElementById('char-count');
     const errorMsg = document.getElementById('error-msg');
@@ -325,9 +721,6 @@
     const btn = document.getElementById('generate-btn');
     const btnLabel = document.getElementById('btn-label');
     const btnSpinner = document.getElementById('btn-spinner');
-
-    let lastResult = null;
-    let lastScene = '';
 
     input.addEventListener('input', () => {
       const len = input.value.length;
@@ -372,11 +765,7 @@
           body: JSON.stringify({ scene, opts: { pt: true, recs: true } })
         });
         const data = await res.json();
-
-        if (!res.ok) {
-          throw new Error(data.error || `HTTP ${res.status}`);
-        }
-
+        if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
         lastResult = data;
         renderResult(data);
       } catch (err) {
@@ -384,6 +773,12 @@
       } finally {
         setLoading(false);
       }
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
     }
 
     function renderResult(data) {
@@ -403,6 +798,23 @@
       document.getElementById('result-en').textContent = data.english_prompt || '—';
       document.getElementById('result-pt').textContent = data.portuguese_prompt || '—';
 
+      // Dialogue (optional — only show if non-empty)
+      const dlgWrap = document.getElementById('result-dialogue-wrap');
+      const dlgContainer = document.getElementById('result-dialogue');
+      dlgContainer.innerHTML = '';
+      if (Array.isArray(data.dialogue) && data.dialogue.length > 0) {
+        dlgWrap.classList.remove('hidden');
+        data.dialogue.forEach((d) => {
+          const row = document.createElement('div');
+          row.className = 'bg-dark-900/50 rounded-lg p-4 border border-dark-600';
+          row.innerHTML = `<div class="text-xs uppercase tracking-wider text-neutral-500 mb-1">${escapeHtml(d.speaker || 'Voz')}</div><div class="text-sm text-neutral-200 italic">"${escapeHtml(d.line || '')}"</div>`;
+          dlgContainer.appendChild(row);
+        });
+      } else {
+        dlgWrap.classList.add('hidden');
+      }
+
+      // Recommendations
       const recsOl = document.getElementById('result-recs');
       recsOl.innerHTML = '';
       (data.recommendations || []).forEach((r, i) => {
@@ -412,49 +824,32 @@
         recsOl.appendChild(li);
       });
 
+      // Next scene suggestions (clickable)
+      const nextContainer = document.getElementById('result-next');
+      nextContainer.innerHTML = '';
+      const labels = ['Continuação', 'Contraste', 'Close/detalhe', 'Reveal/transição'];
+      (data.next_scene_suggestions || []).slice(0, 4).forEach((s, i) => {
+        const card = document.createElement('button');
+        card.className = 'text-left p-4 bg-dark-900/60 hover:bg-dark-700 border border-dark-600 hover:border-primary/40 rounded-lg transition-all group';
+        card.innerHTML = `
+          <div class="text-xs uppercase tracking-wider text-primary/70 mb-1.5 group-hover:text-primary">${labels[i] || 'Próxima'}</div>
+          <div class="text-sm text-neutral-300 group-hover:text-neutral-100">${escapeHtml(s)}</div>
+          <div class="text-xs text-neutral-500 mt-2">→ clique para gerar</div>
+        `;
+        card.onclick = () => useNextSuggestion(s);
+        nextContainer.appendChild(card);
+      });
+
+      updateRenderApiButton();
       resultSection.classList.remove('hidden');
       resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    function escapeHtml(str) {
-      const div = document.createElement('div');
-      div.textContent = str;
-      return div.innerHTML;
-    }
-
-    function copyField(id, btn) {
-      const text = document.getElementById(id).textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        const orig = btn.textContent;
-        btn.textContent = '✓ Copiado!';
-        btn.classList.add('copied');
-        setTimeout(() => {
-          btn.textContent = orig;
-          btn.classList.remove('copied');
-        }, 1500);
-      });
-    }
-
-    function openInFal() {
-      if (!lastResult) return;
-      navigator.clipboard.writeText(lastResult.english_prompt);
-      window.open('https://fal.ai/models/fal-ai/bytedance/seedance/v1/pro/text-to-video', '_blank');
-      toast('Prompt copiado — cole no campo "Prompt" da fal.ai');
-    }
-
-    function openInKie() {
-      if (!lastResult) return;
-      navigator.clipboard.writeText(lastResult.english_prompt);
-      window.open('https://kie.ai/playground/veo3/seedance', '_blank');
-      toast('Prompt copiado — cole no campo "Prompt" da kie.ai');
-    }
-
-    function toast(msg) {
-      const t = document.createElement('div');
-      t.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 px-5 py-3 bg-primary text-dark-900 font-semibold rounded-lg shadow-2xl z-50 fade-in';
-      t.textContent = msg;
-      document.body.appendChild(t);
-      setTimeout(() => t.remove(), 3500);
+    function useNextSuggestion(text) {
+      input.value = text;
+      charCount.textContent = `${text.length} / 4000 caracteres`;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => generate(), 500);
     }
 
     function regenerate() {
@@ -472,12 +867,219 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Cmd+Enter shortcut
+    async function renderViaApi() {
+      if (!lastResult || !lastResult.english_prompt) { toast('Gere um prompt primeiro'); return; }
+      const s = getSettings();
+      const provider = s.defaultProvider || 'fal';
+      const key = provider === 'fal' ? s.falKey : s.kieKey;
+      if (!key) { toast('Configure a API key no ⚙️'); openSettings(); return; }
+
+      const btn = document.getElementById('btn-render-api');
+      btn.disabled = true;
+      const origContent = btn.innerHTML;
+      btn.innerHTML = '<span>⏳</span><span>Enviando...</span>';
+
+      try {
+        const res = await fetch('/api/render', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            prompt: lastResult.english_prompt,
+            provider,
+            apiKey: key
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+        if (data.statusUrl) {
+          toast('✓ Job enviado! Abrindo status em nova aba...');
+          window.open(data.statusUrl, '_blank', 'noopener');
+        } else if (data.videoUrl) {
+          toast('✓ Vídeo gerado! Abrindo em nova aba...');
+          window.open(data.videoUrl, '_blank', 'noopener');
+        } else {
+          toast('✓ Enviado. Resposta: ' + JSON.stringify(data).slice(0, 100));
+        }
+      } catch (err) {
+        toast('Erro: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = origContent;
+      }
+    }
+
+    // ═══════════════════════════════════════════════════════
+    // WORKFLOW MODE (story → scene flow)
+    // ═══════════════════════════════════════════════════════
+    const storyInput = document.getElementById('story-input');
+    const storyCharCount = document.getElementById('story-char-count');
+    const storyError = document.getElementById('story-error');
+    const storyLoading = document.getElementById('story-loading');
+    const storyResult = document.getElementById('story-result');
+    const storyBtn = document.getElementById('story-btn');
+    const storyBtnLabel = document.getElementById('story-btn-label');
+    const storyBtnSpinner = document.getElementById('story-btn-spinner');
+
+    storyInput.addEventListener('input', () => {
+      storyCharCount.textContent = `${storyInput.value.length} / 8000 caracteres`;
+    });
+
+    function setStoryLoading(loading) {
+      storyBtn.disabled = loading;
+      storyBtnLabel.textContent = loading ? 'Criando fluxo...' : '📖 Criar fluxo de cenas';
+      storyBtnSpinner.classList.toggle('hidden', !loading);
+      storyLoading.classList.toggle('hidden', !loading);
+      if (loading) {
+        storyResult.classList.add('hidden');
+        storyError.classList.add('hidden');
+      }
+    }
+
+    function showStoryError(msg) {
+      storyError.textContent = msg;
+      storyError.classList.remove('hidden');
+    }
+
+    async function generateStory() {
+      const story = storyInput.value.trim();
+      if (!story) { showStoryError('Conte sua história primeiro.'); return; }
+      if (story.length > 8000) { showStoryError('História muito longa (máximo 8000 caracteres).'); return; }
+
+      lastStory = story;
+      setStoryLoading(true);
+
+      try {
+        const res = await fetch('/api/scenes', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ story })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+        lastStoryResult = data;
+        renderStoryResult(data);
+      } catch (err) {
+        showStoryError('Erro: ' + err.message);
+      } finally {
+        setStoryLoading(false);
+      }
+    }
+
+    function renderStoryResult(data) {
+      document.getElementById('story-title').textContent = data.title || 'Fluxo de cenas';
+      document.getElementById('story-synopsis').textContent = data.synopsis || '';
+
+      const container = document.getElementById('scene-cards');
+      container.innerHTML = '';
+      (data.scenes || []).forEach((scene, idx) => {
+        const card = document.createElement('div');
+        card.className = 'scene-card bg-dark-900/60 rounded-xl p-5 border border-dark-600';
+        card.innerHTML = `
+          <div class="flex items-start gap-4 mb-3">
+            <span class="flex-shrink-0 w-9 h-9 rounded-full bg-primary/10 text-primary font-bold flex items-center justify-center border border-primary/30">${idx + 1}</span>
+            <div class="flex-1">
+              <h4 class="font-bold text-neutral-100 mb-1">${escapeHtml(scene.title || 'Cena ' + (idx + 1))}</h4>
+              <p class="text-sm text-neutral-400">${escapeHtml(scene.description || '')}</p>
+              ${scene.mood ? `<div class="text-xs text-primary/80 mt-2">📍 ${escapeHtml(scene.mood)}</div>` : ''}
+            </div>
+          </div>
+          <div class="pl-13 mt-4">
+            <button onclick='generateFromScene(${JSON.stringify(idx)})' class="text-xs px-4 py-2 bg-dark-700 hover:bg-dark-600 text-neutral-300 hover:text-primary rounded-lg border border-dark-600 transition-colors">
+              ⚡ Gerar prompt desta cena →
+            </button>
+            <span class="scene-status-${idx} ml-3 text-xs text-neutral-500"></span>
+          </div>
+          <div class="scene-result-${idx} hidden mt-4 pt-4 border-t border-dark-700"></div>
+        `;
+        container.appendChild(card);
+      });
+
+      storyResult.classList.remove('hidden');
+      storyResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    async function generateFromScene(idx) {
+      if (!lastStoryResult || !lastStoryResult.scenes || !lastStoryResult.scenes[idx]) return;
+      const scene = lastStoryResult.scenes[idx];
+      const sceneDesc = `${scene.title || ''}: ${scene.description || ''}${scene.mood ? ' Mood: ' + scene.mood : ''}`;
+
+      const statusEl = document.querySelector(`.scene-status-${idx}`);
+      const resultEl = document.querySelector(`.scene-result-${idx}`);
+      if (!statusEl) return;
+
+      statusEl.textContent = '⏳ gerando...';
+      statusEl.className = `scene-status-${idx} ml-3 text-xs text-primary`;
+
+      try {
+        const res = await fetch('/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ scene: sceneDesc, opts: { pt: true, recs: false } })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+
+        statusEl.textContent = '✓ ' + data.category;
+        statusEl.className = `scene-status-${idx} ml-3 text-xs text-emerald-400`;
+
+        resultEl.innerHTML = `
+          <div class="text-xs uppercase tracking-wider text-neutral-500 mb-2">Prompt EN</div>
+          <pre class="bg-dark-900/80 rounded p-3 text-xs text-neutral-300 whitespace-pre-wrap font-mono leading-relaxed border border-dark-600 max-h-60 overflow-y-auto">${escapeHtml(data.english_prompt || '')}</pre>
+          <button data-copy-target="scene-en-${idx}" class="copy-btn mt-2 text-xs px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-300 border border-dark-600 transition-colors">📋 Copiar</button>
+          <pre id="scene-en-${idx}" class="hidden">${escapeHtml(data.english_prompt || '')}</pre>
+        `;
+        resultEl.classList.remove('hidden');
+      } catch (err) {
+        statusEl.textContent = '✗ erro: ' + err.message;
+        statusEl.className = `scene-status-${idx} ml-3 text-xs text-red-400`;
+      }
+    }
+
+    function regenerateStory() {
+      if (!lastStory) return;
+      storyInput.value = lastStory;
+      generateStory();
+    }
+
+    function resetStory() {
+      storyInput.value = '';
+      storyCharCount.textContent = '0 / 8000 caracteres';
+      storyResult.classList.add('hidden');
+      lastStory = '';
+      lastStoryResult = null;
+      storyInput.focus();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Placeholder quando foca o story input vazio
+    storyInput.addEventListener('focus', () => {
+      if (!storyInput.value) {
+        storyInput.placeholder = STORY_EXAMPLE;
+      }
+    });
+
+    // ═══════════════════════════════════════════════════════
+    // INIT
+    // ═══════════════════════════════════════════════════════
+    updateRenderApiButton();
+
+    // Cmd+Enter shortcut (single mode)
     input.addEventListener('keydown', (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
         e.preventDefault();
         generate();
       }
+    });
+    storyInput.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+        e.preventDefault();
+        generateStory();
+      }
+    });
+
+    // ESC fecha settings
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeSettings();
     });
   </script>
 
