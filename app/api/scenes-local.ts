@@ -106,6 +106,7 @@ export default async function handler(
   let body: {
     story?: string;
     style?: string;
+    mood?: string;
     llm?: { provider?: string; apiKey?: string; model?: string };
   };
   try {

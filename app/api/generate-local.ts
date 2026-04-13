@@ -126,6 +126,23 @@ AUDIO PHRASING (use literally):
   Phase 3: "full emotional resolution with layered sound"
 
 ═══════════════════════════════════════════════════════════════════
+MOOD PRESET OVERRIDE (opcional)
+═══════════════════════════════════════════════════════════════════
+
+By default, you CLASSIFY the scene into one of the 6 INEMA presets using the ROUTING RULES above based on the scene description triggers.
+
+But if the user sends an explicit "force_preset" parameter with one of the 6 preset names (INEMA EPIC, INEMA INTIMIST, INEMA URBAN PULSE, INEMA ELEMENTAL, INEMA DREAM, INEMA DOCUMENTARY), you MUST use that preset even if the scene's natural triggers would point elsewhere.
+
+Rules when force_preset is provided:
+  1. Set category to the forced preset name (exactly as given)
+  2. Use the forced preset's canonical color_system, camera_style and techniques
+  3. Adapt the scene's content to fit the forced mood — don't refuse
+  4. Example: scene "skateboard na praça" + force_preset INEMA DREAM → render the skateboard moment as dreamy/ethereal with pastel palette and cherry-blossom-like particles
+  5. The user is explicitly overriding the auto-classification; respect their choice
+
+If force_preset is missing or "auto", proceed with normal auto-classification from ROUTING RULES.
+
+═══════════════════════════════════════════════════════════════════
 VISUAL STYLE MODIFIER (opcional)
 ═══════════════════════════════════════════════════════════════════
 
@@ -356,6 +373,7 @@ export default async function handler(
   let body: {
     scene?: string;
     style?: string;
+    mood?: string;
     opts?: { pt?: boolean; recs?: boolean };
     llm?: { provider?: string; apiKey?: string; model?: string };
   };
@@ -392,10 +410,24 @@ export default async function handler(
   // Visual style modifier (photorealistic/anime/3d-animated/stop-motion/claymation/watercolor/oil-painting/film-analog/free)
   const style = (body.style || "photorealistic").toLowerCase();
 
+  // Mood preset override (auto or one of the 6 INEMA presets)
+  const mood = (body.mood || "auto").toLowerCase();
+
   // Build request body. System blocks depend on auth type (OAuth needs Claude Code prefix)
+  const extras: string[] = [];
+  if (mood && mood !== "auto") {
+    // Normalize: "dream" -> "INEMA DREAM", "intimist" -> "INEMA INTIMIST", etc
+    const normalized = mood.toUpperCase().startsWith("INEMA")
+      ? mood.toUpperCase()
+      : `INEMA ${mood.toUpperCase()}`;
+    extras.push(`force_preset: ${normalized}`);
+  }
+  if (style && style !== "photorealistic" && style !== "free") {
+    extras.push(`visual_style: ${style}`);
+  }
   const userMessage =
-    style && style !== "photorealistic" && style !== "free"
-      ? `Scene description: ${scene}\n\nvisual_style: ${style}`
+    extras.length > 0
+      ? `Scene description: ${scene}\n\n${extras.join("\n")}`
       : `Scene description: ${scene}`;
 
   const requestBody: any = {
@@ -445,7 +477,7 @@ export default async function handler(
     const usage = data.usage || {};
     const provider = data._provider || "oauth";
     console.log(
-      `[generate-local] category=${result.category} style=${style} provider=${provider} model=${llmConfig.model} in=${usage.input_tokens ?? "?"} out=${usage.output_tokens ?? "?"} cache_read=${usage.cache_read_input_tokens ?? 0}`
+      `[generate-local] category=${result.category} mood=${mood} style=${style} provider=${provider} model=${llmConfig.model} in=${usage.input_tokens ?? "?"} out=${usage.output_tokens ?? "?"} cache_read=${usage.cache_read_input_tokens ?? 0}`
     );
 
     res.status(200).json(result);
