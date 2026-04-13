@@ -1,7 +1,7 @@
 # Taxonomia INEMA — Presets Canônicos
 
-> Versão: 0.1 (DRAFT) · Data: 2026-04-13
-> Status: **aguardando revisão do usuário antes de virar canônica no system prompt**
+> Versão: 1.0 (APROVADA) · Data: 2026-04-13
+> Status: **canônica — embutida no `api/generate.ts`**
 
 Esta é a taxonomia autoral da aplicação INEMA de geração de prompts para Seedance 2.0. Segue a estrutura arquitetural do módulo 3.3 da Trilha 3 (8 camadas), mas com nomes, triggers e strings canônicas próprias — **não é cópia** dos presets do produto estudado.
 
