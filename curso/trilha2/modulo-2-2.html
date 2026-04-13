@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2.2 — 7 presets canônicos | Seedance 2.0 Mastery</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217, 119, 6, 0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217, 119, 6, 0.25); }
+    html:not(.dark) .bg-amber-600 { background-color: #d97706; }
+    html:not(.dark) .hover\:bg-amber-500:hover { background-color: #f59e0b; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(185, 28, 28, 0.12); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Seedance 2.0 Mastery</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Leigo</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Prompt-Ready</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Profissional</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-amber-400">Início</a><span>/</span>
+      <a href="index.html" class="hover:text-amber-400">Trilha 2</a><span>/</span>
+      <span class="text-amber-400">Módulo 2.2</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.2 · NÚCLEO</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🎭 Os 7 presets canônicos</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">A enciclopédia de receitas. Uma seção profunda por preset com string canônica literal, gatilhos de ativação, exemplo completo e variações permitidas vs proibidas.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">7</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">90</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Inter.</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Núcleo</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section class="mb-10">
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Como ler este módulo</h3>
+        <p class="text-neutral-300 text-sm mb-3">Cada preset tem 4 partes: <strong>string canônica</strong> (copie literal) · <strong>gatilhos</strong> (quando usar) · <strong>exemplo completo</strong> (template já montado) · <strong>variações permitidas vs proibidas</strong> (o que você pode mudar).</p>
+        <p class="text-neutral-300 text-sm">Os exemplos usam o template [0s][3s][6s] do módulo 2.1. Se você ainda não leu aquele módulo, volte antes de continuar.</p>
+      </div>
+    </section>
+
+    <!-- PRESET 1: DUNE EPIC -->
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🏜️ DUNE EPIC</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O preset mais rígido. 13 em 16 amostras retornaram a <strong class="text-amber-400">string exatamente igual</strong> nos testes. É o "estado sólido" da taxonomia — use copiando literal, não reformule.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">📝 String canônica (copiar literal)</h3>
+        <div class="space-y-2 text-sm">
+          <div><span class="text-neutral-500 font-mono">color_system:</span> <code class="text-neutral-300">"burnt amber+pure black only, hard directional low sun, human tiny vs world"</code></div>
+          <div><span class="text-neutral-500 font-mono">camera_style:</span> <code class="text-neutral-300">"aerial pull-back / extreme low-angle / overhead top-down"</code></div>
+          <div><span class="text-neutral-500 font-mono">techniques:</span> <code class="text-neutral-300">["cloth inertia", "sand displacement", "120fps slow-motion", "hard directional lighting"]</code></div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-4">
+        <h4 class="font-semibold text-amber-400 mb-2">🎯 Gatilhos de ativação</h4>
+        <p class="text-sm text-neutral-300">Paisagens épicas · escala · desertos · espaço · vast nature · figuras míticas · lone individual against world · qualquer coisa que demanda <em>grandeur</em>.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-amber-400 mb-3">📄 Exemplo completo — monge em montanha</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap leading-relaxed">same character throughout all shots
+
+[0s] Aerial pull-back revealing a lone monk in red robes walking across an endless plateau of cracked black basalt, cloth inertia trailing behind in wind, burnt amber+pure black only, hard directional low sun casting impossibly long shadow. Phase 1 audio: practical sounds only — distant wind, gravel underfoot, fabric flapping.
+
+[3s] Extreme low-angle tracking shot up to his silhouette against the sun, 120fps slow-motion captures a single dust particle floating past his face, burnt amber deepens to bronze. Phase 2 audio: single low brass chord arrives, building tension.
+
+[6s] Overhead top-down shot revealing the vastness of the plateau beneath him. STOP MOTION 3s — complete audio silence — monk frozen mid-stride, robes suspended in wind, a single grain of sand floating in mid-air — explosive snap-back to 24fps as wind roars back and he continues walking. Phase 3 audio: full orchestral score crescendo with 3x audio density. Anamorphic 2.39:1.</div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-5">
+          <h4 class="font-bold text-emerald-400 mb-3">✓ Variações permitidas</h4>
+          <ul class="text-sm text-neutral-300 space-y-2">
+            <li>• Trocar "sand" por "snow" ou "salt" em color/physics</li>
+            <li>• Adicionar "cloak", "armor", "spear" ao sujeito</li>
+            <li>• Trocar "sun" por "moon" (mudando também "low sun" → "cold moonlight")</li>
+            <li>• Adaptar para cenário de gelo, espaço, oceano</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-5">
+          <h4 class="font-bold text-red-400 mb-3">✗ Variações proibidas</h4>
+          <ul class="text-sm text-neutral-300 space-y-2">
+            <li>• Adicionar cores à paleta (quebra o "amber+black only")</li>
+            <li>• Usar close-up no [0s] (vai contra "tiny vs world")</li>
+            <li>• Cena urbana ou interior</li>
+            <li>• Mais de um personagem principal</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRESET 2: JOHN WICK ACTION -->
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🥊 JOHN WICK ACTION</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Override <strong class="text-amber-400">hard-coded para combate</strong>. Regra explícita: "Combat ALWAYS routes to JOHN WICK ACTION, even if the setting suggests another preset". Kung fu em bambuzal → JOHN WICK com paleta verde. Duelos no deserto → JOHN WICK com paleta âmbar. O vocabulário passa pelo filtro de moderação em situações que outros não passam.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">📝 String canônica</h3>
+        <div class="space-y-2 text-sm">
+          <div><span class="text-neutral-500 font-mono">color_system:</span> <code class="text-neutral-300">"hyper-saturated blue+red+black, wet neon surfaces, anamorphic 2.39:1"</code></div>
+          <div><span class="text-neutral-500 font-mono">camera_style:</span> <code class="text-neutral-300">"extreme low-angle tracking / crash zoom / handheld natural lag"</code></div>
+          <div><span class="text-neutral-500 font-mono">techniques:</span> <code class="text-neutral-300">["cloth inertia physics", "skin distorting on impact", "120fps slow-motion snap-back", "stop-motion peak tension"]</code></div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-4">
+        <h4 class="font-semibold text-amber-400 mb-2">🎯 Gatilhos</h4>
+        <p class="text-sm text-neutral-300">Combate · luta · perseguição · violência cinética · armas · cenários táticos · movimento urbano intenso. Também: qualquer coisa que envolva duas pessoas trocando golpes ou tiros.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-amber-400 mb-3">📄 Exemplo completo — guerreira no metrô</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap leading-relaxed">same character throughout all shots
+
+[0s] Extreme low-angle tracking shot of a female warrior in red kimono sprinting down a flooded Tokyo metro corridor, cloth inertia physics as fabric trails, hyper-saturated blue+red+black, wet neon surfaces reflecting her silhouette. Phase 1 audio: practical sounds only — sprinkler water, metal footsteps, distant train rumble.
+
+[3s] Crash zoom into her face as she pivots, 120fps slow-motion captures water droplets mid-air around her spinning kimono, neon red intensifying. Phase 2 audio: single low brass chord arrives, building tension.
+
+[6s] Handheld natural lag shot of the decisive strike. STOP MOTION 2s — complete audio silence — her fist frozen an inch from the opponent's chest, water droplets suspended around the impact zone, a single bead of sweat mid-fall — explosive snap-back to 24fps as impact erupts and sends both fighters sliding. Phase 3 audio: full orchestral score crescendo with 3x audio density. Anamorphic 2.39:1.</div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5 mb-4">
+        <h4 class="font-semibold text-primary mb-2">💡 Adaptação de paleta para combat em outros cenários</h4>
+        <ul class="text-sm text-neutral-300 space-y-1">
+          <li>• Kung fu em bambuzal: <code class="text-amber-400">"hyper-saturated emerald green bamboo + deep shadow black, wet morning dew surfaces"</code></li>
+          <li>• Duelo no deserto: <code class="text-amber-400">"hyper-saturated burnt amber+dust-orange+black, dry scorched surfaces"</code></li>
+          <li>• Luta espacial: <code class="text-amber-400">"hyper-saturated cyan+magenta+void-black, zero-g reflection surfaces"</code></li>
+        </ul>
+        <p class="text-xs text-neutral-500 mt-2">Regra: mantenha <em>"hyper-saturated"</em> + 3 cores + <em>"anamorphic 2.39:1"</em>. Troque só as cores específicas.</p>
+      </div>
+    </section>
+
+    <!-- PRESET 3: BLADE RUNNER NOIR -->
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🌃 BLADE RUNNER NOIR</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O único preset onde <strong class="text-amber-400">a paleta adapta livremente</strong>. É mood noir moderno, não uma paleta literal. Para cenas de velas use âmbar, para retro use chrome+vermelho, para bar use verde — sempre preservando <em>"anamorphic 2.39:1"</em> e o mood íntimo urbano.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">📝 String canônica</h3>
+        <div class="space-y-2 text-sm">
+          <div><span class="text-neutral-500 font-mono">color_system (padrão):</span> <code class="text-neutral-300">"hyper-saturated blue+red+black, wet neon surfaces, anamorphic 2.39:1"</code></div>
+          <div class="text-neutral-500 text-xs italic">ADAPT freely — este preset é mood, não paleta literal</div>
+          <div><span class="text-neutral-500 font-mono">camera_style:</span> <code class="text-neutral-300">"slow dolly-in / extreme low-angle / handheld natural lag"</code></div>
+          <div><span class="text-neutral-500 font-mono">techniques:</span> <code class="text-neutral-300">["cloth inertia", "120fps slow-motion", "floor puddle mirror reflection", "anamorphic lens flares"]</code></div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-4">
+        <h4 class="font-semibold text-amber-400 mb-2">🎯 Gatilhos</h4>
+        <p class="text-sm text-neutral-300">Urban night · cenas íntimas não-ação · cyberpunk · interiores com neon · qualquer coisa moody indoor/urban. Ideal para momentos contemplativos, solidão, drama pessoal.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-amber-400 mb-3">📄 Exemplo completo — detetive em bar de velas</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap leading-relaxed">same character throughout all shots
+
+[0s] Slow dolly-in on a detective in a worn trench coat sitting alone at a candle-lit bar, cloth inertia as smoke drifts from his glass, warm amber candlelight only + deep black shadow, candlelight flicker physics. Phase 1 audio: practical sounds only — ice clinking, distant piano, someone laughing in the next room.
+
+[3s] Extreme low-angle on his hands wrapping around the glass, 120fps slow-motion captures a drop of whiskey rolling down the rim, amber intensifies to honey. Phase 2 audio: single low brass chord arrives, building tension.
+
+[6s] Handheld natural lag as he looks up, catching the reflection of someone watching him in the bar mirror. STOP MOTION 2s — complete audio silence — his eye frozen mid-glance, reflection locked, single candle flame suspended — explosive snap-back to 24fps as he slowly sets the glass down. Phase 3 audio: full orchestral score crescendo with 3x audio density. Anamorphic 2.39:1.</div>
+      </div>
+
+      <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-5 mb-4">
+        <h4 class="font-bold text-emerald-400 mb-3">✓ Exemplos de paleta adaptada</h4>
+        <ul class="text-sm text-neutral-300 space-y-2">
+          <li>• <strong>Candlelight:</strong> "warm amber + deep black shadow, candlelight flicker physics"</li>
+          <li>• <strong>Retro diner:</strong> "hyper-saturated chrome+red+cream, 50s neon signage"</li>
+          <li>• <strong>Bar underground:</strong> "deep green+amber+black, smoke-diffused lighting"</li>
+          <li>• <strong>Hotel corridor:</strong> "sodium yellow+burgundy+black, flickering overhead lights"</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PRESET 4: SILENT HILL HORROR -->
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">👻 SILENT HILL HORROR</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Vocabulário <strong class="text-amber-400">curado para passar pelo filtro de moderação</strong> sem perder dread. "Grey fog 3m visibility" e "deep red Otherworld transitions" são termos que o modelo reconhece como horror atmosférico, não como violência.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">📝 String canônica</h3>
+        <div class="space-y-2 text-sm">
+          <div><span class="text-neutral-500 font-mono">color_system:</span> <code class="text-neutral-300">"grey fog 3m visibility, deep red Otherworld transitions, complete desaturation except blood"</code></div>
+          <div><span class="text-neutral-500 font-mono">camera_style:</span> <code class="text-neutral-300">"extreme low-angle / handheld natural lag / crash zoom"</code></div>
+          <div><span class="text-neutral-500 font-mono">techniques:</span> <code class="text-neutral-300">["grey fog atmosphere", "deep red emergency lighting", "floor puddle mirror reflection", "stop-motion freeze"]</code></div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-4">
+        <h4 class="font-semibold text-amber-400 mb-2">🎯 Gatilhos</h4>
+        <p class="text-sm text-neutral-300">Horror · sobrenatural · lugares abandonados · neblina · dread · criaturas · exorcismo · hospitais vazios · porões · casas assombradas.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-amber-400 mb-3">📄 Exemplo completo — exorcista na igreja</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap leading-relaxed">same character throughout all shots
+
+[0s] Extreme low-angle of a priest standing in the nave of an abandoned cathedral, grey fog 3m visibility, deep red emergency lighting pulsing through broken stained glass, complete desaturation except the red of his stole. Phase 1 audio: practical sounds only — distant creaking wood, water dripping, faint whispers.
+
+[3s] Handheld natural lag tracking as the priest walks forward, 120fps slow-motion captures a rosary bead falling from his rosary and bouncing off stone, deep red intensifies. Phase 2 audio: single low brass chord arrives, building tension.
+
+[6s] Crash zoom onto his face as something moves in the fog behind him. STOP MOTION 3s — complete audio silence — priest frozen mid-turn, his breath suspended as vapor in the cold air, a single drop of holy water mid-fall from his fingers — explosive snap-back to 24fps as fog surges forward and the whispers become screams. Phase 3 audio: full orchestral score crescendo with 3x audio density. Anamorphic 2.39:1.</div>
+      </div>
+    </section>
+
+    <!-- PRESET 5: STORM EPIC -->
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">⛈️ STORM EPIC</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Preset onde <strong class="text-amber-400">o clima é o protagonista</strong>. O micro-hack empírico do autor: especificar "lightning only light source 0.7s each flash" — a duração literal do flash melhora o render consistentemente.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">📝 String canônica</h3>
+        <div class="space-y-2 text-sm">
+          <div><span class="text-neutral-500 font-mono">color_system:</span> <code class="text-neutral-300">"dark overcast storm clouds, lightning only light source 0.7s each flash, deep ocean blue-black water"</code></div>
+          <div><span class="text-neutral-500 font-mono">camera_style:</span> <code class="text-neutral-300">"aerial pull-back / extreme low-angle / overhead top-down"</code></div>
+          <div><span class="text-neutral-500 font-mono">techniques:</span> <code class="text-neutral-300">["lightning flash illumination", "water surface tension physics", "120fps slow-motion snap-back", "STOP MOTION at peak impact"]</code></div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-4">
+        <h4 class="font-semibold text-amber-400 mb-2">🎯 Gatilhos</h4>
+        <p class="text-sm text-neutral-300">Storms · lightning · tornados · tsunamis · furacões · violent weather. O personagem é secundário — a força natural domina o enquadramento.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-amber-400 mb-3">📄 Exemplo completo — pescador contra onda gigante</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap leading-relaxed">same character throughout all shots
+
+[0s] Aerial pull-back revealing a lone fisherman on a small boat as a wall of dark ocean water builds on the horizon, dark overcast storm clouds, lightning only light source 0.7s each flash, deep ocean blue-black water, water surface tension physics. Phase 1 audio: practical sounds only — wind howling, ropes creaking, distant thunder.
+
+[3s] Extreme low-angle from the boat deck looking up as the wave towers overhead, 120fps slow-motion captures a single white crest of foam curling, lightning strobes. Phase 2 audio: single low brass chord arrives, building tension.
+
+[6s] Overhead top-down of the moment of impact. STOP MOTION 3s — complete audio silence — wave frozen at peak height, fisherman suspended mid-brace on the deck, a single droplet of water held mid-air against the lightning flash — explosive snap-back to 24fps as the wall collapses and water engulfs the boat. Phase 3 audio: full orchestral score crescendo with 3x audio density. Anamorphic 2.39:1.</div>
+      </div>
+    </section>
+
+    <!-- PRESET 6: FAIRY TALE CINEMATIC -->
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🌸 FAIRY TALE CINEMATIC</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O único preset com <strong class="text-amber-400">"petal drift particle system"</strong>. É o vocabulário específico que gera o efeito de pétalas caindo — tentar improvisar isso em outros presets falha. Resolve conteúdo infantil, publicidade de beleza, casamento.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">📝 String canônica</h3>
+        <div class="space-y-2 text-sm">
+          <div><span class="text-neutral-500 font-mono">color_system:</span> <code class="text-neutral-300">"pastel spring palette with golden hour warmth, soft pink cherry blossoms, emerald grass, flowing white fabric"</code></div>
+          <div><span class="text-neutral-500 font-mono">camera_style:</span> <code class="text-neutral-300">"dreamy slow dollies / graceful orbits / handheld natural lag"</code></div>
+          <div><span class="text-neutral-500 font-mono">techniques:</span> <code class="text-neutral-300">["cloth inertia physics", "petal drift particle system", "120fps slow-motion", "golden hour rim lighting"]</code></div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-4">
+        <h4 class="font-semibold text-amber-400 mb-2">🎯 Gatilhos</h4>
+        <p class="text-sm text-neutral-300">Whimsical · pastoral · fantasia suave · princesa · animais · primavera · wholesome · casamento · publicidade de beleza · conteúdo infantil.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-amber-400 mb-3">📄 Exemplo completo — bailarina em jardim de cerejeiras</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap leading-relaxed">same character throughout all shots
+
+[0s] Dreamy slow dolly revealing a ballerina in a flowing white dress twirling in a garden of cherry blossoms at golden hour, cloth inertia physics as her dress trails behind her, pastel spring palette with golden hour warmth, soft pink cherry blossoms drifting down, emerald grass underfoot. Phase 1 audio: practical sounds only — soft wind, leaves rustling, distant songbirds.
+
+[3s] Graceful 360° orbit around her as she extends into an arabesque, 120fps slow-motion captures a single petal landing on her outstretched hand, golden hour rim lighting glowing through her dress. Phase 2 audio: single low brass chord arrives, building tension.
+
+[6s] Handheld natural lag shot from low angle. STOP MOTION 2s — complete audio silence — ballerina frozen mid-spin, dress in full bloom around her, dozens of cherry blossom petals suspended in the air like a constellation — explosive snap-back to 24fps as petals resume falling and she completes her turn. Phase 3 audio: full orchestral score crescendo with 3x audio density. Anamorphic 2.39:1.</div>
+      </div>
+    </section>
+
+    <!-- PRESET 7: ANIME SHONEN EPIC -->
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">7</span>
+        <h2 class="text-2xl font-bold">⚡ ANIME SHONEN EPIC</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Vocabulário <strong class="text-amber-400">autoral de anime</strong>. "Electric blue core aura" é o termo que gera o glow característico. "Electrical particle physics" é o que faz os raios crepitarem. Sem esses termos exatos, o modelo entrega anime genérico.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">📝 String canônica</h3>
+        <div class="space-y-2 text-sm">
+          <div><span class="text-neutral-500 font-mono">color_system:</span> <code class="text-neutral-300">"electric blue core aura + golden lightning crackling + pure white energy bursts against deep black void"</code></div>
+          <div><span class="text-neutral-500 font-mono">camera_style:</span> <code class="text-neutral-300">"extreme low-angle / 360° orbit / crash zoom"</code></div>
+          <div><span class="text-neutral-500 font-mono">techniques:</span> <code class="text-neutral-300">["cloth inertia on uniform", "electrical particle physics", "120fps slow-motion energy buildup", "anamorphic lens flares"]</code></div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-4">
+        <h4 class="font-semibold text-amber-400 mb-2">🎯 Gatilhos</h4>
+        <p class="text-sm text-neutral-300">Lutas de anime · energy auras · transformações · power-ups · shonen tropes · Dragon Ball · Naruto · Demon Slayer · Jujutsu Kaisen · Bleach.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
+        <h4 class="font-semibold text-amber-400 mb-3">📄 Exemplo completo — transformação shonen</h4>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap leading-relaxed">same character throughout all shots
+
+[0s] Extreme low-angle shot of a young warrior in a torn gi kneeling on cracked earth, cloth inertia on uniform as wind lifts the tattered fabric, first sparks of electric blue core aura beginning to glow at his feet against deep black void. Phase 1 audio: practical sounds only — distant rubble falling, low wind, his breathing.
+
+[3s] 360° orbit around him as he screams and the aura explodes upward, 120fps slow-motion energy buildup captures individual lightning sparks arcing off his body, golden lightning crackling around blue core. Phase 2 audio: single low brass chord arrives, building tension.
+
+[6s] Crash zoom onto his face as he opens his eyes, now glowing white. STOP MOTION 4s — complete audio silence — warrior frozen mid-transformation, aura suspended like a halo of blue fire around him, individual golden lightning bolts held mid-arc, a single tear of pure white energy rising from his cheek — explosive snap-back to 24fps as the aura erupts and shatters the ground around him. Phase 3 audio: full orchestral score crescendo with 3x audio density. Anamorphic lens flares, 2.39:1.</div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📚</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">7 presets canônicos com strings literais</strong> <span class="text-neutral-400">— copie exato, não reformule.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">JOHN WICK é override para combate</strong> <span class="text-neutral-400">— sempre use para luta, adapte só a cor.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">BLADE RUNNER é o único flexível em paleta</strong> <span class="text-neutral-400">— é mood, não cor literal.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Cada preset tem vocabulário autoral específico</strong> <span class="text-neutral-400">— "petal drift particle system", "electric blue core aura", "grey fog 3m visibility".</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-amber-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">2.3 — Vocabulário canônico aplicado. Cada termo por categoria (câmera, física, tempo, lighting, áudio) com quando usar.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-2-1.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
+          <a href="modulo-2-3.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Seedance 2.0 Mastery · INEMA.CLUB · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

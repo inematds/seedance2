@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2.3 — Vocabulário canônico | Seedance 2.0 Mastery</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217, 119, 6, 0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217, 119, 6, 0.25); }
+    html:not(.dark) .bg-amber-600 { background-color: #d97706; }
+    html:not(.dark) .hover\:bg-amber-500:hover { background-color: #f59e0b; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(185, 28, 28, 0.12); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Seedance 2.0 Mastery</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Leigo</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Prompt-Ready</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Profissional</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-amber-400">Início</a><span>/</span>
+      <a href="index.html" class="hover:text-amber-400">Trilha 2</a><span>/</span>
+      <span class="text-amber-400">Módulo 2.3</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.3</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">📚 Vocabulário canônico aplicado</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Os termos exatos que o Seedance renderiza bem. Câmera, física, tempo, lighting e áudio — o que usar e quando.</p>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🎥 Câmera — 10 termos que cobrem 90%</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Cada termo mapeia para uma emoção específica. Use 2-3 por prompt (um para o [0s], outro para o [3s], opcionalmente um terceiro para o [6s]). Misturar sinônimos na mesma cena é contraproducente.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">extreme low-angle</strong><p class="text-xs text-neutral-400 mt-1">Câmera no chão olhando pra cima. Gera poder, dominância, heroísmo. Usado em DUNE, JOHN WICK, ANIME SHONEN.</p></div>
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">slow dolly-in</strong><p class="text-xs text-neutral-400 mt-1">Câmera se aproxima devagar. Gera tensão, intimidade, aproximação dramática. Usado em BLADE RUNNER principalmente.</p></div>
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">aerial pull-back</strong><p class="text-xs text-neutral-400 mt-1">Câmera sobe e se afasta. Gera escala, grandeza, isolamento. Usado em DUNE, STORM.</p></div>
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">overhead top-down</strong><p class="text-xs text-neutral-400 mt-1">Vista aérea direta, a 90°. Gera vastidão, perspectiva divina. Usado em DUNE e STORM.</p></div>
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">crash zoom</strong><p class="text-xs text-neutral-400 mt-1">Zoom rápido e dramático. Gera surpresa, impacto emocional. Usado em JOHN WICK, SILENT HILL, ANIME SHONEN.</p></div>
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">360° orbit</strong><p class="text-xs text-neutral-400 mt-1">Câmera gira ao redor do sujeito. Gera épico, reveal mágico. Usado em ANIME SHONEN e FAIRY TALE.</p></div>
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">handheld natural lag</strong><p class="text-xs text-neutral-400 mt-1">Câmera na mão com vibração natural. Gera realismo, tensão crua. Usado em JOHN WICK, BLADE RUNNER, SILENT HILL.</p></div>
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">tracking shot</strong><p class="text-xs text-neutral-400 mt-1">Segue o personagem em movimento. Gera imersão, urgência. Usado em ação geral.</p></div>
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">extreme close-up</strong><p class="text-xs text-neutral-400 mt-1">Um detalhe ampliado (olho, mão). Gera tensão máxima, fetiche visual. Usar com moderação — é dramático.</p></div>
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">intimate close-up</strong><p class="text-xs text-neutral-400 mt-1">Rosto inteiro, enquadramento apertado. Gera intimidade, emoção. Usado em BLADE RUNNER.</p></div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-2">💡 Regra de combinação</h3>
+        <p class="text-neutral-300 text-sm">Cada preset já especifica 3 câmera no seu <code class="text-amber-400">camera_style</code>. Use as que estão ali. Se precisar adicionar, escolha complementares (não sinônimos). Exemplo: "slow dolly-in" e "extreme close-up" combinam. "slow dolly-in" e "aerial pull-back" conflitam.</p>
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">💧 Física — 7 termos de material e movimento</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">São os termos que transformam render "plástico" em render "físico". <strong class="text-amber-400">cloth inertia é universal</strong> (89.6% das amostras) — sirva-se dele em quase todo prompt.</p>
+
+      <div class="space-y-3 mb-6">
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600"><strong class="text-amber-400">cloth inertia</strong> <span class="text-xs text-neutral-500">(fabric lags behind movement)</span><p class="text-sm text-neutral-300 mt-2">Tecido responde com atraso ao movimento do personagem. Kimono voando, capa trás, cabelo esvoaçante. Use sempre que tem roupa solta. Universal a todos os presets.</p></div>
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600"><strong class="text-amber-400">water surface tension</strong> <span class="text-xs text-neutral-500">(perfect spherical droplets)</span><p class="text-sm text-neutral-300 mt-2">Gotas d'água viram esferas perfeitas. Usado em chuva, splash, respingo. Combina melhor com 120fps slow-motion. Tipicamente em STORM e JOHN WICK.</p></div>
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600"><strong class="text-amber-400">sand displacement / snow displacement</strong><p class="text-sm text-neutral-300 mt-2">Areia/neve sendo empurrada pelo movimento do sujeito. Passos deixando pegadas visíveis. Usado em DUNE e cenas de exploração.</p></div>
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600"><strong class="text-amber-400">floor puddle mirror reflection</strong><p class="text-sm text-neutral-300 mt-2">Poça no chão refletindo o sujeito ou as luzes. É o "truque visual" de BLADE RUNNER e SILENT HILL. Dá sempre um segundo enquadramento "de graça".</p></div>
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600"><strong class="text-amber-400">skin distorting on impact</strong><p class="text-sm text-neutral-300 mt-2">Pele deforma na hora do golpe. Soco atingindo rosto, onda atingindo peito. Usado em JOHN WICK para cenas de combate, passa pelo filtro.</p></div>
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600"><strong class="text-amber-400">debris physics</strong><p class="text-sm text-neutral-300 mt-2">Objetos quebrando com peso próprio, pedaços voando, vidros estilhaçando. Usado em explosões, ANIME SHONEN, STORM.</p></div>
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600"><strong class="text-amber-400">petal drift particle system</strong><p class="text-sm text-neutral-300 mt-2">Pétalas caindo e flutuando no ar. <strong class="text-amber-400">Exclusivo de FAIRY TALE CINEMATIC</strong>. Sem esse termo exato, o modelo não consegue gerar o efeito.</p></div>
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">⏰ Tempo — 120fps, snap back, STOP MOTION</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Os <strong class="text-amber-400">3 truques temporais</strong> que formam a "assinatura Seedance". Juntos, criam a sensação de peso cinematográfico que outros modelos não reproduzem tão bem.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-5">
+          <h4 class="font-semibold text-amber-400 mb-2">1. 120fps slow-motion</h4>
+          <p class="text-sm text-neutral-300 mb-2">Sempre no [3s]. Captura um micro-detalhe ampliado. Frase padrão: <code class="text-amber-400">"120fps slow-motion captures [detalhe específico]"</code>. Quanto mais específico o detalhe, melhor o render.</p>
+          <p class="text-xs text-neutral-500">Exemplos: "a single dust particle floating past his face", "water droplets mid-air around her spinning kimono", "a rosary bead bouncing off stone".</p>
+        </div>
+        <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-5">
+          <h4 class="font-semibold text-amber-400 mb-2">2. Hard snap back to 24fps</h4>
+          <p class="text-sm text-neutral-300 mb-2">Transição do slow-motion de volta ao tempo real. Frase padrão: <code class="text-amber-400">"explosive snap-back to 24fps as [return event]"</code>. Essencial ao fim do STOP MOTION.</p>
+          <p class="text-xs text-neutral-500">O "explosive" é importante — sem ele a volta ao movimento fica amena.</p>
+        </div>
+        <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-5">
+          <h4 class="font-semibold text-amber-400 mb-2">3. STOP MOTION X-seconds</h4>
+          <p class="text-sm text-neutral-300 mb-2">A "assinatura". Sempre no [6s], sempre 2-4 segundos, sempre "complete audio silence". Já coberto em detalhe no módulo 2.1.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">💡 Lighting — 8 termos mapeando preset → luz</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Cada preset tem sua "assinatura de luz". Usar lighting de um preset em outro é erro de tom — vai parecer inconsistente no render.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">hard directional sun</strong><p class="text-xs text-neutral-400 mt-1">Exclusivo DUNE. Sol baixo, sombras longas e duras.</p></div>
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">anamorphic lens flares</strong><p class="text-xs text-neutral-400 mt-1">BLADE RUNNER, JOHN WICK, SYNTHWAVE. Flares horizontais esticados característicos de lentes anamórficas.</p></div>
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">rim lighting</strong><p class="text-xs text-neutral-400 mt-1">Luz contornando o sujeito por trás. Universal, usado em qualquer preset para destacar silhueta.</p></div>
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">golden hour rim lighting</strong><p class="text-xs text-neutral-400 mt-1">Exclusivo FAIRY TALE. Luz dourada do pôr do sol contornando.</p></div>
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">neon reflections</strong><p class="text-xs text-neutral-400 mt-1">BLADE RUNNER, JOHN WICK. Neons refletindo em superfícies molhadas.</p></div>
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">lightning strobing</strong><p class="text-xs text-neutral-400 mt-1">Exclusivo STORM. Raios como strobe de festa, intermitente.</p></div>
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">volumetric lighting</strong><p class="text-xs text-neutral-400 mt-1">Luz atravessando partículas (poeira, neblina). Usado em FAIRY TALE e qualquer cena com atmosfera densa.</p></div>
+        <div class="bg-dark-800 rounded-xl p-4 border border-dark-600"><strong class="text-amber-400">candlelight flicker physics</strong><p class="text-xs text-neutral-400 mt-1">Usado em BLADE RUNNER adaptado (variante candle). Vela bruxuleando realista.</p></div>
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🎵 Áudio — keywords e tag @Audio da v2.0</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Na v2.0, o áudio é <strong class="text-amber-400">gerado nativamente</strong> junto do vídeo. As 3 fases do template (Phase 1/2/3) continuam funcionando, mas há vocabulário oficial adicional para sons específicos e uma tag <code class="text-amber-400">@Audio</code> para referências.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">Keywords sonoras oficiais (redreamality)</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+          <code class="bg-dark-900 rounded px-2 py-1 text-xs text-amber-400 border border-dark-600">reverb</code>
+          <code class="bg-dark-900 rounded px-2 py-1 text-xs text-amber-400 border border-dark-600">muffled</code>
+          <code class="bg-dark-900 rounded px-2 py-1 text-xs text-amber-400 border border-dark-600">echoing</code>
+          <code class="bg-dark-900 rounded px-2 py-1 text-xs text-amber-400 border border-dark-600">metallic clink</code>
+          <code class="bg-dark-900 rounded px-2 py-1 text-xs text-amber-400 border border-dark-600">crunchy</code>
+          <code class="bg-dark-900 rounded px-2 py-1 text-xs text-amber-400 border border-dark-600">crackling fire</code>
+          <code class="bg-dark-900 rounded px-2 py-1 text-xs text-amber-400 border border-dark-600">distant rumble</code>
+          <code class="bg-dark-900 rounded px-2 py-1 text-xs text-amber-400 border border-dark-600">wind howling</code>
+          <code class="bg-dark-900 rounded px-2 py-1 text-xs text-amber-400 border border-dark-600">water dripping</code>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">Tag @Audio para referência</h3>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-sm text-neutral-300 border border-dark-600">@Audio: dark ambient synth pad, slow heartbeat, distant thunder</div>
+        <p class="text-sm text-neutral-300 mt-3">Forma mais direta de dizer "quero este tipo de trilha sonora". Documentado pela redreamality como oficial.</p>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> Revalidar v2.0</h3>
+        <p class="text-neutral-300 text-sm">As 3 fases do template (Phase 1/2/3 brass chord crescendo) foram calibradas contra v1.x quando áudio era descrito, não gerado. Na v2.0 com áudio nativo, vale testar empiricamente se as frases literais ainda performam melhor, ou se <code class="text-amber-400">@Audio</code> + keywords performa melhor.</p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📚</span> Resumo do Módulo</h2>
+        <div class="space-y-3 mb-8 text-sm">
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">10 termos de câmera</strong> <span class="text-neutral-400">cobrem 90% dos casos. Cada um mapeia para uma emoção.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">7 termos de física</strong> <span class="text-neutral-400">são a diferença entre plástico e físico. cloth inertia é universal.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">3 truques temporais</strong> <span class="text-neutral-400">formam a assinatura: 120fps, snap-back, STOP MOTION.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Lighting casa com preset</strong> <span class="text-neutral-400">— não misturar. Cada preset tem sua luz canônica.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Áudio na v2.0 é gerado, não descrito</strong> <span class="text-neutral-400">— keywords e tag @Audio como recurso novo.</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-amber-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">2.4 — Extensões e hacks avançados. Inventar gênero, adaptar paleta, filter bypass ético, combinando presets.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-2-2.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
+          <a href="modulo-2-4.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Seedance 2.0 Mastery · INEMA.CLUB · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
