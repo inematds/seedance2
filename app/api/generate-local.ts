@@ -126,6 +126,55 @@ AUDIO PHRASING (use literally):
   Phase 3: "full emotional resolution with layered sound"
 
 ═══════════════════════════════════════════════════════════════════
+VISUAL STYLE MODIFIER (opcional)
+═══════════════════════════════════════════════════════════════════
+
+The user may send a "visual_style" parameter that selects the rendering medium. This is ORTHOGONAL to the INEMA preset (which controls mood). The preset gives emotion; the style gives medium.
+
+If visual_style is provided, you MUST incorporate the style as a GLOBAL aesthetic modifier affecting every beat of the english_prompt. Add the exact modifier phrase to the [0s] beat and reinforce it in [3s] and [6s] when natural.
+
+Supported visual_style values and their canonical modifier phrases:
+
+- "photorealistic" (default when not specified)
+  Modifier: none — no phrase added, treat as regular cinematic realism
+  Keep the preset's canonical color/camera/techniques as-is.
+
+- "anime"
+  Modifier: "anime style, 2D hand-drawn animation, cel-shaded with thick linework, Studio Ghibli / Makoto Shinkai aesthetic, vibrant saturated palette, expressive character design"
+  Override techniques: replace physics-heavy terms (cloth inertia, water surface tension) with "fluid cel-shaded motion", "painterly backgrounds", "hand-drawn frame-by-frame animation".
+
+- "3d-animated"
+  Modifier: "3D animated in Pixar/DreamWorks style, stylized characters with soft cinematic rendering, subsurface skin scattering, expressive eyes, studio-quality lighting"
+  Keep physics terms but add "volumetric render" where appropriate.
+
+- "stop-motion"
+  Modifier: "stop motion animation, tactile miniature sets, visible handcrafted texture, slight frame judder, Laika / Aardman aesthetic"
+  Override 120fps slow-motion references — stop-motion has its own pace.
+
+- "claymation"
+  Modifier: "claymation style, visible clay texture and fingerprints, slight frame-by-frame imperfection, Aardman handmade aesthetic"
+
+- "watercolor"
+  Modifier: "watercolor painting aesthetic, soft pastel washes, visible paper texture, gentle color bleeds, dreamy impressionist feel"
+
+- "oil-painting"
+  Modifier: "oil painting aesthetic, rich impasto brushstrokes, classical chiaroscuro lighting, Vermeer / Rembrandt palette"
+
+- "film-analog"
+  Modifier: "shot on 35mm Kodak film, natural grain structure, subtle halation, warm analog color grading, vintage aesthetic"
+  This is photorealistic but with explicit analog qualities.
+
+- "free"
+  Let the scene context decide — no explicit style modifier added.
+
+IMPORTANT rules:
+  1. Apply the modifier in the [0s] beat as part of the opening visual description
+  2. Reinforce subtly in [3s] and [6s] (don't repeat verbatim — vary the wording)
+  3. If visual_style conflicts with a preset technique (e.g. "anime" + "cloth inertia physics"), ADAPT the technique to match the medium
+  4. category field stays the same (INEMA preset) — don't merge style into category
+  5. If visual_style is missing or "photorealistic" or "free", proceed normally
+
+═══════════════════════════════════════════════════════════════════
 DIALOGUE FIELD (opcional)
 ═══════════════════════════════════════════════════════════════════
 
@@ -306,6 +355,7 @@ export default async function handler(
 
   let body: {
     scene?: string;
+    style?: string;
     opts?: { pt?: boolean; recs?: boolean };
     llm?: { provider?: string; apiKey?: string; model?: string };
   };
@@ -339,7 +389,15 @@ export default async function handler(
   // Parse LLM config from request (or fall back to OAuth default)
   const llmConfig = parseLLMConfig(body.llm);
 
+  // Visual style modifier (photorealistic/anime/3d-animated/stop-motion/claymation/watercolor/oil-painting/film-analog/free)
+  const style = (body.style || "photorealistic").toLowerCase();
+
   // Build request body. System blocks depend on auth type (OAuth needs Claude Code prefix)
+  const userMessage =
+    style && style !== "photorealistic" && style !== "free"
+      ? `Scene description: ${scene}\n\nvisual_style: ${style}`
+      : `Scene description: ${scene}`;
+
   const requestBody: any = {
     max_tokens: 4096,
     temperature: 0.7,
@@ -349,7 +407,7 @@ export default async function handler(
     messages: [
       {
         role: "user",
-        content: `Scene description: ${scene}`,
+        content: userMessage,
       },
     ],
   };
@@ -387,7 +445,7 @@ export default async function handler(
     const usage = data.usage || {};
     const provider = data._provider || "oauth";
     console.log(
-      `[generate-local] category=${result.category} provider=${provider} model=${llmConfig.model} in=${usage.input_tokens ?? "?"} out=${usage.output_tokens ?? "?"} cache_read=${usage.cache_read_input_tokens ?? 0}`
+      `[generate-local] category=${result.category} style=${style} provider=${provider} model=${llmConfig.model} in=${usage.input_tokens ?? "?"} out=${usage.output_tokens ?? "?"} cache_read=${usage.cache_read_input_tokens ?? 0}`
     );
 
     res.status(200).json(result);
