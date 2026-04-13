@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Módulo 3.4 — Construindo seu clone | Seedance 2.0 Mastery</title>
+  <title>Módulo 3.4 — Construindo sua aplicação | Seedance 2.0 Mastery</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }</script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,7 +18,6 @@
     html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
     html:not(.dark) .text-primary { color: #a16207; } html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); } html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
     html:not(.dark) .text-sky-400 { color: #0369a1; } html:not(.dark) .text-yellow-400 { color: #a16207; } html:not(.dark) .text-red-400 { color: #b91c1c; }
-    /* Cross-trilha overrides (nav hover) */
     html:not(.dark) .text-emerald-400 { color: #059669; }
     html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
     html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
@@ -57,174 +56,153 @@
 
   <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.4 · LABORATÓRIO</span>
-      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🔧 Construindo seu clone</h1>
-      <p class="text-lg text-neutral-400 max-w-3xl">Netlify + Claude Sonnet 4.6 + tool use forçado. generate.ts linha a linha, HMAC tokens, deploy real, custo por geração, segurança e extensões.</p>
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.4 · ARQUITETURA</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🏗️ Construindo sua aplicação</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Decisões arquiteturais de uma app de geração estruturada de prompts. Por que serverless, por que tool use forçado, por que prompt cache, por que HMAC. Escolhas técnicas explicadas — você sai com um blueprint para construir a sua.</p>
     </div>
   </header>
 
   <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
+    <section class="mb-10">
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+        <p class="text-sm text-neutral-300"><strong class="text-primary">Este módulo é sobre decisões, não sobre cópia.</strong> Cada escolha técnica abaixo tem alternativas válidas — aqui explicamos por que esta é a recomendada para o caso "app que gera prompts estruturados". No próximo módulo (3.5) você vai construir passo-a-passo.</p>
+      </div>
+    </section>
+
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
-        <h2 class="text-2xl font-bold">🏗️ Arquitetura do clone</h2>
+        <h2 class="text-2xl font-bold">🏗️ Arquitetura mínima viável</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Minimalista de propósito. Frontend vanilla sem build, backend em 2 funções serverless, stack Anthropic SDK. Todo o valor está no system prompt — o código é trocável para qualquer nicho.</p>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Para uma app que recebe texto livre do usuário e devolve prompt estruturado, o mínimo viável tem <strong class="text-blue-400">3 partes</strong>: frontend, função serverless, chamada LLM. Cada uma pode ser minúscula.</p>
       <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Estrutura de arquivos</h3>
-        <div class="bg-dark-900 rounded p-3 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">seedance-clone/
-├── index.html               (224 linhas vanilla JS)
-├── package.json             (2 deps: anthropic + netlify)
-├── netlify.toml             (routing /api/* → functions)
-├── .env.example             (ANTHROPIC_API_KEY + PRO_EMAILS)
-└── netlify/functions/
-    ├── generate.ts          (356 linhas, engine principal)
-    └── check-email.ts       (HMAC allowlist)</div>
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">As 3 partes</h3>
+        <div class="bg-dark-900 rounded p-3 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">sua-app/
+├── index.html               (frontend — pode ser vanilla JS)
+├── package.json             (2 deps: LLM SDK + runtime funções)
+├── [config de deploy]       (netlify.toml, vercel.json, etc.)
+├── .env.example             (chaves de API + secrets)
+└── functions/
+    └── generate.[ts|js]     (engine — ~200-400 linhas)</div>
       </div>
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
         <h4 class="font-semibold text-primary mb-2">💡 Por que minimalista</h4>
-        <p class="text-sm text-neutral-300">Cabe na cabeça em 1 hora. Legível. Você pode trocar os 7 presets por qualquer nicho sem mexer em nada mais. É o modelo ideal de "infraestrutura descartável, IP no prompt".</p>
+        <p class="text-sm text-neutral-300">Todo o valor da sua app está no <strong>system prompt</strong>, não no código. Código é commodity: qualquer dev copia. System prompt bem curado = IP real. Quanto menos código para manter, mais tempo você investe no que diferencia.</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
-        <h2 class="text-2xl font-bold">📝 generate.ts — chamada à API Anthropic</h2>
+        <h2 class="text-2xl font-bold">⚡ Por que serverless (Netlify/Vercel/Cloudflare)</h2>
       </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Serverless funções (edge functions) são o runtime correto para esse caso. Alternativas (VPS, container permanente, Lambda stateless) têm trade-offs piores.</p>
       <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">const message = await client.messages.create({
-  model: "claude-sonnet-4-6",
-  max_tokens: 4096,
-  temperature: 0.7,
-  system: [{
-    type: "text",
-    text: SYSTEM_PROMPT,          // ~3000 tokens, 8 camadas
-    cache_control: { type: "ephemeral" }
-  }],
-  tools: [TOOL_SCHEMA],
-  tool_choice: {
-    type: "tool",
-    name: "emit_seedance_prompt"
-  },
-  messages: [{
-    role: "user",
-    content: `Scene description: ${scene}`
-  }]
-});</div>
-      </div>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Trade-offs dos parâmetros</h3>
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Trade-offs dos runtimes</h3>
         <ul class="text-sm text-neutral-300 space-y-2">
-          <li>• <code class="text-blue-400">model: "claude-sonnet-4-6"</code> — balance de qualidade/custo. Opus é ~3x mais caro sem ganho proporcional para esse caso.</li>
-          <li>• <code class="text-blue-400">temperature: 0.7</code> — variabilidade nos detalhes, classificação estável. Subir para 1.0 degrada consistência; baixar para 0.3 deixa repetitivo.</li>
-          <li>• <code class="text-blue-400">max_tokens: 4096</code> — output típico ~1500 tokens, folga para casos extremos.</li>
-          <li>• <code class="text-blue-400">cache_control: ephemeral</code> — cache de 5 min. Economiza ~89% do custo do system prompt após warmup.</li>
-          <li>• <code class="text-blue-400">tool_choice: forced</code> — bloqueia injection. Não opcional.</li>
+          <li>• <strong class="text-blue-400">Serverless edge (recomendado):</strong> escala automática, paga só o que usa, zero manutenção de infra. Limitação: timeout (10-30s normalmente — suficiente para LLM síncrono).</li>
+          <li>• <strong class="text-blue-400">VPS / container permanente:</strong> custo fixo mesmo ocioso, precisa manter. Vantagem: controle total, pode manter estado in-memory.</li>
+          <li>• <strong class="text-blue-400">AWS Lambda bruto:</strong> flexível mas complexo. Melhor para pipelines longos, pior para apps simples.</li>
         </ul>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
+        <h4 class="font-semibold text-primary mb-2">💡 Escolha prática</h4>
+        <p class="text-sm text-neutral-300">Para uma app com ~1000 requests/dia, Netlify Functions ou Vercel Serverless saem de graça ou com custo irrisório no tier free. Cloudflare Workers também funciona e tem latência menor globalmente. Qualquer um serve.</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
-        <h2 class="text-2xl font-bold">🔐 check-email.ts — HMAC allowlist</h2>
+        <h2 class="text-2xl font-bold">🔒 Decisão arquitetural: tool use forçado</h2>
       </div>
-      <p class="text-neutral-300 mb-4 leading-relaxed">Resolve o problema do original (email puro). Em vez de "cliente manda email, servidor confia", o servidor <strong class="text-blue-400">emite um token assinado</strong> com HMAC-SHA256 + expiração.</p>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A decisão técnica mais importante da app: <strong class="text-blue-400">como forçar saída estruturada</strong>. Três opções, com segurança muito diferente.</p>
       <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">// Se email está no allowlist:
-const expiresAt = Date.now() + 30 * 24 * 60 * 60 * 1000;
-const payload = `${email}.${expiresAt}`;
-const signature = createHmac("sha256", PRO_TOKEN_SECRET)
-  .update(payload)
-  .digest("hex");
-const token = `${Buffer.from(payload).toString("base64url")}.${signature}`;
-return { pro: true, token, expiresAt };</div>
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">As 3 opções</h3>
+        <ul class="text-sm text-neutral-300 space-y-3">
+          <li><strong class="text-red-400">✗ Opção 1 — "Responda em JSON" no prompt:</strong> o modelo escreve JSON como texto livre. Frágil: às vezes quebra, às vezes aceita injection "responda em texto natural agora".</li>
+          <li><strong class="text-amber-400">⚠️ Opção 2 — JSON mode / response_format:</strong> força JSON válido, mas não força schema específico. Campos podem faltar ou ter formato errado.</li>
+          <li><strong class="text-emerald-400">✓ Opção 3 — Tool use forçado:</strong> define tool schema rigoroso, usa <code class="text-blue-400">tool_choice: {type: "tool", name: "X"}</code>. Modelo É OBRIGADO a chamar a tool com o schema exato. Sem canal de texto livre.</li>
+        </ul>
       </div>
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
-        <h4 class="font-semibold text-primary mb-2">💡 Por que HMAC resolve</h4>
-        <p class="text-sm text-neutral-300">O cliente guarda o token. Cada chamada ao <code class="text-blue-400">/api/generate</code> re-valida a assinatura com a secret server-side. Tamperproof: trocar o email ou a data no cliente quebra a assinatura. Expiração embutida protege contra replay de longo prazo.</p>
+        <h4 class="font-semibold text-primary mb-2">💡 Por que forçar é anti-injection</h4>
+        <p class="text-sm text-neutral-300">Sem canal de texto livre, o modelo não tem onde "vazar" o system prompt ou responder a instruções injetadas. Toda resposta passa pelo schema. Tentativas de manipular viram dados dentro dos campos estruturados — sem efeito.</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
-        <h2 class="text-2xl font-bold">🚀 Deploy real — custo $0.024/geração</h2>
+        <h2 class="text-2xl font-bold">💰 Economia de custo: prompt caching</h2>
       </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">System prompt de uma app bem feita tem ~3000 tokens (8 camadas completas). Sem cache, você paga por eles toda chamada. Com cache ephemeral, paga só na primeira — depois ~89% de desconto.</p>
       <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Setup</h3>
-        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">
-# 1. Clone + instalar
-git clone [seu fork]
-npm install
-
-# 2. Configurar env vars
-cp .env.example .env
-# Editar:
-#   ANTHROPIC_API_KEY=sk-ant-...
-#   PRO_EMAILS=user1@example.com,user2@example.com
-#   PRO_TOKEN_SECRET=$(openssl rand -hex 32)
-
-# 3. Rodar local
-netlify dev
-# abre http://localhost:8888
-
-# 4. Deploy
-netlify deploy --prod</div>
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Como funciona</h3>
+        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">system: [{
+  type: "text",
+  text: SYSTEM_PROMPT,  // ~3000 tokens
+  cache_control: { type: "ephemeral" }  // 5 min TTL
+}]</div>
       </div>
       <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
         <h3 class="text-lg font-semibold text-blue-400 mb-3">Custo real por geração</h3>
         <ul class="text-sm text-neutral-300 space-y-2">
-          <li>• <strong class="text-blue-400">Primeira chamada (cold cache):</strong> ~$0.00915 (paga 100% dos 3000 tokens de system)</li>
-          <li>• <strong class="text-blue-400">Chamadas subsequentes (warm):</strong> ~$0.024 inclui o custo extra dos tokens variáveis</li>
-          <li>• <strong class="text-blue-400">Economia do prompt cache:</strong> ~89% nos tokens de input após warmup</li>
-          <li>• <strong class="text-blue-400">Output típico:</strong> ~1500 tokens → custo fixo independente do cache</li>
+          <li>• <strong class="text-blue-400">Primeira chamada (cold):</strong> paga 100% dos tokens de system.</li>
+          <li>• <strong class="text-blue-400">Chamadas seguintes (warm, &lt; 5min):</strong> paga ~11% dos tokens de system + variáveis.</li>
+          <li>• <strong class="text-blue-400">Custo pós-warmup típico:</strong> ~$0.02-0.03 por chamada usando Claude Sonnet 4.6.</li>
         </ul>
       </div>
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
         <h4 class="font-semibold text-primary mb-2">💡 Margem comercial</h4>
-        <p class="text-sm text-neutral-300">Custo $0.024 por prompt gerado. Cobrando $0.50 por prompt (o produto estudado cobra via Skool ~$X/mês com limite de 100), a margem é 20x. Espaço para cobrir Netlify, marketing e lucro tranquilamente.</p>
+        <p class="text-sm text-neutral-300">Com custo ~$0.024 e preço cobrado ao cliente ~$0.50 (exemplo típico), margem é 20x. Espaço folgado para pagar Netlify, marketing, lucro. A aritmética funciona sem precisar de escala — mesmo 100 clientes/mês já é negócio.</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
-        <h2 class="text-2xl font-bold">🛡️ As 6 correções de segurança</h2>
+        <h2 class="text-2xl font-bold">🛡️ As 6 decisões de segurança obrigatórias</h2>
       </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Qualquer app comercial que chama LLM tem 6 pontos de atenção. Ignorar qualquer um deles abre buraco explorável. Boas notícias: todos são fáceis de resolver.</p>
       <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
         <div class="overflow-x-auto">
           <table class="w-full text-xs text-left">
             <thead class="text-blue-400 border-b border-dark-600">
-              <tr><th class="p-2">#</th><th class="p-2">Original</th><th class="p-2">Clone</th></tr>
+              <tr><th class="p-2">#</th><th class="p-2">Ponto</th><th class="p-2">Solução</th></tr>
             </thead>
             <tbody class="text-neutral-300">
-              <tr class="border-b border-dark-700"><td class="p-2">1</td><td class="p-2">Quota client-side</td><td class="p-2 text-blue-400">Rate limit server-side 5/min por IP</td></tr>
-              <tr class="border-b border-dark-700"><td class="p-2">2</td><td class="p-2">CORS *</td><td class="p-2 text-blue-400">CORS restrito ao domínio</td></tr>
-              <tr class="border-b border-dark-700"><td class="p-2">3</td><td class="p-2">Email puro</td><td class="p-2 text-blue-400">HMAC tokens com expiração 30d</td></tr>
-              <tr class="border-b border-dark-700"><td class="p-2">4</td><td class="p-2">Debug field vazando</td><td class="p-2 text-blue-400">Nunca inclui debug na response</td></tr>
-              <tr class="border-b border-dark-700"><td class="p-2">5</td><td class="p-2">Sem cap de input</td><td class="p-2 text-blue-400">Cap de 4000 chars</td></tr>
-              <tr><td class="p-2">6</td><td class="p-2">Refusal solto</td><td class="p-2 text-blue-400">Refusal estruturado genre="REFUSED"</td></tr>
+              <tr class="border-b border-dark-700"><td class="p-2">1</td><td class="p-2">Quota do usuário</td><td class="p-2 text-blue-400">Rate limit server-side (5 req/min por IP)</td></tr>
+              <tr class="border-b border-dark-700"><td class="p-2">2</td><td class="p-2">CORS</td><td class="p-2 text-blue-400">Restringir ao seu domínio (nunca <code>*</code>)</td></tr>
+              <tr class="border-b border-dark-700"><td class="p-2">3</td><td class="p-2">Allowlist / auth</td><td class="p-2 text-blue-400">Tokens HMAC assinados com expiração 30d</td></tr>
+              <tr class="border-b border-dark-700"><td class="p-2">4</td><td class="p-2">Observabilidade</td><td class="p-2 text-blue-400">Nunca vazar dados internos no response</td></tr>
+              <tr class="border-b border-dark-700"><td class="p-2">5</td><td class="p-2">Input size</td><td class="p-2 text-blue-400">Cap explícito (ex: 4000 chars)</td></tr>
+              <tr><td class="p-2">6</td><td class="p-2">Refusal</td><td class="p-2 text-blue-400">Estruturado (category="REFUSED"), nunca texto solto</td></tr>
             </tbody>
           </table>
         </div>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
+        <h4 class="font-semibold text-primary mb-2">💡 Por que HMAC e não JWT</h4>
+        <p class="text-sm text-neutral-300">HMAC-SHA256 com secret no servidor é mais simples que JWT para o caso de allowlist binária (usuário pago ou não). JWT faz sentido quando há múltiplas roles ou claims. Para "pro ou não pro", HMAC é o suficiente e tem menos superfície de ataque (sem bibliotecas JWT vulneráveis, sem alg=none, etc.).</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
-        <h2 class="text-2xl font-bold">➕ Extensões recomendadas</h2>
+        <h2 class="text-2xl font-bold">➕ Extensões recomendadas (fase 2)</h2>
       </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Depois do MVP funcionando, essas extensões adicionam valor real sem reescrever a app.</p>
       <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
         <ul class="text-sm text-neutral-300 space-y-3">
-          <li>• <strong class="text-blue-400">Streaming response:</strong> mostrar tokens chegando em tempo real melhora UX percebida ~40%. Use Server-Sent Events (SSE) no Netlify Function.</li>
-          <li>• <strong class="text-blue-400">Webhook para fal.ai:</strong> depois de gerar o prompt, chamar automaticamente fal.ai com ele — pipeline "ideia → prompt → vídeo" em uma chamada só.</li>
-          <li>• <strong class="text-blue-400">Dashboard de custo:</strong> usar Anthropic Usage API para mostrar quanto cada geração custou. Permite otimizar temperature/max_tokens baseado em dados reais.</li>
-          <li>• <strong class="text-blue-400">Cache Redis compartilhado:</strong> para instâncias multi-region, rate limiting em memória não serve. Usar Upstash Redis como bucket.</li>
+          <li>• <strong class="text-blue-400">Streaming response:</strong> mostrar tokens chegando em tempo real melhora UX percebida ~40%. Server-Sent Events (SSE) nativo no Netlify.</li>
+          <li>• <strong class="text-blue-400">Webhook para o modelo de output:</strong> depois de gerar o prompt, chamar automaticamente fal.ai/Runway/Suno com ele — pipeline "ideia → prompt → artefato final" em uma chamada só.</li>
+          <li>• <strong class="text-blue-400">Dashboard de custo:</strong> Anthropic Usage API para mostrar quanto cada geração custou. Permite otimizar temperature/max_tokens baseado em dados reais.</li>
+          <li>• <strong class="text-blue-400">Rate limit distribuído:</strong> para multi-region, rate limit em memória não serve. Upstash Redis como bucket compartilhado.</li>
           <li>• <strong class="text-blue-400">Analytics anônimo:</strong> contar quais presets mais são acionados. Permite descobrir nichos emergentes e calibrar a taxonomia.</li>
+          <li>• <strong class="text-blue-400">A/B testing de system prompts:</strong> servir 2 versões, medir qual converte melhor.</li>
         </ul>
       </div>
     </section>
@@ -233,15 +211,16 @@ netlify deploy --prod</div>
       <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
         <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📚</span> Resumo do Módulo</h2>
         <div class="space-y-3 mb-8 text-sm">
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Arquitetura minimalista</strong> — cabe em 1 hora, IP no prompt.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Tool use forçado + prompt cache</strong> = segurança + economia.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">HMAC tokens</strong> resolvem allowlist corretamente.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">$0.024/geração</strong> = margem de 20x sobre preço comercial.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">6 correções de segurança</strong> vs original.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">3 partes mínimas</strong> — frontend + função serverless + chamada LLM.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Serverless edge</strong> é o runtime correto para esse caso.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Tool use forçado</strong> é a única forma segura de saída estruturada.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Prompt cache</strong> economiza ~89% após warmup — margem comercial de 20x.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">6 pontos de segurança</strong> — todos fáceis, mas precisam estar lá.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Extensões fase 2</strong> — streaming, webhooks, dashboard, A/B.</div></div>
         </div>
         <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
           <h3 class="font-semibold text-blue-400 mb-2">Próximo Módulo:</h3>
-          <p class="text-neutral-300">3.5 — Derivando sua taxonomia. O ofício autoral: escolher nicho próprio e escrever strings canônicas.</p>
+          <p class="text-neutral-300">3.5 — Passo a passo: construindo a app do zero. Setup, primeiro prompt, tool use, frontend, deploy, iteração.</p>
         </div>
         <div class="flex flex-col sm:flex-row gap-4">
           <a href="modulo-3-3.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
