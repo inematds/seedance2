@@ -126,6 +126,31 @@ AUDIO PHRASING (use literally):
   Phase 3: "full emotional resolution with layered sound"
 
 ═══════════════════════════════════════════════════════════════════
+IMAGE REFERENCES (opcional, multimodal)
+═══════════════════════════════════════════════════════════════════
+
+The user may attach 1-3 reference images to the request. When images are present:
+
+1. ANALYZE each image briefly: what is the palette, mood, composition, textures, lighting, style?
+
+2. USE the images as STYLE/MOOD REFERENCE, not as literal content to replicate:
+   - Extract the color palette and adapt the color_system accordingly
+   - Note the lighting quality (soft/hard, warm/cool, directional) and reflect in the [0s] beat
+   - Note composition tendencies (wide/close, centered/offset, symmetric/organic) and incorporate into camera_style
+   - Note texture/grain/surface qualities and mention in techniques
+
+3. DO NOT try to literally describe objects from the image in the english_prompt. The user's SCENE DESCRIPTION is the subject. The images are only a style anchor.
+
+4. If the scene description and the image references conflict (e.g. scene says "desert" but images are urban):
+   - The SCENE DESCRIPTION wins as subject matter
+   - The IMAGES win as aesthetic reference (palette, lighting, composition)
+   - Blend them: render the desert scene but with the images' color/light/composition qualities
+
+5. Briefly mention in your recommendations (1 of the 4 tips) how the image reference influenced your choices. Example: "The reference image's warm sodium-vapor street lighting informed the rim lighting choice in [0s]."
+
+If no images are provided, ignore this section and proceed normally.
+
+═══════════════════════════════════════════════════════════════════
 MOOD PRESET OVERRIDE (opcional)
 ═══════════════════════════════════════════════════════════════════
 
@@ -374,6 +399,7 @@ export default async function handler(
     scene?: string;
     style?: string;
     mood?: string;
+    images?: string[]; // array of data URLs "data:image/jpeg;base64,..."
     opts?: { pt?: boolean; recs?: boolean };
     llm?: { provider?: string; apiKey?: string; model?: string };
   };
@@ -425,10 +451,38 @@ export default async function handler(
   if (style && style !== "photorealistic" && style !== "free") {
     extras.push(`visual_style: ${style}`);
   }
-  const userMessage =
+
+  // Parse image references (up to 3) from data URLs into Anthropic image blocks
+  const imageBlocks: Array<any> = [];
+  const rawImages = Array.isArray(body.images) ? body.images.slice(0, 3) : [];
+  for (const dataUrl of rawImages) {
+    if (typeof dataUrl !== "string") continue;
+    // Expected format: data:image/jpeg;base64,XXXX
+    const match = dataUrl.match(/^data:(image\/(jpeg|png|webp|gif));base64,(.+)$/);
+    if (!match) continue;
+    const mediaType = match[1];
+    const base64 = match[3];
+    // Rough size check (base64 length * 0.75 = bytes; cap at ~5MB)
+    if (base64.length * 0.75 > 5 * 1024 * 1024) continue;
+    imageBlocks.push({
+      type: "image",
+      source: { type: "base64", media_type: mediaType, data: base64 },
+    });
+  }
+  if (imageBlocks.length > 0) {
+    extras.push(`image_references: ${imageBlocks.length} attached — use as style/mood anchor`);
+  }
+
+  const textPart =
     extras.length > 0
       ? `Scene description: ${scene}\n\n${extras.join("\n")}`
       : `Scene description: ${scene}`;
+
+  // User message content: text only (string) OR multimodal (array with images + text)
+  const userMessageContent: any =
+    imageBlocks.length > 0
+      ? [...imageBlocks, { type: "text", text: textPart }]
+      : textPart;
 
   const requestBody: any = {
     max_tokens: 4096,
@@ -439,7 +493,7 @@ export default async function handler(
     messages: [
       {
         role: "user",
-        content: userMessage,
+        content: userMessageContent,
       },
     ],
   };
@@ -477,7 +531,7 @@ export default async function handler(
     const usage = data.usage || {};
     const provider = data._provider || "oauth";
     console.log(
-      `[generate-local] category=${result.category} mood=${mood} style=${style} provider=${provider} model=${llmConfig.model} in=${usage.input_tokens ?? "?"} out=${usage.output_tokens ?? "?"} cache_read=${usage.cache_read_input_tokens ?? 0}`
+      `[generate-local] category=${result.category} mood=${mood} style=${style} images=${imageBlocks.length} provider=${provider} model=${llmConfig.model} in=${usage.input_tokens ?? "?"} out=${usage.output_tokens ?? "?"} cache_read=${usage.cache_read_input_tokens ?? 0}`
     );
 
     res.status(200).json(result);

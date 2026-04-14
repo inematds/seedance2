@@ -107,6 +107,7 @@ export default async function handler(
     story?: string;
     style?: string;
     mood?: string;
+    images?: string[];
     llm?: { provider?: string; apiKey?: string; model?: string };
   };
   try {
@@ -126,10 +127,34 @@ export default async function handler(
   const llmConfig = parseLLMConfig(body.llm);
   const style = (body.style || "photorealistic").toLowerCase();
 
-  const userMessage =
-    style && style !== "photorealistic" && style !== "free"
-      ? `Story: ${story}\n\nvisual_style: ${style}`
-      : `Story: ${story}`;
+  // Parse up to 3 image references
+  const imageBlocks: Array<any> = [];
+  const rawImages = Array.isArray(body.images) ? body.images.slice(0, 3) : [];
+  for (const dataUrl of rawImages) {
+    if (typeof dataUrl !== "string") continue;
+    const match = dataUrl.match(/^data:(image\/(jpeg|png|webp|gif));base64,(.+)$/);
+    if (!match) continue;
+    const base64 = match[3];
+    if (base64.length * 0.75 > 5 * 1024 * 1024) continue;
+    imageBlocks.push({
+      type: "image",
+      source: { type: "base64", media_type: match[1], data: base64 },
+    });
+  }
+
+  const extras: string[] = [];
+  if (style && style !== "photorealistic" && style !== "free") {
+    extras.push(`visual_style: ${style}`);
+  }
+  if (imageBlocks.length > 0) {
+    extras.push(`image_references: ${imageBlocks.length} attached — use as style/mood anchor for ALL scenes`);
+  }
+  const textPart = extras.length > 0 ? `Story: ${story}\n\n${extras.join("\n")}` : `Story: ${story}`;
+
+  const userContent: any =
+    imageBlocks.length > 0
+      ? [...imageBlocks, { type: "text", text: textPart }]
+      : textPart;
 
   const requestBody: any = {
     max_tokens: 4096,
@@ -137,7 +162,7 @@ export default async function handler(
     system: buildSystemBlocks(llmConfig, STORY_SYSTEM),
     tools: [TOOL_SCHEMA],
     tool_choice: { type: "tool", name: "emit_scene_flow" },
-    messages: [{ role: "user", content: userMessage }],
+    messages: [{ role: "user", content: userContent }],
   };
 
   try {

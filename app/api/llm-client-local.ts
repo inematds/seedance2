@@ -165,8 +165,26 @@ async function callOpenRouter(
   }
 
   // 2. User/assistant messages
+  // Content may be a string OR an array of blocks (multimodal: text + image).
+  // Anthropic format: [{type: "image", source: {type: "base64", media_type, data}}, {type: "text", text}]
+  // OpenAI format:    [{type: "image_url", image_url: {url: "data:MEDIA;base64,DATA"}}, {type: "text", text}]
   for (const msg of body.messages || []) {
-    messages.push({ role: msg.role, content: msg.content });
+    if (Array.isArray(msg.content)) {
+      const converted = msg.content.map((block: any) => {
+        if (block.type === "image" && block.source?.type === "base64") {
+          const dataUrl = `data:${block.source.media_type};base64,${block.source.data}`;
+          return { type: "image_url", image_url: { url: dataUrl } };
+        }
+        if (block.type === "text") {
+          return { type: "text", text: block.text };
+        }
+        // Pass-through for other block types
+        return block;
+      });
+      messages.push({ role: msg.role, content: converted });
+    } else {
+      messages.push({ role: msg.role, content: msg.content });
+    }
   }
 
   // 3. Tools: Anthropic {name, description, input_schema} → OpenAI {type, function: {name, description, parameters}}

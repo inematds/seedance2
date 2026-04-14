@@ -195,6 +195,20 @@
             </div>
           </div>
 
+          <!-- IMAGE REFERENCES (up to 3) -->
+          <div class="mt-5 pt-4 border-t border-dark-600/50">
+            <div class="flex items-center justify-between mb-2">
+              <label class="text-xs font-semibold text-neutral-400 uppercase tracking-wider">🖼️ Imagens de referência</label>
+              <span class="text-xs text-neutral-600">até 3 · estilo/mood (não copia literal)</span>
+            </div>
+            <div id="image-preview" class="flex flex-wrap gap-2 mb-2"></div>
+            <input id="image-input" type="file" accept="image/jpeg,image/png,image/webp" multiple class="hidden" onchange="handleImageUpload(event, 'single')">
+            <button type="button" onclick="document.getElementById('image-input').click()" class="w-full p-3 bg-dark-900/80 border border-dashed border-dark-600 hover:border-primary/40 rounded-lg text-sm text-neutral-400 hover:text-primary transition-colors">
+              + Adicionar imagem de referência
+            </button>
+            <div class="text-xs text-neutral-600 mt-1.5">JPG, PNG ou WebP · máx 5MB cada · o Claude analisa palette/mood/composição e aplica ao prompt</div>
+          </div>
+
           <!-- EXAMPLE LOADERS (accessory — just fill the textarea with sample text) -->
           <div class="mt-5 pt-3 border-t border-dark-600/50">
             <div class="text-xs text-neutral-500 mb-2">💡 Exemplos prontos (preenchem a textarea):</div>
@@ -393,6 +407,19 @@
               <option value="film-analog">📼 Filme analógico 35mm</option>
               <option value="free">✨ Estilo livre (IA decide)</option>
             </select>
+          </div>
+
+          <!-- IMAGE REFERENCES FOR WORKFLOW (same as single mode) -->
+          <div class="mt-5 pt-4 border-t border-dark-600/50">
+            <div class="flex items-center justify-between mb-2">
+              <label class="text-xs font-semibold text-neutral-400 uppercase tracking-wider">🖼️ Imagens de referência da história</label>
+              <span class="text-xs text-neutral-600">até 3 · aplicadas a todas as cenas</span>
+            </div>
+            <div id="story-image-preview" class="flex flex-wrap gap-2 mb-2"></div>
+            <input id="story-image-input" type="file" accept="image/jpeg,image/png,image/webp" multiple class="hidden" onchange="handleImageUpload(event, 'story')">
+            <button type="button" onclick="document.getElementById('story-image-input').click()" class="w-full p-3 bg-dark-900/80 border border-dashed border-dark-600 hover:border-primary/40 rounded-lg text-sm text-neutral-400 hover:text-primary transition-colors">
+              + Adicionar imagem de referência
+            </button>
           </div>
 
           <button
@@ -629,6 +656,86 @@
     let lastScene = '';
     let lastStory = '';
     let lastStoryResult = null;
+    // Image references (up to 3 each) — stored as data URLs in memory
+    let singleImages = [];
+    let storyImages = [];
+
+    // ═══════════════════════════════════════════════════════
+    // IMAGE REFERENCE UPLOAD
+    // ═══════════════════════════════════════════════════════
+    const MAX_IMAGES = 3;
+    const MAX_IMAGE_BYTES = 5 * 1024 * 1024; // 5MB
+
+    function fileToDataUrl(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function handleImageUpload(event, context) {
+      const files = Array.from(event.target.files || []);
+      const store = context === 'single' ? singleImages : storyImages;
+
+      for (const file of files) {
+        if (store.length >= MAX_IMAGES) {
+          toast(`Máximo ${MAX_IMAGES} imagens — remova uma para adicionar outra`);
+          break;
+        }
+        if (!file.type.match(/^image\/(jpeg|png|webp)$/)) {
+          toast(`${file.name}: formato inválido (use JPG/PNG/WebP)`);
+          continue;
+        }
+        if (file.size > MAX_IMAGE_BYTES) {
+          toast(`${file.name}: muito grande (máx 5MB)`);
+          continue;
+        }
+        try {
+          const dataUrl = await fileToDataUrl(file);
+          store.push({ name: file.name, dataUrl, size: file.size });
+        } catch (err) {
+          toast(`Erro ao ler ${file.name}: ${err.message}`);
+        }
+      }
+
+      event.target.value = ''; // allow re-selecting same file
+      renderImagePreview(context);
+    }
+
+    function renderImagePreview(context) {
+      const containerId = context === 'single' ? 'image-preview' : 'story-image-preview';
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      const store = context === 'single' ? singleImages : storyImages;
+      container.innerHTML = '';
+
+      if (store.length === 0) return;
+
+      store.forEach((img, idx) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'relative group';
+        wrap.innerHTML = `
+          <img src="${img.dataUrl}" alt="${escapeHtml(img.name)}" class="w-20 h-20 object-cover rounded-lg border border-dark-600" />
+          <button type="button" onclick="removeImage('${context}', ${idx})" class="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 hover:bg-red-400 text-white text-xs rounded-full flex items-center justify-center shadow-lg transition-colors" title="Remover">×</button>
+          <div class="text-xs text-neutral-500 mt-1 truncate w-20" title="${escapeHtml(img.name)}">${escapeHtml(img.name.slice(0, 12))}${img.name.length > 12 ? '…' : ''}</div>
+        `;
+        container.appendChild(wrap);
+      });
+    }
+
+    function removeImage(context, idx) {
+      const store = context === 'single' ? singleImages : storyImages;
+      store.splice(idx, 1);
+      renderImagePreview(context);
+    }
+
+    function getImagesDataUrls(context) {
+      const store = context === 'single' ? singleImages : storyImages;
+      return store.map(i => i.dataUrl);
+    }
 
     // ═══════════════════════════════════════════════════════
     // SETTINGS (localStorage)
@@ -946,6 +1053,7 @@
             scene,
             mood: document.getElementById('mood-select').value,
             style: document.getElementById('style-select').value,
+            images: getImagesDataUrls('single'),
             opts: { pt: true, recs: true },
             llm: buildLlmPayload()
           })
@@ -1141,6 +1249,7 @@
           body: JSON.stringify({
             story,
             style: document.getElementById('story-style-select').value,
+            images: getImagesDataUrls('story'),
             llm: buildLlmPayload()
           })
         });
@@ -1208,6 +1317,7 @@
             scene: sceneDesc,
             style: document.getElementById('story-style-select').value,
             mood: 'auto', // no workflow cada cena decide seu mood naturalmente
+            images: getImagesDataUrls('story'),
             opts: { pt: true, recs: false },
             llm: buildLlmPayload()
           })
