@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.1 — Seedance como modelo | Seedance 2.0 Mastery</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; } .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; } html:not(.dark) .bg-dark-800 { background-color: #f9fafb; } html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; } html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; } html:not(.dark) .text-neutral-300 { color: #4b5563; } html:not(.dark) .text-neutral-400 { color: #6b7280; } html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; } html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-blue-400 { color: #2563eb; } html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); } html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); } html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); } html:not(.dark) .bg-blue-600 { background-color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500:hover { background-color: #3b82f6; } html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); } html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; } html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); } html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; } html:not(.dark) .text-yellow-400 { color: #a16207; } html:not(.dark) .text-red-400 { color: #b91c1c; } html:not(.dark) .bg-red-500\/20 { background-color: rgba(185, 28, 28, 0.12); } html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    /* Cross-trilha overrides (nav hover) */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Seedance 2.0 Mastery</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Leigo</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Prompt-Ready</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Profissional</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-blue-400">Início</a><span>/</span>
+      <a href="index.html" class="hover:text-blue-400">Trilha 3</a><span>/</span>
+      <span class="text-blue-400">Módulo 3.1</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.1</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🧠 Seedance 2.0 como modelo (sem mitos)</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Arquitetura geral de text-to-video, por que o Seedance é sensível à forma do prompt, timeline prompting como técnica oficial documentada, o que mudou da v1 para v2, e benchmarks reais.</p>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🏗️ Arquitetura geral de text-to-video</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Modelos text-to-video são <strong class="text-blue-400">difusões temporais com condicionamento multimodal</strong>. Entender as peças explica por que certos prompts funcionam melhor que outros — não é mágica, é onde o modelo foi treinado.</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">As 3 peças principais</h3>
+        <ul class="space-y-3 text-neutral-300 text-sm">
+          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center">1</span><div><strong class="text-blue-400">Encoder de texto (+ imagem + áudio na v2.0):</strong> transforma sua frase em vetores de significado. O Seedance 2.0 usa um encoder multimodal conjunto — texto, imagens de referência e tags de áudio entram no mesmo espaço latente.</div></li>
+          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center">2</span><div><strong class="text-blue-400">Modelo de difusão temporal:</strong> parte de ruído e "limpa" progressivamente para gerar frames consistentes entre si. A temporal coherence é o maior desafio técnico de T2V — é onde os modelos ruins falham.</div></li>
+          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center">3</span><div><strong class="text-blue-400">Decoder + upsampler:</strong> transforma os latentes em frames finais de vídeo, opcionalmente com áudio sincronizado (exclusivo v2.0).</div></li>
+        </ul>
+      </div>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4">Onde Seedance difere dos concorrentes</h3>
+        <ul class="space-y-2 text-sm text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><div><strong class="text-blue-400">vs Runway Gen-4:</strong> Runway é mais forte em image-to-video (foto estática → vídeo). Seedance é mais forte em text-to-video puro.</div></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><div><strong class="text-blue-400">vs Google Veo 3:</strong> Veo é mais forte em longa duração (30s+). Seedance otimiza para 5-10s com qualidade máxima.</div></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><div><strong class="text-blue-400">vs Kling 3.0:</strong> Kling tem identity preservation ligeiramente melhor. Seedance tem controle de câmera mais preciso.</div></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><div><strong class="text-blue-400">Único na v2.0:</strong> áudio nativo gerado conjunto com vídeo (não pós-processamento).</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📊 Por que Seedance é sensível à forma do prompt</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A explicação técnica da frase "estilo de escrita importa": <strong class="text-blue-400">distribuição de treinamento</strong>. Todo modelo aprende a "modo" de escrita que aparece mais em seus dados. Prompts fora dessa distribuição caem em regiões menos bem modeladas — e o output piora.</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">O conceito: in-distribution vs out-of-distribution</h3>
+        <p class="text-sm text-neutral-300 mb-3"><strong class="text-blue-400">In-distribution:</strong> prompts que se parecem com as legendas que o modelo viu durante o treinamento. Normalmente legendas cinematográficas estruturadas com vocabulário específico (wide shot, golden hour, cinematic lighting, etc.). O modelo performa melhor aqui porque tem "muitos exemplos próximos".</p>
+        <p class="text-sm text-neutral-300"><strong class="text-blue-400">Out-of-distribution:</strong> prompts de conversa natural ("uma cena legal", "quero algo bonito"), comandos imperativos ("mostre-me"), instruções de usuário ("faça X"). O modelo performa pior aqui porque está extrapolando.</p>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5 mb-6">
+        <h4 class="font-semibold text-primary mb-2">💡 Implicação prática</h4>
+        <p class="text-sm text-neutral-300">Não existe "frase secreta mágica". Existe frase que se parece com o que o modelo foi treinado a ver. Escrever bem = escrever próximo da distribuição. É por isso que copiar os presets literal funciona: as strings canônicas foram empiricamente validadas como in-distribution.</p>
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">📖 Timeline prompting como técnica oficial</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A estrutura <code class="text-blue-400">[0s][3s][6s][8s]</code> que o produto comercial usa <strong class="text-blue-400">não foi inventada</strong> pelo autor. É <strong>timeline prompting</strong>, técnica oficialmente documentada em guias públicos gratuitos. Cerca de <strong class="text-blue-400">50% do que o produto estudado ensina</strong> é conhecimento público nomeado.</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">O que está na documentação pública</h3>
+        <ul class="space-y-2 text-sm text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><div><strong class="text-blue-400">Timeline beats [0s][3s][6s][8s]:</strong> MindStudio, redreamality.com, GitHub repos.</div></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><div><strong class="text-blue-400">Fórmula universal:</strong> Subject + Action + Scene + Lighting + Camera Movement + Style + Quality + Constraints (redreamality).</div></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><div><strong class="text-blue-400">Vocabulário cinematográfico:</strong> dolly-in, dolly-out, pan, crane, gimbal, handheld, aerial, rack focus, anamorphic lens flare, shallow depth of field (documentação oficial).</div></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><div><strong class="text-blue-400">Categorias de gênero:</strong> Daily Life, Sci-Fi (cyberpunk), Minimalist, Cinematic, Film Noir, Animation — todas em redreamality.</div></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><div><strong class="text-blue-400">Audio keywords:</strong> reverb, muffled, echoing, tag @Audio — redreamality.</div></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><div><strong class="text-blue-400">Limites:</strong> 30-200 palavras, 1-2 personagens, consistência de face — todos documentados.</div></li>
+        </ul>
+      </div>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">O que é autoral do produto estudado</h3>
+        <ul class="space-y-2 text-sm text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-red-400 mt-1">×</span><div><strong class="text-blue-400">STOP MOTION freeze + snap-back:</strong> NÃO documentado em nenhum guia oficial. Extensão autoral.</div></li>
+          <li class="flex items-start space-x-2"><span class="text-red-400 mt-1">×</span><div><strong class="text-blue-400">3 fases de áudio (practical → brass chord → orchestral):</strong> NÃO documentado. Autoral.</div></li>
+          <li class="flex items-start space-x-2"><span class="text-red-400 mt-1">×</span><div><strong class="text-blue-400">7 presets específicos com strings canônicas:</strong> categorias similares existem oficialmente, mas as strings exatas são autorais.</div></li>
+          <li class="flex items-start space-x-2"><span class="text-red-400 mt-1">×</span><div><strong class="text-blue-400">350-500 palavras deliberado:</strong> diverge do oficial de 30-200. Autoral.</div></li>
+          <li class="flex items-start space-x-2"><span class="text-red-400 mt-1">×</span><div><strong class="text-blue-400">Abertura "same character throughout all shots":</strong> versão comprimida do conselho oficial "maintain face and clothing consistency". Autoral.</div></li>
+          <li class="flex items-start space-x-2"><span class="text-red-400 mt-1">×</span><div><strong class="text-blue-400">Tese "filter bypass chinês":</strong> NÃO verificada em fontes públicas. Pode ser marketing.</div></li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5 mb-4">
+        <h4 class="font-semibold text-primary mb-2">💡 A repartição honesta</h4>
+        <p class="text-sm text-neutral-300">50% do valor do produto é conhecimento público embalado (timeline prompting + vocabulário). 50% é opinião autoral testada empiricamente (STOP MOTION + audio phases + 7 presets específicos). Nenhum dos dois é menos valioso — curadoria e opinião formada valem dinheiro.</p>
+    </div>
+    </section>
+
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">⬆️ O que mudou da v1 para v2</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Seedance 1.0 (junho/2025) → Seedance 2.0 (fevereiro/2026). Mudanças substanciais que afetam como você escreve prompts.</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">As 5 mudanças principais</h3>
+        <ul class="space-y-3 text-sm text-neutral-300">
+          <li class="flex items-start space-x-3"><span class="text-blue-400 mt-1">1.</span><div><strong class="text-blue-400">Áudio nativo conjunto:</strong> v1 gerava só vídeo silencioso. v2 gera áudio junto do vídeo usando o mesmo modelo. Phase 1/2/3 agora resulta em som real.</div></li>
+          <li class="flex items-start space-x-3"><span class="text-blue-400 mt-1">2.</span><div><strong class="text-blue-400">Até 9 imagens + 3 clipes de 15s como referência:</strong> consistência visual entre cenas agora é viável nativamente.</div></li>
+          <li class="flex items-start space-x-3"><span class="text-blue-400 mt-1">3.</span><div><strong class="text-blue-400">Faces humanas reais:</strong> suporte a "real human face" agora é oficial — v1 era propositalmente borrado.</div></li>
+          <li class="flex items-start space-x-3"><span class="text-blue-400 mt-1">4.</span><div><strong class="text-blue-400">Controle fino:</strong> iluminação, sombra, performance e movimento de câmera agora têm parâmetros dedicados.</div></li>
+          <li class="flex items-start space-x-3"><span class="text-blue-400 mt-1">5.</span><div><strong class="text-blue-400">Variante "Fast":</strong> versão otimizada para latência menor, qualidade levemente inferior, custo ~50% menor.</div></li>
+        </ul>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> Implicações para o material de reverse engineering</h3>
+        <p class="text-sm text-neutral-300 mb-2">O produto comercial foi analisado provavelmente contra v1.x. Implicações a revalidar:</p>
+        <ul class="text-xs text-neutral-400 space-y-1">
+          <li>• STOP MOTION ainda funciona igual na v2?</li>
+          <li>• As 3 fases de áudio literais ainda são necessárias, ou tag @Audio é melhor agora?</li>
+          <li>• 350-500 palavras ainda é ótimo? v2 pode lidar melhor com 100-200?</li>
+          <li>• "Anamorphic 2.39:1" mandatório vs usar controles nativos?</li>
+          <li>• Filter bypass chinês: ainda funciona ou foi resolvido?</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🏆 Benchmarks — #1 global em T2V e I2V</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Em abril/2026, Seedance 2.0 lidera o <a href="https://artificialanalysis.ai/" target="_blank" class="text-sky-400">Artificial Analysis Video Arena</a> tanto em text-to-video quanto em image-to-video.</p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Performance medida</h3>
+        <ul class="space-y-2 text-sm text-neutral-300">
+          <li>• <strong class="text-blue-400">Elo 1269</strong> — text-to-video (no audio): <strong>#1 global</strong></li>
+          <li>• <strong class="text-blue-400">Elo 1351</strong> — image-to-video (no audio): <strong>#1 global</strong></li>
+          <li>• À frente de Kling 3.0, Google Veo 3, Runway Gen-4.5</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5 mb-4">
+        <h4 class="font-semibold text-primary mb-2">💡 Como ler benchmarks de vídeo IA</h4>
+        <p class="text-sm text-neutral-300">Arena ELO é comparação pairwise: humanos votam em "este vídeo é melhor que aquele" sem saber qual modelo gerou. Mais objetivo que métricas automáticas. A liderança muda rápido no espaço — <strong>reavalie antes de grandes commitments</strong>. O campo mudará várias vezes em 2026-2027.</p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📚</span> Resumo do Módulo</h2>
+        <div class="space-y-3 mb-8 text-sm">
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">T2V = difusão temporal com encoder multimodal</strong> <span class="text-neutral-400">— Seedance 2.0 adiciona áudio conjunto.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Sensibilidade à forma = distribuição de treinamento</strong> <span class="text-neutral-400">— in-distribution performa melhor.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Timeline prompting é oficial</strong> <span class="text-neutral-400">— ~50% do produto estudado é conhecimento público.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">v2.0 mudou 5 coisas grandes</strong> <span class="text-neutral-400">— áudio nativo, 9 refs, faces reais, controle fino, variante Fast.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">#1 global em T2V e I2V</strong> <span class="text-neutral-400">— mas benchmarks mudam rápido.</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-blue-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">3.2 — Engenharia reversa como método. O caso seedance-gen.netlify.app, forense estática, as 51 sondas, taxonomia descoberta, medindo rigidez, achados de segurança, curva de saturação.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha 3</a>
+          <a href="modulo-3-2.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GLOSSÁRIO -->
+    <section class="mb-12">
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📖</span> Glossário do módulo</h2>
+        <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
+          <div><dt class="text-blue-400 font-semibold">Text-to-video (T2V)</dt><dd class="text-neutral-300">Modelo que gera vídeo a partir de descrição em texto. Seedance, Runway, Kling, Veo são exemplos.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Image-to-video (I2V)</dt><dd class="text-neutral-300">Modelo que anima uma imagem estática em vídeo. Muitos T2V fazem I2V também.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Modelo de difusão</dt><dd class="text-neutral-300">Arquitetura de IA generativa que parte de ruído e "limpa" progressivamente até formar o output.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Difusão temporal</dt><dd class="text-neutral-300">Difusão aplicada a vídeo — precisa manter coerência entre frames consecutivos.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Encoder multimodal</dt><dd class="text-neutral-300">Componente que transforma múltiplos tipos de input (texto, imagem, áudio) em um espaço latente comum.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Espaço latente</dt><dd class="text-neutral-300">Representação numérica interna do modelo onde significados são codificados como vetores.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Temporal coherence</dt><dd class="text-neutral-300">Consistência visual entre frames de um vídeo. O maior desafio técnico de T2V.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Identity drift</dt><dd class="text-neutral-300">Quando personagem ou objeto muda de aparência ao longo do vídeo. Falha de temporal coherence.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Distribuição de treinamento</dt><dd class="text-neutral-300">O conjunto de dados que o modelo viu durante o treino. Prompts próximos dessa distribuição performam melhor.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">In-distribution</dt><dd class="text-neutral-300">Input que se parece com o que o modelo viu no treino — gera outputs mais confiáveis.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Out-of-distribution</dt><dd class="text-neutral-300">Input diferente do que o modelo viu no treino — resultados imprevisíveis.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Timeline prompting</dt><dd class="text-neutral-300">Técnica documentada de estruturar prompts em beats temporais [0s][3s][6s][8s]. Oficial em redreamality/MindStudio.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Seedance 1.0 / 2.0</dt><dd class="text-neutral-300">Versões do modelo da ByteDance. v1 silenciosa (jun/2025), v2 com áudio nativo (fev/2026).</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Áudio nativo</dt><dd class="text-neutral-300">Áudio gerado junto do vídeo pelo mesmo modelo, sem pós-processamento.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Controle fino</dt><dd class="text-neutral-300">Parâmetros específicos (iluminação, sombra, movimento de câmera) além do prompt textual.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Variante Fast</dt><dd class="text-neutral-300">Versão otimizada para latência. Qualidade levemente inferior, custo ~50% menor.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">ELO rating</dt><dd class="text-neutral-300">Sistema de pontuação baseado em comparações pairwise. Usado em arenas de benchmark de IA.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Artificial Analysis Video Arena</dt><dd class="text-neutral-300">Plataforma de benchmark pairwise para modelos T2V/I2V, com votação humana.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Kling / Runway / Veo</dt><dd class="text-neutral-300">Concorrentes diretos do Seedance 2.0 no espaço de T2V comercial.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Dreamina</dt><dd class="text-neutral-300">Interface oficial da ByteDance para o Seedance, em dreamina.jianying.com.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">fal.ai</dt><dd class="text-neutral-300">Plataforma aberta que disponibiliza o Seedance (e outros modelos) via API pay-per-use.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>Seedance 2.0 Mastery · INEMA.CLUB · 2026</p></div></footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle'); const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon'); const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon'); const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+</body>
+</html>

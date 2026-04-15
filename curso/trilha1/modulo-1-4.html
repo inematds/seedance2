@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="es" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Módulo 1.4 — Fazendo e publicando | Seedance 2.0 Mastery</title>
+  <title>Módulo 1.4 — Haciendo y publicando | Seedance 2.0 Mastery</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
@@ -30,7 +30,7 @@
     html:not(.dark) .bg-emerald-600 { background-color: #059669; }
     html:not(.dark) .hover\:bg-emerald-500:hover { background-color: #10b981; }
 
-    /* Amber (cross-trilha CTA) */
+    /* Amber (cross-ruta CTA) */
     html:not(.dark) .text-amber-400 { color: #92400e; }
     html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217, 119, 6, 0.08); }
     html:not(.dark) .bg-amber-600 { background-color: #d97706; }
@@ -38,7 +38,7 @@
     html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217, 119, 6, 0.08); }
     html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
 
-    /* Blue (cross-trilha nav) */
+    /* Blue (cross-ruta nav) */
     html:not(.dark) .text-blue-400 { color: #2563eb; }
     html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
     html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
@@ -68,9 +68,9 @@
           <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
         </div>
         <div class="flex items-center space-x-1 sm:space-x-2">
-          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Leigo</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Principiante</span></a>
           <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Prompt-Ready</span></a>
-          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Profissional</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Profesional</span></a>
           <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
             <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
             <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
@@ -82,8 +82,8 @@
 
   <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <div class="flex items-center space-x-2 text-sm text-neutral-400">
-      <a href="../../index.html" class="hover:text-emerald-400">Início</a><span>/</span>
-      <a href="index.html" class="hover:text-emerald-400">Trilha 1</a><span>/</span>
+      <a href="../../index.html" class="hover:text-emerald-400">Inicio</a><span>/</span>
+      <a href="index.html" class="hover:text-emerald-400">Ruta 1</a><span>/</span>
       <span class="text-emerald-400">Módulo 1.4</span>
     </div>
   </nav>
@@ -91,238 +91,238 @@
   <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.4</span>
-      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🚀 Fazendo e publicando</h1>
-      <p class="text-lg text-neutral-400 max-w-3xl">Do prompt ao vídeo no Instagram. Conta na fal.ai em 5 minutos, usando o playground, corrigindo os erros mais comuns, edição mínima e publicação com ética.</p>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🚀 Haciendo y publicando</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Del prompt al video en Instagram. Cuenta en fal.ai en 5 minutos, usando el playground, corrigiendo los errores más comunes, edición mínima y publicación con ética.</p>
       <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
-        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">5</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">5</div><div class="text-xs text-neutral-400">Temas</div></div>
         <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">50</div><div class="text-xs text-neutral-400">Minutos</div></div>
-        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Básico</div><div class="text-xs text-neutral-400">Nível</div></div>
-        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Mão-obra</div><div class="text-xs text-neutral-400">Tipo</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Básico</div><div class="text-xs text-neutral-400">Nivel</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Práctica</div><div class="text-xs text-neutral-400">Tipo</div></div>
       </div>
     </div>
   </header>
 
   <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-    <!-- TÓPICO 1 -->
+    <!-- TEMA 1 -->
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
-        <h2 class="text-2xl font-bold">🔑 Conta na fal.ai em 5 minutos</h2>
+        <h2 class="text-2xl font-bold">🔑 Cuenta en fal.ai en 5 minutos</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">fal.ai é uma plataforma aberta onde qualquer pessoa pode rodar o Seedance 2.0 sem precisar de conta chinesa. Cadastro por email ou Google, créditos iniciais grátis, sem cartão exigido para começar.</p>
+      <p class="text-neutral-300 mb-6 leading-relaxed">fal.ai es una plataforma abierta donde cualquier persona puede ejecutar Seedance 2.0 sin necesitar cuenta china. Registro por email o Google, créditos iniciales gratis, sin tarjeta requerida para empezar.</p>
 
       <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Passo a passo</h3>
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Paso a paso</h3>
         <ol class="space-y-3 text-neutral-300">
-          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">1</span><div>Acesse <a href="https://fal.ai/seedance-2.0" target="_blank" class="text-sky-400 hover:text-sky-300">fal.ai/seedance-2.0</a></div></li>
-          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">2</span><div>Clique em "Sign up" — use Google ou email.</div></li>
-          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">3</span><div>Confirme o email. Você recebe alguns dólares em créditos grátis automaticamente.</div></li>
-          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">4</span><div>Pronto. Você já pode gerar vídeos no playground.</div></li>
+          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">1</span><div>Accede a <a href="https://fal.ai/seedance-2.0" target="_blank" class="text-sky-400 hover:text-sky-300">fal.ai/seedance-2.0</a></div></li>
+          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">2</span><div>Haz clic en "Sign up" — usa Google o email.</div></li>
+          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">3</span><div>Confirma el email. Recibes algunos dólares en créditos gratis automáticamente.</div></li>
+          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">4</span><div>Listo. Ya puedes generar videos en el playground.</div></li>
         </ol>
       </div>
 
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-primary mb-3">💡 Quanto custa cada vídeo</h3>
-        <p class="text-neutral-300 text-sm">Ordem de grandeza: centavos de dólar por render de 5-10 segundos no modo padrão. O modo "Fast" é ainda mais barato mas com qualidade ligeiramente menor. Os créditos iniciais normalmente dão para 20-30 renders.</p>
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Cuánto cuesta cada video</h3>
+        <p class="text-neutral-300 text-sm">Orden de magnitud: centavos de dólar por render de 5-10 segundos en modo estándar. El modo "Fast" es aún más barato pero con calidad ligeramente menor. Los créditos iniciales normalmente alcanzan para 20-30 renders.</p>
       </div>
 
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
         <h4 class="font-semibold text-neutral-100 mb-3">Alternativa: Dreamina</h4>
-        <p class="text-sm text-neutral-300 mb-2">Dreamina (<a href="https://dreamina.jianying.com" target="_blank" class="text-sky-400">dreamina.jianying.com</a>) é a interface oficial da ByteDance. Tem qualidade ligeiramente maior mas exige WeChat ou número de telefone chinês para se cadastrar — por isso fal.ai é o caminho mais fácil para quem está fora da China.</p>
+        <p class="text-sm text-neutral-300 mb-2">Dreamina (<a href="https://dreamina.jianying.com" target="_blank" class="text-sky-400">dreamina.jianying.com</a>) es la interfaz oficial de ByteDance. Tiene calidad ligeramente mayor pero exige WeChat o número de teléfono chino para registrarse — por eso fal.ai es el camino más fácil para quien está fuera de China.</p>
       </div>
     </section>
 
-    <!-- TÓPICO 2 -->
+    <!-- TEMA 2 -->
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
-        <h2 class="text-2xl font-bold">▶️ Usando o playground — colar, gerar, baixar</h2>
+        <h2 class="text-2xl font-bold">▶️ Usando el playground — pegar, generar, descargar</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">O playground é a interface visual mais simples. Nada de código. Cole o prompt, escolha resolução e duração, clique em "Run" e espere ~30 segundos.</p>
+      <p class="text-neutral-300 mb-6 leading-relaxed">El playground es la interfaz visual más simple. Nada de código. Pega el prompt, elige resolución y duración, haz clic en "Run" y espera ~30 segundos.</p>
 
       <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Fluxo completo</h3>
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Flujo completo</h3>
         <ol class="space-y-3 text-neutral-300">
-          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">1</span><div><strong class="text-emerald-400">Cole o prompt no campo de texto</strong> — use a versão em inglês que você preparou no módulo 1.3.</div></li>
-          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">2</span><div><strong class="text-emerald-400">Escolha a resolução</strong> — 720p é o padrão, suficiente para redes sociais. 1080p custa um pouco mais.</div></li>
-          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">3</span><div><strong class="text-emerald-400">Escolha a duração</strong> — 5 segundos ou 10 segundos. Comece com 5s para iterar mais rápido.</div></li>
-          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">4</span><div><strong class="text-emerald-400">Clique em "Run"</strong> — o vídeo começa a renderizar. Em ~30 segundos está pronto.</div></li>
-          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">5</span><div><strong class="text-emerald-400">Baixe o .mp4</strong> — clique no botão de download. O arquivo fica salvo no seu computador.</div></li>
+          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">1</span><div><strong class="text-emerald-400">Pega el prompt en el campo de texto</strong> — usa la versión en inglés que preparaste en el módulo 1.3.</div></li>
+          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">2</span><div><strong class="text-emerald-400">Elige la resolución</strong> — 720p es el estándar, suficiente para redes sociales. 1080p cuesta un poco más.</div></li>
+          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">3</span><div><strong class="text-emerald-400">Elige la duración</strong> — 5 segundos o 10 segundos. Empieza con 5s para iterar más rápido.</div></li>
+          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">4</span><div><strong class="text-emerald-400">Haz clic en "Run"</strong> — el video empieza a renderizar. En ~30 segundos está listo.</div></li>
+          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">5</span><div><strong class="text-emerald-400">Descarga el .mp4</strong> — haz clic en el botón de download. El archivo queda guardado en tu computadora.</div></li>
         </ol>
       </div>
 
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
         <h3 class="text-lg font-semibold text-primary mb-3">💡 Iterar rápido</h3>
-        <p class="text-neutral-300 text-sm">Gere o primeiro vídeo, olhe, identifique o maior problema, mude UMA coisa no prompt, gere de novo. Cinco iterações de 30 segundos valem mais do que uma iteração de 30 minutos pensando.</p>
+        <p class="text-neutral-300 text-sm">Genera el primer video, míralo, identifica el mayor problema, cambia UNA cosa en el prompt, genera de nuevo. Cinco iteraciones de 30 segundos valen más que una iteración de 30 minutos pensando.</p>
       </div>
     </section>
 
-    <!-- TÓPICO 3 -->
+    <!-- TEMA 3 -->
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
-        <h2 class="text-2xl font-bold">🚨 Erros comuns e como corrigir</h2>
+        <h2 class="text-2xl font-bold">🚨 Errores comunes y cómo corregirlos</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Quase todo erro tem uma linha de correção específica. Abaixo estão os 5 mais frequentes. Quando acontecer, adicione a linha correspondente ao seu prompt e rode de novo.</p>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Casi todo error tiene una línea de corrección específica. Abajo están los 5 más frecuentes. Cuando ocurra, agrega la línea correspondiente a tu prompt y ejecuta de nuevo.</p>
 
       <div class="space-y-4 mb-6">
         <div class="bg-dark-800 rounded-xl p-6 border border-dark-600">
-          <h4 class="font-semibold text-red-400 mb-2">❌ Problema: o personagem muda no meio do vídeo</h4>
-          <p class="text-sm text-neutral-300 mb-3">A face, a roupa ou o corpo ficam diferentes entre o começo e o fim.</p>
+          <h4 class="font-semibold text-red-400 mb-2">❌ Problema: el personaje cambia en medio del video</h4>
+          <p class="text-sm text-neutral-300 mb-3">La cara, la ropa o el cuerpo quedan diferentes entre el comienzo y el final.</p>
           <div class="bg-emerald-900/20 rounded-lg p-3 border border-emerald-500/30">
-            <p class="text-sm text-emerald-400 font-semibold mb-1">✓ Correção</p>
-            <p class="text-sm text-neutral-300">Adicione no <strong>início</strong> do prompt: <code class="text-emerald-400">same character throughout all shots</code>. Isso força consistência.</p>
+            <p class="text-sm text-emerald-400 font-semibold mb-1">✓ Corrección</p>
+            <p class="text-sm text-neutral-300">Agrega al <strong>inicio</strong> del prompt: <code class="text-emerald-400">same character throughout all shots</code>. Esto fuerza consistencia.</p>
           </div>
         </div>
 
         <div class="bg-dark-800 rounded-xl p-6 border border-dark-600">
-          <h4 class="font-semibold text-red-400 mb-2">❌ Problema: o vídeo está borrado ou com movimento estranho</h4>
-          <p class="text-sm text-neutral-300 mb-3">Tudo parece "mole", os contornos dos objetos não são nítidos.</p>
+          <h4 class="font-semibold text-red-400 mb-2">❌ Problema: el video está borroso o con movimiento extraño</h4>
+          <p class="text-sm text-neutral-300 mb-3">Todo parece "blando", los contornos de los objetos no son nítidos.</p>
           <div class="bg-emerald-900/20 rounded-lg p-3 border border-emerald-500/30">
-            <p class="text-sm text-emerald-400 font-semibold mb-1">✓ Correção</p>
-            <p class="text-sm text-neutral-300">Adicione <code class="text-emerald-400">cinematic sharp focus, 120fps slow-motion</code> em algum lugar do prompt.</p>
+            <p class="text-sm text-emerald-400 font-semibold mb-1">✓ Corrección</p>
+            <p class="text-sm text-neutral-300">Agrega <code class="text-emerald-400">cinematic sharp focus, 120fps slow-motion</code> en algún lugar del prompt.</p>
           </div>
         </div>
 
         <div class="bg-dark-800 rounded-xl p-6 border border-dark-600">
-          <h4 class="font-semibold text-red-400 mb-2">❌ Problema: as cores saem saturadas demais ou neon demais</h4>
-          <p class="text-sm text-neutral-300 mb-3">Especialmente comum com o estilo John Wick em cenas que não são urbanas.</p>
+          <h4 class="font-semibold text-red-400 mb-2">❌ Problema: los colores salen demasiado saturados o demasiado neón</h4>
+          <p class="text-sm text-neutral-300 mb-3">Especialmente común con el estilo John Wick en escenas que no son urbanas.</p>
           <div class="bg-emerald-900/20 rounded-lg p-3 border border-emerald-500/30">
-            <p class="text-sm text-emerald-400 font-semibold mb-1">✓ Correção</p>
-            <p class="text-sm text-neutral-300">Troque "hyper-saturated" por <code class="text-emerald-400">muted natural palette</code> ou adapte a cor para o cenário (verde bambu para kung fu, por exemplo).</p>
+            <p class="text-sm text-emerald-400 font-semibold mb-1">✓ Corrección</p>
+            <p class="text-sm text-neutral-300">Cambia "hyper-saturated" por <code class="text-emerald-400">muted natural palette</code> o adapta el color al escenario (verde bambú para kung fu, por ejemplo).</p>
           </div>
         </div>
 
         <div class="bg-dark-800 rounded-xl p-6 border border-dark-600">
-          <h4 class="font-semibold text-red-400 mb-2">❌ Problema: o vídeo saiu quadrado ou vertical quando eu queria cinematográfico</h4>
-          <p class="text-sm text-neutral-300 mb-3">Falta o "formato de cinema" esticado.</p>
+          <h4 class="font-semibold text-red-400 mb-2">❌ Problema: el video salió cuadrado o vertical cuando quería cinematográfico</h4>
+          <p class="text-sm text-neutral-300 mb-3">Falta el "formato de cine" estirado.</p>
           <div class="bg-emerald-900/20 rounded-lg p-3 border border-emerald-500/30">
-            <p class="text-sm text-emerald-400 font-semibold mb-1">✓ Correção</p>
-            <p class="text-sm text-neutral-300">Termine o prompt com <code class="text-emerald-400">anamorphic 2.39:1</code>. Também confira se escolheu aspect ratio 16:9 no playground.</p>
+            <p class="text-sm text-emerald-400 font-semibold mb-1">✓ Corrección</p>
+            <p class="text-sm text-neutral-300">Termina el prompt con <code class="text-emerald-400">anamorphic 2.39:1</code>. También verifica que elegiste aspect ratio 16:9 en el playground.</p>
           </div>
         </div>
 
         <div class="bg-dark-800 rounded-xl p-6 border border-dark-600">
-          <h4 class="font-semibold text-red-400 mb-2">❌ Problema: o vídeo foi bloqueado pelo filtro de moderação</h4>
-          <p class="text-sm text-neutral-300 mb-3">Normalmente cenas com violência, sangue ou faces de pessoas conhecidas.</p>
+          <h4 class="font-semibold text-red-400 mb-2">❌ Problema: el video fue bloqueado por el filtro de moderación</h4>
+          <p class="text-sm text-neutral-300 mb-3">Normalmente escenas con violencia, sangre o rostros de personas conocidas.</p>
           <div class="bg-emerald-900/20 rounded-lg p-3 border border-emerald-500/30">
-            <p class="text-sm text-emerald-400 font-semibold mb-1">✓ Correção</p>
-            <p class="text-sm text-neutral-300">Suavize o vocabulário. Troque "fighting" por "dodging" ou "dancing with swords". Evite palavras como "blood", "kill", "weapon". Use os presets Silent Hill Horror ou John Wick Action — o vocabulário deles foi feito para passar pelo filtro.</p>
+            <p class="text-sm text-emerald-400 font-semibold mb-1">✓ Corrección</p>
+            <p class="text-sm text-neutral-300">Suaviza el vocabulario. Cambia "fighting" por "dodging" o "dancing with swords". Evita palabras como "blood", "kill", "weapon". Usa los presets Silent Hill Horror o John Wick Action — su vocabulario fue hecho para pasar el filtro.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- TÓPICO 4 -->
+    <!-- TEMA 4 -->
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
-        <h2 class="text-2xl font-bold">✂️ Edição mínima — 5 minutos, 3 passos</h2>
+        <h2 class="text-2xl font-bold">✂️ Edición mínima — 5 minutos, 3 pasos</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">O vídeo bruto do Seedance normalmente precisa de três coisas para virar conteúdo postável: corte dos frames ruins do início/fim, música de fundo livre de direitos, e export no formato certo. CapCut ou iMovie (grátis) fazem tudo isso.</p>
+      <p class="text-neutral-300 mb-6 leading-relaxed">El video bruto de Seedance normalmente necesita tres cosas para convertirse en contenido publicable: corte de los frames malos del inicio/final, música de fondo libre de derechos, y exportación en el formato correcto. CapCut o iMovie (gratis) hacen todo eso.</p>
 
       <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Os 3 passos</h3>
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Los 3 pasos</h3>
         <ol class="space-y-3 text-neutral-300">
-          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">1</span><div><strong class="text-emerald-400">Trim:</strong> corte os primeiros 0.3-0.5s e os últimos 0.3-0.5s. Frequentemente esses frames têm artefatos de "começando" ou "terminando". O vídeo fica mais limpo.</div></li>
-          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">2</span><div><strong class="text-emerald-400">Música:</strong> adicione uma faixa da <a href="https://www.youtube.com/audiolibrary" target="_blank" class="text-sky-400">YouTube Audio Library</a> ou do <a href="https://pixabay.com/music/" target="_blank" class="text-sky-400">Pixabay</a>. Ambos são grátis para uso comercial. Tempo cinemático funciona bem.</div></li>
-          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">3</span><div><strong class="text-emerald-400">Export:</strong> escolha 9:16 vertical se for para Reels/TikTok/Shorts, 16:9 horizontal para YouTube. Exporte em MP4 H.264.</div></li>
+          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">1</span><div><strong class="text-emerald-400">Trim:</strong> corta los primeros 0.3-0.5s y los últimos 0.3-0.5s. Frecuentemente esos frames tienen artefactos de "comenzando" o "terminando". El video queda más limpio.</div></li>
+          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">2</span><div><strong class="text-emerald-400">Música:</strong> agrega una pista de <a href="https://www.youtube.com/audiolibrary" target="_blank" class="text-sky-400">YouTube Audio Library</a> o de <a href="https://pixabay.com/music/" target="_blank" class="text-sky-400">Pixabay</a>. Ambos son gratis para uso comercial. Tempo cinemático funciona bien.</div></li>
+          <li class="flex items-start space-x-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-bold flex items-center justify-center">3</span><div><strong class="text-emerald-400">Export:</strong> elige 9:16 vertical si es para Reels/TikTok/Shorts, 16:9 horizontal para YouTube. Exporta en MP4 H.264.</div></li>
         </ol>
       </div>
 
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-primary mb-3">💡 Aspect ratio: Seedance × redes sociais</h3>
-        <p class="text-neutral-300 text-sm">O Seedance renderiza em 16:9 horizontal ou 2.39:1 anamórfico por padrão. Para postar em redes verticais (Reels, TikTok), use o <strong>crop center</strong> no CapCut — recorta o meio do vídeo 16:9 e gera um 9:16. Você perde as laterais, mas mantém o centro onde fica o sujeito principal.</p>
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Aspect ratio: Seedance × redes sociales</h3>
+        <p class="text-neutral-300 text-sm">Seedance renderiza en 16:9 horizontal o 2.39:1 anamórfico por defecto. Para publicar en redes verticales (Reels, TikTok), usa el <strong>crop center</strong> en CapCut — recorta el medio del video 16:9 y genera un 9:16. Pierdes los laterales, pero mantienes el centro donde está el sujeto principal.</p>
       </div>
     </section>
 
-    <!-- TÓPICO 5 -->
+    <!-- TEMA 5 -->
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
-        <h2 class="text-2xl font-bold">🛡️ Publicando com ética</h2>
+        <h2 class="text-2xl font-bold">🛡️ Publicando con ética</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Conteúdo gerado por IA não precisa ser escondido — mas <strong class="text-emerald-400">precisa ser declarado</strong>. Começar já fazendo certo é mais fácil do que corrigir depois quando você tiver audiência.</p>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Contenido generado por IA no necesita ser escondido — pero <strong class="text-emerald-400">necesita ser declarado</strong>. Empezar haciendo lo correcto es más fácil que corregir después cuando tengas audiencia.</p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
-          <h4 class="font-bold text-emerald-400 mb-4">✓ O que FAZER</h4>
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Qué HACER</h4>
           <ul class="space-y-3 text-neutral-300 text-sm">
-            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Marcar o post com #IA ou #AIgenerated</span></li>
-            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Usar a tag nativa de IA em Instagram/TikTok quando pedida</span></li>
-            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Dizer na descrição "feito com Seedance 2.0"</span></li>
-            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Tratar face de pessoa real como algo que exige consentimento</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Marcar el post con #IA o #AIgenerated</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Usar la tag nativa de IA en Instagram/TikTok cuando sea solicitada</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Decir en la descripción "hecho con Seedance 2.0"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Tratar rostro de persona real como algo que exige consentimiento</span></li>
           </ul>
         </div>
         <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
-          <h4 class="font-bold text-red-400 mb-4">✗ O que NÃO fazer</h4>
+          <h4 class="font-bold text-red-400 mb-4">✗ Qué NO hacer</h4>
           <ul class="space-y-3 text-neutral-300 text-sm">
-            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Fingir que é foto/filme real de algo que não aconteceu</span></li>
-            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Usar face de pessoa real (pública ou privada) sem autorização</span></li>
-            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Colocar marcas/logos registradas no vídeo</span></li>
-            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Gerar desinformação ou conteúdo enganoso</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Fingir que es foto/película real de algo que no ocurrió</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Usar rostro de persona real (pública o privada) sin autorización</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Colocar marcas/logos registrados en el video</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Generar desinformación o contenido engañoso</span></li>
           </ul>
         </div>
       </div>
 
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-primary mb-3">💡 O teste da vovó</h3>
-        <p class="text-neutral-300 text-sm">Antes de postar, pergunte: "se minha avó visse isso achando que é real, ela se sentiria enganada?". Se a resposta for sim, adicione disclosure ou não poste. Simples e eficaz.</p>
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 La prueba de la abuela</h3>
+        <p class="text-neutral-300 text-sm">Antes de publicar, pregúntate: "si mi abuela viera esto creyendo que es real, ¿se sentiría engañada?". Si la respuesta es sí, agrega disclosure o no publiques. Simple y eficaz.</p>
       </div>
     </section>
 
     <section class="mb-12">
       <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
-        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🏆</span> Resumo do Módulo — e da Trilha 1</h2>
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🏆</span> Resumen del Módulo — y de la Ruta 1</h2>
         <div class="space-y-4 mb-8">
-          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">fal.ai é o caminho mais fácil</strong> <span class="text-neutral-400">— cadastro em 5 minutos, sem WeChat, créditos grátis iniciais.</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Iterar rápido &gt; pensar muito</strong> <span class="text-neutral-400">— 5 rodadas de 30s valem mais que 1 de 30min.</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Cada erro tem correção específica</strong> <span class="text-neutral-400">— personagem muda → "same character throughout all shots".</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">5 minutos de edição transformam o render</strong> <span class="text-neutral-400">— trim, música, export no formato certo.</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Disclosure não é opcional</strong> <span class="text-neutral-400">— #IA, consentimento para rostos reais, nada de enganar.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">fal.ai es el camino más fácil</strong> <span class="text-neutral-400">— registro en 5 minutos, sin WeChat, créditos gratis iniciales.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Iterar rápido &gt; pensar mucho</strong> <span class="text-neutral-400">— 5 rondas de 30s valen más que 1 de 30min.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Cada error tiene corrección específica</strong> <span class="text-neutral-400">— el personaje cambia → "same character throughout all shots".</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">5 minutos de edición transforman el render</strong> <span class="text-neutral-400">— trim, música, export en el formato correcto.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Disclosure no es opcional</strong> <span class="text-neutral-400">— #IA, consentimiento para rostros reales, nada de engañar.</span></div></div>
         </div>
         <div class="bg-dark-800/50 rounded-lg p-4 mb-6">
-          <h3 class="font-semibold text-emerald-400 mb-2">🏆 Projeto final da Trilha 1</h3>
-          <p class="text-neutral-300 text-sm mb-3">Agora é a hora de aplicar tudo. Escolha 3 dos 7 presets do módulo 1.3. Para cada um, gere 1 vídeo de 10 segundos postável. Aplique as correções quando aparecerem erros, edite mínimo (corte + música), e publique com disclosure #IA.</p>
-          <p class="text-xs text-neutral-400">Meta: 3 vídeos publicados em 2 horas. Se você chegar aqui, concluiu a Trilha 1.</p>
+          <h3 class="font-semibold text-emerald-400 mb-2">🏆 Proyecto final de la Ruta 1</h3>
+          <p class="text-neutral-300 text-sm mb-3">Ahora es la hora de aplicar todo. Elige 3 de los 7 presets del módulo 1.3. Para cada uno, genera 1 video de 10 segundos publicable. Aplica las correcciones cuando aparezcan errores, edita mínimo (corte + música), y publica con disclosure #IA.</p>
+          <p class="text-xs text-neutral-400">Meta: 3 videos publicados en 2 horas. Si llegas aquí, completaste la Ruta 1.</p>
         </div>
         <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
-          <h3 class="font-semibold text-amber-400 mb-2">Próxima trilha recomendada:</h3>
-          <p class="text-neutral-300 text-sm"><strong class="text-amber-400">Trilha 2 — Receitário Cinematográfico</strong>. Se você quer produtividade, dominar os 7 presets em profundidade e começar a fazer conteúdo para clientes.</p>
+          <h3 class="font-semibold text-amber-400 mb-2">Siguiente ruta recomendada:</h3>
+          <p class="text-neutral-300 text-sm"><strong class="text-amber-400">Ruta 2 — Recetario Cinematográfico</strong>. Si quieres productividad, dominar los 7 presets en profundidad y empezar a hacer contenido para clientes.</p>
         </div>
         <div class="flex flex-col sm:flex-row gap-4">
           <a href="modulo-1-3.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
-          <a href="../trilha2/index.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Ir para Trilha 2 →</a>
+          <a href="../trilha2/index.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Ir a la Ruta 2 →</a>
         </div>
       </div>
     </section>
 
-    <!-- GLOSSÁRIO -->
+    <!-- GLOSARIO -->
     <section class="mb-12">
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-8">
-        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📖</span> Glossário do módulo</h2>
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📖</span> Glosario del módulo</h2>
         <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
-          <div><dt class="text-emerald-400 font-semibold">fal.ai</dt><dd class="text-neutral-300">Plataforma aberta onde você roda o Seedance sem precisar de conta chinesa.</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">Dreamina</dt><dd class="text-neutral-300">Interface oficial da ByteDance para Seedance. Exige WeChat ou telefone chinês.</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">Playground</dt><dd class="text-neutral-300">Interface visual onde você cola o prompt, clica "Run" e espera o vídeo pronto.</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">Créditos iniciais</dt><dd class="text-neutral-300">Saldo grátis que a fal.ai dá ao cadastrar. Dá para ~20-30 renders de aprendizado.</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">Modo Fast</dt><dd class="text-neutral-300">Versão otimizada do Seedance com latência menor e custo 50% menor. Qualidade levemente inferior.</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">Identity drift</dt><dd class="text-neutral-300">Quando o personagem muda de aparência no meio do vídeo. Erro comum — corrigido com "same character throughout all shots".</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">Motion blur estranho</dt><dd class="text-neutral-300">Quando o vídeo sai "mole" sem contornos nítidos. Corrigido com "cinematic sharp focus".</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">Filtro de moderação</dt><dd class="text-neutral-300">Mecanismo que bloqueia violência, sangue, faces reais de pessoas famosas. Suavize vocabulário para passar.</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">CapCut</dt><dd class="text-neutral-300">Editor de vídeo grátis (mobile e desktop) da ByteDance. Ideal para cortes rápidos e publicação social.</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">iMovie</dt><dd class="text-neutral-300">Editor de vídeo grátis da Apple. Alternativa ao CapCut em Mac/iPhone.</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">Trim</dt><dd class="text-neutral-300">Cortar frames do início ou fim do vídeo. Remove artefatos de "começando/terminando".</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">fal.ai</dt><dd class="text-neutral-300">Plataforma abierta donde ejecutas Seedance sin necesitar cuenta china.</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">Dreamina</dt><dd class="text-neutral-300">Interfaz oficial de ByteDance para Seedance. Exige WeChat o teléfono chino.</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">Playground</dt><dd class="text-neutral-300">Interfaz visual donde pegas el prompt, haces clic en "Run" y esperas el video listo.</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">Créditos iniciales</dt><dd class="text-neutral-300">Saldo gratis que fal.ai da al registrarse. Alcanza para ~20-30 renders de aprendizaje.</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">Modo Fast</dt><dd class="text-neutral-300">Versión optimizada de Seedance con latencia menor y costo 50% menor. Calidad levemente inferior.</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">Identity drift</dt><dd class="text-neutral-300">Cuando el personaje cambia de apariencia en medio del video. Error común — corregido con "same character throughout all shots".</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">Motion blur extraño</dt><dd class="text-neutral-300">Cuando el video sale "blando" sin contornos nítidos. Corregido con "cinematic sharp focus".</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">Filtro de moderación</dt><dd class="text-neutral-300">Mecanismo que bloquea violencia, sangre, rostros reales de personas famosas. Suaviza vocabulario para pasar.</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">CapCut</dt><dd class="text-neutral-300">Editor de video gratis (móvil y desktop) de ByteDance. Ideal para cortes rápidos y publicación social.</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">iMovie</dt><dd class="text-neutral-300">Editor de video gratis de Apple. Alternativa al CapCut en Mac/iPhone.</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">Trim</dt><dd class="text-neutral-300">Cortar frames del inicio o final del video. Remueve artefactos de "comenzando/terminando".</dd></div>
           <div><dt class="text-emerald-400 font-semibold">9:16 vertical</dt><dd class="text-neutral-300">Formato vertical, para Reels, TikTok, Shorts.</dd></div>
           <div><dt class="text-emerald-400 font-semibold">16:9 horizontal</dt><dd class="text-neutral-300">Formato horizontal, para YouTube.</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">Crop center</dt><dd class="text-neutral-300">Recortar o meio de um vídeo horizontal para gerar vertical. Perde as laterais.</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">YouTube Audio Library</dt><dd class="text-neutral-300">Biblioteca grátis de música sem direitos autorais para usar em vídeos.</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">Pixabay Music</dt><dd class="text-neutral-300">Outra biblioteca grátis de música, permite uso comercial sem atribuição.</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">#IA / #AIgenerated</dt><dd class="text-neutral-300">Hashtags de disclosure que indicam que o conteúdo foi gerado por IA.</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">Disclosure</dt><dd class="text-neutral-300">Declaração aberta de que o conteúdo é IA. Exigido por algumas plataformas, boa prática sempre.</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">Consentimento de imagem</dt><dd class="text-neutral-300">Autorização que você precisa ter para usar face de pessoa real em conteúdo gerado.</dd></div>
-          <div><dt class="text-emerald-400 font-semibold">Teste da vovó</dt><dd class="text-neutral-300">Regra ética: se sua avó visse o vídeo achando que é real, ela se sentiria enganada?</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">Crop center</dt><dd class="text-neutral-300">Recortar el medio de un video horizontal para generar vertical. Pierde los laterales.</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">YouTube Audio Library</dt><dd class="text-neutral-300">Biblioteca gratis de música sin derechos de autor para usar en videos.</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">Pixabay Music</dt><dd class="text-neutral-300">Otra biblioteca gratis de música, permite uso comercial sin atribución.</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">#IA / #AIgenerated</dt><dd class="text-neutral-300">Hashtags de disclosure que indican que el contenido fue generado por IA.</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">Disclosure</dt><dd class="text-neutral-300">Declaración abierta de que el contenido es IA. Exigido por algunas plataformas, buena práctica siempre.</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">Consentimiento de imagen</dt><dd class="text-neutral-300">Autorización que necesitas tener para usar rostro de persona real en contenido generado.</dd></div>
+          <div><dt class="text-emerald-400 font-semibold">Prueba de la abuela</dt><dd class="text-neutral-300">Regla ética: si tu abuela viera el video creyendo que es real, ¿se sentiría engañada?</dd></div>
         </dl>
       </div>
     </section>

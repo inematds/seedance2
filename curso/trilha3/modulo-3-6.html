@@ -1,34 +1,34 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="es" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Módulo 3.6 — Produção em escala | Seedance 2.0 Mastery</title>
+  <title>Módulo 3.6 — Producción a escala | Seedance 2.0 Mastery</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }</script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; } .dark body { background-color: #111827; }
-    html:not(.dark) body { background-color: #f8fafc; }
-    html:not(.dark) .bg-dark-900 { background-color: #ffffff; } html:not(.dark) .bg-dark-800 { background-color: #f9fafb; } html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; } html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    body { font-family: 'Inter', sans-serif; } .dark body { backgrond-color: #111827; }
+    html:not(.dark) body { backgrond-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { backgrond-color: #ffffff; } html:not(.dark) .bg-dark-800 { backgrond-color: #f9fafb; } html:not(.dark) .bg-dark-700 { backgrond-color: #f3f4f6; } html:not(.dark) .bg-dark-600 { backgrond-color: #e5e7eb; }
     html:not(.dark) .text-neutral-100 { color: #111827; } html:not(.dark) .text-neutral-300 { color: #4b5563; } html:not(.dark) .text-neutral-400 { color: #6b7280; } html:not(.dark) .text-neutral-500 { color: #9ca3af; }
     html:not(.dark) .border-dark-600 { border-color: #d1d5db; } html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
-    html:not(.dark) .text-blue-400 { color: #2563eb; } html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); } html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); } html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); } html:not(.dark) .bg-blue-600 { background-color: #2563eb; }
-    html:not(.dark) .hover\:bg-blue-500:hover { background-color: #3b82f6; } html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); } html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
-    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
-    html:not(.dark) .text-primary { color: #a16207; } html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); } html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; } html:not(.dark) .bg-blue-500\/20 { backgrond-color: rgba(37, 99, 235, 0.12); } html:not(.dark) .bg-blue-500\/10 { backgrond-color: rgba(37, 99, 235, 0.08); } html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); } html:not(.dark) .bg-blue-600 { backgrond-color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500:hover { backgrond-color: #3b82f6; } html:not(.dark) .hover\:bg-blue-500\/10:hover { backgrond-color: rgba(37, 99, 235, 0.08); } html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) [class*="bg-gradient-to"] { backgrond-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; } html:not(.dark) .bg-primary\/10 { backgrond-color: rgba(161, 98, 7, 0.08); } html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
     html:not(.dark) .text-sky-400 { color: #0369a1; } html:not(.dark) .text-yellow-400 { color: #a16207; } html:not(.dark) .text-red-400 { color: #b91c1c; }
-    html:not(.dark) .bg-red-500\/20 { background-color: rgba(185, 28, 28, 0.12); } html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
-    /* Cross-trilha overrides (nav hover) */
+    html:not(.dark) .bg-red-500\/20 { backgrond-color: rgba(185, 28, 28, 0.12); } html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    /* Cross-ruta overrides (nav hover) */
     html:not(.dark) .text-emerald-400 { color: #059669; }
-    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
-    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .bg-emerald-500\/10 { backgrond-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { backgrond-color: rgba(5, 150, 105, 0.08); }
     html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
     html:not(.dark) .text-amber-400 { color: #92400e; }
-    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217, 119, 6, 0.08); }
-    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .bg-amber-500\/10 { backgrond-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { backgrond-color: rgba(217, 119, 6, 0.08); }
     html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
-    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+    html:not(.dark) .bg-dark-900\/95 { backgrond-color: rgba(255, 255, 255, 0.95); }
   </style>
 </head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
@@ -42,10 +42,10 @@
           <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
         </div>
         <div class="flex items-center space-x-1 sm:space-x-2">
-          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Leigo</span></a>
-          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Prompt-Ready</span></a>
-          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Profissional</span></a>
-          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 ronded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Principiante</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 ronded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Prompt-Ready</span></a>
+          <a href="index.html" class="px-3 py-1.5 ronded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Profesional</span></a>
+          <button id="theme-toggle" class="p-2 ronded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
             <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
             <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
           </button>
@@ -54,13 +54,13 @@
     </div>
   </nav>
 
-  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-blue-400">Início</a><span>/</span><a href="index.html" class="hover:text-blue-400">Trilha 3</a><span>/</span><span class="text-blue-400">Módulo 3.6</span></div></nav>
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-blue-400">Inicio</a><span>/</span><a href="index.html" class="hover:text-blue-400">Ruta 3</a><span>/</span><span class="text-blue-400">Módulo 3.6</span></div></nav>
 
   <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.6 · FINAL</span>
-      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🏭 Produção em escala e pipeline comercial</h1>
-      <p class="text-lg text-neutral-400 max-w-3xl">Integração com editores profissionais, batch generation, custos comparativos, vendas para clientes, compliance, red-team do output.</p>
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold ronded-full mb-4">MÓDULO 3.6 · FINAL</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🏭 Producción a escala y pipeline comercial</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Integración con editores profesionales, batch generation, costos comparativos, ventas para clientes, compliance, red-team del otput.</p>
     </div>
   </header>
 
@@ -68,47 +68,47 @@
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
-        <h2 class="text-2xl font-bold">🎬 Integração DaVinci / Premiere / After Effects</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🎬 Integración DaVinci / Premiere / After Effects</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Seedance gera b-roll cinematográfico. Raramente o output sai "final". O pipeline real é <strong class="text-blue-400">híbrido</strong>: IA gera o core, edição tradicional faz o acabamento.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
+      <p class="text-neutral-300 mb-6 leading-relaxed">Seedance genera b-roll cinematográfico. Raramente el otput sale "final". El pipeline real es <strong class="text-blue-400">híbrido</strong>: IA genera el core, edición tradicional hace el acabado.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
         <h3 class="text-lg font-semibold text-blue-400 mb-3">Pipeline típico</h3>
-        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">Ideia → Prompt (clone T3.4) → Render (fal.ai 10s)
+        <div class="bg-dark-900 ronded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">Ideia → Prompt (clone T3.4) → Render (fal.ai 10s)
      ↓
 Upscale 4K (Topaz Video AI)
      ↓
 Edit final (DaVinci Resolve)
   - Color grading
   - Cortes finos
-  - Ajustes de exposição
+  - Ajustes de exposición
      ↓
 Finishing (After Effects)
   - Textos overlay
   - Logos / marcas
-  - Transições
+  - Transiciones
   - Compositing
      ↓
-Export final (ProRes ou H.264)</div>
+Export final (ProRes o H.264)</div>
       </div>
-      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
-        <h4 class="font-semibold text-primary mb-2">💡 Onde cada ferramenta brilha</h4>
-        <p class="text-sm text-neutral-300"><strong class="text-blue-400">DaVinci Resolve:</strong> color grading sem rival (grátis) · <strong class="text-blue-400">Premiere:</strong> corte narrativo rápido · <strong class="text-blue-400">After Effects:</strong> sobreposições, textos animados, compositing com mascaras. Use cada uma para o que ela faz melhor.</p>
+      <div class="bg-primary/10 ronded-xl border border-primary/40 p-5">
+        <h4 class="font-semibold text-primary mb-2">💡 Donde cada herramienta brilla</h4>
+        <p class="text-sm text-neutral-300"><strong class="text-blue-400">DaVinci Resolve:</strong> color grading sin rival (gratis) · <strong class="text-blue-400">Premiere:</strong> corte narrativo rápido · <strong class="text-blue-400">After Effects:</strong> superposiciones, textos animados, compositing con máscaras. Usa cada una para lo que hace mejor.</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
-        <h2 class="text-2xl font-bold">⚙️ Batch generation e controle de qualidade</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">⚙️ Batch generation y control de calidad</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Para entrega de "10 opções ao cliente" você precisa gerar 50 variantes e filtrar. Manual = 1h por opção. Automatizado = 50 em 10 minutos com ranking automático.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
+      <p class="text-neutral-300 mb-6 leading-relaxed">Para entrega de "10 opciones al cliente" necesitas generar 50 variantes y filtrar. Manual = 1h por opción. Automatizado = 50 en 10 minutos con ranking automático.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
         <h3 class="text-lg font-semibold text-blue-400 mb-3">Script pseudocódigo</h3>
-        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">async function generateBatch(scene, count = 50) {
-  // Gerar 50 variantes em paralelo
+        <div class="bg-dark-900 ronded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">async function generateBatch(scene, cont = 50) {
+  // Generar 50 variantes en paralelo
   const variants = await Promise.all(
-    Array(count).fill(0).map(() =>
+    Array(cont).fill(0).map(() =>
       falAi.run("seedance-2", {
         prompt: variatePrompt(scene),
         seed: Math.random(),
@@ -116,7 +116,7 @@ Export final (ProRes ou H.264)</div>
     )
   );
 
-  // Rankear usando CLIP contra imagem de referência
+  // Rankear usando CLIP contra imagen de referencia
   const ranked = await Promise.all(
     variants.map(async v => ({
       video: v.url,
@@ -130,23 +130,23 @@ Export final (ProRes ou H.264)</div>
     .slice(0, 5);
 }</div>
       </div>
-      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
+      <div class="bg-primary/10 ronded-xl border border-primary/40 p-5">
         <h4 class="font-semibold text-primary mb-2">💡 CLIP score</h4>
-        <p class="text-sm text-neutral-300">OpenAI CLIP pontua similaridade entre imagem e texto/imagem de referência. É a forma mais barata de rankear outputs visuais automaticamente sem revisão humana. Alternativas: BLIP-2, SigLIP.</p>
+        <p class="text-sm text-neutral-300">OpenAI CLIP puntúa similaridad entre imagen y texto/imagen de referencia. Es la forma más barata de rankear otputs visuales automáticamente sin revisión humana. Alternativas: BLIP-2, SigLIP.</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
-        <h2 class="text-2xl font-bold">💰 Custos comparativos por segundo de vídeo final</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">💰 Costos comparativos por segundo de video final</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">"Custo por render" ≠ "custo por vídeo aprovado". A conta real inclui taxa de rejeição: se você precisa gerar 5 para usar 1, o custo efetivo é 5x.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
+      <p class="text-neutral-300 mb-6 leading-relaxed">"Costo por render" ≠ "costo por video aprobado". La cuenta real incluye tasa de rechazo: si necesitas generar 5 para usar 1, el costo efectivo es 5x.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
         <div class="overflow-x-auto">
           <table class="w-full text-xs text-left">
             <thead class="text-blue-400 border-b border-dark-600">
-              <tr><th class="p-2">Plataforma</th><th class="p-2">Custo/render</th><th class="p-2">Taxa rejeição</th><th class="p-2">Custo efetivo/vídeo</th></tr>
+              <tr><th class="p-2">Plataforma</th><th class="p-2">Costo/render</th><th class="p-2">Tasa rechazo</th><th class="p-2">Costo efectivo/video</th></tr>
             </thead>
             <tbody class="text-neutral-300">
               <tr class="border-b border-dark-700"><td class="p-2">fal.ai Seedance 2.0</td><td class="p-2">~$0.15</td><td class="p-2">~20%</td><td class="p-2 text-blue-400">~$0.19</td></tr>
@@ -158,146 +158,146 @@ Export final (ProRes ou H.264)</div>
           </table>
         </div>
       </div>
-      <p class="text-xs text-neutral-500">Números aproximados para abril/2026. Valores exatos mudam com frequência. Reavalie mensalmente se volume é alto.</p>
+      <p class="text-xs text-neutral-500">Números aproximados para abril/2026. Valores exactos cambian con frecuencia. Reevalúa mensualmente si el volumen es alto.</p>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
-        <h2 class="text-2xl font-bold">🤝 Vendendo vídeo-IA para clientes</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🤝 Vendiendo video-IA a clientes</h2>
       </div>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Estrutura de venda</h3>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Estructura de venta</h3>
         <ol class="text-sm text-neutral-300 space-y-2">
-          <li><strong class="text-blue-400">1. Briefing em 4 perguntas:</strong> quem é o sujeito · para quem é · qual é o clima · qual referência visual o cliente tem na cabeça.</li>
-          <li><strong class="text-blue-400">2. Cotação por pacote:</strong> 5 vídeos / 15 vídeos / campanha completa. Preços fechados em 3 tiers.</li>
-          <li><strong class="text-blue-400">3. Entrega em 48h</strong> com 2 rodadas de revisão inclusas.</li>
-          <li><strong class="text-blue-400">4. Revisões extras cobradas à parte.</strong> Define expectativa.</li>
+          <li><strong class="text-blue-400">1. Briefing en 4 preguntas:</strong> quién es el sujeto · para quién es · cuál es el clima · qué referencia visual tiene el cliente en mente.</li>
+          <li><strong class="text-blue-400">2. Cotización por paquete:</strong> 5 videos / 15 videos / campaña completa. Precios cerrados en 3 tiers.</li>
+          <li><strong class="text-blue-400">3. Entrega en 48h</strong> con 2 rondas de revisión incluidas.</li>
+          <li><strong class="text-blue-400">4. Revisiones extras cobradas aparte.</strong> Define expectativa.</li>
         </ol>
       </div>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Precificação</h3>
-        <p class="text-sm text-neutral-300 mb-3">Precificar só pelo custo de API = race to the bottom. Precificar como serviço criativo = sustentável.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Precios</h3>
+        <p class="text-sm text-neutral-300 mb-3">Preciar solo por el costo de API = race to the bottom. Preciar como servicio creativo = sostenible.</p>
         <ul class="text-sm text-neutral-300 space-y-1">
-          <li>• <strong class="text-blue-400">Custo direto:</strong> ~$0.20-0.30 por vídeo utilizável</li>
-          <li>• <strong class="text-blue-400">Preço sugerido (pequeno projeto):</strong> $50-150 por vídeo de 10s</li>
-          <li>• <strong class="text-blue-400">Markup:</strong> 200-500x o custo de API</li>
-          <li>• <strong class="text-blue-400">O que justifica:</strong> curadoria + ofício + opinião formada + pós-produção + compliance</li>
+          <li>• <strong class="text-blue-400">Costo directo:</strong> ~$0.20-0.30 por video utilizable</li>
+          <li>• <strong class="text-blue-400">Precio sugerido (proyecto pequeño):</strong> $50-150 por video de 10s</li>
+          <li>• <strong class="text-blue-400">Markup:</strong> 200-500x el costo de API</li>
+          <li>• <strong class="text-blue-400">Lo que justifica:</strong> curaduría + oficio + opinión formada + posproducción + compliance</li>
         </ul>
       </div>
-      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
-        <h4 class="font-semibold text-primary mb-2">💡 O cliente paga pelo ofício, não pela API</h4>
-        <p class="text-sm text-neutral-300">Você é consultor criativo, não revendedor de API. O que você vende é "saber escolher preset, saber iterar prompt, saber fazer pipeline híbrido, saber auditar output". Qualquer um pode abrir conta na fal.ai — poucos sabem usar bem.</p>
+      <div class="bg-primary/10 ronded-xl border border-primary/40 p-5">
+        <h4 class="font-semibold text-primary mb-2">💡 El cliente paga por el oficio, no por la API</h4>
+        <p class="text-sm text-neutral-300">Eres consultor creativo, no revendedor de API. Lo que vendes es "saber elegir preset, saber iterar prompt, saber hacer pipeline híbrido, saber auditar otput". Cualquiera puede abrir cuenta en fal.ai — pocos saben usar bien.</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
-        <h2 class="text-2xl font-bold">⚖️ Compliance — imagem, deepfake, marcas</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">⚖️ Compliance — imagen, deepfake, marcas</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Processo por direito de imagem é o maior risco comercial de vídeo-IA. Saber os limites evita o problema antes dele existir.</p>
-      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-4">
+      <p class="text-neutral-300 mb-6 leading-relaxed">Demanda por derecho de imagen es el mayor riesgo comercial de video-IA. Conocer los límites evita el problema antes de que exista.</p>
+      <div class="bg-red-900/20 ronded-xl border border-red-500/30 p-6 mb-4">
         <h3 class="text-lg font-semibold text-red-400 mb-3">Red flags a evitar</h3>
         <ul class="text-sm text-neutral-300 space-y-2">
-          <li>• <strong class="text-red-400">Face real sem consentimento:</strong> violação de direito de imagem. LGPD (Brasil) e GDPR (UE) tratam face como dado sensível.</li>
-          <li>• <strong class="text-red-400">Marcas registradas visíveis:</strong> logos, produtos icônicos podem gerar processo de uso indevido.</li>
-          <li>• <strong class="text-red-400">Pessoas públicas em contextos enganosos:</strong> o que pode parecer deepfake difamatório.</li>
-          <li>• <strong class="text-red-400">Desinformação:</strong> gerar vídeos que "parecem real" com intenção de enganar.</li>
-          <li>• <strong class="text-red-400">Conteúdo político sensível:</strong> especialmente em contexto eleitoral.</li>
+          <li>• <strong class="text-red-400">Rostro real sin consentimiento:</strong> violación de derecho de imagen. LGPD (Brasil) y GDPR (UE) tratan rostro como dato sensible.</li>
+          <li>• <strong class="text-red-400">Marcas registradas visibles:</strong> logos, productos icónicos pueden generar demanda de uso indebido.</li>
+          <li>• <strong class="text-red-400">Personas públicas en contextos engañosos:</strong> lo que puede parecer deepfake difamatorio.</li>
+          <li>• <strong class="text-red-400">Desinformación:</strong> generar videos que "parecen reales" con intención de engañar.</li>
+          <li>• <strong class="text-red-400">Contenido político sensible:</strong> especialmente en contexto electoral.</li>
         </ul>
       </div>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Boas práticas</h3>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Buenas prácticas</h3>
         <ul class="text-sm text-neutral-300 space-y-2">
-          <li>• <strong class="text-blue-400">Release assinado</strong> para qualquer face real usada como referência.</li>
-          <li>• <strong class="text-blue-400">Disclosure #IA</strong> em todo vídeo publicado (e na plataforma de destino quando exigido).</li>
-          <li>• <strong class="text-blue-400">Contrato comercial</strong> transfere responsabilidade para o cliente quando ele provê referências.</li>
-          <li>• <strong class="text-blue-400">Evitar sósias acidentais</strong> — se o modelo gerou alguém que se parece com ator conhecido, descarte.</li>
-          <li>• <strong class="text-blue-400">Documentar origem</strong> — mantenha o prompt usado para cada vídeo por 5 anos (defesa legal).</li>
+          <li>• <strong class="text-blue-400">Release firmado</strong> para cualquier rostro real usado como referencia.</li>
+          <li>• <strong class="text-blue-400">Disclosure #IA</strong> en todo video publicado (y en la plataforma de destino cuando sea exigido).</li>
+          <li>• <strong class="text-blue-400">Contrato comercial</strong> transfiere responsabilidad al cliente cuando provee referencias.</li>
+          <li>• <strong class="text-blue-400">Evitar dobles accidentales</strong> — si el modelo generó a alguien que se parece a actor conocido, descarta.</li>
+          <li>• <strong class="text-blue-400">Documentar origen</strong> — mantén el prompt usado para cada video por 5 años (defensa legal).</li>
         </ul>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
-        <h2 class="text-2xl font-bold">🔍 Red-team do output — checklist pré-entrega</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🔍 Red-team del output — checklist pre-entrega</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Cliente lembra do pior vídeo. Auditoria rápida de 2 minutos por vídeo antes de enviar é o que separa agência profissional de freelancer caótico.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Checklist de auditoria</h3>
+      <p class="text-neutral-300 mb-6 leading-relaxed">El cliente recuerda el peor video. Auditoría rápida de 2 minutos por video antes de enviar es lo que separa agencia profesional de freelancer caótico.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Checklist de auditoría</h3>
         <ul class="text-sm text-neutral-300 space-y-2">
-          <li>• <strong class="text-blue-400">Identity drift:</strong> o personagem é o mesmo do começo ao fim?</li>
-          <li>• <strong class="text-blue-400">Frame corrupt:</strong> há blur estranho, artefato, ghosting, glitch visual?</li>
-          <li>• <strong class="text-blue-400">Unintended content:</strong> há texto estranho na cena, marca no fundo, gestos obscenos, número estranho de dedos?</li>
-          <li>• <strong class="text-blue-400">Aspect ratio:</strong> bateu com o pedido (16:9 horizontal, 9:16 vertical, 2.39:1 cinema)?</li>
-          <li>• <strong class="text-blue-400">Duração:</strong> tem exatamente o que o cliente pediu? O fim não foi cortado?</li>
-          <li>• <strong class="text-blue-400">Áudio:</strong> na v2.0 com áudio nativo — o som gerado é apropriado? Tem palavras estranhas inventadas?</li>
-          <li>• <strong class="text-blue-400">Face checks:</strong> nenhuma face acidentalmente parecida com pessoa real famosa?</li>
-          <li>• <strong class="text-blue-400">Compliance:</strong> não tem marca registrada visível acidentalmente?</li>
+          <li>• <strong class="text-blue-400">Identity drift:</strong> el personaje es el mismo del comienzo al fin?</li>
+          <li>• <strong class="text-blue-400">Frame corrupt:</strong> ¿hay blur extraño, artefacto, ghosting, glitch visual?</li>
+          <li>• <strong class="text-blue-400">Unintended content:</strong> ¿hay texto extraño en la escena, marca en el fondo, gestos obscenos, número extraño de dedos?</li>
+          <li>• <strong class="text-blue-400">Aspect ratio:</strong> ¿coincide con el pedido (16:9 horizontal, 9:16 vertical, 2.39:1 cinema)?</li>
+          <li>• <strong class="text-blue-400">Duración:</strong> ¿tiene exactamente lo que el cliente pidió? ¿El final no fue cortado?</li>
+          <li>• <strong class="text-blue-400">Audio:</strong> en v2.0 con audio nativo — ¿el sonido generado es apropiado? ¿Tiene palabras extrañas inventadas?</li>
+          <li>• <strong class="text-blue-400">Face checks:</strong> ¿ningún rostro accidentalmente parecido a persona real famosa?</li>
+          <li>• <strong class="text-blue-400">Compliance:</strong> ¿no tiene marca registrada visible accidentalmente?</li>
         </ul>
       </div>
-      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
-        <h4 class="font-semibold text-primary mb-2">💡 Como implementar</h4>
-        <p class="text-sm text-neutral-300">Uma planilha simples. Uma linha por vídeo entregue. Uma coluna por item do checklist. Preenche antes de enviar. Se algo falha, regera ou descarta. Custo: 2 minutos por vídeo. Benefício: cliente nunca recebe surpresa ruim.</p>
+      <div class="bg-primary/10 ronded-xl border border-primary/40 p-5">
+        <h4 class="font-semibold text-primary mb-2">💡 Cómo implementar</h4>
+        <p class="text-sm text-neutral-300">Una hoja de cálculo simple. Una línea por video entregado. Una columna por ítem del checklist. Llena antes de enviar. Si algo falla, regenera o descarta. Costo: 2 minutos por video. Beneficio: cliente nunca recibe sorpresa mala.</p>
       </div>
     </section>
 
     <section class="mb-12">
-      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
-        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🏆</span> Resumo do Módulo — e da Trilha 3 — e do Curso inteiro</h2>
+      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 ronded-xl border border-blue-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🏆</span> Resumen del Módulo — y de la Ruta 3 — y del Curso entero</h2>
         <div class="space-y-3 mb-8 text-sm">
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Pipeline é sempre híbrido</strong> — IA + DaVinci + After Effects.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Batch com ranking automático</strong> — 50 variantes em 10min.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Taxa de rejeição é metade do custo real</strong> — reavaliar mensalmente.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Vender como consultoria, não revenda de API</strong> — markup 200-500x.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Compliance não é opcional</strong> — release, disclosure, contrato.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Auditoria de 2 min antes de enviar</strong> — separa pro de amador.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Pipeline es siempre híbrido</strong> — IA + DaVinci + After Effects.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Batch con ranking automático</strong> — 50 variantes en 10min.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Tasa de rechazo es la mitad del costo real</strong> — reevaluar mensualmente.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Vender como consultoría, no reventa de API</strong> — markup 200-500x.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Compliance no es opcional</strong> — release, disclosure, contrato.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Auditoría de 2 min antes de enviar</strong> — separa pro de amateur.</div></div>
         </div>
-        <div class="bg-dark-800/50 rounded-lg p-4 mb-6">
-          <h3 class="font-semibold text-blue-400 mb-2">🏆 Projeto final da Trilha 3</h3>
-          <p class="text-neutral-300 text-sm">Entregue um micro-SaaS funcional derivado do clone: seu próprio nicho, taxonomia autoral de 5-7 presets, 30 gerações validadas, README com arquitetura e custo. Deploy no Netlify.</p>
+        <div class="bg-dark-800/50 ronded-lg p-4 mb-6">
+          <h3 class="font-semibold text-blue-400 mb-2">🏆 Proyecto final de la Ruta 3</h3>
+          <p class="text-neutral-300 text-sm">Entrega un micro-SaaS funcional derivado del clon: tu propio nicho, taxonomía autoral de 5-7 presets, 30 generaciones validadas, README con arquitectura y costo. Deploy en Netlify.</p>
         </div>
-        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
-          <h3 class="font-semibold text-primary mb-2">🎓 Você terminou o curso</h3>
-          <p class="text-neutral-300 text-sm">Se você chegou aqui tendo passado pelas 3 trilhas, você tem agora: (1) intuição leiga de prompts bem escritos · (2) domínio de 7 presets canônicos para produção · (3) entendimento arquitetural da engenharia reversa + clone próprio derivado para nicho específico. É o pacote completo.</p>
+        <div class="bg-dark-800/50 ronded-lg p-4 mb-8">
+          <h3 class="font-semibold text-primary mb-2">🎓 Has terminado el curso</h3>
+          <p class="text-neutral-300 text-sm">Si has llegado aquí habiendo pasado por las 3 rutas, ahora tienes: (1) intuición de prompts bien escritos · (2) dominio de 7 presets canónicos para producción · (3) entendimiento arquitectónico de la ingeniería inversa + clon propio derivado para nicho específico. Es el paquete completo.</p>
         </div>
         <div class="flex flex-col sm:flex-row gap-4">
-          <a href="modulo-3-5.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
-          <a href="modulo-3-7.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo Módulo →</a>
+          <a href="modulo-3-5.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 ronded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
+          <a href="modulo-3-7.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white ronded-lg font-semibold hover:bg-blue-500 transition-colors">Siguiente Módulo →</a>
         </div>
       </div>
     </section>
 
     <!-- GLOSSÁRIO -->
     <section class="mb-12">
-      <div class="bg-dark-800 rounded-xl border border-dark-600 p-8">
-        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📖</span> Glossário do módulo</h2>
+      <div class="bg-dark-800 ronded-xl border border-dark-600 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📖</span> Glosario del módulo</h2>
         <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
-          <div><dt class="text-blue-400 font-semibold">Pipeline híbrido</dt><dd class="text-neutral-300">Fluxo que combina geração por IA com edição tradicional (DaVinci, Premiere, After Effects).</dd></div>
-          <div><dt class="text-blue-400 font-semibold">B-roll</dt><dd class="text-neutral-300">Imagens/vídeos complementares à narrativa principal. IA de vídeo é excelente fonte de b-roll.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">DaVinci Resolve</dt><dd class="text-neutral-300">Software profissional de edição e color grading. Versão gratuita cobre ~95% dos casos.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Premiere Pro</dt><dd class="text-neutral-300">Editor da Adobe, padrão da indústria. Forte em corte narrativo rápido.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">After Effects</dt><dd class="text-neutral-300">Software da Adobe para motion graphics, compositing, textos animados e efeitos.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Color grading</dt><dd class="text-neutral-300">Ajuste de cores, exposição e contraste para dar identidade visual ao vídeo.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Compositing</dt><dd class="text-neutral-300">Sobrepor múltiplos elementos (textos, logos, efeitos, mascaras) em um único frame.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Topaz Video AI</dt><dd class="text-neutral-300">Software pago de upscaling de vídeo via IA. Ideal para transformar 720p em 4K.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Upscaling</dt><dd class="text-neutral-300">Aumento de resolução usando IA. Melhora qualidade visual sem regerar do zero.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Batch generation</dt><dd class="text-neutral-300">Gerar múltiplas variantes em paralelo a partir de um prompt base.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">CLIP score</dt><dd class="text-neutral-300">Métrica de similaridade entre imagem e texto/imagem usando modelo CLIP da OpenAI.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Ranking automático</dt><dd class="text-neutral-300">Ordenar outputs por qualidade sem revisão humana, usando CLIP ou similar.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Quality gate</dt><dd class="text-neutral-300">Ponto de verificação que um output precisa passar antes de seguir adiante no pipeline.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Taxa de rejeição</dt><dd class="text-neutral-300">Percentual de renders inutilizáveis que precisam ser regerados. Varia por nicho.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Custo efetivo por vídeo</dt><dd class="text-neutral-300">Custo direto × (1 + taxa de rejeição). O que importa para precificação real.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Markup comercial</dt><dd class="text-neutral-300">Razão entre preço cobrado e custo direto. Em vídeo-IA de serviço, 200-500x é típico.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Release de imagem</dt><dd class="text-neutral-300">Documento assinado pela pessoa autorizando uso da sua face/voz em material gerado.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">LGPD (Brasil)</dt><dd class="text-neutral-300">Lei Geral de Proteção de Dados. Trata face humana como dado sensível.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">GDPR (UE)</dt><dd class="text-neutral-300">General Data Protection Regulation, equivalente europeu da LGPD.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Deepfake</dt><dd class="text-neutral-300">Vídeo gerado por IA que imita pessoa real. Risco jurídico alto, use com consentimento apenas.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Red-team</dt><dd class="text-neutral-300">Auditoria adversarial: procurar ativamente o que pode dar errado antes da entrega.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Frame corrupt</dt><dd class="text-neutral-300">Frame com artefato visual (blur, ghosting, glitch) que torna o vídeo inaceitável.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Disclosure #IA</dt><dd class="text-neutral-300">Prática ética de declarar conteúdo gerado por IA. Exigido por algumas plataformas.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Pipeline híbrido</dt><dd class="text-neutral-300">Flujo que combina generación por IA con edición tradicional (DaVinci, Premiere, After Effects).</dd></div>
+          <div><dt class="text-blue-400 font-semibold">B-roll</dt><dd class="text-neutral-300">Imágenes/videos complementarios a la narrativa principal. IA de video es excelente fuente de b-roll.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">DaVinci Resolve</dt><dd class="text-neutral-300">Software profesional de edición y color grading. Versión gratuita cubre ~95% de los casos.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Premiere Pro</dt><dd class="text-neutral-300">Editor de Adobe, estándar de la industria. Fuerte en corte narrativo rápido.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">After Effects</dt><dd class="text-neutral-300">Software de Adobe para motion graphics, compositing, textos animados y efectos.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Color grading</dt><dd class="text-neutral-300">Ajuste de colores, exposición y contraste para dar identidad visual al video.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Compositing</dt><dd class="text-neutral-300">Superponer múltiples elementos (textos, logos, efectos, máscaras) en un único frame.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Topaz Video AI</dt><dd class="text-neutral-300">Software pago de upscaling de video vía IA. Ideal para transformar 720p en 4K.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Upscaling</dt><dd class="text-neutral-300">Aumento de resolución usando IA. Mejora calidad visual sin regenerar desde cero.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Batch generation</dt><dd class="text-neutral-300">Generar múltiples variantes en paralelo a partir de un prompt base.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">CLIP score</dt><dd class="text-neutral-300">Métrica de similaridad entre imagen y texto/imagen usando modelo CLIP de OpenAI.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Ranking automático</dt><dd class="text-neutral-300">Ordenar otputs por calidad sin revisión humana, usando CLIP o similar.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Quality gate</dt><dd class="text-neutral-300">Punto de verificación que un otput necesita pasar antes de seguir adelante en el pipeline.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Tasa de rechazo</dt><dd class="text-neutral-300">Porcentaje de renders inutilizables que necesitan ser regenerados. Varía por nicho.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Costo efectivo por video</dt><dd class="text-neutral-300">Costo directo × (1 + tasa de rechazo). Lo que importa para la fijación de precios real.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Markup comercial</dt><dd class="text-neutral-300">Razón entre precio cobrado y costo directo. En video-IA de servicio, 200-500x es típico.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Release de imagen</dt><dd class="text-neutral-300">Documento firmado por la persona autorizando uso de su rostro/voz en material generado.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">LGPD (Brasil)</dt><dd class="text-neutral-300">Ley General de Protección de Datos. Trata rostro humano como dato sensible.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">GDPR (UE)</dt><dd class="text-neutral-300">General Data Protection Regulation, equivalente europeo de la LGPD.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Deepfake</dt><dd class="text-neutral-300">Video generado por IA que imita persona real. Riesgo jurídico alto, usa con consentimiento solamente.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Red-team</dt><dd class="text-neutral-300">Auditoría adversarial: buscar activamente lo que puede salir mal antes de la entrega.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Frame corrupt</dt><dd class="text-neutral-300">Frame con artefacto visual (blur, ghosting, glitch) que hace el video inaceptable.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Disclosure #IA</dt><dd class="text-neutral-300">Práctica ética de declarar contenido generado por IA. Exigido por algunas plataformas.</dd></div>
         </dl>
       </div>
     </section>

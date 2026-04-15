@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trilha 2 — Receitário Cinematográfico | Seedance 2.0 Mastery</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FACC15',
+            dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Amber (Trilha 2) */
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217, 119, 6, 0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217, 119, 6, 0.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(217, 119, 6, 0.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .bg-amber-600 { background-color: #d97706; }
+    html:not(.dark) .hover\:bg-amber-500:hover { background-color: #f59e0b; }
+
+    /* Blue (cross-trilha CTA próxima) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .bg-blue-600 { background-color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500:hover { background-color: #3b82f6; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+
+    /* Emerald (cross-trilha nav T1) */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎬</span>
+            <span class="font-bold text-lg hidden sm:inline">Seedance 2.0 Mastery</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">
+            <span class="sm:hidden">T1</span>
+            <span class="hidden sm:inline">Leigo</span>
+          </a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10">
+            <span class="sm:hidden">T2</span>
+            <span class="hidden sm:inline">Prompt-Ready</span>
+          </a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">
+            <span class="sm:hidden">T3</span>
+            <span class="hidden sm:inline">Profissional</span>
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">
+        TRILHA 2 · APLICADO
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">📖 Receitário Cinematográfico</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Para quem já usou Seedance e quer produtividade. Você vai dominar os 7 presets canônicos com strings literais, entender por que o template [0s][3s][6s] é rígido, aprender os hacks não documentados e sair com um banco pessoal de 30+ prompts prontos.
+      </p>
+
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">5</div>
+          <div class="text-xs text-neutral-400">Módulos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">26</div>
+          <div class="text-xs text-neutral-400">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">~5h</div>
+          <div class="text-xs text-neutral-400">Duração</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-amber-400">Inter.</div>
+          <div class="text-xs text-neutral-400">Nível</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold mb-2">Conteúdo da trilha</h2>
+      <p class="text-neutral-400 text-sm">Clique em um tópico para ver a explicação. Cada módulo tem página completa acessível pelo botão "Ver Completo".</p>
+    </div>
+
+    <!-- MÓDULO 2.1 — ANATOMIA -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-amber-400 font-bold">2.1</span>
+          <span class="text-xs text-neutral-500">~45 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🧬 Anatomia de um prompt Seedance que funciona</h3>
+        <p class="text-neutral-400 text-sm">O template temporal rígido, as 3 fases de áudio, e as duas linhas que mudam tudo. Entenda a estrutura antes de decorar receitas.</p>
+      </div>
+
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">⏱️</span>
+            <div>
+              <span class="font-medium">Template [0s] [3s] [6s] — por que 3 beats, não 4</span>
+              <span class="text-neutral-500 text-sm ml-2">- a decisão estrutural</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Timeline prompting é técnica oficial documentada. A versão autoral do reverse engineering força exatamente 3 beats (não 4 como o guia oficial MindStudio sugere para 10s). Cada beat tem papel fixo: estabelecimento · desenvolvimento · clímax.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Medido empiricamente em 48 amostras: 100% dos prompts do produto estudado têm [0s][6s], 91.7% têm [3s]. Seguir a forma que o modelo "viu mais" gera outputs mais limpos.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">[0s] = câmera + sujeito + física · [3s] = movimento + 120fps slow-mo · [6s] = STOP MOTION + snap-back.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">🔊</span>
+            <div>
+              <span class="font-medium">As 3 fases de áudio — arco emocional em 10s</span>
+              <span class="text-neutral-500 text-sm ml-2">- práticas → brass chord → orquestra</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Cada beat carrega uma descrição de áudio específica. Phase 1: "practical sounds only" (ambiente). Phase 2: "single low brass chord arrives, building tension". Phase 3: "full orchestral score crescendo with 3x audio density".</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Força o modelo a pensar som em camadas, não como afterthought. Na v2.0 com áudio nativo, essas descrições geram o áudio real do vídeo. <span class="inline-block px-2 py-0.5 bg-red-500/20 text-red-400 text-xs font-semibold rounded">Revalidar v2.0</span></p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Práticas → tensão → crescendo · 3 fases mandatórias · vocabulário literal.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">📐</span>
+            <div>
+              <span class="font-medium">"same character throughout all shots" + "Anamorphic 2.39:1"</span>
+              <span class="text-neutral-500 text-sm ml-2">- as duas linhas não-negociáveis</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Abertura literal "same character throughout all shots" (97.9% dos prompts medidos) força consistência de personagem entre os 3 beats. "Anamorphic 2.39:1" ao final força aspect ratio cinematográfico (64.6% dos prompts).</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Sem a primeira linha, o Seedance troca o sujeito no meio do vídeo — é o erro #1 de quem começa. Sem a segunda, o vídeo sai quadrado ou vertical.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Identity lock no início · aspect ratio lock no fim · copiar literal, não parafrasear.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">❄️</span>
+            <div>
+              <span class="font-medium">STOP MOTION freeze — o "money shot" do template</span>
+              <span class="text-neutral-500 text-sm ml-2">- 100% de presença nas amostras</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Em 100% das amostras medidas, o [6s] tem "STOP MOTION X-seconds — complete audio silence — explosive snap-back to 24fps". É o momento de suspensão dramática que diferencia prompts pro de amadores. <span class="inline-block px-2 py-0.5 bg-red-500/20 text-red-400 text-xs font-semibold rounded">Revalidar v2.0</span></p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É o truque cinematográfico mais autoral e mais reconhecível da família de prompts "estilo Seedance". Saber como e quando usar é o que separa aplicado de iniciante.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Duração 2-4s · silêncio total · detalhe frozen · snap-back explosivo.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">📋</span>
+            <div>
+              <span class="font-medium">Cheat sheet visual da estrutura (1 página)</span>
+              <span class="text-neutral-500 text-sm ml-2">- impressão para a parede</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Uma página resumindo: abertura literal, 3 beats com placeholder por campo, 3 fases de áudio, STOP MOTION rules, fechamento anamórfico. Copia e cola direto.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Quando você está no meio de um projeto, não dá tempo de reler teoria. Uma folha na mesa é tudo que importa.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Placeholders editáveis · ordem obrigatória · 350-500 palavras de alvo.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-2-1')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-2-1.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 2.2 — 7 PRESETS CANÔNICOS -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-amber-400 font-bold">2.2</span>
+          <span class="text-xs text-neutral-500">~90 min · NÚCLEO DA TRILHA</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🎭 Os 7 presets canônicos</h3>
+        <p class="text-neutral-400 text-sm">A enciclopédia de receitas. Uma aula profunda por preset — string canônica literal, 4 exemplos completos, variações permitidas vs. proibidas, gatilhos de ativação.</p>
+      </div>
+
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🏜️</span>
+            <div>
+              <span class="font-medium">DUNE EPIC — o preset mais rígido</span>
+              <span class="text-neutral-500 text-sm ml-2">- 13/16 amostras com string literal</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">color_system literal: "burnt amber+pure black only, hard directional low sun, human tiny vs world". camera_style: "aerial pull-back / extreme low-angle / overhead top-down". techniques: cloth inertia · sand displacement · 120fps · hard directional lighting.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É o preset com a rigidez mais alta do sistema. 13 em 16 amostras voltaram a string exata. Aprender a copiá-lo literalmente é a diferença entre épico e genérico.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Gatilhos: paisagens épicas · escala · deserto · espaço · figuras míticas · lone individual against world.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">🥊</span>
+            <div>
+              <span class="font-medium">JOHN WICK ACTION — combate sempre roteia aqui</span>
+              <span class="text-neutral-500 text-sm ml-2">- override obrigatório para luta</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">color_system: "hyper-saturated blue+red+black, wet neon surfaces, anamorphic 2.39:1". camera_style: "extreme low-angle tracking / crash zoom / handheld natural lag". techniques: cloth inertia · skin distorting on impact · 120fps slow-motion snap-back · stop-motion peak tension.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Regra de routing explícita: "Combat ALWAYS routes to JOHN WICK ACTION, even if the setting suggests another preset". Cenas de luta no bambuzal, na praia ou no espaço — todas usam este preset com paleta adaptada.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Override hard-coded para combate · adaptação de paleta permitida · vocabulário que passa pelo filtro de moderação.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🌃</span>
+            <div>
+              <span class="font-medium">BLADE RUNNER NOIR — mood adaptável, não cor literal</span>
+              <span class="text-neutral-500 text-sm ml-2">- o único com paleta livre</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Camera: "slow dolly-in / extreme low-angle / handheld natural lag". techniques: cloth inertia · 120fps · floor puddle mirror reflection · anamorphic lens flares. Paleta padrão é "hyper-saturated blue+red+black" MAS este é o único preset onde a paleta ADAPTA ao cenário.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Para cenas de candle-light use amber, para retro use chrome+red. A regra é sempre preservar o sufixo "anamorphic 2.39:1" e o mood noir. Mais flexível de todos.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Mood &gt; cor literal · preservar anamorphic · ideal para cenas íntimas urbanas.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">👻</span>
+            <div>
+              <span class="font-medium">SILENT HILL HORROR — dread com filtro passando</span>
+              <span class="text-neutral-500 text-sm ml-2">- paleta cinza + vermelho</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">color_system: "grey fog 3m visibility, deep red Otherworld transitions, complete desaturation except blood". techniques: grey fog atmosphere · deep red emergency lighting · floor puddle mirror reflection · stop-motion freeze.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Horror é tricky porque o filtro de moderação é agressivo. Este vocabulário específico ("grey fog", "otherworld transitions") passa pelo filtro sem perder dread dramático.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Gatilhos: horror · sobrenatural · abandoned places · fog · dread · creatures · exorcism.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">⛈️</span>
+            <div>
+              <span class="font-medium">STORM EPIC — clima como protagonista</span>
+              <span class="text-neutral-500 text-sm ml-2">- raios como única luz</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">color_system: "dark overcast storm clouds, lightning only light source 0.7s each flash, deep ocean blue-black water". techniques: lightning flash illumination · water surface tension physics · 120fps slow-motion snap-back · STOP MOTION at peak impact.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Para tempestades, tsunamis, tornados, furacões. O detalhe dos "0.7s each flash" é um micro-hack empírico do autor — especificar duração do raio melhora o render.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Duração literal do flash · water como segundo protagonista · snap-back obrigatório no clímax.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🌸</span>
+            <div>
+              <span class="font-medium">FAIRY TALE CINEMATIC — fantasia suave</span>
+              <span class="text-neutral-500 text-sm ml-2">- pastoral, golden hour, pastel</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">color_system: "pastel spring palette with golden hour warmth, soft pink cherry blossoms, emerald grass, flowing white fabric". camera: "dreamy slow dollies / graceful orbits / handheld natural lag". techniques: cloth inertia · petal drift particle system · 120fps · golden hour rim lighting.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Resolve conteúdo infantil, publicidade de beleza, casamento, fantasia família. O único preset com vocabulário de "petal drift particle system" que gera o efeito de pétalas caindo.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Gatilhos: whimsical · pastoral · princess · animals · spring · wholesome.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">7</span>
+            <span class="text-lg">⚡</span>
+            <div>
+              <span class="font-medium">ANIME SHONEN EPIC — auras e transformações</span>
+              <span class="text-neutral-500 text-sm ml-2">- vocabulário específico de anime</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">color_system: "electric blue core aura + golden lightning crackling + pure white energy bursts against deep black void". camera: "extreme low-angle / 360° orbit / crash zoom". techniques: cloth inertia on uniform · electrical particle physics · 120fps slow-motion energy buildup · anamorphic lens flares.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Para Dragon Ball, Naruto, Demon Slayer, Jujutsu Kaisen — qualquer power-up ou transformação shonen. O vocabulário "electric blue core aura" é autoral e gera o glow específico.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Gatilhos: anime fights · energy auras · transformations · power-ups · shonen tropes.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-2-2')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-2-2.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 2.3 — VOCABULÁRIO CANÔNICO -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-amber-400 font-bold">2.3</span>
+          <span class="text-xs text-neutral-500">~50 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">📚 Vocabulário canônico aplicado</h3>
+        <p class="text-neutral-400 text-sm">Os termos exatos que o Seedance renderiza bem. Câmera, física, tempo, lighting, áudio — o que usar e quando.</p>
+      </div>
+
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🎥</span>
+            <div>
+              <span class="font-medium">Câmera — 10 termos que cobrem 90% dos casos</span>
+              <span class="text-neutral-500 text-sm ml-2">- quando usar cada um</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">extreme low-angle · slow dolly-in · aerial pull-back · overhead top-down · crash zoom · 360° orbit · handheld natural lag · tracking shot · extreme close-up · intimate close-up.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Cada termo é mapeado para uma emoção específica. low-angle = poder. crash zoom = drama. aerial pull-back = escala. slow dolly-in = tensão. Saber qual usar muda o resultado mesmo com o resto do prompt igual.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Escolher 3 termos do preset · combinar complementares · evitar sinônimos na mesma cena.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">💧</span>
+            <div>
+              <span class="font-medium">Física — 7 termos de material e movimento</span>
+              <span class="text-neutral-500 text-sm ml-2">- cloth inertia, surface tension, etc.</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">cloth inertia (fabric lags behind movement) · water surface tension (perfect spherical droplets) · sand/snow displacement · floor puddle mirror reflection · skin distorting on impact · debris physics · petal drift particle system.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">São os termos que transformam render "plástico" em render "físico". cloth inertia é o mais usado (89.6% das amostras). Sem esses termos, o modelo improvisa e o resultado fica genérico.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Cada preset tem física associada · cloth inertia é universal · nunca improvisar termos novos.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">⏰</span>
+            <div>
+              <span class="font-medium">Tempo — 120fps, snap back, STOP MOTION</span>
+              <span class="text-neutral-500 text-sm ml-2">- os 3 truques temporais que importam</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">120fps slow-motion (com micro-detalhe especificado) · hard snap back to 24fps (transição temporal) · STOP MOTION X-seconds — complete audio silence — explosive snap-back.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Manipulação temporal é metade do "look Seedance". Os 3 truques combinados criam a sensação de peso cinematográfico que nenhum outro modelo reproduz com a mesma facilidade.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">120fps no [3s] · STOP MOTION no [6s] · snap-back como transição emocional.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">💡</span>
+            <div>
+              <span class="font-medium">Lighting — 8 termos mapeando preset → luz</span>
+              <span class="text-neutral-500 text-sm ml-2">- cada preset tem sua luz canônica</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">hard directional sun (DUNE) · anamorphic lens flares (BLADE RUNNER/JOHN WICK) · rim lighting · golden hour rim lighting (FAIRY TALE) · neon reflections · lightning strobing (STORM) · volumetric lighting (PIXAR/FAIRY TALE) · candlelight flicker physics.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Lighting é o que define a "assinatura visual" de um preset. "anamorphic lens flares" em uma cena de Duna é erro. "hard directional sun" em Blade Runner também.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Lighting casa com preset · não misturar estilos · luz é o "tom emocional" literalizado.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">🎵</span>
+            <div>
+              <span class="font-medium">Áudio — keywords e tag @Audio da v2.0</span>
+              <span class="text-neutral-500 text-sm ml-2">- aproveitando o áudio nativo</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Vocabulário oficial documentado (redreamality): reverb, muffled, echoing, metallic clink, crunchy, crackling fire. Tag <code class="text-amber-400">@Audio</code> para referências de música/SFX. Na v2.0, áudio é gerado nativamente com o vídeo. <span class="inline-block px-2 py-0.5 bg-red-500/20 text-red-400 text-xs font-semibold rounded">Revalidar v2.0</span></p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A v2.0 trouxe geração de áudio junto do vídeo. Aproveitar isso bem exige vocabulário diferente da v1.x — onde áudio era só descritivo, agora é gerado.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Keywords sonoras · tag @Audio · 3 fases do template temporal · compatibilidade v2.0.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-2-3')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-2-3.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 2.4 — HACKS AVANÇADOS -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-amber-400 font-bold">2.4</span>
+          <span class="text-xs text-neutral-500">~55 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🔧 Extensões e hacks avançados</h3>
+        <p class="text-neutral-400 text-sm">O que fazer quando nenhum preset encaixa. Adaptar paleta, inventar gênero, e a discussão ética do filter bypass via chinês.</p>
+      </div>
+
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🎨</span>
+            <div>
+              <span class="font-medium">"Inventar gênero" — o truque &lt;REFERENCE&gt; &lt;STYLE&gt;</span>
+              <span class="text-neutral-500 text-sm ml-2">- Wes Anderson, Sergio Leone, Tim Burton...</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Se a cena evoca fortemente um estilo cinematográfico famoso, você pode usar um nome inventado em CAPS seguindo o padrão "REFERENCE STYLE" (WES ANDERSON SYMMETRIC, SPAGHETTI WESTERN STANDOFF, SYNTHWAVE NOSTALGIC ACTION). 6 gêneros inventados confirmados em sondas contra diretores famosos.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Abre cobertura "infinita" de estilos sem precisar decorar mais presets. Claude conhece milhares de diretores, escolas e períodos cinematográficos.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Nome em CAPS · formato REFERENCE STYLE · preenche campos canônicos pelo conhecimento de cinema.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">🎨</span>
+            <div>
+              <span class="font-medium">Adaptar paleta sem perder identidade</span>
+              <span class="text-neutral-500 text-sm ml-2">- kung fu no bambuzal, candle Blade Runner</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Quando você quer usar um preset (ex: JOHN WICK ACTION para uma cena de kung fu) mas o setting exige paleta diferente (verde bambu, não azul/vermelho urbano). Trocar cor mas preservar câmera, física e vocabulário.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É o caminho para usar os 7 presets em 70 situações diferentes. Exemplo observado: "hyper-saturated emerald green bamboo + deep shadow black" para kung fu em bambuzal (preserva estrutura JOHN WICK, muda só cor).</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Cor é variável · câmera + física + vocab são fixas · preservar aspect ratio.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🇨🇳</span>
+            <div>
+              <span class="font-medium">Tradução chinesa — filter bypass ou placebo?</span>
+              <span class="text-neutral-500 text-sm ml-2">- a discussão ética honesta</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">A tese do produto estudado: tradução literal beat-by-beat para mandarim passa pelo filtro de moderação do Seedance (que seria mais frouxo em chinês). NÃO há evidência pública dessa tese — pode ser marketing. <span class="inline-block px-2 py-0.5 bg-red-500/20 text-red-400 text-xs font-semibold rounded">Revalidar v2.0</span></p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A transparência é parte do curso. O aluno precisa saber o que é verificado e o que é opinião autoral. Se funciona, é ferramenta. Se não funciona, é mito e ponto.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Vocabulário mandarim canonizado · risco de TOS · teste empírico necessário.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">📏</span>
+            <div>
+              <span class="font-medium">Prompts de 1 linha × 400 palavras — quando cada um vence</span>
+              <span class="text-neutral-500 text-sm ml-2">- oficial × autoral</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Guias oficiais (redreamality) recomendam 30-200 palavras. O produto estudado usa 350-500 deliberadamente. São filosofias diferentes: oficial otimiza para "o modelo preencher detalhes", autoral otimiza para "controle cirúrgico total". <span class="inline-block px-2 py-0.5 bg-red-500/20 text-red-400 text-xs font-semibold rounded">Revalidar v2.0</span></p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Escolher o tamanho certo economiza tokens e iterações. Cenas abstratas ganham com prompts curtos. Cenas com visão específica ganham com prompts longos.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Curto = flexibilidade · longo = controle · v2.0 pode preferir curto (a testar).</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">🎭</span>
+            <div>
+              <span class="font-medium">Combinando presets — 70% Duna + 30% Anime</span>
+              <span class="text-neutral-500 text-sm ml-2">- quando uma cena pede mistura</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Quando a cena mistura dois tons (ex: batalha anime em paisagem épica), você pode combinar dois presets: câmera e escala de DUNE + auras e partículas de ANIME SHONEN. A regra é escolher um dominante (70%) e um complementar (30%).</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Nem toda cena encaixa limpo em um preset. Saber misturar bem é o que diferencia editor aplicado de editor iniciante. Evita o trabalho de inventar tudo do zero.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">1 dominante + 1 secundário · cores do dominante · vocabulário do complementar.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-2-4')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-2-4.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MÓDULO 2.5 — ESCALA -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-amber-400 font-bold">2.5</span>
+          <span class="text-xs text-neutral-500">~50 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">📊 Variações em escala</h3>
+        <p class="text-neutral-400 text-sm">A/B testing de prompts, templates parametrizados, fluxo de aprovação de cliente em 30 minutos, e image-to-video da v2.0.</p>
+      </div>
+
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🆎</span>
+            <div>
+              <span class="font-medium">A/B testing — 3 variantes, comparar side-by-side</span>
+              <span class="text-neutral-500 text-sm ml-2">- método de iteração</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Método simples: para cada cena, gere 3 variantes mudando UMA coisa por vez (câmera, lighting, ou paleta). Compare os vídeos lado a lado. Registre qual variante foi melhor e por quê.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Iteração estruturada acelera aprendizado mais rápido que tentativa aleatória. Depois de 20 A/B tests, você "sente" o que funciona antes mesmo de gerar.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">1 variável por teste · 3 variantes · documentar decisões.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">📋</span>
+            <div>
+              <span class="font-medium">Templates parametrizados em Google Sheets</span>
+              <span class="text-neutral-500 text-sm ml-2">- 20 prompts em 10 minutos</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Planilha com uma linha por cena e colunas para subject · setting · action · preset · cor. Fórmulas CONCATENATE montam o prompt final automaticamente. Alterar uma célula regenera o prompt.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É a diferença entre 1 prompt/hora e 20 prompts/hora. Escala linear com número de cenas. Templates parametrizados também facilitam aprovação do cliente — ele edita a planilha em vez de reescrever prompt.</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">CONCATENATE · colunas por slot · 1 linha = 1 prompt.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">👔</span>
+            <div>
+              <span class="font-medium">Fluxo de aprovação de cliente em 30 minutos</span>
+              <span class="text-neutral-500 text-sm ml-2">- 5 versões para escolher</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Processo de entrega: cliente briefa cena, você gera 5 variantes (3 presets diferentes + 2 ajustes do preset favorito), envia side-by-side, cliente escolhe 1. Total: ~30 minutos entre briefing e aprovação.</p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Aprovação rápida é diferencial comercial. Cliente que aprova rápido volta. 5 variantes é o sweet spot: menos é "pouca opção", mais é "paralisia".</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">5 variantes padrão · side-by-side obrigatório · nomes claros em cada versão.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🖼️</span>
+            <div>
+              <span class="font-medium">Image-to-video da v2.0 — até 9 imagens de referência</span>
+              <span class="text-neutral-500 text-sm ml-2">- o recurso mais forte da versão nova</span>
+            </div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Seedance 2.0 aceita até 9 imagens + 3 clipes de 15s como referência visual. Você pode trazer storyboard em papel, mood board do cliente, fotos de produto — e o modelo integra. <span class="inline-block px-2 py-0.5 bg-red-500/20 text-red-400 text-xs font-semibold rounded">Revalidar v2.0</span></p></div>
+              <div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É o único caminho para consistência visual entre cenas diferentes (mesmo personagem, mesmo cenário, vários ângulos). Também resolve o problema de "cliente quer este ator específico".</p></div>
+              <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Até 9 imagens · 3 clipes de 15s · integra com timeline prompting.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-2-5')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-2-5.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- PROJETO FINAL -->
+    <section class="mb-8">
+      <div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-4 flex items-center"><span class="mr-3">🏆</span> Projeto final da Trilha 2</h2>
+        <p class="text-neutral-300 mb-4">Crie uma campanha fictícia: 10 prompts + 10 vídeos renderizados. Um dos 7 presets deve dominar (6 prompts usam ele) e outro aparece como variação (4 prompts). Documente em planilha parametrizada.</p>
+        <ul class="space-y-2 text-sm text-neutral-300 mb-6">
+          <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">✓</span><span>Escolher 1 nicho (ex: UGC de beleza, gaming shorts, viagem cinematográfica)</span></li>
+          <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">✓</span><span>Usar template parametrizado em Google Sheets</span></li>
+          <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">✓</span><span>Entregar as 10 versões side-by-side</span></li>
+          <li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">✓</span><span>Aplicar pelo menos 1 adaptação de paleta e 1 gênero inventado</span></li>
+        </ul>
+        <div class="bg-dark-800/50 rounded-lg p-4">
+          <p class="text-xs text-neutral-400">Próxima trilha recomendada: <strong class="text-blue-400">Trilha 3 — A Lógica do Seedance</strong>, se você quer entender como tudo isso foi descoberto e construir seu próprio pipeline.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+      <a href="../trilha1/index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">
+        ← Anterior: Trilha 1 (Leigo)
+      </a>
+      <a href="../trilha3/index.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">
+        Próxima: Trilha 3 — Profissional →
+      </a>
+    </div>
+  </main>
+
+  <footer class="border-t border-dark-600 py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Seedance 2.0 Mastery · INEMA.CLUB · 2026</p>
+    </div>
+  </footer>
+
+  <!-- MODALS -->
+  <div id="modal-2-1" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">2.1</span><span class="font-semibold">Anatomia do prompt</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-2-1.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-2-2" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">2.2</span><span class="font-semibold">7 presets canônicos</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-2-2.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-2-3" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">2.3</span><span class="font-semibold">Vocabulário canônico</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-2-3.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-2-4" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">2.4</span><span class="font-semibold">Hacks avançados</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-2-4.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-2-5" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">2.5</span><span class="font-semibold">Variações em escala</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-2-5.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function toggleTopic(button) {
+      const topicItem = button.closest('.topic-item');
+      const explanation = topicItem.querySelector('.topic-explanation');
+      const moduleCard = button.closest('.bg-dark-800');
+      moduleCard.querySelectorAll('.topic-explanation.active').forEach(exp => {
+        if (exp !== explanation) exp.classList.remove('active');
+      });
+      explanation.classList.toggle('active');
+    }
+
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) { modal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+    }
+    function closeModal() {
+      document.querySelectorAll('.modal').forEach(modal => modal.classList.add('hidden'));
+      document.body.style.overflow = 'auto';
+    }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>

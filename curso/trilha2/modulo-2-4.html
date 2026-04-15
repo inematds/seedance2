@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="es" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Módulo 2.4 — Hacks avançados | Seedance 2.0 Mastery</title>
+  <title>Módulo 2.4 — Hacks avanzados | Seedance 2.0 Mastery</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }</script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,14 +15,14 @@
     html:not(.dark) .border-dark-600 { border-color: #d1d5db; } html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
     html:not(.dark) .text-amber-400 { color: #92400e; } html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217, 119, 6, 0.12); } html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217, 119, 6, 0.08); } html:not(.dark) .border-amber-500\/30 { border-color: rgba(217, 119, 6, 0.25); } html:not(.dark) .bg-amber-600 { background-color: #d97706; }
     html:not(.dark) .hover\:bg-amber-500:hover { background-color: #f59e0b; } html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217, 119, 6, 0.08); } html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
-    /* Emerald (semantic "correto/permitido" + cross-trilha nav T1) */
+    /* Emerald (semantic "correcto/permitido" + cross-ruta nav T1) */
     html:not(.dark) .text-emerald-400 { color: #059669; }
     html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.08); }
     html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
     html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
     html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
     html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
-    /* Blue (cross-trilha nav T3) */
+    /* Blue (cross-ruta nav T3) */
     html:not(.dark) .text-blue-400 { color: #2563eb; }
     html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
     html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
@@ -44,9 +44,9 @@
           <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
         </div>
         <div class="flex items-center space-x-1 sm:space-x-2">
-          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Leigo</span></a>
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Principiante</span></a>
           <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Prompt-Ready</span></a>
-          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Profissional</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Profesional</span></a>
           <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
             <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
             <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
@@ -58,8 +58,8 @@
 
   <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <div class="flex items-center space-x-2 text-sm text-neutral-400">
-      <a href="../../index.html" class="hover:text-amber-400">Início</a><span>/</span>
-      <a href="index.html" class="hover:text-amber-400">Trilha 2</a><span>/</span>
+      <a href="../../index.html" class="hover:text-amber-400">Inicio</a><span>/</span>
+      <a href="index.html" class="hover:text-amber-400">Ruta 2</a><span>/</span>
       <span class="text-amber-400">Módulo 2.4</span>
     </div>
   </nav>
@@ -67,8 +67,8 @@
   <header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.4</span>
-      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🔧 Extensões e hacks avançados</h1>
-      <p class="text-lg text-neutral-400 max-w-3xl">Inventar gênero, adaptar paleta sem perder identidade, a discussão ética do filter bypass chinês, quando curto vence longo, e combinação de presets.</p>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🔧 Extensiones y hacks avanzados</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Inventar género, adaptar paleta sin perder identidad, la discusión ética del filter bypass chino, cuándo corto gana a largo, y combinación de presets.</p>
     </div>
   </header>
 
@@ -77,12 +77,12 @@
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
-        <h2 class="text-2xl font-bold">🎨 Inventar gênero — o truque &lt;REFERENCE&gt; &lt;STYLE&gt;</h2>
+        <h2 class="text-2xl font-bold">🎨 Inventar género — el truco &lt;REFERENCE&gt; &lt;STYLE&gt;</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Quando nenhum dos 7 presets se encaixa, você pode inventar um gênero novo seguindo o padrão <strong class="text-amber-400">"REFERENCE STYLE"</strong> (em CAPS). O modelo preenche os campos canônicos baseado no seu conhecimento cultural de cinema. Testado e confirmado em 6 gêneros diferentes durante o reverse engineering.</p>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Cuando ninguno de los 7 presets encaja, puedes inventar un género nuevo siguiendo el patrón <strong class="text-amber-400">"REFERENCE STYLE"</strong> (en CAPS). El modelo llena los campos canónicos basado en su conocimiento cultural de cine. Testeado y confirmado en 6 géneros diferentes durante el reverse engineering.</p>
 
       <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-amber-400 mb-4">Exemplos testados e confirmados</h3>
+        <h3 class="text-lg font-semibold text-amber-400 mb-4">Ejemplos testeados y confirmados</h3>
         <div class="space-y-2 text-sm">
           <div class="bg-dark-900/50 rounded p-2 border border-dark-600"><code class="text-amber-400">WES ANDERSON SYMMETRIC</code> — pastel pink+mint green+cream white, perfectly balanced lighting, no harsh shadows</div>
           <div class="bg-dark-900/50 rounded p-2 border border-dark-600"><code class="text-amber-400">GOTHIC HORROR</code> — deep monochrome silver+black with selective deep red accents, moonlight cold blue highlights</div>
@@ -94,45 +94,45 @@
       </div>
 
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-5 mb-4">
-        <h4 class="font-semibold text-primary mb-2">💡 A fórmula</h4>
-        <p class="text-sm text-neutral-300">1) Escolha um diretor ou franquia famosa · 2) Escolha uma palavra-chave que descreva o subgênero · 3) Combine em CAPS · 4) Preencha os campos canônicos (color, camera, techniques) lembrando do estilo visual dessa referência.</p>
+        <h4 class="font-semibold text-primary mb-2">💡 La fórmula</h4>
+        <p class="text-sm text-neutral-300">1) Elige un director o franquicia famosa · 2) Elige una palabra clave que describa el subgénero · 3) Combina en CAPS · 4) Llena los campos canónicos (color, camera, techniques) recordando el estilo visual de esa referencia.</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
-        <h2 class="text-2xl font-bold">🎨 Adaptar paleta sem perder identidade</h2>
+        <h2 class="text-2xl font-bold">🎨 Adaptar paleta sin perder identidad</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">A regra: <strong class="text-amber-400">cor é variável, câmera + física + vocabulário são fixos</strong>. Para usar JOHN WICK ACTION em uma cena de kung fu no bambuzal, troque a cor para verde-bambu, mas mantenha a estrutura.</p>
+      <p class="text-neutral-300 mb-6 leading-relaxed">La regla: <strong class="text-amber-400">color es variable, cámara + física + vocabulario son fijos</strong>. Para usar JOHN WICK ACTION en una escena de kung fu en el bambuzal, cambia el color a verde-bambú, pero manteniendo la estructura.</p>
 
       <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-amber-400 mb-3">Exemplo de adaptação bem-feita</h3>
-        <p class="text-sm text-neutral-300 mb-3"><strong>Cena:</strong> kung fu em bambuzal.</p>
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">Ejemplo de adaptación bien hecha</h3>
+        <p class="text-sm text-neutral-300 mb-3"><strong>Escena:</strong> kung fu en el bambuzal.</p>
         <p class="text-sm text-neutral-300 mb-2"><strong>Preset original (JOHN WICK):</strong></p>
         <div class="bg-dark-900 rounded p-3 font-mono text-xs text-neutral-400 border border-dark-600 mb-3"><code>"hyper-saturated blue+red+black, wet neon surfaces, anamorphic 2.39:1"</code></div>
-        <p class="text-sm text-neutral-300 mb-2"><strong>Adaptação válida:</strong></p>
+        <p class="text-sm text-neutral-300 mb-2"><strong>Adaptación válida:</strong></p>
         <div class="bg-dark-900 rounded p-3 font-mono text-xs text-amber-400 border border-amber-500/30"><code>"hyper-saturated emerald green bamboo + deep shadow black, wet morning dew surfaces, anamorphic 2.39:1"</code></div>
-        <p class="text-xs text-neutral-500 mt-3">Mantém: "hyper-saturated", 3 cores, "anamorphic 2.39:1". Troca: cores específicas, superfície "neon" → "morning dew".</p>
+        <p class="text-xs text-neutral-500 mt-3">Mantiene: "hyper-saturated", 3 colores, "anamorphic 2.39:1". Cambia: colores específicos, superficie "neon" → "morning dew".</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-5">
-          <h4 class="font-bold text-emerald-400 mb-3">✓ Adaptações válidas</h4>
+          <h4 class="font-bold text-emerald-400 mb-3">✓ Adaptaciones válidas</h4>
           <ul class="text-sm text-neutral-300 space-y-2">
-            <li>• JOHN WICK no deserto (amber+dust-orange+black)</li>
-            <li>• BLADE RUNNER em candle-light (amber+black)</li>
-            <li>• FAIRY TALE em outono (orange+bronze+gold)</li>
-            <li>• DUNE no gelo (icy blue+pure black)</li>
+            <li>• JOHN WICK en el desierto (amber+dust-orange+black)</li>
+            <li>• BLADE RUNNER en candle-light (amber+black)</li>
+            <li>• FAIRY TALE en otoño (orange+bronze+gold)</li>
+            <li>• DUNE en el hielo (icy blue+pure black)</li>
           </ul>
         </div>
         <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-5">
-          <h4 class="font-bold text-red-400 mb-3">✗ Adaptações inválidas</h4>
+          <h4 class="font-bold text-red-400 mb-3">✗ Adaptaciones inválidas</h4>
           <ul class="text-sm text-neutral-300 space-y-2">
-            <li>• Trocar câmera style (vira outro preset)</li>
-            <li>• Remover "anamorphic 2.39:1"</li>
-            <li>• Misturar techniques de 2 presets</li>
-            <li>• Criar 4 cores em vez de 3</li>
+            <li>• Cambiar el estilo de cámara (se vuelve otro preset)</li>
+            <li>• Quitar "anamorphic 2.39:1"</li>
+            <li>• Mezclar techniques de dos presets</li>
+            <li>• Usar 4 colores en vez de 3</li>
           </ul>
         </div>
       </div>
@@ -141,52 +141,52 @@
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
-        <h2 class="text-2xl font-bold">🇨🇳 Tradução chinesa — filter bypass ou placebo?</h2>
+        <h2 class="text-2xl font-bold">🇨🇳 Traducción china — filter bypass o placebo?</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">O produto comercial estudado vende a ideia de que a tradução chinesa literal do prompt "passa pelo filtro de moderação" que é mais agressivo em inglês. <strong class="text-red-400">Honestidade:</strong> não há evidência pública dessa tese. Pode ser verdade, pode ser marketing. Vale discutir abertamente.</p>
+      <p class="text-neutral-300 mb-6 leading-relaxed">El producto comercial estudiado vende la idea de que la traducción china literal del prompt "pasa el filtro de moderación" que es más agresivo en inglés. <strong class="text-red-400">Honestidad:</strong> no hay evidencia pública de esta tesis. Puede ser verdad, puede ser marketing. Vale discutir abiertamente.</p>
 
       <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> O que sabemos</h3>
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> Lo que sabemos</h3>
         <ul class="text-sm text-neutral-300 space-y-2">
-          <li>• O produto estudado retorna <strong>chinese_prompt</strong> literal beat-by-beat do english_prompt.</li>
-          <li>• Marketado como "FILTER BYPASS".</li>
+          <li>• El producto estudiado retorna <strong>chinese_prompt</strong> literal beat-by-beat del english_prompt.</li>
+          <li>• Comercializado como "FILTER BYPASS".</li>
           <li>• Mapping table: "STOP MOTION 2s" → "定格动画2秒", "Phase 1 audio" → "音频第一阶段", etc.</li>
-          <li>• <strong class="text-red-400">NÃO verificado empiricamente</strong> se realmente passa pelo filtro.</li>
-          <li>• Ação chinesa violenta pode quebrar TOS do Seedance mesmo em mandarim.</li>
+          <li>• <strong class="text-red-400">NO verificado empíricamente</strong> si realmente pasa el filtro.</li>
+          <li>• Acción china violenta puede violar TOS de Seedance incluso en mandarín.</li>
         </ul>
       </div>
 
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-5 mb-4">
-        <h4 class="font-semibold text-primary mb-2">💡 Posição deste curso</h4>
-        <p class="text-sm text-neutral-300">Ensinar o mecanismo (tradução literal beat-by-beat) porque é interessante como técnica e útil para quem precisa de prompt multi-idioma legítimo. Mas <strong>não recomendar</strong> usar como estratégia deliberada de burlar filtro — é risco jurídico e risco de banimento de conta.</p>
+        <h4 class="font-semibold text-primary mb-2">💡 Posición de este curso</h4>
+        <p class="text-sm text-neutral-300">Enseñar el mecanismo (traducción literal beat-by-beat) porque es interesante como técnica y útil para quien necesita prompt multi-idioma legítimo. Pero <strong>no recomendar</strong> usar como estrategia deliberada de burlar filtro — es riesgo jurídico y riesgo de baneo de cuenta.</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
-        <h2 class="text-2xl font-bold">📏 Prompts de 1 linha × 400 palavras</h2>
+        <h2 class="text-2xl font-bold">📏 Prompts de 1 línea × 400 palabras</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Duas filosofias opostas. <strong class="text-amber-400">Oficial</strong> (redreamality, 30-200 palavras): otimiza para o modelo preencher detalhes. <strong class="text-amber-400">Autoral</strong> (produto estudado, 350-500 palavras): otimiza para controle cirúrgico total. A escolha depende do seu caso.</p>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Dos filosofías opuestas. <strong class="text-amber-400">Oficial</strong> (redreamality, 30-200 palabras): optimiza para que el modelo complete detalles. <strong class="text-amber-400">Autoral</strong> (producto estudiado, 350-500 palabras): optimiza para control quirúrgico total. La elección depende de tu caso.</p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
-          <h4 class="font-bold text-amber-400 mb-3">📄 Prompt curto (30-200 palavras)</h4>
-          <p class="text-sm text-neutral-300 mb-2"><strong>Quando usar:</strong></p>
+          <h4 class="font-bold text-amber-400 mb-3">📄 Prompt corto (30-200 palabras)</h4>
+          <p class="text-sm text-neutral-300 mb-2"><strong>Cuándo usar:</strong></p>
           <ul class="text-xs text-neutral-400 space-y-1">
-            <li>• Cena abstrata ou onírica</li>
-            <li>• Você quer surpresas criativas</li>
-            <li>• Iteração rápida (menos tokens)</li>
-            <li>• v2.0 pode preferir — <span class="inline-block px-1 py-0.5 bg-red-500/20 text-red-400 text-xs rounded">Revalidar</span></li>
+            <li>• Escena abstracta u onírica</li>
+            <li>• Quieres sorpresas creativas</li>
+            <li>• Iteración rápida (menos tokens)</li>
+            <li>• v2.0 puede preferir — <span class="inline-block px-1 py-0.5 bg-red-500/20 text-red-400 text-xs rounded">Revalidar</span></li>
           </ul>
         </div>
         <div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
-          <h4 class="font-bold text-amber-400 mb-3">📜 Prompt longo (350-500 palavras)</h4>
-          <p class="text-sm text-neutral-300 mb-2"><strong>Quando usar:</strong></p>
+          <h4 class="font-bold text-amber-400 mb-3">📜 Prompt largo (350-500 palabras)</h4>
+          <p class="text-sm text-neutral-300 mb-2"><strong>Cuándo usar:</strong></p>
           <ul class="text-xs text-neutral-400 space-y-1">
-            <li>• Cena com visão muito específica</li>
-            <li>• Cliente aprovou roteiro detalhado</li>
-            <li>• Controle de câmera/audio/clímax</li>
+            <li>• Escena con visión muy específica</li>
+            <li>• Cliente aprobó guion detallado</li>
+            <li>• Control de cámara/audio/clímax</li>
             <li>• Template [0s][3s][6s] completo</li>
           </ul>
         </div>
@@ -198,63 +198,63 @@
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
         <h2 class="text-2xl font-bold">🎭 Combinando presets — 70% Dune + 30% Anime</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Nem toda cena encaixa em um preset só. Quando a cena pede mistura (ex: batalha anime em paisagem épica), a regra é: <strong class="text-amber-400">70% de um, 30% do outro</strong>. Um dominante carrega cor + câmera, o complementar fornece algumas techniques.</p>
+      <p class="text-neutral-300 mb-6 leading-relaxed">No toda escena encaja en un solo preset. Cuando la escena pide mezcla (ej: batalla anime en paisaje épico), la regla es: <strong class="text-amber-400">70% de uno, 30% del otro</strong>. Un dominante lleva color + cámara, el complementario aporta algunas techniques.</p>
 
       <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-amber-400 mb-3">Exemplo: guerreiro anime no deserto</h3>
-        <p class="text-sm text-neutral-300 mb-3"><strong>Dominante (70%):</strong> DUNE EPIC — cor âmbar/preto, escala épica, câmera aerial/overhead.</p>
-        <p class="text-sm text-neutral-300 mb-3"><strong>Complementar (30%):</strong> ANIME SHONEN — adicionar "electric blue core aura crackling", "electrical particle physics", "anamorphic lens flares" como techniques.</p>
-        <p class="text-sm text-neutral-300">Resultado: o cenário épico de Duna carrega a grandeza, mas o personagem tem a aura shonen característica. Os dois tons coexistem sem conflito.</p>
+        <h3 class="text-lg font-semibold text-amber-400 mb-3">Ejemplo: guerrero anime en el desierto</h3>
+        <p class="text-sm text-neutral-300 mb-3"><strong>Dominante (70%):</strong> DUNE EPIC — color ámbar/negro, escala épica, cámara aerial/overhead.</p>
+        <p class="text-sm text-neutral-300 mb-3"><strong>Complementario (30%):</strong> ANIME SHONEN — agregar "electric blue core aura crackling", "electrical particle physics", "anamorphic lens flares" como techniques.</p>
+        <p class="text-sm text-neutral-300">Resultado: el escenario épico de Duna lleva la grandeza, pero el personaje tiene el aura shonen característica. Los dos tonos coexisten sin conflicto.</p>
       </div>
 
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-5 mb-4">
-        <h4 class="font-semibold text-primary mb-2">💡 A regra prática</h4>
-        <p class="text-sm text-neutral-300">Se sua cena tem um "mood base" e um "elemento especial", trate o mood como dominante e o elemento como techniques extras. Não misture cor de dois presets — escolha a cor de um.</p>
+        <h4 class="font-semibold text-primary mb-2">💡 La regla práctica</h4>
+        <p class="text-sm text-neutral-300">Si tu escena tiene un "mood base" y un "elemento especial", trata el mood como dominante y el elemento como techniques extras. No mezcles color de dos presets — elige el color de uno.</p>
       </div>
     </section>
 
     <section class="mb-12">
       <div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
-        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📚</span> Resumo do Módulo</h2>
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📚</span> Resumen del Módulo</h2>
         <div class="space-y-3 mb-8 text-sm">
-          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Inventar gênero &lt;REFERENCE&gt; &lt;STYLE&gt;</strong> <span class="text-neutral-400">dá cobertura infinita.</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Adaptar paleta mantendo estrutura</strong> <span class="text-neutral-400">— trocar só cor, não câmera/physics.</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Filter bypass chinês é honesto mas arriscado</strong> <span class="text-neutral-400">— ensinar mecanismo, não recomendar.</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Curto vs longo tem trade-offs</strong> <span class="text-neutral-400">— escolha por caso.</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Combinar 70/30</strong> <span class="text-neutral-400">quando cena pede dois moods.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Inventar género &lt;REFERENCE&gt; &lt;STYLE&gt;</strong> <span class="text-neutral-400">da cobertura infinita.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Adaptar paleta manteniendo estructura</strong> <span class="text-neutral-400">— cambiar solo color, no cámara/physics.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Filter bypass chino es honesto pero arriesgado</strong> <span class="text-neutral-400">— enseñar mecanismo, no recomendar.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Corto vs largo tiene trade-offs</strong> <span class="text-neutral-400">— elige por caso.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Combinar 70/30</strong> <span class="text-neutral-400">cuando la escena pide dos moods.</span></div></div>
         </div>
         <div class="flex flex-col sm:flex-row gap-4">
           <a href="modulo-2-3.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
-          <a href="modulo-2-5.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próximo Módulo →</a>
+          <a href="modulo-2-5.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Siguiente Módulo →</a>
         </div>
       </div>
     </section>
 
-    <!-- GLOSSÁRIO -->
+    <!-- GLOSARIO -->
     <section class="mb-12">
       <div class="bg-dark-800 rounded-xl border border-dark-600 p-8">
-        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📖</span> Glossário do módulo</h2>
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📖</span> Glosario del módulo</h2>
         <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
-          <div><dt class="text-amber-400 font-semibold">Inventar gênero</dt><dd class="text-neutral-300">Técnica de criar um novo preset em CAPS seguindo o padrão <code>REFERENCE STYLE</code> quando nenhum core se encaixa.</dd></div>
-          <div><dt class="text-amber-400 font-semibold">Formato REFERENCE STYLE</dt><dd class="text-neutral-300">Padrão de nomeação para gêneros inventados: "WES ANDERSON SYMMETRIC", "SPAGHETTI WESTERN STANDOFF".</dd></div>
-          <div><dt class="text-amber-400 font-semibold">WES ANDERSON SYMMETRIC</dt><dd class="text-neutral-300">Gênero inventado estilo Wes Anderson — pastel, composições simétricas, lighting equilibrado.</dd></div>
-          <div><dt class="text-amber-400 font-semibold">GOTHIC HORROR</dt><dd class="text-neutral-300">Gênero inventado — silver+black monochrome com vermelho seletivo, moonlight cold blue.</dd></div>
-          <div><dt class="text-amber-400 font-semibold">SPAGHETTI WESTERN STANDOFF</dt><dd class="text-neutral-300">Gênero inventado estilo Sergio Leone — amber+black, sol direcional, poeira em feixes de luz.</dd></div>
-          <div><dt class="text-amber-400 font-semibold">SYNTHWAVE NOSTALGIC ACTION</dt><dd class="text-neutral-300">Gênero inventado anos 80 retro — magenta+cyan+orange, neon purple shadows.</dd></div>
-          <div><dt class="text-amber-400 font-semibold">FOUND FOOTAGE HORROR</dt><dd class="text-neutral-300">Gênero inventado estilo Blair Witch — grey-green night vision, infrared hot spots.</dd></div>
-          <div><dt class="text-amber-400 font-semibold">Cobertura infinita</dt><dd class="text-neutral-300">Característica do fallback inventivo — Claude conhece milhares de estilos, então a cobertura é praticamente ilimitada.</dd></div>
-          <div><dt class="text-amber-400 font-semibold">Adaptação de paleta</dt><dd class="text-neutral-300">Trocar cores mantendo câmera, física e vocabulário do preset original.</dd></div>
-          <div><dt class="text-amber-400 font-semibold">Emerald green bamboo</dt><dd class="text-neutral-300">Exemplo de adaptação — JOHN WICK verde para kung fu em bambuzal.</dd></div>
-          <div><dt class="text-amber-400 font-semibold">Filter bypass</dt><dd class="text-neutral-300">Técnica controversa de usar tradução chinesa literal para passar pelo filtro mais frouxo. Não verificada empiricamente.</dd></div>
-          <div><dt class="text-amber-400 font-semibold">Filtro de moderação</dt><dd class="text-neutral-300">Mecanismo do modelo que bloqueia conteúdo violando política (violência, sangue, NSFW, faces reais).</dd></div>
-          <div><dt class="text-amber-400 font-semibold">Tradução literal beat-by-beat</dt><dd class="text-neutral-300">Tradução palavra-por-palavra do prompt em inglês para chinês, mantendo estrutura e markers.</dd></div>
-          <div><dt class="text-amber-400 font-semibold">Mapping table literal</dt><dd class="text-neutral-300">Tabela de correspondência fixa entre termos EN e CN (ex: "STOP MOTION 2s" → "定格动画2秒").</dd></div>
-          <div><dt class="text-amber-400 font-semibold">Placebo cinematográfico</dt><dd class="text-neutral-300">Elementos que parecem fazer diferença mas não afetam o output. Vale testar empiricamente.</dd></div>
-          <div><dt class="text-amber-400 font-semibold">Prompt curto (30-200 palavras)</dt><dd class="text-neutral-300">Recomendação oficial (redreamality). Otimiza para modelo preencher detalhes, dá flexibilidade.</dd></div>
-          <div><dt class="text-amber-400 font-semibold">Prompt longo (350-500 palavras)</dt><dd class="text-neutral-300">Abordagem autoral. Otimiza para controle cirúrgico total, dá consistência.</dd></div>
-          <div><dt class="text-amber-400 font-semibold">Combinação 70/30</dt><dd class="text-neutral-300">Técnica de misturar dois presets — um dominante (70%) carrega cor/câmera, outro (30%) fornece techniques.</dd></div>
-          <div><dt class="text-amber-400 font-semibold">Preset dominante</dt><dd class="text-neutral-300">O preset "base" em uma combinação. Define paleta principal e movimentos de câmera.</dd></div>
-          <div><dt class="text-amber-400 font-semibold">Preset complementar</dt><dd class="text-neutral-300">O preset secundário em uma combinação. Contribui com techniques específicas.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Inventar género</dt><dd class="text-neutral-300">Técnica de crear un nuevo preset en CAPS siguiendo el patrón <code>REFERENCE STYLE</code> cuando ningún core encaja.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Formato REFERENCE STYLE</dt><dd class="text-neutral-300">Patrón de nomenclatura para géneros inventados: "WES ANDERSON SYMMETRIC", "SPAGHETTI WESTERN STANDOFF".</dd></div>
+          <div><dt class="text-amber-400 font-semibold">WES ANDERSON SYMMETRIC</dt><dd class="text-neutral-300">Género inventado estilo Wes Anderson — pastel, composiciones simétricas, lighting equilibrado.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">GOTHIC HORROR</dt><dd class="text-neutral-300">Género inventado — silver+black monochrome con rojo selectivo, moonlight cold blue.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">SPAGHETTI WESTERN STANDOFF</dt><dd class="text-neutral-300">Género inventado estilo Sergio Leone — amber+black, sol direccional, polvo en haces de luz.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">SYNTHWAVE NOSTALGIC ACTION</dt><dd class="text-neutral-300">Género inventado años 80 retro — magenta+cyan+orange, neon purple shadows.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">FOUND FOOTAGE HORROR</dt><dd class="text-neutral-300">Género inventado estilo Blair Witch — grey-green night vision, infrared hot spots.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Cobertura infinita</dt><dd class="text-neutral-300">Característica del fallback inventivo — Claude conoce miles de estilos, entonces la cobertura es prácticamente ilimitada.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Adaptación de paleta</dt><dd class="text-neutral-300">Cambiar colores manteniendo cámara, física y vocabulario del preset original.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Emerald green bamboo</dt><dd class="text-neutral-300">Ejemplo de adaptación — JOHN WICK verde para kung fu en bambuzal.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Filter bypass</dt><dd class="text-neutral-300">Técnica controvertida de usar traducción china literal para pasar el filtro más flexible. No verificada empíricamente.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Filtro de moderación</dt><dd class="text-neutral-300">Mecanismo del modelo que bloquea contenido que viola política (violencia, sangre, NSFW, rostros reales).</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Traducción literal beat-by-beat</dt><dd class="text-neutral-300">Traducción palabra por palabra del prompt en inglés a chino, manteniendo estructura y markers.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Mapping table literal</dt><dd class="text-neutral-300">Tabla de correspondencia fija entre términos EN y CN (ex: "STOP MOTION 2s" → "定格动画2秒").</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Placebo cinematográfico</dt><dd class="text-neutral-300">Elementos que parecen hacer diferencia pero no afectan el output. Vale testear empíricamente.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Prompt corto (30-200 palabras)</dt><dd class="text-neutral-300">Recomendación oficial (redreamality). Optimiza para que el modelo complete detalles, da flexibilidad.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Prompt largo (350-500 palabras)</dt><dd class="text-neutral-300">Abordaje autoral. Optimiza para control quirúrgico total, da consistencia.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Combinación 70/30</dt><dd class="text-neutral-300">Técnica de mezclar dos presets — un dominante (70%) lleva color/cámara, otro (30%) aporta techniques.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Preset dominante</dt><dd class="text-neutral-300">El preset "base" en una combinación. Define paleta principal y movimientos de cámara.</dd></div>
+          <div><dt class="text-amber-400 font-semibold">Preset complementario</dt><dd class="text-neutral-300">El preset secundario en una combinación. Contribuye con techniques específicas.</dd></div>
         </dl>
       </div>
     </section>
