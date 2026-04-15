@@ -7,7 +7,7 @@
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { tsImport } from "tsx/esm/api";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -79,7 +79,9 @@ async function loadHandler(filePath, label) {
       console.warn(`[dev-server] ${label}: arquivo não encontrado (${filePath})`);
       return null;
     }
-    const mod = await tsImport(filePath, import.meta.url);
+    // En Windows, tsImport necesita file:// URLs, no rutas absolutas tipo C:\...
+    const fileUrl = pathToFileURL(filePath).href;
+    const mod = await tsImport(fileUrl, import.meta.url);
     // tsx faz double-wrap do default export — desempacotar
     const handler =
       typeof mod.default === "function"

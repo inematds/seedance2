@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="es" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>INEMA Prompt Engine · Cinematográfico para Seedance 2.0</title>
-  <meta name="description" content="Transforme sua ideia em prompt cinematográfico estruturado para Seedance 2.0. Taxonomia autoral INEMA + workflow de histórias.">
+  <meta name="description" content="Transforma tu idea en un prompt cinematográfico estructurado para Seedance 2.0. Taxonomía autoral INEMA + workflow de historias.">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -102,7 +102,7 @@
       <div class="flex items-center space-x-3 text-sm">
         <span id="llm-indicator" class="hidden sm:inline text-xs text-neutral-500 font-mono"></span>
         <a href="https://inema.club" target="_blank" class="text-neutral-400 hover:text-primary transition-colors hidden sm:inline">inema.club</a>
-        <button onclick="openSettings()" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors" title="Configurações">
+        <button onclick="openSettings()" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors" title="Configuración">
           <svg class="w-4 h-4 text-neutral-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="3"/>
             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
@@ -119,20 +119,23 @@
         SEEDANCE 2.0 · TAXONOMIA INEMA v1.0
       </div>
       <h1 class="text-4xl sm:text-6xl font-bold mb-5 tracking-tight leading-tight">
-        Do briefing ao prompt<br>
-        <span class="serif italic text-primary">cinematográfico</span> em 30 segundos.
+        Del briefing al prompt<br>
+        <span class="serif italic text-primary">cinematográfico</span> en 30 segundos.
       </h1>
       <p class="text-lg text-neutral-400 max-w-2xl mx-auto leading-relaxed mb-10">
-        Escolha: prompt único para uma cena, ou <strong class="text-primary">workflow</strong> — conte uma história e receba um fluxo de cenas conectadas.
+        Elige: prompt único para una escena, o <strong class="text-primary">workflow</strong> — cuenta una historia y recibe un flujo de escenas conectadas.
       </p>
 
       <!-- MODE TABS -->
       <div class="inline-flex rounded-xl bg-dark-800/60 p-1 gap-1">
         <button id="tab-single" onclick="switchMode('single')" class="mode-tab active px-5 py-2.5 rounded-lg text-sm font-semibold">
-          🎬 Cena única
+          🎬 Escena única
         </button>
         <button id="tab-workflow" onclick="switchMode('workflow')" class="mode-tab px-5 py-2.5 rounded-lg text-sm font-semibold text-neutral-400">
-          📖 Workflow (história)
+          📖 Workflow (historia)
+        </button>
+        <button id="tab-course" onclick="switchMode('course')" class="mode-tab px-5 py-2.5 rounded-lg text-sm font-semibold text-neutral-400">
+          🎓 Curso / Storytelling
         </button>
       </div>
     </div>
@@ -147,18 +150,18 @@
         <!-- INPUT CARD -->
         <section class="glass rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl">
           <label class="block text-sm font-medium text-neutral-400 mb-3">
-            Descreva sua cena
+            Describe tu escena
           </label>
           <textarea
             id="scene-input"
             rows="4"
             class="w-full p-4 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none transition-colors placeholder-neutral-600"
-            placeholder="Ex: Uma bailarina de vestido branco girando em um campo de cerejeiras ao pôr do sol. Pétalas caindo ao redor, luz dourada, atmosfera etérea."
+            placeholder="Ej: Una bailarina de vestido blanco girando en un campo de cerezos al atardecer. Pétalos cayendo alrededor, luz dorada, atmósfera etérea."
           ></textarea>
 
           <div class="flex items-center justify-between mt-3 text-xs text-neutral-500">
             <span id="char-count">0 / 4000 caracteres</span>
-            <span>Português ou inglês · 6 presets INEMA</span>
+            <span>Portugués, español o inglés · 6 presets INEMA</span>
           </div>
 
           <!-- MOOD + VISUAL STYLE SELECTORS (two columns) -->
@@ -172,7 +175,7 @@
                 <option value="epic">🏔️ INEMA EPIC — grandeza</option>
                 <option value="intimist">🕯️ INEMA INTIMIST — íntimo</option>
                 <option value="urban pulse">🏙️ INEMA URBAN PULSE — urbano</option>
-                <option value="elemental">⛈️ INEMA ELEMENTAL — natureza</option>
+                <option value="elemental">⛈️ INEMA ELEMENTAL — naturaleza</option>
                 <option value="dream">🌸 INEMA DREAM — onírico</option>
                 <option value="documentary">🎞️ INEMA DOCUMENTARY — observacional</option>
               </select>
@@ -187,10 +190,10 @@
                 <option value="3d-animated">🧸 3D animado (Pixar)</option>
                 <option value="stop-motion">🪆 Stop motion</option>
                 <option value="claymation">🧱 Claymation</option>
-                <option value="watercolor">🎨 Aquarela</option>
-                <option value="oil-painting">🖼️ Pintura a óleo</option>
-                <option value="film-analog">📼 Filme analógico 35mm</option>
-                <option value="free">✨ Estilo livre</option>
+                <option value="watercolor">🎨 Acuarela</option>
+                <option value="oil-painting">🖼️ Pintura al óleo</option>
+                <option value="film-analog">📼 Película analógica 35mm</option>
+                <option value="free">✨ Estilo libre</option>
               </select>
             </div>
           </div>
@@ -198,27 +201,27 @@
           <!-- IMAGE REFERENCES (up to 3) -->
           <div class="mt-5 pt-4 border-t border-dark-600/50">
             <div class="flex items-center justify-between mb-2">
-              <label class="text-xs font-semibold text-neutral-400 uppercase tracking-wider">🖼️ Imagens de referência</label>
-              <span class="text-xs text-neutral-600">até 3 · estilo/mood (não copia literal)</span>
+              <label class="text-xs font-semibold text-neutral-400 uppercase tracking-wider">🖼️ Imágenes de referencia</label>
+              <span class="text-xs text-neutral-600">hasta 3 · estilo/mood (no copia literal)</span>
             </div>
             <div id="image-preview" class="flex flex-wrap gap-2 mb-2"></div>
             <input id="image-input" type="file" accept="image/jpeg,image/png,image/webp" multiple class="hidden" onchange="handleImageUpload(event, 'single')">
             <button type="button" onclick="document.getElementById('image-input').click()" class="w-full p-3 bg-dark-900/80 border border-dashed border-dark-600 hover:border-primary/40 rounded-lg text-sm text-neutral-400 hover:text-primary transition-colors">
-              + Adicionar imagem de referência
+              + Añadir imagen de referencia
             </button>
-            <div class="text-xs text-neutral-600 mt-1.5">JPG, PNG ou WebP · máx 5MB cada · o Claude analisa palette/mood/composição e aplica ao prompt</div>
+            <div class="text-xs text-neutral-600 mt-1.5">JPG, PNG o WebP · máx 5MB cada · Claude analiza palette/mood/composición y la aplica al prompt</div>
           </div>
 
-          <!-- EXAMPLE LOADERS (accessory — just fill the textarea with sample text) -->
+          <!-- EXAMPLE LOADERS -->
           <div class="mt-5 pt-3 border-t border-dark-600/50">
-            <div class="text-xs text-neutral-500 mb-2">💡 Exemplos prontos (preenchem a textarea):</div>
+            <div class="text-xs text-neutral-500 mb-2">💡 Ejemplos listos (rellenan el campo):</div>
             <div class="flex flex-wrap gap-2">
-              <button onclick="useExample('epic')" class="text-xs px-3 py-1.5 bg-dark-700/50 hover:bg-dark-700 rounded-full text-neutral-500 hover:text-neutral-300 transition-colors border border-dark-600">figura no deserto</button>
-              <button onclick="useExample('intimist')" class="text-xs px-3 py-1.5 bg-dark-700/50 hover:bg-dark-700 rounded-full text-neutral-500 hover:text-neutral-300 transition-colors border border-dark-600">avó escrevendo carta</button>
-              <button onclick="useExample('urban')" class="text-xs px-3 py-1.5 bg-dark-700/50 hover:bg-dark-700 rounded-full text-neutral-500 hover:text-neutral-300 transition-colors border border-dark-600">skatistas em SP</button>
-              <button onclick="useExample('elemental')" class="text-xs px-3 py-1.5 bg-dark-700/50 hover:bg-dark-700 rounded-full text-neutral-500 hover:text-neutral-300 transition-colors border border-dark-600">árvore na tempestade</button>
-              <button onclick="useExample('dream')" class="text-xs px-3 py-1.5 bg-dark-700/50 hover:bg-dark-700 rounded-full text-neutral-500 hover:text-neutral-300 transition-colors border border-dark-600">bailarina em cerejeiras</button>
-              <button onclick="useExample('documentary')" class="text-xs px-3 py-1.5 bg-dark-700/50 hover:bg-dark-700 rounded-full text-neutral-500 hover:text-neutral-300 transition-colors border border-dark-600">ceramista no torno</button>
+              <button onclick="useExample('epic')" class="text-xs px-3 py-1.5 bg-dark-700/50 hover:bg-dark-700 rounded-full text-neutral-500 hover:text-neutral-300 transition-colors border border-dark-600">figura en el desierto</button>
+              <button onclick="useExample('intimist')" class="text-xs px-3 py-1.5 bg-dark-700/50 hover:bg-dark-700 rounded-full text-neutral-500 hover:text-neutral-300 transition-colors border border-dark-600">abuela escribiendo carta</button>
+              <button onclick="useExample('urban')" class="text-xs px-3 py-1.5 bg-dark-700/50 hover:bg-dark-700 rounded-full text-neutral-500 hover:text-neutral-300 transition-colors border border-dark-600">skaters en Madrid</button>
+              <button onclick="useExample('elemental')" class="text-xs px-3 py-1.5 bg-dark-700/50 hover:bg-dark-700 rounded-full text-neutral-500 hover:text-neutral-300 transition-colors border border-dark-600">árbol en la tormenta</button>
+              <button onclick="useExample('dream')" class="text-xs px-3 py-1.5 bg-dark-700/50 hover:bg-dark-700 rounded-full text-neutral-500 hover:text-neutral-300 transition-colors border border-dark-600">bailarina en cerezos</button>
+              <button onclick="useExample('documentary')" class="text-xs px-3 py-1.5 bg-dark-700/50 hover:bg-dark-700 rounded-full text-neutral-500 hover:text-neutral-300 transition-colors border border-dark-600">ceramista en el torno</button>
             </div>
           </div>
 
@@ -227,7 +230,7 @@
             onclick="generate()"
             class="w-full mt-6 px-6 py-4 bg-primary text-dark-900 font-bold text-base rounded-lg hover:bg-yellow-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
           >
-            <span id="btn-label">⚡ Gerar prompt cinematográfico</span>
+            <span id="btn-label">⚡ Generar prompt cinematográfico</span>
             <svg id="btn-spinner" class="hidden w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" class="opacity-25"></circle>
               <path fill="currentColor" class="opacity-75" d="M4 12a8 8 0 018-8V0C5.37 0 0 5.37 0 12h4z"></path>
@@ -247,7 +250,7 @@
           </div>
           <div class="skeleton h-48 mb-4"></div>
           <div class="text-center text-sm text-neutral-500 mt-6">
-            Gerando prompt cinematográfico · ~15-30s
+            Generando prompt cinematográfico · ~15-30s
           </div>
         </section>
 
@@ -258,22 +261,22 @@
           <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
             <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
               <div>
-                <div class="text-xs uppercase tracking-wider text-neutral-500 mb-1">Categoria INEMA</div>
+                <div class="text-xs uppercase tracking-wider text-neutral-500 mb-1">Categoría INEMA</div>
                 <div id="result-category" class="text-2xl sm:text-3xl font-bold text-primary category-glow"></div>
               </div>
               <button onclick="regenerate()" class="text-xs px-4 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-400 hover:text-primary transition-colors border border-dark-600 flex items-center space-x-2">
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
-                <span>Gerar outra</span>
+                <span>Generar otra</span>
               </button>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
               <div class="bg-dark-900/50 rounded-lg p-4 border border-dark-600">
-                <div class="text-xs uppercase tracking-wider text-neutral-500 mb-2">Sistema de cores</div>
+                <div class="text-xs uppercase tracking-wider text-neutral-500 mb-2">Sistema de colores</div>
                 <div id="result-colors" class="text-sm text-neutral-300 leading-relaxed"></div>
               </div>
               <div class="bg-dark-900/50 rounded-lg p-4 border border-dark-600">
-                <div class="text-xs uppercase tracking-wider text-neutral-500 mb-2">Estilo de câmera</div>
+                <div class="text-xs uppercase tracking-wider text-neutral-500 mb-2">Estilo de cámara</div>
                 <div id="result-camera" class="text-sm text-neutral-300 leading-relaxed"></div>
               </div>
             </div>
@@ -289,21 +292,21 @@
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-lg font-bold flex items-center space-x-2">
                 <span>🇬🇧</span>
-                <span>Prompt em inglês</span>
-                <span class="text-xs font-normal text-neutral-500">(cole na fal.ai / kie.ai)</span>
+                <span>Prompt en inglés</span>
+                <span class="text-xs font-normal text-neutral-500">(pega en fal.ai / kie.ai)</span>
               </h3>
               <button data-copy-target="result-en" class="copy-btn text-xs px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-300 border border-dark-600 transition-colors">📋 Copiar</button>
             </div>
             <pre id="result-en" class="bg-dark-900/80 rounded-lg p-4 text-xs sm:text-sm text-neutral-300 whitespace-pre-wrap font-mono leading-relaxed border border-dark-600 max-h-96 overflow-y-auto"></pre>
           </div>
 
-          <!-- Portuguese prompt -->
+          <!-- Spanish prompt -->
           <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-lg font-bold flex items-center space-x-2">
-                <span>🇧🇷</span>
-                <span>Prompt em português</span>
-                <span class="text-xs font-normal text-neutral-500">(referência)</span>
+                <span>🇪🇸</span>
+                <span>Prompt en español</span>
+                <span class="text-xs font-normal text-neutral-500">(referencia)</span>
               </h3>
               <button data-copy-target="result-pt" class="copy-btn text-xs px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-300 border border-dark-600 transition-colors">📋 Copiar</button>
             </div>
@@ -315,7 +318,7 @@
             <h3 class="text-lg font-bold mb-4 flex items-center space-x-2">
               <span>💬</span>
               <span>Diálogo</span>
-              <span class="text-xs font-normal text-neutral-500">(cena dialogada)</span>
+              <span class="text-xs font-normal text-neutral-500">(escena con diálogo)</span>
             </h3>
             <div id="result-dialogue" class="space-y-3"></div>
           </div>
@@ -324,30 +327,30 @@
           <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
             <h3 class="text-lg font-bold mb-4 flex items-center space-x-2">
               <span>💡</span>
-              <span>Recomendações técnicas</span>
+              <span>Recomendaciones técnicas</span>
             </h3>
             <ol id="result-recs" class="space-y-3 text-sm text-neutral-300"></ol>
           </div>
 
           <!-- Action buttons -->
           <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
-            <div class="text-xs uppercase tracking-wider text-neutral-500 mb-4">Rodar agora</div>
+            <div class="text-xs uppercase tracking-wider text-neutral-500 mb-4">Ejecutar ahora</div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <button id="btn-fal" class="open-btn px-5 py-3 bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold rounded-lg transition-colors flex items-center justify-center space-x-2" data-target="fal">
                 <span>🎬</span>
-                <span>Abrir na fal.ai</span>
+                <span>Abrir en fal.ai</span>
               </button>
               <button id="btn-kie" class="open-btn px-5 py-3 bg-gradient-to-br from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold rounded-lg transition-colors flex items-center justify-center space-x-2" data-target="kie">
                 <span>🎬</span>
-                <span>Abrir na kie.ai</span>
+                <span>Abrir en kie.ai</span>
               </button>
               <button id="btn-render-api" onclick="renderViaApi()" class="px-5 py-3 bg-gradient-to-br from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold rounded-lg transition-colors flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
                 <span>⚡</span>
-                <span>Gerar via API</span>
+                <span>Generar vía API</span>
               </button>
             </div>
             <div id="render-api-status" class="mt-3 text-xs text-neutral-500 text-center">
-              Configure uma API key no ⚙️ para ativar "Gerar via API"
+              Configura una API key en ⚙️ para activar "Generar vía API"
             </div>
           </div>
 
@@ -355,16 +358,16 @@
           <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
             <h3 class="text-lg font-bold mb-2 flex items-center space-x-2">
               <span>✨</span>
-              <span>Continuar a história?</span>
+              <span>¿Continuar la historia?</span>
             </h3>
-            <p class="text-xs text-neutral-500 mb-4">Clique em uma sugestão para gerar o próximo prompt automaticamente</p>
+            <p class="text-xs text-neutral-500 mb-4">Haz clic en una sugerencia para generar el siguiente prompt automáticamente</p>
             <div id="result-next" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
           </div>
 
           <!-- New scene -->
           <div class="text-center">
             <button onclick="resetAll()" class="text-sm text-neutral-400 hover:text-primary transition-colors">
-              ← Nova cena do zero
+              ← Nueva escena desde cero
             </button>
           </div>
 
@@ -376,49 +379,49 @@
 
         <section class="glass rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl">
           <label class="block text-sm font-medium text-neutral-400 mb-3">
-            Conte sua história (ideia, arco, narrativa)
+            Cuenta tu historia (idea, arco, narrativa)
           </label>
           <textarea
             id="story-input"
             rows="6"
             class="w-full p-4 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none transition-colors placeholder-neutral-600"
-            placeholder="Ex: Uma avó no sertão mineiro acorda ao amanhecer. Ela prepara pão de queijo na cozinha antiga enquanto o neto chega do terreiro trazendo ovos frescos. Eles comem juntos à mesa de madeira, riem baixinho. Depois ela o leva pela mão pelo quintal onde florescem begônias. No final, o neto corre sozinho pelo milharal enquanto ela observa da porta, sorrindo."
+            placeholder="Ej: Una abuela en un pueblo rural despierta al amanecer. Prepara pan casero en la cocina antigua mientras el nieto llega del corral trayendo huevos frescos. Comen juntos en la mesa de madera, ríen bajito. Después ella lo lleva de la mano por el patio donde florecen begonias. Al final, el nieto corre solo por el maizal mientras ella observa desde la puerta, sonriendo."
           ></textarea>
 
           <div class="flex items-center justify-between mt-3 text-xs text-neutral-500">
             <span id="story-char-count">0 / 8000 caracteres</span>
-            <span>O sistema cria 5-8 cenas conectadas</span>
+            <span>El sistema crea 5-8 escenas conectadas</span>
           </div>
 
           <!-- VISUAL STYLE FOR WORKFLOW -->
           <div class="mt-5 pt-4 border-t border-dark-600/50">
             <div class="flex items-center justify-between mb-2">
-              <label class="text-xs font-semibold text-neutral-400 uppercase tracking-wider">🎨 Estilo visual da história</label>
-              <span class="text-xs text-neutral-600">aplicado a todas as cenas</span>
+              <label class="text-xs font-semibold text-neutral-400 uppercase tracking-wider">🎨 Estilo visual de la historia</label>
+              <span class="text-xs text-neutral-600">aplicado a todas las escenas</span>
             </div>
             <select id="story-style-select" class="w-full p-2.5 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm">
-              <option value="photorealistic">🎬 Fotorrealista (padrão)</option>
+              <option value="photorealistic">🎬 Fotorrealista (por defecto)</option>
               <option value="anime">🎌 Anime 2D (Ghibli / Shinkai)</option>
               <option value="3d-animated">🧸 3D animado (Pixar / DreamWorks)</option>
               <option value="stop-motion">🪆 Stop motion (Laika / Aardman)</option>
-              <option value="claymation">🧱 Claymation (massinha)</option>
-              <option value="watercolor">🎨 Aquarela</option>
-              <option value="oil-painting">🖼️ Pintura a óleo</option>
-              <option value="film-analog">📼 Filme analógico 35mm</option>
-              <option value="free">✨ Estilo livre (IA decide)</option>
+              <option value="claymation">🧱 Claymation (plastilina)</option>
+              <option value="watercolor">🎨 Acuarela</option>
+              <option value="oil-painting">🖼️ Pintura al óleo</option>
+              <option value="film-analog">📼 Película analógica 35mm</option>
+              <option value="free">✨ Estilo libre (IA decide)</option>
             </select>
           </div>
 
-          <!-- IMAGE REFERENCES FOR WORKFLOW (same as single mode) -->
+          <!-- IMAGE REFERENCES FOR WORKFLOW -->
           <div class="mt-5 pt-4 border-t border-dark-600/50">
             <div class="flex items-center justify-between mb-2">
-              <label class="text-xs font-semibold text-neutral-400 uppercase tracking-wider">🖼️ Imagens de referência da história</label>
-              <span class="text-xs text-neutral-600">até 3 · aplicadas a todas as cenas</span>
+              <label class="text-xs font-semibold text-neutral-400 uppercase tracking-wider">🖼️ Imágenes de referencia de la historia</label>
+              <span class="text-xs text-neutral-600">hasta 3 · aplicadas a todas las escenas</span>
             </div>
             <div id="story-image-preview" class="flex flex-wrap gap-2 mb-2"></div>
             <input id="story-image-input" type="file" accept="image/jpeg,image/png,image/webp" multiple class="hidden" onchange="handleImageUpload(event, 'story')">
             <button type="button" onclick="document.getElementById('story-image-input').click()" class="w-full p-3 bg-dark-900/80 border border-dashed border-dark-600 hover:border-primary/40 rounded-lg text-sm text-neutral-400 hover:text-primary transition-colors">
-              + Adicionar imagem de referência
+              + Añadir imagen de referencia
             </button>
           </div>
 
@@ -427,7 +430,7 @@
             onclick="generateStory()"
             class="w-full mt-6 px-6 py-4 bg-primary text-dark-900 font-bold text-base rounded-lg hover:bg-yellow-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
           >
-            <span id="story-btn-label">📖 Criar fluxo de cenas</span>
+            <span id="story-btn-label">📖 Crear flujo de escenas</span>
             <svg id="story-btn-spinner" class="hidden w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" class="opacity-25"></circle>
               <path fill="currentColor" class="opacity-75" d="M4 12a8 8 0 018-8V0C5.37 0 0 5.37 0 12h4z"></path>
@@ -444,7 +447,7 @@
           <div class="skeleton h-20 mb-3"></div>
           <div class="skeleton h-20 mb-3"></div>
           <div class="text-center text-sm text-neutral-500 mt-6">
-            Estruturando fluxo de cenas · ~20-40s
+            Estructurando flujo de escenas · ~20-40s
           </div>
         </section>
 
@@ -454,9 +457,9 @@
             <div class="flex items-center justify-between mb-2">
               <h3 class="text-lg font-bold flex items-center space-x-2">
                 <span>📖</span>
-                <span id="story-title">Fluxo de cenas</span>
+                <span id="story-title">Flujo de escenas</span>
               </h3>
-              <button onclick="regenerateStory()" class="text-xs px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-300 border border-dark-600 transition-colors">🔄 Refazer</button>
+              <button onclick="regenerateStory()" class="text-xs px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-300 border border-dark-600 transition-colors">🔄 Rehacer</button>
             </div>
             <p id="story-synopsis" class="text-sm text-neutral-400 mb-6"></p>
 
@@ -466,41 +469,184 @@
               <div class="flex items-start space-x-3">
                 <span class="text-xl">🚧</span>
                 <div class="text-sm text-neutral-400">
-                  <strong class="text-neutral-300">"Executar tudo via API"</strong> — botão de renderizar o fluxo inteiro na fal.ai/kie.ai em batch. <span class="text-primary">Próxima versão.</span>
+                  <strong class="text-neutral-300">"Ejecutar todo vía API"</strong> — botón para renderizar el flujo entero en fal.ai/kie.ai en batch. <span class="text-primary">Próxima versión.</span>
                 </div>
               </div>
               <button disabled class="w-full mt-4 px-5 py-3 bg-dark-700 text-neutral-500 font-semibold rounded-lg cursor-not-allowed border border-dark-600">
-                ⚡ Executar tudo via API (em breve)
+                ⚡ Ejecutar todo vía API (próximamente)
               </button>
             </div>
           </div>
 
           <div class="text-center mt-6">
             <button onclick="resetStory()" class="text-sm text-neutral-400 hover:text-primary transition-colors">
-              ← Nova história
+              ← Nueva historia
             </button>
           </div>
         </section>
       </div>
 
-      <!-- COMO FUNCIONA -->
+      <!-- ━━━━━━━━━━━━━━━━━━ MODO CURSO / STORYTELLING ━━━━━━━━━━━━━━━━━━ -->
+      <div id="mode-course" class="hidden">
+
+        <section class="glass rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl">
+          <div class="mb-6">
+            <div class="flex items-center space-x-2 mb-2">
+              <span class="text-2xl">🎓</span>
+              <h2 class="text-lg font-bold">Generador de vídeo largo (curso / storytelling)</h2>
+            </div>
+            <p class="text-sm text-neutral-400">Define tu tema, duración y estilo. La IA genera automáticamente un flujo de escenas con prompts Seedance 2.0 listos para renderizar.</p>
+          </div>
+
+          <!-- TEMA -->
+          <div class="mb-5">
+            <label class="block text-sm font-medium text-neutral-400 mb-2">Tema del vídeo</label>
+            <textarea
+              id="course-topic"
+              rows="3"
+              class="w-full p-4 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none transition-colors placeholder-neutral-600"
+              placeholder="Ej: Cómo hacer pan artesanal en horno de leña — desde la masa madre hasta el horneado. Estilo documental rural, ritmo pausado."
+            ></textarea>
+          </div>
+
+          <!-- DURACIÓN + ESCENAS (dos columnas) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+            <div>
+              <label class="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">⏱️ Duración total</label>
+              <select id="course-duration" class="w-full p-2.5 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm">
+                <option value="1">1 minuto (~6 escenas)</option>
+                <option value="2">2 minutos (~12 escenas)</option>
+                <option value="3">3 minutos (~18 escenas)</option>
+                <option value="4" selected>4 minutos (~24 escenas)</option>
+                <option value="5">5 minutos (~30 escenas)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">🎭 Tipo de narrativa</label>
+              <select id="course-narrative" class="w-full p-2.5 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm">
+                <option value="tutorial">📚 Tutorial paso a paso</option>
+                <option value="storytelling">📖 Storytelling (arco narrativo)</option>
+                <option value="documentary">🎞️ Documental observacional</option>
+                <option value="promotional">📢 Promocional / marca</option>
+                <option value="educational">🧠 Educativo / divulgación</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- ESTILO VISUAL + MOOD -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+            <div>
+              <label class="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">🎨 Estilo visual</label>
+              <select id="course-style" class="w-full p-2.5 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm">
+                <option value="photorealistic">🎬 Fotorrealista</option>
+                <option value="anime">🎌 Anime 2D</option>
+                <option value="3d-animated">🧸 3D animado (Pixar)</option>
+                <option value="watercolor">🎨 Acuarela</option>
+                <option value="film-analog">📼 Película analógica 35mm</option>
+                <option value="free">✨ Estilo libre (IA decide)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">🎭 Mood general</label>
+              <select id="course-mood" class="w-full p-2.5 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm">
+                <option value="auto">🤖 Automático (IA decide por escena)</option>
+                <option value="epic">🏔️ Épico / grandioso</option>
+                <option value="intimist">🕯️ Íntimo / cercano</option>
+                <option value="urban pulse">🏙️ Urbano / dinámico</option>
+                <option value="elemental">⛈️ Naturaleza / elemental</option>
+                <option value="dream">🌸 Onírico / mágico</option>
+                <option value="documentary">🎞️ Documental / honesto</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- SECCIONES OPCIONALES -->
+          <div class="mb-5 pt-4 border-t border-dark-600/50">
+            <label class="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">📋 Secciones o capítulos (opcional)</label>
+            <textarea
+              id="course-sections"
+              rows="3"
+              class="w-full p-3 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none transition-colors placeholder-neutral-600 text-sm"
+              placeholder="Ej:&#10;1. Introducción — paisaje del pueblo y el horno&#10;2. Preparación de la masa madre&#10;3. Amasado y reposo&#10;4. Horneado en leña&#10;5. Resultado final y degustación"
+            ></textarea>
+            <p class="text-xs text-neutral-500 mt-1">Si los dejas vacío, la IA creará los capítulos automáticamente</p>
+          </div>
+
+          <button
+            id="course-btn"
+            onclick="generateCourse()"
+            class="w-full mt-2 px-6 py-4 bg-primary text-dark-900 font-bold text-base rounded-lg hover:bg-yellow-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+          >
+            <span id="course-btn-label">🎓 Generar guión completo</span>
+            <svg id="course-btn-spinner" class="hidden w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" class="opacity-25"></circle>
+              <path fill="currentColor" class="opacity-75" d="M4 12a8 8 0 018-8V0C5.37 0 0 5.37 0 12h4z"></path>
+            </svg>
+          </button>
+
+          <div id="course-error" class="hidden mt-4 p-3 bg-red-900/20 border border-red-500/40 rounded-lg text-sm text-red-300"></div>
+        </section>
+
+        <!-- Loading -->
+        <section id="course-loading" class="hidden glass rounded-2xl p-6 sm:p-8 mb-8 fade-in">
+          <div class="skeleton h-4 w-48 mb-4"></div>
+          <div class="skeleton h-16 mb-3"></div>
+          <div class="skeleton h-16 mb-3"></div>
+          <div class="skeleton h-16 mb-3"></div>
+          <div class="skeleton h-16 mb-3"></div>
+          <div class="text-center text-sm text-neutral-500 mt-6">
+            Generando guión de vídeo · ~30-60s según duración
+          </div>
+        </section>
+
+        <!-- Result -->
+        <section id="course-result" class="hidden fade-in">
+          <div class="glass rounded-2xl p-6 sm:p-8 mb-6">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-lg font-bold flex items-center space-x-2">
+                <span>🎓</span>
+                <span id="course-title">Guión de vídeo</span>
+              </h3>
+              <div class="flex gap-2">
+                <button onclick="exportCoursePrompts()" class="text-xs px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-300 border border-dark-600 transition-colors">📋 Exportar todos</button>
+                <button onclick="regenerateCourse()" class="text-xs px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-300 border border-dark-600 transition-colors">🔄 Rehacer</button>
+              </div>
+            </div>
+            <p id="course-synopsis" class="text-sm text-neutral-400 mb-2"></p>
+            <div class="flex gap-4 text-xs text-neutral-500 mb-6">
+              <span id="course-info-duration"></span>
+              <span id="course-info-scenes"></span>
+            </div>
+
+            <div id="course-scene-cards" class="space-y-4"></div>
+          </div>
+
+          <div class="text-center mt-6">
+            <button onclick="resetCourse()" class="text-sm text-neutral-400 hover:text-primary transition-colors">
+              ← Nuevo guión
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <!-- CÓMO FUNCIONA -->
       <section id="como-funciona" class="mt-20 pt-10 border-t border-dark-600/50">
-        <h2 class="text-2xl font-bold mb-6 text-center">Como funciona</h2>
+        <h2 class="text-2xl font-bold mb-6 text-center">Cómo funciona</h2>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <div class="glass rounded-xl p-5">
             <div class="text-3xl mb-3">1️⃣</div>
-            <h3 class="font-bold mb-2">Você descreve</h3>
-            <p class="text-sm text-neutral-400">Uma cena única ou uma história inteira — em português ou inglês.</p>
+            <h3 class="font-bold mb-2">Tú describes</h3>
+            <p class="text-sm text-neutral-400">Una escena única o una historia entera — en español, portugués o inglés.</p>
           </div>
           <div class="glass rounded-xl p-5">
             <div class="text-3xl mb-3">2️⃣</div>
-            <h3 class="font-bold mb-2">A IA estrutura</h3>
-            <p class="text-sm text-neutral-400">Claude Sonnet 4.6 + taxonomia INEMA gera prompt(s) no template [0s][3s][6s].</p>
+            <h3 class="font-bold mb-2">La IA estructura</h3>
+            <p class="text-sm text-neutral-400">Claude Sonnet 4.6 + taxonomía INEMA genera prompt(s) en el template [0s][3s][6s].</p>
           </div>
           <div class="glass rounded-xl p-5">
             <div class="text-3xl mb-3">3️⃣</div>
-            <h3 class="font-bold mb-2">Você renderiza</h3>
-            <p class="text-sm text-neutral-400">Copie, abra na fal.ai/kie.ai, ou (com API key) gere direto na nossa app.</p>
+            <h3 class="font-bold mb-2">Tú renderizas</h3>
+            <p class="text-sm text-neutral-400">Copia, abre en fal.ai/kie.ai, o (con API key) genera directo en nuestra app.</p>
           </div>
         </div>
       </section>
@@ -514,30 +660,30 @@
       <div class="flex items-center justify-between mb-5">
         <h2 class="text-xl font-bold flex items-center space-x-2">
           <span>⚙️</span>
-          <span>Configurações</span>
+          <span>Configuración</span>
         </h2>
         <button onclick="closeSettings()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
       </div>
 
       <p class="text-sm text-neutral-400 mb-6">
-        Tudo fica salvo só no seu navegador (<code>localStorage</code>). Nada é enviado ao servidor exceto quando você clica em gerar.
+        Todo se guarda solo en tu navegador (<code>localStorage</code>). Nada se envía al servidor excepto cuando haces clic en generar.
       </p>
 
       <div class="max-h-[60vh] overflow-y-auto pr-2 space-y-6">
 
         <!-- LLM SECTION -->
         <div>
-          <h3 class="text-xs font-semibold text-primary uppercase tracking-wider mb-3">🧠 LLM (geração de prompts)</h3>
+          <h3 class="text-xs font-semibold text-primary uppercase tracking-wider mb-3">🧠 LLM (generación de prompts)</h3>
 
           <div class="mb-3">
-            <label class="block text-sm text-neutral-400 mb-2">Método de autenticação</label>
+            <label class="block text-sm text-neutral-400 mb-2">Método de autenticación</label>
             <select id="llm-auth" onchange="toggleLlmKeyField()" class="w-full p-3 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm">
               <option value="oauth">Claude OAuth (local, Max/Pro)</option>
               <option value="anthropic-api">Anthropic API direta</option>
               <option value="openrouter">OpenRouter (unificado)</option>
             </select>
             <p class="text-xs text-neutral-500 mt-1.5" id="llm-auth-hint">
-              Usa seu login Claude Code local. Custo $0. Compartilha quota com Claude Code CLI.
+              Usa tu login Claude Code local. Costo $0. Comparte cuota con Claude Code CLI.
             </p>
           </div>
 
@@ -555,11 +701,11 @@
           </div>
 
           <div class="mb-2">
-            <label class="block text-sm text-neutral-400 mb-2">Modelo</label>
+            <label class="block text-sm text-neutral-400 mb-2">Modelo de IA</label>
             <select id="llm-model" class="w-full p-3 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm">
-              <option value="claude-sonnet-4-5">Claude Sonnet 4.5 (rápido, padrão)</option>
+              <option value="claude-sonnet-4-5">Claude Sonnet 4.5 (rápido, por defecto)</option>
               <option value="claude-sonnet-4-6">Claude Sonnet 4.6</option>
-              <option value="claude-opus-4-6">Claude Opus 4.6 (mais caro)</option>
+              <option value="claude-opus-4-6">Claude Opus 4.6 (más caro)</option>
             </select>
           </div>
         </div>
@@ -568,14 +714,14 @@
 
         <!-- VIDEO RENDER SECTION -->
         <div>
-          <h3 class="text-xs font-semibold text-primary uppercase tracking-wider mb-3">🎬 Renderização de vídeo</h3>
-          <p class="text-xs text-neutral-500 mb-4">Chaves para o botão "Gerar via API" renderizar o vídeo direto.</p>
+          <h3 class="text-xs font-semibold text-primary uppercase tracking-wider mb-3">🎬 Renderización de vídeo</h3>
+          <p class="text-xs text-neutral-500 mb-4">Claves para que el botón "Generar vía API" renderice el vídeo directamente.</p>
 
           <!-- fal.ai key -->
           <div class="mb-3">
             <label class="flex items-center justify-between mb-2">
               <span class="text-sm text-neutral-300">fal.ai API Key</span>
-              <a href="https://fal.ai/dashboard/keys" target="_blank" class="text-xs text-primary hover:text-yellow-300">pegar chave →</a>
+              <a href="https://fal.ai/dashboard/keys" target="_blank" class="text-xs text-primary hover:text-yellow-300">obtener clave →</a>
             </label>
             <input
               id="fal-key"
@@ -589,7 +735,7 @@
           <div class="mb-3">
             <label class="flex items-center justify-between mb-2">
               <span class="text-sm text-neutral-300">kie.ai API Key</span>
-              <a href="https://kie.ai/dashboard/api-keys" target="_blank" class="text-xs text-primary hover:text-yellow-300">pegar chave →</a>
+              <a href="https://kie.ai/dashboard/api-keys" target="_blank" class="text-xs text-primary hover:text-yellow-300">obtener clave →</a>
             </label>
             <input
               id="kie-key"
@@ -601,7 +747,7 @@
 
           <!-- Default provider -->
           <div>
-            <label class="block text-sm text-neutral-400 mb-2">Provider padrão do botão "Gerar via API"</label>
+            <label class="block text-sm text-neutral-400 mb-2">Provider por defecto del botón "Generar vía API"</label>
             <select id="default-provider" class="w-full p-3 bg-dark-900/80 text-neutral-100 rounded-lg border border-dark-600 focus:border-primary focus:outline-none text-sm">
               <option value="fal">fal.ai</option>
               <option value="kie">kie.ai</option>
@@ -613,10 +759,10 @@
 
       <div class="flex gap-3 mt-8">
         <button onclick="saveSettings()" class="flex-1 px-5 py-3 bg-primary text-dark-900 font-bold rounded-lg hover:bg-yellow-300 transition-colors">
-          Salvar
+          Guardar
         </button>
         <button onclick="clearSettings()" class="px-5 py-3 bg-dark-700 hover:bg-dark-600 text-neutral-300 font-semibold rounded-lg border border-dark-600 transition-colors text-sm">
-          Limpar
+          Limpiar
         </button>
       </div>
 
@@ -628,7 +774,7 @@
   <footer class="border-t border-dark-600/50 py-8 mt-10">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center text-sm text-neutral-500">
       <p class="mb-2">INEMA Prompt Engine · <a href="https://inema.club" target="_blank" class="text-primary hover:text-yellow-300">inema.club</a> · 2026</p>
-      <p class="text-xs">Taxonomia autoral INEMA v1.0 · Powered by Claude Sonnet 4.6 · Open source</p>
+      <p class="text-xs">Taxonomía autoral INEMA v1.0 · Powered by Claude Sonnet 4.6 · Open source</p>
     </div>
   </footer>
 
@@ -638,15 +784,15 @@
     // EXAMPLES
     // ═══════════════════════════════════════════════════════
     const EXAMPLES = {
-      epic: "Uma figura solitária em capa marrom caminha lentamente por uma duna imensa ao amanhecer. O sol baixo projeta sombras longas sobre areia dourada. Vento leve. Paisagem vazia até o horizonte.",
-      intimist: "Uma avó escrevendo uma carta à luz de uma janela de cozinha pela manhã. Mão idosa segurando caneta antiga, papel amarelado. Silêncio contemplativo.",
-      urban: "Skatistas em uma praça pública de São Paulo ao pôr do sol. Movimento urbano ao fundo, concreto cinzento, mas uma silhueta faz uma manobra em câmera lenta destacada pela luz laranja que atravessa os prédios.",
-      elemental: "Uma árvore solitária em um campo durante uma tempestade violenta. Raios cortando o céu preto, folhas voando, chuva forte. A árvore resiste.",
-      dream: "Uma bailarina de vestido branco girando entre cerejeiras em flor ao pôr do sol. Pétalas rosa caindo ao redor dela como neve. Luz dourada mágica atravessando as flores.",
-      documentary: "Um ceramista idoso moldando um vaso no torno em seu ateliê à luz natural da janela. Mãos cobertas de argila, concentração total, barulho do torno e da argila sendo trabalhada."
+      epic: "Una figura solitaria con capa marrón camina lentamente por una duna inmensa al amanecer. El sol bajo proyecta sombras largas sobre arena dorada. Viento suave. Paisaje vacío hasta el horizonte.",
+      intimist: "Una abuela escribiendo una carta a la luz de una ventana de cocina por la mañana. Mano anciana sosteniendo pluma antigua, papel amarillento. Silencio contemplativo.",
+      urban: "Skaters en una plaza pública de Madrid al atardecer. Movimiento urbano al fondo, concreto gris, pero una silueta hace un truco en cámara lenta destacada por la luz naranja que atraviesa los edificios.",
+      elemental: "Un árbol solitario en un campo durante una tormenta violenta. Rayos cortando el cielo negro, hojas volando, lluvia fuerte. El árbol resiste.",
+      dream: "Una bailarina de vestido blanco girando entre cerezos en flor al atardecer. Pétalos rosa cayendo a su alrededor como nieve. Luz dorada mágica atravesando las flores.",
+      documentary: "Un ceramista anciano moldeando un jarrón en el torno en su taller a la luz natural de la ventana. Manos cubiertas de arcilla, concentración total, sonido del torno y la arcilla siendo trabajada."
     };
 
-    const STORY_EXAMPLE = "Uma avó no sertão mineiro acorda ao amanhecer. Ela prepara pão de queijo na cozinha antiga enquanto o neto chega do terreiro trazendo ovos frescos. Eles comem juntos à mesa de madeira, riem baixinho. Depois ela o leva pela mão pelo quintal onde florescem begônias. No final, o neto corre sozinho pelo milharal enquanto ela observa da porta, sorrindo.";
+    const STORY_EXAMPLE = "Una abuela en un pueblo rural despierta al amanecer. Prepara pan casero en la cocina antigua mientras el nieto llega del corral trayendo huevos frescos. Comen juntos en la mesa de madera, ríen bajito. Después ella lo lleva de la mano por el patio donde florecen begonias. Al final, el nieto corre solo por el maizal mientras ella observa desde la puerta, sonriendo.";
 
     // ═══════════════════════════════════════════════════════
     // STATE
@@ -681,22 +827,22 @@
 
       for (const file of files) {
         if (store.length >= MAX_IMAGES) {
-          toast(`Máximo ${MAX_IMAGES} imagens — remova uma para adicionar outra`);
+          toast(`Máximo ${MAX_IMAGES} imágenes — elimina una para añadir otra`);
           break;
         }
         if (!file.type.match(/^image\/(jpeg|png|webp)$/)) {
-          toast(`${file.name}: formato inválido (use JPG/PNG/WebP)`);
+          toast(`${file.name}: formato inválido (usa JPG/PNG/WebP)`);
           continue;
         }
         if (file.size > MAX_IMAGE_BYTES) {
-          toast(`${file.name}: muito grande (máx 5MB)`);
+          toast(`${file.name}: demasiado grande (máx 5MB)`);
           continue;
         }
         try {
           const dataUrl = await fileToDataUrl(file);
           store.push({ name: file.name, dataUrl, size: file.size });
         } catch (err) {
-          toast(`Erro ao ler ${file.name}: ${err.message}`);
+          toast(`Error al leer ${file.name}: ${err.message}`);
         }
       }
 
@@ -719,7 +865,7 @@
         wrap.className = 'relative group';
         wrap.innerHTML = `
           <img src="${img.dataUrl}" alt="${escapeHtml(img.name)}" class="w-20 h-20 object-cover rounded-lg border border-dark-600" />
-          <button type="button" onclick="removeImage('${context}', ${idx})" class="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 hover:bg-red-400 text-white text-xs rounded-full flex items-center justify-center shadow-lg transition-colors" title="Remover">×</button>
+          <button type="button" onclick="removeImage('${context}', ${idx})" class="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 hover:bg-red-400 text-white text-xs rounded-full flex items-center justify-center shadow-lg transition-colors" title="Eliminar">×</button>
           <div class="text-xs text-neutral-500 mt-1 truncate w-20" title="${escapeHtml(img.name)}">${escapeHtml(img.name.slice(0, 12))}${img.name.length > 12 ? '…' : ''}</div>
         `;
         container.appendChild(wrap);
@@ -763,19 +909,19 @@
 
       if (auth === 'oauth') {
         wrap.classList.add('hidden');
-        hint.textContent = 'Usa seu login Claude Code local. Custo $0. Compartilha quota com Claude Code CLI.';
+        hint.textContent = 'Usa tu login Claude Code local. Costo $0. Comparte cuota con Claude Code CLI.';
       } else if (auth === 'anthropic-api') {
         wrap.classList.remove('hidden');
         label.textContent = 'Anthropic API Key';
         link.href = 'https://console.anthropic.com/settings/keys';
-        link.textContent = 'pegar chave →';
-        hint.textContent = 'Chamada direta à API da Anthropic. Cobra por token (~$0,02/geração).';
+        link.textContent = 'obtener clave →';
+        hint.textContent = 'Llamada directa a la API de Anthropic. Cobra por token (~$0,02/generación).';
       } else if (auth === 'openrouter') {
         wrap.classList.remove('hidden');
         label.textContent = 'OpenRouter API Key';
         link.href = 'https://openrouter.ai/keys';
-        link.textContent = 'pegar chave →';
-        hint.textContent = 'Unificado. Roteia Claude (e outros modelos) via OpenRouter. Preço varia.';
+        link.textContent = 'obtener clave →';
+        hint.textContent = 'Unificado. Enruta Claude (y otros modelos) vía OpenRouter. Precio varía.';
       }
     }
 
@@ -809,7 +955,7 @@
       // Validate: if user picked anthropic-api or openrouter, key is required
       if ((llmAuth === 'anthropic-api' || llmAuth === 'openrouter') && !llmKey) {
         const status = document.getElementById('settings-status');
-        status.textContent = `✗ Chave obrigatória para ${llmAuth}. Ou selecione "Claude OAuth".`;
+        status.textContent = `✗ Clave obligatoria para ${llmAuth}. O selecciona "Claude OAuth".`;
         status.className = 'mt-4 p-3 rounded-lg text-sm bg-red-900/20 border border-red-500/40 text-red-300';
         status.classList.remove('hidden');
         return;
@@ -818,14 +964,14 @@
       setSettings({ llmAuth, llmKey, llmModel, falKey, kieKey, defaultProvider });
 
       const status = document.getElementById('settings-status');
-      status.textContent = '✓ Salvo. Fechando...';
+      status.textContent = '✓ Guardado. Cerrando...';
       status.className = 'mt-4 p-3 rounded-lg text-sm bg-emerald-900/20 border border-emerald-500/40 text-emerald-300';
       status.classList.remove('hidden');
       setTimeout(closeSettings, 1000);
     }
 
     function clearSettings() {
-      if (!confirm('Limpar todas as configurações (LLM + rendering keys)?')) return;
+      if (!confirm('¿Limpiar toda la configuración (LLM + claves de renderización)?')) return;
       localStorage.removeItem(SETTINGS_KEY);
       // Also remove the old v1 key for backwards compat
       localStorage.removeItem('inema_settings_v1');
@@ -839,7 +985,7 @@
       updateRenderApiButton();
       updateLlmIndicator();
       const status = document.getElementById('settings-status');
-      status.textContent = 'Configurações limpas. OAuth local ainda funciona como padrão.';
+      status.textContent = 'Configuración limpia. OAuth local sigue funcionando por defecto.';
       status.className = 'mt-4 p-3 rounded-lg text-sm bg-amber-900/20 border border-amber-500/40 text-amber-300';
       status.classList.remove('hidden');
     }
@@ -875,10 +1021,10 @@
       const hasKey = (s.defaultProvider === 'fal' && s.falKey) || (s.defaultProvider === 'kie' && s.kieKey);
       btn.disabled = !hasKey;
       if (hasKey) {
-        status.textContent = `Pronto: usará ${s.defaultProvider}.ai para renderizar o vídeo`;
+        status.textContent = `Listo: usará ${s.defaultProvider}.ai para renderizar el vídeo`;
         status.className = 'mt-3 text-xs text-emerald-400 text-center';
       } else {
-        status.textContent = 'Configure uma API key no ⚙️ para ativar "Gerar via API"';
+        status.textContent = 'Configura una API key en ⚙️ para activar "Generar vía API"';
         status.className = 'mt-3 text-xs text-neutral-500 text-center';
       }
     }
@@ -919,7 +1065,7 @@
     function feedbackCopy(btn, ok) {
       if (!btn) return;
       const orig = btn.textContent;
-      btn.textContent = ok ? '✓ Copiado!' : '✗ Erro';
+      btn.textContent = ok ? '✓ ¡Copiado!' : '✗ Error';
       btn.classList.add(ok ? 'copied' : 'error');
       setTimeout(() => {
         btn.textContent = orig;
@@ -945,7 +1091,7 @@
       if (!btn) return;
       const target = btn.getAttribute('data-target');
       if (!lastResult || !lastResult.english_prompt) {
-        toast('Gere um prompt primeiro');
+        toast('Genera un prompt primero');
         return;
       }
 
@@ -962,14 +1108,14 @@
 
       const ok = await copyText(lastResult.english_prompt);
       if (ok) {
-        toast(`Prompt copiado — cole no campo da ${target}.ai`);
+        toast(`Prompt copiado — pega en el campo de ${target}.ai`);
       } else {
-        toast('Abriu a plataforma. Copie manualmente o prompt do card acima.');
+        toast('Se abrió la plataforma. Copia manualmente el prompt del card de arriba.');
       }
 
       if (!win) {
         // Popup blocked — fallback: tell user
-        toast('Popup bloqueado. Permita popups ou copie o link manualmente.');
+        toast('Popup bloqueado. Permite popups o copia el enlace manualmente.');
       }
     });
 
@@ -989,12 +1135,11 @@
     // ═══════════════════════════════════════════════════════
     function switchMode(mode) {
       currentMode = mode;
-      document.getElementById('mode-single').classList.toggle('hidden', mode !== 'single');
-      document.getElementById('mode-workflow').classList.toggle('hidden', mode !== 'workflow');
-      document.getElementById('tab-single').classList.toggle('active', mode === 'single');
-      document.getElementById('tab-single').classList.toggle('text-neutral-400', mode !== 'single');
-      document.getElementById('tab-workflow').classList.toggle('active', mode === 'workflow');
-      document.getElementById('tab-workflow').classList.toggle('text-neutral-400', mode !== 'workflow');
+      ['single', 'workflow', 'course'].forEach(m => {
+        document.getElementById('mode-' + m).classList.toggle('hidden', mode !== m);
+        document.getElementById('tab-' + m).classList.toggle('active', mode === m);
+        document.getElementById('tab-' + m).classList.toggle('text-neutral-400', mode !== m);
+      });
     }
 
     // ═══════════════════════════════════════════════════════
@@ -1023,7 +1168,7 @@
 
     function setLoading(loading) {
       btn.disabled = loading;
-      btnLabel.textContent = loading ? 'Gerando...' : '⚡ Gerar prompt cinematográfico';
+      btnLabel.textContent = loading ? 'Generando...' : '⚡ Generar prompt cinematográfico';
       btnSpinner.classList.toggle('hidden', !loading);
       loadingState.classList.toggle('hidden', !loading);
       if (loading) {
@@ -1039,8 +1184,8 @@
 
     async function generate() {
       const scene = input.value.trim();
-      if (!scene) { showError('Descreva sua cena primeiro.'); return; }
-      if (scene.length > 4000) { showError('Cena muito longa (máximo 4000 caracteres).'); return; }
+      if (!scene) { showError('Describe tu escena primero.'); return; }
+      if (scene.length > 4000) { showError('Escena demasiado larga (máximo 4000 caracteres).'); return; }
 
       lastScene = scene;
       setLoading(true);
@@ -1063,7 +1208,7 @@
         lastResult = data;
         renderResult(data);
       } catch (err) {
-        showError('Erro: ' + err.message);
+        showError('Error: ' + err.message);
       } finally {
         setLoading(false);
       }
@@ -1121,14 +1266,14 @@
       // Next scene suggestions (clickable)
       const nextContainer = document.getElementById('result-next');
       nextContainer.innerHTML = '';
-      const labels = ['Continuação', 'Contraste', 'Close/detalhe', 'Reveal/transição'];
+      const labels = ['Continuación', 'Contraste', 'Close/detalle', 'Reveal/transición'];
       (data.next_scene_suggestions || []).slice(0, 4).forEach((s, i) => {
         const card = document.createElement('button');
         card.className = 'text-left p-4 bg-dark-900/60 hover:bg-dark-700 border border-dark-600 hover:border-primary/40 rounded-lg transition-all group';
         card.innerHTML = `
-          <div class="text-xs uppercase tracking-wider text-primary/70 mb-1.5 group-hover:text-primary">${labels[i] || 'Próxima'}</div>
+          <div class="text-xs uppercase tracking-wider text-primary/70 mb-1.5 group-hover:text-primary">${labels[i] || 'Siguiente'}</div>
           <div class="text-sm text-neutral-300 group-hover:text-neutral-100">${escapeHtml(s)}</div>
-          <div class="text-xs text-neutral-500 mt-2">→ clique para gerar</div>
+          <div class="text-xs text-neutral-500 mt-2">→ clic para generar</div>
         `;
         card.onclick = () => useNextSuggestion(s);
         nextContainer.appendChild(card);
@@ -1162,11 +1307,11 @@
     }
 
     async function renderViaApi() {
-      if (!lastResult || !lastResult.english_prompt) { toast('Gere um prompt primeiro'); return; }
+      if (!lastResult || !lastResult.english_prompt) { toast('Genera un prompt primero'); return; }
       const s = getSettings();
       const provider = s.defaultProvider || 'fal';
       const key = provider === 'fal' ? s.falKey : s.kieKey;
-      if (!key) { toast('Configure a API key no ⚙️'); openSettings(); return; }
+      if (!key) { toast('Configura la API key en ⚙️'); openSettings(); return; }
 
       const btn = document.getElementById('btn-render-api');
       btn.disabled = true;
@@ -1186,16 +1331,16 @@
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
         if (data.statusUrl) {
-          toast('✓ Job enviado! Abrindo status em nova aba...');
+          toast('¡Job enviado! Abriendo estado en nueva pestaña...');
           window.open(data.statusUrl, '_blank', 'noopener');
         } else if (data.videoUrl) {
-          toast('✓ Vídeo gerado! Abrindo em nova aba...');
+          toast('¡Vídeo generado! Abriendo en nueva pestaña...');
           window.open(data.videoUrl, '_blank', 'noopener');
         } else {
-          toast('✓ Enviado. Resposta: ' + JSON.stringify(data).slice(0, 100));
+          toast('Enviado. Respuesta: ' + JSON.stringify(data).slice(0, 100));
         }
       } catch (err) {
-        toast('Erro: ' + err.message);
+        toast('Error: ' + err.message);
       } finally {
         btn.disabled = false;
         btn.innerHTML = origContent;
@@ -1220,7 +1365,7 @@
 
     function setStoryLoading(loading) {
       storyBtn.disabled = loading;
-      storyBtnLabel.textContent = loading ? 'Criando fluxo...' : '📖 Criar fluxo de cenas';
+      storyBtnLabel.textContent = loading ? 'Creando flujo...' : '📖 Crear flujo de escenas';
       storyBtnSpinner.classList.toggle('hidden', !loading);
       storyLoading.classList.toggle('hidden', !loading);
       if (loading) {
@@ -1236,8 +1381,8 @@
 
     async function generateStory() {
       const story = storyInput.value.trim();
-      if (!story) { showStoryError('Conte sua história primeiro.'); return; }
-      if (story.length > 8000) { showStoryError('História muito longa (máximo 8000 caracteres).'); return; }
+      if (!story) { showStoryError('Cuenta tu historia primero.'); return; }
+      if (story.length > 8000) { showStoryError('Historia demasiado larga (máximo 8000 caracteres).'); return; }
 
       lastStory = story;
       setStoryLoading(true);
@@ -1258,14 +1403,14 @@
         lastStoryResult = data;
         renderStoryResult(data);
       } catch (err) {
-        showStoryError('Erro: ' + err.message);
+        showStoryError('Error: ' + err.message);
       } finally {
         setStoryLoading(false);
       }
     }
 
     function renderStoryResult(data) {
-      document.getElementById('story-title').textContent = data.title || 'Fluxo de cenas';
+      document.getElementById('story-title').textContent = data.title || 'Flujo de escenas';
       document.getElementById('story-synopsis').textContent = data.synopsis || '';
 
       const container = document.getElementById('scene-cards');
@@ -1277,14 +1422,14 @@
           <div class="flex items-start gap-4 mb-3">
             <span class="flex-shrink-0 w-9 h-9 rounded-full bg-primary/10 text-primary font-bold flex items-center justify-center border border-primary/30">${idx + 1}</span>
             <div class="flex-1">
-              <h4 class="font-bold text-neutral-100 mb-1">${escapeHtml(scene.title || 'Cena ' + (idx + 1))}</h4>
+              <h4 class="font-bold text-neutral-100 mb-1">${escapeHtml(scene.title || 'Escena ' + (idx + 1))}</h4>
               <p class="text-sm text-neutral-400">${escapeHtml(scene.description || '')}</p>
               ${scene.mood ? `<div class="text-xs text-primary/80 mt-2">📍 ${escapeHtml(scene.mood)}</div>` : ''}
             </div>
           </div>
           <div class="pl-13 mt-4">
             <button onclick='generateFromScene(${JSON.stringify(idx)})' class="text-xs px-4 py-2 bg-dark-700 hover:bg-dark-600 text-neutral-300 hover:text-primary rounded-lg border border-dark-600 transition-colors">
-              ⚡ Gerar prompt desta cena →
+              ⚡ Generar prompt de esta escena →
             </button>
             <span class="scene-status-${idx} ml-3 text-xs text-neutral-500"></span>
           </div>
@@ -1306,7 +1451,7 @@
       const resultEl = document.querySelector(`.scene-result-${idx}`);
       if (!statusEl) return;
 
-      statusEl.textContent = '⏳ gerando...';
+      statusEl.textContent = '⏳ generando...';
       statusEl.className = `scene-status-${idx} ml-3 text-xs text-primary`;
 
       try {
@@ -1316,7 +1461,7 @@
           body: JSON.stringify({
             scene: sceneDesc,
             style: document.getElementById('story-style-select').value,
-            mood: 'auto', // no workflow cada cena decide seu mood naturalmente
+            mood: 'auto', // en workflow cada escena decide su mood naturalmente
             images: getImagesDataUrls('story'),
             opts: { pt: true, recs: false },
             llm: buildLlmPayload()
@@ -1336,7 +1481,7 @@
         `;
         resultEl.classList.remove('hidden');
       } catch (err) {
-        statusEl.textContent = '✗ erro: ' + err.message;
+        statusEl.textContent = '✗ error: ' + err.message;
         statusEl.className = `scene-status-${idx} ml-3 text-xs text-red-400`;
       }
     }
@@ -1361,6 +1506,232 @@
     storyInput.addEventListener('focus', () => {
       if (!storyInput.value) {
         storyInput.placeholder = STORY_EXAMPLE;
+      }
+    });
+
+    // ═══════════════════════════════════════════════════════
+    // COURSE / STORYTELLING MODE (vídeo largo)
+    // ═══════════════════════════════════════════════════════
+    let lastCourseResult = null;
+    let lastCourseTopic = '';
+
+    const courseBtn = document.getElementById('course-btn');
+    const courseBtnLabel = document.getElementById('course-btn-label');
+    const courseBtnSpinner = document.getElementById('course-btn-spinner');
+    const courseError = document.getElementById('course-error');
+    const courseLoading = document.getElementById('course-loading');
+    const courseResult = document.getElementById('course-result');
+
+    function setCourseLoading(loading) {
+      courseBtn.disabled = loading;
+      courseBtnLabel.textContent = loading ? 'Generando guión...' : '🎓 Generar guión completo';
+      courseBtnSpinner.classList.toggle('hidden', !loading);
+      courseLoading.classList.toggle('hidden', !loading);
+      if (loading) {
+        courseResult.classList.add('hidden');
+        courseError.classList.add('hidden');
+      }
+    }
+
+    function showCourseError(msg) {
+      courseError.textContent = msg;
+      courseError.classList.remove('hidden');
+    }
+
+    async function generateCourse() {
+      const topic = document.getElementById('course-topic').value.trim();
+      if (!topic) { showCourseError('Define el tema del vídeo primero.'); return; }
+
+      const duration = parseInt(document.getElementById('course-duration').value);
+      const narrative = document.getElementById('course-narrative').value;
+      const style = document.getElementById('course-style').value;
+      const mood = document.getElementById('course-mood').value;
+      const sections = document.getElementById('course-sections').value.trim();
+      const numScenes = duration * 6; // ~6 escenas por minuto (10s cada una)
+
+      lastCourseTopic = topic;
+      setCourseLoading(true);
+
+      // Construir la historia a partir de los parámetros del curso
+      const narrativeLabels = {
+        tutorial: 'tutorial paso a paso',
+        storytelling: 'storytelling con arco narrativo (inicio-nudo-desenlace)',
+        documentary: 'documental observacional',
+        promotional: 'vídeo promocional de marca',
+        educational: 'vídeo educativo de divulgación'
+      };
+
+      let storyPrompt = `Genera un flujo de exactamente ${numScenes} escenas para un vídeo de ${duration} minutos sobre: "${topic}".
+
+Tipo de narrativa: ${narrativeLabels[narrative] || narrative}.
+Cada escena será un clip de ~10 segundos renderizado en Seedance 2.0.
+
+REQUISITOS:
+- Exactamente ${numScenes} escenas numeradas
+- Cada escena debe tener: título corto, descripción visual detallada (2-3 frases), y mood/ambiente
+- Las escenas deben tener continuidad narrativa y progresión dramática
+- Incluye transiciones naturales entre escenas
+- Varía los planos: generales, medios, close-ups, aéreos`;
+
+      if (sections) {
+        storyPrompt += `\n\nEl usuario ha definido estas secciones/capítulos:\n${sections}\nDistribuye las ${numScenes} escenas proporcionalmente entre estos capítulos.`;
+      }
+
+      if (mood !== 'auto') {
+        storyPrompt += `\n\nMood general preferido: ${mood}`;
+      }
+
+      try {
+        const res = await fetch('/api/scenes', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            story: storyPrompt,
+            style,
+            llm: buildLlmPayload()
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+        lastCourseResult = data;
+        renderCourseResult(data, duration);
+      } catch (err) {
+        showCourseError('Error: ' + err.message);
+      } finally {
+        setCourseLoading(false);
+      }
+    }
+
+    function renderCourseResult(data, duration) {
+      document.getElementById('course-title').textContent = data.title || 'Guión de vídeo';
+      document.getElementById('course-synopsis').textContent = data.synopsis || '';
+      const scenes = data.scenes || [];
+      document.getElementById('course-info-duration').textContent = `⏱️ ${duration || Math.ceil(scenes.length / 6)} min`;
+      document.getElementById('course-info-scenes').textContent = `🎬 ${scenes.length} escenas`;
+
+      const container = document.getElementById('course-scene-cards');
+      container.innerHTML = '';
+
+      scenes.forEach((scene, idx) => {
+        const timeStart = idx * 10;
+        const timeLabel = `${Math.floor(timeStart / 60)}:${String(timeStart % 60).padStart(2, '0')}`;
+
+        const card = document.createElement('div');
+        card.className = 'scene-card bg-dark-900/60 rounded-xl p-5 border border-dark-600';
+        card.innerHTML = `
+          <div class="flex items-start gap-4 mb-3">
+            <div class="flex-shrink-0 text-center">
+              <span class="block w-9 h-9 rounded-full bg-primary/10 text-primary font-bold flex items-center justify-center border border-primary/30 text-sm">${idx + 1}</span>
+              <span class="text-xs text-neutral-500 mt-1 block">${timeLabel}</span>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-bold text-neutral-100 mb-1">${escapeHtml(scene.title || 'Escena ' + (idx + 1))}</h4>
+              <p class="text-sm text-neutral-400">${escapeHtml(scene.description || '')}</p>
+              ${scene.mood ? `<div class="text-xs text-primary/80 mt-2">📍 ${escapeHtml(scene.mood)}</div>` : ''}
+            </div>
+          </div>
+          <div class="pl-13 mt-4">
+            <button onclick='generateCourseScene(${idx})' class="text-xs px-4 py-2 bg-dark-700 hover:bg-dark-600 text-neutral-300 hover:text-primary rounded-lg border border-dark-600 transition-colors">
+              ⚡ Generar prompt →
+            </button>
+            <span class="course-scene-status-${idx} ml-3 text-xs text-neutral-500"></span>
+          </div>
+          <div class="course-scene-result-${idx} hidden mt-4 pt-4 border-t border-dark-700"></div>
+        `;
+        container.appendChild(card);
+      });
+
+      courseResult.classList.remove('hidden');
+      courseResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    async function generateCourseScene(idx) {
+      if (!lastCourseResult || !lastCourseResult.scenes || !lastCourseResult.scenes[idx]) return;
+      const scene = lastCourseResult.scenes[idx];
+      const sceneDesc = `${scene.title || ''}: ${scene.description || ''}${scene.mood ? ' Mood: ' + scene.mood : ''}`;
+
+      const statusEl = document.querySelector(`.course-scene-status-${idx}`);
+      const resultEl = document.querySelector(`.course-scene-result-${idx}`);
+      if (!statusEl) return;
+
+      statusEl.textContent = '⏳ generando...';
+      statusEl.className = `course-scene-status-${idx} ml-3 text-xs text-primary`;
+
+      try {
+        const res = await fetch('/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            scene: sceneDesc,
+            style: document.getElementById('course-style').value,
+            mood: document.getElementById('course-mood').value,
+            opts: { pt: true, recs: false },
+            llm: buildLlmPayload()
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+
+        statusEl.textContent = '✓ ' + data.category;
+        statusEl.className = `course-scene-status-${idx} ml-3 text-xs text-emerald-400`;
+
+        resultEl.innerHTML = `
+          <div class="text-xs uppercase tracking-wider text-neutral-500 mb-2">Prompt EN</div>
+          <pre class="bg-dark-900/80 rounded p-3 text-xs text-neutral-300 whitespace-pre-wrap font-mono leading-relaxed border border-dark-600 max-h-60 overflow-y-auto">${escapeHtml(data.english_prompt || '')}</pre>
+          <button data-copy-target="course-en-${idx}" class="copy-btn mt-2 text-xs px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded-lg text-neutral-300 border border-dark-600 transition-colors">📋 Copiar</button>
+          <pre id="course-en-${idx}" class="hidden">${escapeHtml(data.english_prompt || '')}</pre>
+        `;
+        resultEl.classList.remove('hidden');
+      } catch (err) {
+        statusEl.textContent = '✗ error: ' + err.message;
+        statusEl.className = `course-scene-status-${idx} ml-3 text-xs text-red-400`;
+      }
+    }
+
+    async function exportCoursePrompts() {
+      if (!lastCourseResult || !lastCourseResult.scenes) { toast('No hay guión generado'); return; }
+      // Recopilar todos los prompts ya generados
+      const lines = [];
+      lines.push(`# ${lastCourseResult.title || 'Guión de vídeo'}`);
+      lines.push(`# ${lastCourseResult.synopsis || ''}`);
+      lines.push('');
+      lastCourseResult.scenes.forEach((scene, idx) => {
+        const pre = document.getElementById(`course-en-${idx}`);
+        lines.push(`## Escena ${idx + 1}: ${scene.title || ''}`);
+        lines.push(`Descripción: ${scene.description || ''}`);
+        if (pre && pre.textContent) {
+          lines.push(`\nPrompt EN:\n${pre.textContent}`);
+        } else {
+          lines.push('(prompt aún no generado)');
+        }
+        lines.push('---');
+      });
+
+      const text = lines.join('\n');
+      const ok = await copyText(text);
+      toast(ok ? '¡Guión completo copiado al portapapeles!' : 'Error al copiar. Inténtalo de nuevo.');
+    }
+
+    function regenerateCourse() {
+      if (!lastCourseTopic) return;
+      generateCourse();
+    }
+
+    function resetCourse() {
+      document.getElementById('course-topic').value = '';
+      document.getElementById('course-sections').value = '';
+      courseResult.classList.add('hidden');
+      lastCourseResult = null;
+      lastCourseTopic = '';
+      document.getElementById('course-topic').focus();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Ctrl+Enter en el modo curso
+    document.getElementById('course-topic').addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+        e.preventDefault();
+        generateCourse();
       }
     });
 

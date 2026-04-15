@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="es" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Módulo 3.7 — Fluxo completo end-to-end | Seedance 2.0 Mastery</title>
+  <title>Módulo 3.7 — Flujo completo end-to-end | Seedance 2.0 Mastery</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }</script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; } .dark body { background-color: #111827; }
-    html:not(.dark) body { background-color: #f8fafc; }
-    html:not(.dark) .bg-dark-900 { background-color: #ffffff; } html:not(.dark) .bg-dark-800 { background-color: #f9fafb; } html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; } html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    body { font-family: 'Inter', sans-serif; } .dark body { backgrond-color: #111827; }
+    html:not(.dark) body { backgrond-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { backgrond-color: #ffffff; } html:not(.dark) .bg-dark-800 { backgrond-color: #f9fafb; } html:not(.dark) .bg-dark-700 { backgrond-color: #f3f4f6; } html:not(.dark) .bg-dark-600 { backgrond-color: #e5e7eb; }
     html:not(.dark) .text-neutral-100 { color: #111827; } html:not(.dark) .text-neutral-300 { color: #4b5563; } html:not(.dark) .text-neutral-400 { color: #6b7280; } html:not(.dark) .text-neutral-500 { color: #9ca3af; }
     html:not(.dark) .border-dark-600 { border-color: #d1d5db; } html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
-    html:not(.dark) .text-blue-400 { color: #2563eb; } html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); } html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); } html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); } html:not(.dark) .bg-blue-600 { background-color: #2563eb; }
-    html:not(.dark) .hover\:bg-blue-500:hover { background-color: #3b82f6; } html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); } html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
-    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
-    html:not(.dark) .text-primary { color: #a16207; } html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); } html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; } html:not(.dark) .bg-blue-500\/20 { backgrond-color: rgba(37, 99, 235, 0.12); } html:not(.dark) .bg-blue-500\/10 { backgrond-color: rgba(37, 99, 235, 0.08); } html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); } html:not(.dark) .bg-blue-600 { backgrond-color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500:hover { backgrond-color: #3b82f6; } html:not(.dark) .hover\:bg-blue-500\/10:hover { backgrond-color: rgba(37, 99, 235, 0.08); } html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) [class*="bg-gradient-to"] { backgrond-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; } html:not(.dark) .bg-primary\/10 { backgrond-color: rgba(161, 98, 7, 0.08); } html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
     html:not(.dark) .text-sky-400 { color: #0369a1; } html:not(.dark) .text-yellow-400 { color: #a16207; } html:not(.dark) .text-red-400 { color: #b91c1c; }
     html:not(.dark) .text-emerald-400 { color: #059669; }
-    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
-    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .bg-emerald-500\/10 { backgrond-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { backgrond-color: rgba(5, 150, 105, 0.08); }
     html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
     html:not(.dark) .text-amber-400 { color: #92400e; }
-    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217, 119, 6, 0.08); }
-    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .bg-amber-500\/10 { backgrond-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { backgrond-color: rgba(217, 119, 6, 0.08); }
     html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
-    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+    html:not(.dark) .bg-dark-900\/95 { backgrond-color: rgba(255, 255, 255, 0.95); }
   </style>
 </head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
@@ -40,10 +40,10 @@
           <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
         </div>
         <div class="flex items-center space-x-1 sm:space-x-2">
-          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Leigo</span></a>
-          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Prompt-Ready</span></a>
-          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Profissional</span></a>
-          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 ronded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Principiante</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 ronded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Prompt-Ready</span></a>
+          <a href="index.html" class="px-3 py-1.5 ronded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Profesional</span></a>
+          <button id="theme-toggle" class="p-2 ronded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
             <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
             <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
           </button>
@@ -52,66 +52,66 @@
     </div>
   </nav>
 
-  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-blue-400">Início</a><span>/</span><a href="index.html" class="hover:text-blue-400">Trilha 3</a><span>/</span><span class="text-blue-400">Módulo 3.7</span></div></nav>
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-blue-400">Inicio</a><span>/</span><a href="index.html" class="hover:text-blue-400">Ruta 3</a><span>/</span><span class="text-blue-400">Módulo 3.7</span></div></nav>
 
   <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.7 · FLUXO COMPLETO</span>
-      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🔄 Fluxo completo end-to-end</h1>
-      <p class="text-lg text-neutral-400 max-w-3xl">Um caso real integrado: cliente → briefing → sua app gera prompt → fal.ai renderiza vídeo → DaVinci finaliza → entrega. Cada etapa com o que fazer, quanto custa e quanto leva.</p>
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold ronded-full mb-4">MÓDULO 3.7 · FLUJO COMPLETO</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🔄 Flujo completo end-to-end</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Un caso real integrado: cliente → briefing → tu app genera prompt → fal.ai renderiza video → DaVinci finaliza → entrega. Cada etapa con qué hacer, cuánto cuesta y cuánto lleva.</p>
     </div>
   </header>
 
   <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
     <section class="mb-10">
-      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
-        <h3 class="text-lg font-semibold text-primary mb-3">📋 Cenário do exemplo</h3>
-        <p class="text-sm text-neutral-300"><strong>Cliente:</strong> marca de cosmético. <strong>Pedido:</strong> 5 vídeos de 10s para campanha de Instagram do novo sérum facial. <strong>Prazo:</strong> 48 horas. <strong>Orçamento do cliente:</strong> R$ 2.500. Acompanhe as 8 etapas abaixo.</p>
+      <div class="bg-primary/10 ronded-xl border border-primary/40 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">📋 Escenario del ejemplo</h3>
+        <p class="text-sm text-neutral-300"><strong>Cliente:</strong> marca de cosmético. <strong>Pedido:</strong> 5 videos de 10s para campaña de Instagram del nuevo sérum facial. <strong>Plazo:</strong> 48 horas. <strong>Presupuesto del cliente:</strong> R$ 2.500. Sigue las 8 etapas abajo.</p>
       </div>
     </section>
 
     <!-- ETAPA 1 -->
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
         <h2 class="text-2xl font-bold">📞 Briefing (20 minutos)</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Call rápida de 20 minutos com o cliente. Você NÃO precisa de um documento de 10 páginas. Precisa de 4 respostas.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">As 4 perguntas essenciais</h3>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Call rápida de 20 minutos con el cliente. NO necesitas un documento de 10 páginas. Necesitas 4 respuestas.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Las 4 preguntas esenciales</h3>
         <ol class="text-sm text-neutral-300 space-y-3">
-          <li><strong class="text-blue-400">1. Quem é o sujeito?</strong><br><span class="text-neutral-400">"Produto (o sérum) + uma modelo feminina aplicando, pele natural, 20-30 anos."</span></li>
-          <li><strong class="text-blue-400">2. Onde / que ambiente?</strong><br><span class="text-neutral-400">"Bancada de mármore branco, iluminação suave de manhã, planta verde ao fundo."</span></li>
-          <li><strong class="text-blue-400">3. O que acontece?</strong><br><span class="text-neutral-400">"Mão aplica o sérum no rosto, textura brilhosa, pele responde."</span></li>
-          <li><strong class="text-blue-400">4. Que clima / referência?</strong><br><span class="text-neutral-400">"Clean, premium, estilo Glossier/Fenty. Não muito dramático."</span></li>
+          <li><strong class="text-blue-400">1. ¿Quién es el sujeto?</strong><br><span class="text-neutral-400">"Producto (el sérum) + una modelo femenina aplicando, piel natural, 20-30 años."</span></li>
+          <li><strong class="text-blue-400">2. ¿Dónde / qué ambiente?</strong><br><span class="text-neutral-400">"Encimera de mármol blanco, iluminación suave de mañana, planta verde al fondo."</span></li>
+          <li><strong class="text-blue-400">3. ¿Qué sucede?</strong><br><span class="text-neutral-400">"Mano aplica el sérum en el rostro, textura brillante, piel responde."</span></li>
+          <li><strong class="text-blue-400">4. ¿Qué clima / referencia?</strong><br><span class="text-neutral-400">"Clean, premium, estilo Glossier/Fenty. No muy dramático."</span></li>
         </ol>
       </div>
-      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
-        <h4 class="font-semibold text-primary mb-2">💡 Bonus: referências visuais</h4>
-        <p class="text-sm text-neutral-300">Peça ao cliente 3-5 imagens ou vídeos de referência no final do briefing. São gold — na etapa 2 você joga essas imagens como input adicional quando a sua app suporta image-to-video.</p>
+      <div class="bg-primary/10 ronded-xl border border-primary/40 p-5">
+        <h4 class="font-semibold text-primary mb-2">💡 Bonus: referencias visuales</h4>
+        <p class="text-sm text-neutral-300">Pide al cliente 3-5 imágenes o videos de referencia al final del briefing. Son gold — en la etapa 2 usas esas imágenes como input adicional cuando tu app soporta image-to-video.</p>
       </div>
-      <p class="text-sm text-neutral-500 mt-4"><strong class="text-blue-400">Tempo acumulado:</strong> 20 min · <strong class="text-blue-400">Custo:</strong> R$ 0</p>
+      <p class="text-sm text-neutral-500 mt-4"><strong class="text-blue-400">Tiempo acumulado:</strong> 20 min · <strong class="text-blue-400">Costo:</strong> R$ 0</p>
     </section>
 
     <!-- ETAPA 2 -->
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
-        <h2 class="text-2xl font-bold">🤖 Sua app gera 10 prompts (15 minutos)</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🤖 Tu app genera 10 prompts (15 minutos)</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Você abre a app que construiu no módulo 3.5. Cola o briefing em linguagem natural. A app entrega um prompt estruturado em ~30 segundos. Você gera <strong class="text-blue-400">10 variantes</strong>: 5 variações "clean" + 5 variações "premium", para dar opção ao cliente na etapa 5.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Input para sua app</h3>
-        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">Uma modelo feminina de 25 anos aplica serum facial
-brilhoso em sua pele. Bancada de marmore branco, luz
-natural suave da manha, planta verde ao fundo desfocada.
-Mood clean, premium, estilo Glossier. Macro close no
-momento da aplicacao.</div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Abres la app que construiste en el módulo 3.5. Pegas el briefing en lenguaje natural. La app entrega un prompt estructurado en ~30 segundos. Generas <strong class="text-blue-400">10 variantes</strong>: 5 variaciones "clean" + 5 variaciones "premium", para dar opción al cliente en la etapa 5.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Input para tu app</h3>
+        <div class="bg-dark-900 ronded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">Una modelo femenina de 25 años aplica serum facial
+brillante en su piel. Encimera de mármol blanco, luz
+natural suave de mañana, planta verde al fondo desenfocada.
+Mood clean, premium, estilo Glossier. Macro close en
+el momento de la aplicación.</div>
       </div>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Output estruturado (exemplo)</h3>
-        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">{
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Output estructurado (ejemplo)</h3>
+        <div class="bg-dark-900 ronded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">{
   "category": "BEAUTY CLEAN PREMIUM",
   "color_system": "soft pastel + cream white + natural skin tones, diffuse morning light, zero harsh shadows",
   "camera_style": "macro close-up / intimate close-up / slow dolly-in",
@@ -124,202 +124,202 @@ momento da aplicacao.</div>
   "main_artifact": "[0s] Macro close-up of flawless skin...",
   "recommendations": [
     "Position key light at 45° left to maximize gloss reflection",
-    "Film at 120fps for the moment the drop touches skin",
-    "Use backlight haze to separate subject from background plant",
+    "Film at 120fps for the moment the drop toches skin",
+    "Use backlight haze to separate subject from backgrond plant",
     "Keep marble surface clean — any smudge ruins the premium feel"
   ]
 }</div>
       </div>
-      <p class="text-sm text-neutral-500 mt-4"><strong class="text-blue-400">Tempo acumulado:</strong> 35 min · <strong class="text-blue-400">Custo da sua app:</strong> ~$0.24 (10 chamadas × $0.024)</p>
+      <p class="text-sm text-neutral-500 mt-4"><strong class="text-blue-400">Tiempo acumulado:</strong> 35 min · <strong class="text-blue-400">Costo de tu app:</strong> ~$0.24 (10 llamadas × $0.024)</p>
     </section>
 
     <!-- ETAPA 3 -->
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
-        <h2 class="text-2xl font-bold">🎬 Renderização no Seedance 2.0 (30 minutos)</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🎬 Renderización en Seedance 2.0 (30 minutos)</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Você cola os 10 prompts no playground da fal.ai e roda em paralelo. Cada render leva ~30 segundos, mas você pode disparar os 10 quase simultaneamente. Total real: ~10-15 minutos de espera + iteração.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Estratégia de renderização</h3>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Pegas los 10 prompts en el playgrond de fal.ai y ejecutas en paralelo. Cada render lleva ~30 segundos, pero puedes disparar los 10 casi simultáneamente. Total real: ~10-15 minutos de espera + iteración.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Estrategia de renderización</h3>
         <ul class="text-sm text-neutral-300 space-y-2">
-          <li>• <strong class="text-blue-400">10 renders iniciais</strong> com todos os prompts variados.</li>
-          <li>• <strong class="text-blue-400">Revisão rápida</strong> — descarta os que falharam filtro, têm artefato grave ou identity drift.</li>
-          <li>• <strong class="text-blue-400">5-8 renders usáveis</strong> tipicamente passam na primeira rodada.</li>
-          <li>• <strong class="text-blue-400">2-3 renders adicionais</strong> para substituir os descartados, ajustando o prompt que falhou.</li>
+          <li>• <strong class="text-blue-400">10 renders iniciales</strong> con todos los prompts variados.</li>
+          <li>• <strong class="text-blue-400">Revisión rápida</strong> — descarta los que fallaron filtro, tienen artefacto grave o identity drift.</li>
+          <li>• <strong class="text-blue-400">5-8 renders usables</strong> típicamente pasan en la primera ronda.</li>
+          <li>• <strong class="text-blue-400">2-3 renders adicionales</strong> para sustituir los descartados, ajustando el prompt que falló.</li>
         </ul>
       </div>
-      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
-        <h4 class="font-semibold text-primary mb-2">💡 Taxa de rejeição típica</h4>
-        <p class="text-sm text-neutral-300">Em cenas de beleza (baixa complexidade, sem filtro de violência), espere 20-30% de rejeição. Em cenas de ação ou horror, 40-50%. Já orce os renders extras no seu tempo.</p>
+      <div class="bg-primary/10 ronded-xl border border-primary/40 p-5">
+        <h4 class="font-semibold text-primary mb-2">💡 Tasa de rechazo típica</h4>
+        <p class="text-sm text-neutral-300">En escenas de belleza (baja complejidad, sin filtro de violencia), espera 20-30% de rechazo. En escenas de acción u horror, 40-50%. Ya presupuesta los renders extras en tu tiempo.</p>
       </div>
-      <p class="text-sm text-neutral-500 mt-4"><strong class="text-blue-400">Tempo acumulado:</strong> 65 min · <strong class="text-blue-400">Custo de renderização:</strong> ~$2.00 (13 renders × ~$0.15 — contando extras)</p>
+      <p class="text-sm text-neutral-500 mt-4"><strong class="text-blue-400">Tiempo acumulado:</strong> 65 min · <strong class="text-blue-400">Costo de renderización:</strong> ~$2.00 (13 renders × ~$0.15 — contando extras)</p>
     </section>
 
     <!-- ETAPA 4 -->
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
         <h2 class="text-2xl font-bold">🔍 Auditoria red-team (15 minutos)</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Antes de mandar para o cliente, você passa cada vídeo pelo checklist de auditoria do módulo 3.6. Leva ~2 minutos por vídeo. Total: ~15 minutos para os 8 finalistas.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Checklist por vídeo</h3>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Antes de enviar al cliente, pasas cada video por el checklist de auditoría del módulo 3.6. Lleva ~2 minutos por video. Total: ~15 minutos para los 8 finalistas.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Checklist por video</h3>
         <ul class="text-sm text-neutral-300 space-y-2">
-          <li>• Identity drift? (Especialmente importante em beauty — mão precisa ser da mesma pessoa)</li>
-          <li>• Texto estranho na cena? (Palavras inventadas na embalagem do produto)</li>
-          <li>• Número de dedos correto?</li>
-          <li>• Marca registrada acidental? (Logos em frascos de referência)</li>
-          <li>• Aspect ratio bateu com o pedido? (9:16 vertical para Instagram)</li>
-          <li>• Duração exata? (10s pedidos = 10s entregues)</li>
+          <li>• Identity drift? (Especialmente importante en beauty — mano necesita ser de la misma persona)</li>
+          <li>• Texto extraño en la escena? (Palabras inventadas en el envase del producto)</li>
+          <li>• ¿Número de dedos correcto?</li>
+          <li>• Marca registrada acidental? (Logos en frascos de referencia)</li>
+          <li>• ¿Aspect ratio coincide con el pedido? (9:16 vertical para Instagram)</li>
+          <li>• ¿Duración exacta? (10s pedidos = 10s entregados)</li>
         </ul>
       </div>
-      <p class="text-sm text-neutral-500 mt-4"><strong class="text-blue-400">Tempo acumulado:</strong> 80 min · <strong class="text-blue-400">Custo:</strong> R$ 0 (só tempo)</p>
+      <p class="text-sm text-neutral-500 mt-4"><strong class="text-blue-400">Tiempo acumulado:</strong> 80 min · <strong class="text-blue-400">Costo:</strong> R$ 0 (solo tiempo)</p>
     </section>
 
     <!-- ETAPA 5 -->
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
-        <h2 class="text-2xl font-bold">📤 Apresentação side-by-side (10 minutos)</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">📤 Presentación side-by-side (10 minutos)</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Escolha os 5 melhores dos 8 que passaram a auditoria. Monte um grid visual — Miro, Google Slides, ou até um README com GIFs. Envie ao cliente com nomes claros.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Template de apresentação</h3>
-        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">Campanha [Nome do Cliente] — Serum Facial
-5 opcoes para sua escolha
+      <p class="text-neutral-300 mb-6 leading-relaxed">Elige los 5 mejores de los 8 que pasaron la auditoría. Monta un grid visual — Miro, Google Slides, o incluso un README con GIFs. Envía al cliente con nombres claros.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Template de presentación</h3>
+        <div class="bg-dark-900 ronded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">Campaña [Nombre del Cliente] — Serum Facial
+5 opciones para tu elección
 
-V1. "Luz da janela"  — clean, bright, close na mao
-V2. "Macro textura"   — close extremo no serum tocando a pele
-V3. "Ritual manha"    — wide shot mostrando ambiente completo
-V4. "Glow premium"    — intimate close-up com rim lighting dourado
-V5. "Motion drop"     — foco na gota descendo em 120fps
+V1. "Luz de ventana"  — clean, bright, close en la mano
+V2. "Macro textura"   — close extremo del serum tocando la piel
+V3. "Ritual mañana"   — wide shot mostrando ambiente completo
+V4. "Glow premium"    — intimate close-up con rim lighting dorado
+V5. "Motion drop"     — foco en la gota cayendo en 120fps
 
-Escolha: responder com "quero V[X]" ou "quero V[X] com alteracao Y".
-Tempo de revisao: ate 1 alteracao inclusa por video escolhido.</div>
+Elección: responder con "quiero V[X]" o "quiero V[X] con alteración Y".
+Tiempo de revisión: hasta 1 alteración incluida por video elegido.</div>
       </div>
-      <p class="text-sm text-neutral-500 mt-4"><strong class="text-blue-400">Tempo acumulado:</strong> 90 min · <strong class="text-blue-400">Aguarde:</strong> cliente retorna em 2-6h tipicamente</p>
+      <p class="text-sm text-neutral-500 mt-4"><strong class="text-blue-400">Tiempo acumulado:</strong> 90 min · <strong class="text-blue-400">Espera:</strong> el cliente retorna en 2-6h típicamente</p>
     </section>
 
     <!-- ETAPA 6 -->
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
-        <h2 class="text-2xl font-bold">✂️ Finishing no DaVinci Resolve (45 minutos)</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">✂️ Finishing en DaVinci Resolve (45 minutos)</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Cliente respondeu "quero V1, V3 e V5". Você agora faz o acabamento final dos 3 vídeos escolhidos no DaVinci Resolve (grátis).</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Processo em DaVinci (~15 min por vídeo)</h3>
+      <p class="text-neutral-300 mb-6 leading-relaxed">El cliente respondió "quiero V1, V3 y V5". Ahora haces el acabado final de los 3 videos elegidos en DaVinci Resolve (gratis).</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Proceso en DaVinci (~15 min por video)</h3>
         <ol class="text-sm text-neutral-300 space-y-2">
-          <li><strong class="text-blue-400">1. Import:</strong> arraste o <code>.mp4</code> gerado para a timeline.</li>
-          <li><strong class="text-blue-400">2. Trim:</strong> corte 0.3-0.5s do início e do fim (remove artefatos de "começando/terminando").</li>
-          <li><strong class="text-blue-400">3. Color grading:</strong> ajuste exposição (tipicamente +0.2), lift sombras, saturação em skin tones.</li>
-          <li><strong class="text-blue-400">4. Sound design:</strong> adicione música instrumental (biblioteca Artlist/Musicbed/Pixabay grátis).</li>
+          <li><strong class="text-blue-400">1. Import:</strong> arrastra el <code>.mp4</code> generado a la timeline.</li>
+          <li><strong class="text-blue-400">2. Trim:</strong> corta 0.3-0.5s del inicio y del final (remueve artefactos de "comenzando/terminando").</li>
+          <li><strong class="text-blue-400">3. Color grading:</strong> ajusta exposición (típicamente +0.2), lift sombras, saturación en skin tones.</li>
+          <li><strong class="text-blue-400">4. Sond design:</strong> agrega música instrumental (biblioteca Artlist/Musicbed/Pixabay gratis).</li>
           <li><strong class="text-blue-400">5. Export:</strong> H.264, 9:16 vertical, 1080×1920, 30fps.</li>
         </ol>
       </div>
-      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
+      <div class="bg-primary/10 ronded-xl border border-primary/40 p-5">
         <h4 class="font-semibold text-primary mb-2">💡 Upscale opcional</h4>
-        <p class="text-sm text-neutral-300">Se o cliente pediu qualidade máxima para um display grande, passe pelo Topaz Video AI entre o Seedance e o DaVinci. Upscale para 4K custa ~$0.50 por vídeo e melhora perceptivelmente em beauty closes.</p>
+        <p class="text-sm text-neutral-300">Si el cliente pidió calidad máxima para un display grande, pasa por Topaz Video AI entre Seedance y DaVinci. Upscale a 4K cuesta ~$0.50 por video y mejora perceptiblemente en beauty closes.</p>
       </div>
-      <p class="text-sm text-neutral-500 mt-4"><strong class="text-blue-400">Tempo acumulado:</strong> 135 min (excluindo espera do cliente) · <strong class="text-blue-400">Custo:</strong> R$ 0 (ou ~R$ 15 em upscale)</p>
+      <p class="text-sm text-neutral-500 mt-4"><strong class="text-blue-400">Tiempo acumulado:</strong> 135 min (excluyendo espera del cliente) · <strong class="text-blue-400">Costo:</strong> R$ 0 (o ~R$ 15 en upscale)</p>
     </section>
 
     <!-- ETAPA 7 -->
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">7</span>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">7</span>
         <h2 class="text-2xl font-bold">📦 Entrega (10 minutos)</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Upload dos 3 finais no WeTransfer, Google Drive ou Dropbox. Email curto com link + resumo.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
+      <p class="text-neutral-300 mb-6 leading-relaxed">Upload de los 3 finales en WeTransfer, Google Drive o Dropbox. Email corto con link + resumen.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
         <h3 class="text-lg font-semibold text-blue-400 mb-3">Template de email de entrega</h3>
-        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">Assunto: Entrega final — Campanha Serum [Nome do Cliente]
+        <div class="bg-dark-900 ronded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">Asunto: Entrega final — Campaña Serum [Nombre del Cliente]
 
-Oi [Nome],
+Hola [Nombre],
 
-Seguem os 3 videos finais:
-[link do Drive / WeTransfer]
+Aquí van los 3 videos finales:
+[link de Drive / WeTransfer]
 
-Arquivos:
+Archivos:
 - V1-final.mp4 (9:16, 10s, 1080p)
 - V3-final.mp4 (9:16, 10s, 1080p)
 - V5-final.mp4 (9:16, 10s, 1080p)
 
 Notas:
-- Todos em 9:16 para Stories e Reels
-- Audio includo (pode mutar na publicacao se preferir)
-- Ao publicar, recomendamos tag #IA/#AIgenerated por transparencia
+- Todos en 9:16 para Stories y Reels
+- Audio incluido (puedes silenciar en la publicación si prefieres)
+- Al publicar, recomendamos tag #IA/#AIgenerated por transparencia
 
-Qualquer ajuste pontual, me avise ate [data].
+Cualquier ajuste puntual, avísame hasta [fecha].
 
-Abraco.</div>
+Un abrazo.</div>
       </div>
-      <p class="text-sm text-neutral-500 mt-4"><strong class="text-blue-400">Tempo acumulado:</strong> 145 min</p>
+      <p class="text-sm text-neutral-500 mt-4"><strong class="text-blue-400">Tiempo acumulado:</strong> 145 min</p>
     </section>
 
     <!-- ETAPA 8 -->
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">8</span>
-        <h2 class="text-2xl font-bold">💰 Contabilidade final do projeto</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">8</span>
+        <h2 class="text-2xl font-bold">💰 Contabilidad final del proyecto</h2>
       </div>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Tempo total</h3>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Tiempo total</h3>
         <ul class="text-sm text-neutral-300 space-y-1">
           <li>• Briefing: 20 min</li>
-          <li>• Geração de prompts: 15 min</li>
-          <li>• Renderização: 30 min</li>
-          <li>• Auditoria: 15 min</li>
-          <li>• Apresentação: 10 min</li>
-          <li>• Finishing DaVinci (3 vídeos): 45 min</li>
+          <li>• Generación de prompts: 15 min</li>
+          <li>• Renderización: 30 min</li>
+          <li>• Auditoría: 15 min</li>
+          <li>• Presentación: 10 min</li>
+          <li>• Finishing DaVinci (3 videos): 45 min</li>
           <li>• Entrega: 10 min</li>
-          <li class="border-t border-dark-600 pt-2 mt-2"><strong class="text-blue-400">Total trabalhado: ~145 minutos (≈ 2.5h)</strong></li>
+          <li class="border-t border-dark-600 pt-2 mt-2"><strong class="text-blue-400">Total trabajado: ~145 minutos (≈ 2.5h)</strong></li>
         </ul>
       </div>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Custos diretos (seus)</h3>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Costos directos (tuyos)</h3>
         <ul class="text-sm text-neutral-300 space-y-1">
-          <li>• Sua app (10 chamadas Anthropic): ~R$ 1,20</li>
+          <li>• Tu app (10 llamadas Anthropic): ~R$ 1,20</li>
           <li>• fal.ai (13 renders Seedance): ~R$ 10,00</li>
-          <li>• Upscale Topaz opcional (3 vídeos): ~R$ 15,00</li>
-          <li>• DaVinci Resolve / biblioteca de música: R$ 0 (grátis)</li>
-          <li class="border-t border-dark-600 pt-2 mt-2"><strong class="text-blue-400">Total de custos: ~R$ 26,20</strong></li>
+          <li>• Upscale Topaz opcional (3 videos): ~R$ 15,00</li>
+          <li>• DaVinci Resolve / biblioteca de música: R$ 0 (gratis)</li>
+          <li class="border-t border-dark-600 pt-2 mt-2"><strong class="text-blue-400">Total de costos: ~R$ 26,20</strong></li>
         </ul>
       </div>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Precificação e margem</h3>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Precios y margen</h3>
         <ul class="text-sm text-neutral-300 space-y-1">
-          <li>• <strong class="text-blue-400">Cobrado do cliente:</strong> R$ 2.500 (valor do briefing)</li>
-          <li>• <strong class="text-blue-400">Custos diretos:</strong> R$ 26,20</li>
-          <li>• <strong class="text-blue-400">Margem bruta:</strong> R$ 2.473,80 (98,9%)</li>
-          <li>• <strong class="text-blue-400">Hora efetiva:</strong> ~R$ 1.000/hora trabalhada</li>
+          <li>• <strong class="text-blue-400">Cobrado al cliente:</strong> R$ 2.500 (valor del briefing)</li>
+          <li>• <strong class="text-blue-400">Costos directos:</strong> R$ 26,20</li>
+          <li>• <strong class="text-blue-400">Margen bruto:</strong> R$ 2.473,80 (98,9%)</li>
+          <li>• <strong class="text-blue-400">Hora efectiva:</strong> ~R$ 1.000/hora trabajada</li>
         </ul>
       </div>
-      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
-        <h4 class="font-semibold text-primary mb-2">💡 Por que você pode cobrar isso</h4>
-        <p class="text-sm text-neutral-300">O cliente não está pagando pela API da Anthropic. Está pagando pelo <strong>ofício</strong>: você sabe escrever o system prompt, você curou a taxonomia, você fez a auditoria, você entendeu o briefing, você finalizou no DaVinci. Qualquer um pode abrir conta na fal.ai — poucos sabem usar bem.</p>
+      <div class="bg-primary/10 ronded-xl border border-primary/40 p-5">
+        <h4 class="font-semibold text-primary mb-2">💡 Por qué puedes cobrar esto</h4>
+        <p class="text-sm text-neutral-300">El cliente no está pagando por la API de Anthropic. Está pagando por el <strong>oficio</strong>: tú sabes escribir el system prompt, tú curaste la taxonomía, tú hiciste la auditoría, tú entendiste el briefing, tú finalizaste en DaVinci. Cualquiera puede abrir cuenta en fal.ai — pocos saben usar bien.</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">🎯</span>
-        <h2 class="text-2xl font-bold">Adaptações por nicho</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">🎯</span>
+        <h2 class="text-2xl font-bold">Adaptaciones por nicho</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">O fluxo acima é para beauty. Para outros nichos, os tempos e custos mudam ligeiramente — mas a estrutura é a mesma.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
+      <p class="text-neutral-300 mb-6 leading-relaxed">El flujo de arriba es para beauty. Para otros nichos, los tiempos y costos cambian ligeramente — pero la estructura es la misma.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
         <div class="overflow-x-auto">
           <table class="w-full text-xs text-left">
             <thead class="text-blue-400 border-b border-dark-600">
-              <tr><th class="p-2">Nicho</th><th class="p-2">Taxa rejeição</th><th class="p-2">Tempo finishing</th><th class="p-2">Nota especial</th></tr>
+              <tr><th class="p-2">Nicho</th><th class="p-2">Tasa rechazo</th><th class="p-2">Tiempo finishing</th><th class="p-2">Nota especial</th></tr>
             </thead>
             <tbody class="text-neutral-300">
               <tr class="border-b border-dark-700"><td class="p-2">Beauty</td><td class="p-2">~25%</td><td class="p-2">~15min/vídeo</td><td class="p-2">Skin texture exige 4K</td></tr>
               <tr class="border-b border-dark-700"><td class="p-2">Real estate</td><td class="p-2">~30%</td><td class="p-2">~10min/vídeo</td><td class="p-2">Ambientes grandes: wide shots</td></tr>
               <tr class="border-b border-dark-700"><td class="p-2">Gaming shorts</td><td class="p-2">~35%</td><td class="p-2">~20min/vídeo</td><td class="p-2">Motion graphics overlay</td></tr>
-              <tr class="border-b border-dark-700"><td class="p-2">B2B corporativo</td><td class="p-2">~20%</td><td class="p-2">~25min/vídeo</td><td class="p-2">Textos + logos com compliance</td></tr>
-              <tr><td class="p-2">Action/horror</td><td class="p-2">~50%</td><td class="p-2">~15min/vídeo</td><td class="p-2">Filtro de moderação agressivo — use SILENT HILL/JOHN WICK presets</td></tr>
+              <tr class="border-b border-dark-700"><td class="p-2">B2B corporativo</td><td class="p-2">~20%</td><td class="p-2">~25min/vídeo</td><td class="p-2">Textos + logos con compliance</td></tr>
+              <tr><td class="p-2">Action/horror</td><td class="p-2">~50%</td><td class="p-2">~15min/vídeo</td><td class="p-2">Filtro de moderación agresivo — usa SILENT HILL/JOHN WICK presets</td></tr>
             </tbody>
           </table>
         </div>
@@ -327,50 +327,50 @@ Abraco.</div>
     </section>
 
     <section class="mb-12">
-      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
-        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🏆</span> Resumo do Módulo — e da Trilha 3 — e do Curso inteiro</h2>
+      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 ronded-xl border border-blue-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🏆</span> Resumen del Módulo — y de la Ruta 3 — y del Curso entero</h2>
         <div class="space-y-3 mb-8 text-sm">
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">O fluxo tem 8 etapas</strong> — briefing, geração, render, auditoria, apresentação, finishing, entrega, contabilidade.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Uma campanha de 3-5 vídeos</strong> sai em ~2.5 horas de trabalho efetivo (excluindo espera do cliente).</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Custo direto total</strong>: ~R$ 26-30 por campanha. Cobrar R$ 2.500 dá margem de ~98%.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">O cliente paga pelo ofício</strong>, não pela API. Sua curadoria + auditoria + finishing é o que vale.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Cada nicho tem trade-offs específicos</strong> mas a estrutura do fluxo é transferível.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">El flujo tiene 8 etapas</strong> — briefing, generación, render, auditoría, presentación, finishing, entrega, contabilidad.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Una campaña de 3-5 videos</strong> sale en ~2.5 horas de trabajo efectivo (excluyendo espera del cliente).</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Costo directo total</strong>: ~R$ 26-30 por campaña. Cobrar R$ 2.500 da margen de ~98%.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">El cliente paga por el oficio</strong>, no por la API. Tu curaduría + auditoría + finishing es lo que vale.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Cada nicho tiene trade-offs específicos</strong> pero la estructura del flujo es transferible.</div></div>
         </div>
-        <div class="bg-dark-800/50 rounded-lg p-4 mb-6">
-          <h3 class="font-semibold text-primary mb-2">🎓 Parabéns — você terminou o curso</h3>
-          <p class="text-neutral-300 text-sm">Se você chegou aqui tendo passado pelas 3 trilhas, você tem agora: (1) intuição leiga de prompts bem escritos · (2) domínio dos presets cinematográficos para produção · (3) entendimento arquitetural dos 6 blocos de um sistema de geração · (4) uma app funcional de geração de prompts rodando em produção · (5) um fluxo comercial end-to-end testado. É o pacote completo para começar a operar hoje.</p>
+        <div class="bg-dark-800/50 ronded-lg p-4 mb-6">
+          <h3 class="font-semibold text-primary mb-2">🎓 Felicidades — has terminado el curso</h3>
+          <p class="text-neutral-300 text-sm">Si has llegado aquí habiendo pasado por las 3 rutas, ahora tienes: (1) intuición de prompts bien escritos · (2) dominio de los presets cinematográficos para producción · (3) entendimiento arquitectónico de los 6 bloques de un sistema de generación · (4) una app funcional de generación de prompts corriendo en producción · (5) un flujo comercial end-to-end probado. Es el paquete completo para comenzar a operar hoy.</p>
         </div>
         <div class="flex flex-col sm:flex-row gap-4">
-          <a href="modulo-3-6.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
-          <a href="../../index.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Voltar ao início do curso</a>
+          <a href="modulo-3-6.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 ronded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
+          <a href="../../index.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white ronded-lg font-semibold hover:bg-blue-500 transition-colors">Volver al inicio del curso</a>
         </div>
       </div>
     </section>
 
     <!-- GLOSSÁRIO -->
     <section class="mb-12">
-      <div class="bg-dark-800 rounded-xl border border-dark-600 p-8">
-        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📖</span> Glossário do módulo</h2>
+      <div class="bg-dark-800 ronded-xl border border-dark-600 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📖</span> Glosario del módulo</h2>
         <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
-          <div><dt class="text-blue-400 font-semibold">Briefing</dt><dd class="text-neutral-300">Reunião curta inicial onde o cliente passa o escopo, referências e expectativas do projeto.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Mood board</dt><dd class="text-neutral-300">Coleção de imagens/vídeos de referência visual que o cliente fornece para definir o tom da campanha.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Variantes</dt><dd class="text-neutral-300">Múltiplas versões de um mesmo conceito gerado para dar opções ao cliente (tipicamente 5).</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Taxa de rejeição</dt><dd class="text-neutral-300">Percentual de renders que saem inutilizáveis (artefatos, drift, filtro) e precisam ser regerados.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Identity drift</dt><dd class="text-neutral-300">Quando o personagem/produto muda de aparência entre frames do mesmo vídeo. Erro #1 em IA de vídeo.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Red-team / Auditoria</dt><dd class="text-neutral-300">Processo de revisão sistemática do output antes da entrega, procurando erros que o cliente notaria.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Filtro de moderação</dt><dd class="text-neutral-300">Mecanismo do modelo que bloqueia geração de conteúdo violando política (violência, NSFW, etc.).</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Side-by-side</dt><dd class="text-neutral-300">Apresentação de múltiplas variantes lado a lado para facilitar comparação pelo cliente.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">fal.ai</dt><dd class="text-neutral-300">Plataforma aberta que disponibiliza a API do Seedance 2.0 e outros modelos generativos via pay-per-use.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Playground</dt><dd class="text-neutral-300">Interface visual da fal.ai para rodar o modelo sem escrever código — cole prompt, clique gerar.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Finishing</dt><dd class="text-neutral-300">Etapa final de pós-produção: color grading, cortes finos, som, texto, export.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">DaVinci Resolve</dt><dd class="text-neutral-300">Software profissional de edição e color grading. Versão gratuita cobre ~95% dos casos.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Color grading</dt><dd class="text-neutral-300">Ajuste final de cores, exposição e contraste para dar a "cara" profissional ao vídeo.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Upscale</dt><dd class="text-neutral-300">Aumentar resolução (ex: 720p → 4K) usando IA especializada como Topaz Video AI.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Topaz Video AI</dt><dd class="text-neutral-300">Software pago de upscale de vídeo. Vale para beauty close-ups e displays grandes.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Aspect ratio</dt><dd class="text-neutral-300">Proporção do vídeo. 9:16 = vertical (Reels/TikTok), 16:9 = horizontal (YouTube), 1:1 = quadrado (feed).</dd></div>
-          <div><dt class="text-blue-400 font-semibold">H.264</dt><dd class="text-neutral-300">Codec de compressão de vídeo mais usado. Padrão para upload em redes sociais.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Margem bruta</dt><dd class="text-neutral-300">Receita menos custos diretos, antes de impostos e custos indiretos (tempo, infra fixa).</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Disclosure #IA</dt><dd class="text-neutral-300">Prática ética de declarar que o conteúdo foi gerado por IA. Exigido por algumas plataformas.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Briefing</dt><dd class="text-neutral-300">Reunión corta inicial donde el cliente pasa el alcance, referencias y expectativas del proyecto.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Mood board</dt><dd class="text-neutral-300">Colección de imágenes/videos de referencia visual que el cliente proporciona para definir el tono de la campaña.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Variantes</dt><dd class="text-neutral-300">Múltiples versiones de un mismo concepto generado para dar opciones al cliente (típicamente 5).</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Tasa de rechazo</dt><dd class="text-neutral-300">Porcentaje de renders que salen inutilizables (artefactos, drift, filtro) y necesitan ser regenerados.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Identity drift</dt><dd class="text-neutral-300">Cuando el personaje/producto cambia de apariencia entre frames del mismo video. Error #1 en IA de video.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Red-team / Auditoría</dt><dd class="text-neutral-300">Proceso de revisión sistemática del otput antes de la entrega, buscando errores que el cliente notaría.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Filtro de moderación</dt><dd class="text-neutral-300">Mecanismo del modelo que bloquea generación de contenido violando política (violencia, NSFW, etc.).</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Side-by-side</dt><dd class="text-neutral-300">Presentación de múltiples variantes lado a lado para facilitar comparación por el cliente.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">fal.ai</dt><dd class="text-neutral-300">Plataforma abierta que ofrece la API de Seedance 2.0 y otros modelos generativos vía pay-per-use.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Playgrond</dt><dd class="text-neutral-300">Interfaz visual de fal.ai para ejecutar el modelo sin escribir código — pega prompt, haz clic en generar.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Finishing</dt><dd class="text-neutral-300">Etapa final de posproducción: color grading, cortes finos, sonido, texto, export.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">DaVinci Resolve</dt><dd class="text-neutral-300">Software profesional de edición y color grading. Versión gratuita cubre ~95% de los casos.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Color grading</dt><dd class="text-neutral-300">Ajuste final de colores, exposición y contraste para dar la "cara" profesional al video.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Upscale</dt><dd class="text-neutral-300">Aumentar resolución (ej: 720p → 4K) usando IA especializada como Topaz Video AI.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Topaz Video AI</dt><dd class="text-neutral-300">Software pago de upscale de video. Vale para beauty close-ups y displays grandes.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Aspect ratio</dt><dd class="text-neutral-300">Proporción del video. 9:16 = vertical (Reels/TikTok), 16:9 = horizontal (YouTube), 1:1 = cuadrado (feed).</dd></div>
+          <div><dt class="text-blue-400 font-semibold">H.264</dt><dd class="text-neutral-300">Codec de compresión de video más usado. Estándar para upload en redes sociales.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Margen bruto</dt><dd class="text-neutral-300">Ingreso menos costos directos, antes de impuestos y costos indirectos (tiempo, infra fija).</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Disclosure #IA</dt><dd class="text-neutral-300">Práctica ética de declarar que el contenido fue generado por IA. Exigido por algunas plataformas.</dd></div>
         </dl>
       </div>
     </section>

@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="es" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Módulo 3.4 — Construindo sua aplicação | Seedance 2.0 Mastery</title>
+  <title>Módulo 3.4 — Construyendo tu aplicación | Seedance 2.0 Mastery</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }</script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; } .dark body { background-color: #111827; }
-    html:not(.dark) body { background-color: #f8fafc; }
-    html:not(.dark) .bg-dark-900 { background-color: #ffffff; } html:not(.dark) .bg-dark-800 { background-color: #f9fafb; } html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; } html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    body { font-family: 'Inter', sans-serif; } .dark body { backgrond-color: #111827; }
+    html:not(.dark) body { backgrond-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { backgrond-color: #ffffff; } html:not(.dark) .bg-dark-800 { backgrond-color: #f9fafb; } html:not(.dark) .bg-dark-700 { backgrond-color: #f3f4f6; } html:not(.dark) .bg-dark-600 { backgrond-color: #e5e7eb; }
     html:not(.dark) .text-neutral-100 { color: #111827; } html:not(.dark) .text-neutral-300 { color: #4b5563; } html:not(.dark) .text-neutral-400 { color: #6b7280; } html:not(.dark) .text-neutral-500 { color: #9ca3af; }
     html:not(.dark) .border-dark-600 { border-color: #d1d5db; } html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
-    html:not(.dark) .text-blue-400 { color: #2563eb; } html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); } html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); } html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); } html:not(.dark) .bg-blue-600 { background-color: #2563eb; }
-    html:not(.dark) .hover\:bg-blue-500:hover { background-color: #3b82f6; } html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); } html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
-    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
-    html:not(.dark) .text-primary { color: #a16207; } html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); } html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; } html:not(.dark) .bg-blue-500\/20 { backgrond-color: rgba(37, 99, 235, 0.12); } html:not(.dark) .bg-blue-500\/10 { backgrond-color: rgba(37, 99, 235, 0.08); } html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); } html:not(.dark) .bg-blue-600 { backgrond-color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500:hover { backgrond-color: #3b82f6; } html:not(.dark) .hover\:bg-blue-500\/10:hover { backgrond-color: rgba(37, 99, 235, 0.08); } html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) [class*="bg-gradient-to"] { backgrond-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; } html:not(.dark) .bg-primary\/10 { backgrond-color: rgba(161, 98, 7, 0.08); } html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
     html:not(.dark) .text-sky-400 { color: #0369a1; } html:not(.dark) .text-yellow-400 { color: #a16207; } html:not(.dark) .text-red-400 { color: #b91c1c; }
     html:not(.dark) .text-emerald-400 { color: #059669; }
-    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
-    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .bg-emerald-500\/10 { backgrond-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { backgrond-color: rgba(5, 150, 105, 0.08); }
     html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
     html:not(.dark) .text-amber-400 { color: #92400e; }
-    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217, 119, 6, 0.08); }
-    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .bg-amber-500\/10 { backgrond-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { backgrond-color: rgba(217, 119, 6, 0.08); }
     html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
-    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+    html:not(.dark) .bg-dark-900\/95 { backgrond-color: rgba(255, 255, 255, 0.95); }
   </style>
 </head>
 <body class="bg-dark-900 text-neutral-100 min-h-screen">
@@ -40,10 +40,10 @@
           <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
         </div>
         <div class="flex items-center space-x-1 sm:space-x-2">
-          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Leigo</span></a>
-          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Prompt-Ready</span></a>
-          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Profissional</span></a>
-          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 ronded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Principiante</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 ronded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Prompt-Ready</span></a>
+          <a href="index.html" class="px-3 py-1.5 ronded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Profesional</span></a>
+          <button id="theme-toggle" class="p-2 ronded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
             <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
             <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
           </button>
@@ -52,211 +52,211 @@
     </div>
   </nav>
 
-  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-blue-400">Início</a><span>/</span><a href="index.html" class="hover:text-blue-400">Trilha 3</a><span>/</span><span class="text-blue-400">Módulo 3.4</span></div></nav>
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-blue-400">Inicio</a><span>/</span><a href="index.html" class="hover:text-blue-400">Ruta 3</a><span>/</span><span class="text-blue-400">Módulo 3.4</span></div></nav>
 
   <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.4 · ARQUITETURA</span>
-      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🏗️ Construindo sua aplicação</h1>
-      <p class="text-lg text-neutral-400 max-w-3xl">Decisões arquiteturais de uma app de geração estruturada de prompts. Por que serverless, por que tool use forçado, por que prompt cache, por que HMAC. Escolhas técnicas explicadas — você sai com um blueprint para construir a sua.</p>
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold ronded-full mb-4">MÓDULO 3.4 · ARQUITECTURA</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🏗️ Construyendo tu aplicación</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Decisiones arquitectónicas de una app de generación estructurada de prompts. Por qué serverless, por qué tool use forzado, por qué prompt cache, por qué HMAC. Decisiones técnicas explicadas — sales con un blueprint para construir la tuya.</p>
     </div>
   </header>
 
   <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
     <section class="mb-10">
-      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
-        <p class="text-sm text-neutral-300"><strong class="text-primary">Este módulo é sobre decisões, não sobre cópia.</strong> Cada escolha técnica abaixo tem alternativas válidas — aqui explicamos por que esta é a recomendada para o caso "app que gera prompts estruturados". No próximo módulo (3.5) você vai construir passo-a-passo.</p>
+      <div class="bg-primary/10 ronded-xl border border-primary/40 p-6">
+        <p class="text-sm text-neutral-300"><strong class="text-primary">Este módulo es sobre decisiones, no sobre copia.</strong> Cada decisión técnica abajo tiene alternativas válidas — aquí explicamos por qué esta es la recomendada para el caso "app que genera prompts estructurados". En el siguiente módulo (3.5) vas a construir paso a paso.</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
-        <h2 class="text-2xl font-bold">🏗️ Arquitetura mínima viável</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🏗️ Arquitectura mínima viable</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Para uma app que recebe texto livre do usuário e devolve prompt estruturado, o mínimo viável tem <strong class="text-blue-400">3 partes</strong>: frontend, função serverless, chamada LLM. Cada uma pode ser minúscula.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">As 3 partes</h3>
-        <div class="bg-dark-900 rounded p-3 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">sua-app/
-├── index.html               (frontend — pode ser vanilla JS)
-├── package.json             (2 deps: LLM SDK + runtime funções)
+      <p class="text-neutral-300 mb-6 leading-relaxed">Para una app que recibe texto libre del usuario y devuelve prompt estructurado, el mínimo viable tiene <strong class="text-blue-400">3 partes</strong>: frontend, función serverless, llamada LLM. Cada una puede ser diminuta.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Las 3 partes</h3>
+        <div class="bg-dark-900 ronded p-3 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">tu-app/
+├── index.html               (frontend — puede ser vanilla JS)
+├── package.json             (2 deps: LLM SDK + runtime funciones)
 ├── [config de deploy]       (netlify.toml, vercel.json, etc.)
-├── .env.example             (chaves de API + secrets)
+├── .env.example             (claves de API + secrets)
 └── functions/
-    └── generate.[ts|js]     (engine — ~200-400 linhas)</div>
+    └── generate.[ts|js]     (engine — ~200-400 líneas)</div>
       </div>
-      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
-        <h4 class="font-semibold text-primary mb-2">💡 Por que minimalista</h4>
-        <p class="text-sm text-neutral-300">Todo o valor da sua app está no <strong>system prompt</strong>, não no código. Código é commodity: qualquer dev copia. System prompt bem curado = IP real. Quanto menos código para manter, mais tempo você investe no que diferencia.</p>
+      <div class="bg-primary/10 ronded-xl border border-primary/40 p-5">
+        <h4 class="font-semibold text-primary mb-2">💡 Por qué minimalista</h4>
+        <p class="text-sm text-neutral-300">Todo el valor de tu app está en el <strong>system prompt</strong>, no en el código. Código es commodity: cualquier dev copia. System prompt bien curado = IP real. Cuanto menos código que mantener, más tiempo inviertes en lo que diferencia.</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
-        <h2 class="text-2xl font-bold">⚡ Por que serverless (Netlify/Vercel/Cloudflare)</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">⚡ Por qué serverless (Netlify/Vercel/Clodflare)</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Serverless funções (edge functions) são o runtime correto para esse caso. Alternativas (VPS, container permanente, Lambda stateless) têm trade-offs piores.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Trade-offs dos runtimes</h3>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Serverless functions (edge functions) son el runtime correcto para este caso. Alternativas (VPS, container permanente, Lambda stateless) tienen trade-offs peores.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Trade-offs de los runtimes</h3>
         <ul class="text-sm text-neutral-300 space-y-2">
-          <li>• <strong class="text-blue-400">Serverless edge (recomendado):</strong> escala automática, paga só o que usa, zero manutenção de infra. Limitação: timeout (10-30s normalmente — suficiente para LLM síncrono).</li>
-          <li>• <strong class="text-blue-400">VPS / container permanente:</strong> custo fixo mesmo ocioso, precisa manter. Vantagem: controle total, pode manter estado in-memory.</li>
-          <li>• <strong class="text-blue-400">AWS Lambda bruto:</strong> flexível mas complexo. Melhor para pipelines longos, pior para apps simples.</li>
+          <li>• <strong class="text-blue-400">Serverless edge (recomendado):</strong> escala automática, paga solo lo que usa, cero mantenimiento de infra. Limitación: timeot (10-30s normalmente — suficiente para LLM síncrono).</li>
+          <li>• <strong class="text-blue-400">VPS / container permanente:</strong> costo fijo aun inactivo, requiere mantener. Ventaja: control total, puede mantener estado in-memory.</li>
+          <li>• <strong class="text-blue-400">AWS Lambda bruto:</strong> flexible pero complejo. Mejor para pipelines largos, peor para apps simples.</li>
         </ul>
       </div>
-      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
-        <h4 class="font-semibold text-primary mb-2">💡 Escolha prática</h4>
-        <p class="text-sm text-neutral-300">Para uma app com ~1000 requests/dia, Netlify Functions ou Vercel Serverless saem de graça ou com custo irrisório no tier free. Cloudflare Workers também funciona e tem latência menor globalmente. Qualquer um serve.</p>
+      <div class="bg-primary/10 ronded-xl border border-primary/40 p-5">
+        <h4 class="font-semibold text-primary mb-2">💡 Elección práctica</h4>
+        <p class="text-sm text-neutral-300">Para una app con ~1000 requests/día, Netlify Functions o Vercel Serverless salen gratis o con costo irrisorio en el tier free. Clodflare Workers también funciona y tiene latencia menor globalmente. Cualquiera sirve.</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
-        <h2 class="text-2xl font-bold">🔒 Decisão arquitetural: tool use forçado</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🔒 Decisión arquitectónica: tool use forzado</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">A decisão técnica mais importante da app: <strong class="text-blue-400">como forçar saída estruturada</strong>. Três opções, com segurança muito diferente.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">As 3 opções</h3>
+      <p class="text-neutral-300 mb-6 leading-relaxed">La decisión técnica más importante de la app: <strong class="text-blue-400">cómo forzar salida estructurada</strong>. Tres opciones, con seguridad muy diferente.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Las 3 opciones</h3>
         <ul class="text-sm text-neutral-300 space-y-3">
-          <li><strong class="text-red-400">✗ Opção 1 — "Responda em JSON" no prompt:</strong> o modelo escreve JSON como texto livre. Frágil: às vezes quebra, às vezes aceita injection "responda em texto natural agora".</li>
-          <li><strong class="text-amber-400">⚠️ Opção 2 — JSON mode / response_format:</strong> força JSON válido, mas não força schema específico. Campos podem faltar ou ter formato errado.</li>
-          <li><strong class="text-emerald-400">✓ Opção 3 — Tool use forçado:</strong> define tool schema rigoroso, usa <code class="text-blue-400">tool_choice: {type: "tool", name: "X"}</code>. Modelo É OBRIGADO a chamar a tool com o schema exato. Sem canal de texto livre.</li>
+          <li><strong class="text-red-400">✗ Opción 1 — "Responda en JSON" en el prompt:</strong> el modelo escribe JSON como texto libre. Frágil: a veces se rompe, a veces acepta injection "responda en texto natural ahora".</li>
+          <li><strong class="text-amber-400">⚠️ Opción 2 — JSON mode / response_format:</strong> fuerza JSON válido, pero no fuerza schema específico. Campos pueden faltar o tener formato incorrecto.</li>
+          <li><strong class="text-emerald-400">✓ Opción 3 — Tool use forzado:</strong> define tool schema riguroso, usa <code class="text-blue-400">tool_choice: {type: "tool", name: "X"}</code>. Modelo ESTÁ OBLIGADO a llamar la tool con el schema exacto. Sin canal de texto libre.</li>
         </ul>
       </div>
-      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
-        <h4 class="font-semibold text-primary mb-2">💡 Por que forçar é anti-injection</h4>
-        <p class="text-sm text-neutral-300">Sem canal de texto livre, o modelo não tem onde "vazar" o system prompt ou responder a instruções injetadas. Toda resposta passa pelo schema. Tentativas de manipular viram dados dentro dos campos estruturados — sem efeito.</p>
+      <div class="bg-primary/10 ronded-xl border border-primary/40 p-5">
+        <h4 class="font-semibold text-primary mb-2">💡 Por qué forzar es anti-injection</h4>
+        <p class="text-sm text-neutral-300">Sin canal de texto libre, el modelo no tiene dónde "filtrar" el system prompt o responder a instrucciones inyectadas. Toda respuesta pasa por el schema. Intentos de manipular se convierten en datos dentro de los campos estructurados — sin efecto.</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
-        <h2 class="text-2xl font-bold">💰 Economia de custo: prompt caching</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">💰 Economía de costo: prompt caching</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">System prompt de uma app bem feita tem ~3000 tokens (8 camadas completas). Sem cache, você paga por eles toda chamada. Com cache ephemeral, paga só na primeira — depois ~89% de desconto.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Como funciona</h3>
-        <div class="bg-dark-900 rounded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">system: [{
+      <p class="text-neutral-300 mb-6 leading-relaxed">System prompt de una app bien hecha tiene ~3000 tokens (8 capas completas). Sin cache, pagas por ellos cada llamada. Con cache ephemeral, pagas solo en la primera — después ~89% de descuento.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Cómo funciona</h3>
+        <div class="bg-dark-900 ronded-lg p-4 font-mono text-xs text-neutral-300 border border-dark-600 whitespace-pre-wrap">system: [{
   type: "text",
   text: SYSTEM_PROMPT,  // ~3000 tokens
   cache_control: { type: "ephemeral" }  // 5 min TTL
 }]</div>
       </div>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
-        <h3 class="text-lg font-semibold text-blue-400 mb-3">Custo real por geração</h3>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3">Costo real por generación</h3>
         <ul class="text-sm text-neutral-300 space-y-2">
-          <li>• <strong class="text-blue-400">Primeira chamada (cold):</strong> paga 100% dos tokens de system.</li>
-          <li>• <strong class="text-blue-400">Chamadas seguintes (warm, &lt; 5min):</strong> paga ~11% dos tokens de system + variáveis.</li>
-          <li>• <strong class="text-blue-400">Custo pós-warmup típico:</strong> ~$0.02-0.03 por chamada usando Claude Sonnet 4.6.</li>
+          <li>• <strong class="text-blue-400">Primera llamada (cold):</strong> paga 100% de los tokens de system.</li>
+          <li>• <strong class="text-blue-400">Llamadas siguientes (warm, &lt; 5min):</strong> paga ~11% de los tokens de system + variables.</li>
+          <li>• <strong class="text-blue-400">Costo post-warmup típico:</strong> ~$0.02-0.03 por llamada usando Claude Sonnet 4.6.</li>
         </ul>
       </div>
-      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
-        <h4 class="font-semibold text-primary mb-2">💡 Margem comercial</h4>
-        <p class="text-sm text-neutral-300">Com custo ~$0.024 e preço cobrado ao cliente ~$0.50 (exemplo típico), margem é 20x. Espaço folgado para pagar Netlify, marketing, lucro. A aritmética funciona sem precisar de escala — mesmo 100 clientes/mês já é negócio.</p>
+      <div class="bg-primary/10 ronded-xl border border-primary/40 p-5">
+        <h4 class="font-semibold text-primary mb-2">💡 Margen comercial</h4>
+        <p class="text-sm text-neutral-300">Con costo ~$0.024 y precio cobrado al cliente ~$0.50 (ejemplo típico), margen es 20x. Espacio holgado para pagar Netlify, marketing, lucro. La aritmética funciona sin necesidad de escala — incluso 100 clientes/mes ya es negocio.</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
-        <h2 class="text-2xl font-bold">🛡️ As 6 decisões de segurança obrigatórias</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🛡️ Las 6 decisiones de seguridad obligatorias</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Qualquer app comercial que chama LLM tem 6 pontos de atenção. Ignorar qualquer um deles abre buraco explorável. Boas notícias: todos são fáceis de resolver.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
+      <p class="text-neutral-300 mb-6 leading-relaxed">Cualquier app comercial que llama LLM tiene 6 puntos de atención. Ignorar cualquiera de ellos abre brecha explotable. Buenas noticias: todos son fáciles de resolver.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
         <div class="overflow-x-auto">
           <table class="w-full text-xs text-left">
             <thead class="text-blue-400 border-b border-dark-600">
-              <tr><th class="p-2">#</th><th class="p-2">Ponto</th><th class="p-2">Solução</th></tr>
+              <tr><th class="p-2">#</th><th class="p-2">Punto</th><th class="p-2">Solución</th></tr>
             </thead>
             <tbody class="text-neutral-300">
-              <tr class="border-b border-dark-700"><td class="p-2">1</td><td class="p-2">Quota do usuário</td><td class="p-2 text-blue-400">Rate limit server-side (5 req/min por IP)</td></tr>
-              <tr class="border-b border-dark-700"><td class="p-2">2</td><td class="p-2">CORS</td><td class="p-2 text-blue-400">Restringir ao seu domínio (nunca <code>*</code>)</td></tr>
-              <tr class="border-b border-dark-700"><td class="p-2">3</td><td class="p-2">Allowlist / auth</td><td class="p-2 text-blue-400">Tokens HMAC assinados com expiração 30d</td></tr>
-              <tr class="border-b border-dark-700"><td class="p-2">4</td><td class="p-2">Observabilidade</td><td class="p-2 text-blue-400">Nunca vazar dados internos no response</td></tr>
-              <tr class="border-b border-dark-700"><td class="p-2">5</td><td class="p-2">Input size</td><td class="p-2 text-blue-400">Cap explícito (ex: 4000 chars)</td></tr>
-              <tr><td class="p-2">6</td><td class="p-2">Refusal</td><td class="p-2 text-blue-400">Estruturado (category="REFUSED"), nunca texto solto</td></tr>
+              <tr class="border-b border-dark-700"><td class="p-2">1</td><td class="p-2">Cuota del usuario</td><td class="p-2 text-blue-400">Rate limit server-side (5 req/min por IP)</td></tr>
+              <tr class="border-b border-dark-700"><td class="p-2">2</td><td class="p-2">CORS</td><td class="p-2 text-blue-400">Restringir a tu dominio (nunca <code>*</code>)</td></tr>
+              <tr class="border-b border-dark-700"><td class="p-2">3</td><td class="p-2">Allowlist / auth</td><td class="p-2 text-blue-400">Tokens HMAC firmados con expiración 30d</td></tr>
+              <tr class="border-b border-dark-700"><td class="p-2">4</td><td class="p-2">Observabilidad</td><td class="p-2 text-blue-400">Nunca filtrar datos internos en el response</td></tr>
+              <tr class="border-b border-dark-700"><td class="p-2">5</td><td class="p-2">Input size</td><td class="p-2 text-blue-400">Cap explícito (ej: 4000 chars)</td></tr>
+              <tr><td class="p-2">6</td><td class="p-2">Refusal</td><td class="p-2 text-blue-400">Estructurado (category="REFUSED"), nunca texto suelto</td></tr>
             </tbody>
           </table>
         </div>
       </div>
-      <div class="bg-primary/10 rounded-xl border border-primary/40 p-5">
-        <h4 class="font-semibold text-primary mb-2">💡 Por que HMAC e não JWT</h4>
-        <p class="text-sm text-neutral-300">HMAC-SHA256 com secret no servidor é mais simples que JWT para o caso de allowlist binária (usuário pago ou não). JWT faz sentido quando há múltiplas roles ou claims. Para "pro ou não pro", HMAC é o suficiente e tem menos superfície de ataque (sem bibliotecas JWT vulneráveis, sem alg=none, etc.).</p>
+      <div class="bg-primary/10 ronded-xl border border-primary/40 p-5">
+        <h4 class="font-semibold text-primary mb-2">💡 Por qué HMAC y no JWT</h4>
+        <p class="text-sm text-neutral-300">HMAC-SHA256 con secret en el servidor es más simple que JWT para el caso de allowlist binaria (usuario pago o no). JWT tiene sentido cuando hay múltiples roles o claims. Para "pro o no pro", HMAC es suficiente y tiene menos superficie de ataque (sin bibliotecas JWT vulnerables, sin alg=none, etc.).</p>
       </div>
     </section>
 
     <section class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
-        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
-        <h2 class="text-2xl font-bold">➕ Extensões recomendadas (fase 2)</h2>
+        <span class="flex items-center justify-center w-12 h-12 ronded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">➕ Extensiones recomendadas (fase 2)</h2>
       </div>
-      <p class="text-neutral-300 mb-6 leading-relaxed">Depois do MVP funcionando, essas extensões adicionam valor real sem reescrever a app.</p>
-      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-4">
+      <p class="text-neutral-300 mb-6 leading-relaxed">Después del MVP funcionando, estas extensiones agregan valor real sin reescribir la app.</p>
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 ronded-xl border border-blue-500/30 p-6 mb-4">
         <ul class="text-sm text-neutral-300 space-y-3">
-          <li>• <strong class="text-blue-400">Streaming response:</strong> mostrar tokens chegando em tempo real melhora UX percebida ~40%. Server-Sent Events (SSE) nativo no Netlify.</li>
-          <li>• <strong class="text-blue-400">Webhook para o modelo de output:</strong> depois de gerar o prompt, chamar automaticamente fal.ai/Runway/Suno com ele — pipeline "ideia → prompt → artefato final" em uma chamada só.</li>
-          <li>• <strong class="text-blue-400">Dashboard de custo:</strong> Anthropic Usage API para mostrar quanto cada geração custou. Permite otimizar temperature/max_tokens baseado em dados reais.</li>
-          <li>• <strong class="text-blue-400">Rate limit distribuído:</strong> para multi-region, rate limit em memória não serve. Upstash Redis como bucket compartilhado.</li>
-          <li>• <strong class="text-blue-400">Analytics anônimo:</strong> contar quais presets mais são acionados. Permite descobrir nichos emergentes e calibrar a taxonomia.</li>
-          <li>• <strong class="text-blue-400">A/B testing de system prompts:</strong> servir 2 versões, medir qual converte melhor.</li>
+          <li>• <strong class="text-blue-400">Streaming response:</strong> mostrar tokens llegando en tiempo real mejora UX percibida ~40%. Server-Sent Events (SSE) nativo en Netlify.</li>
+          <li>• <strong class="text-blue-400">Webhook para el modelo de otput:</strong> después de generar el prompt, llamar automáticamente fal.ai/Runway/Suno con él — pipeline "idea → prompt → artefacto final" en una sola llamada.</li>
+          <li>• <strong class="text-blue-400">Dashboard de costo:</strong> Anthropic Usage API para mostrar cuánto costó cada generación. Permite optimizar temperature/max_tokens basado en datos reales.</li>
+          <li>• <strong class="text-blue-400">Rate limit distribuido:</strong> para multi-region, rate limit en memoria no sirve. Upstash Redis como bucket compartido.</li>
+          <li>• <strong class="text-blue-400">Analytics anónimo:</strong> contar cuáles presets se accionan más. Permite descubrir nichos emergentes y calibrar la taxonomía.</li>
+          <li>• <strong class="text-blue-400">A/B testing de system prompts:</strong> servir 2 versiones, medir cuál convierte mejor.</li>
         </ul>
       </div>
     </section>
 
     <section class="mb-12">
-      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
-        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📚</span> Resumo do Módulo</h2>
+      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 ronded-xl border border-blue-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📚</span> Resumen del Módulo</h2>
         <div class="space-y-3 mb-8 text-sm">
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">3 partes mínimas</strong> — frontend + função serverless + chamada LLM.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Serverless edge</strong> é o runtime correto para esse caso.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Tool use forçado</strong> é a única forma segura de saída estruturada.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Prompt cache</strong> economiza ~89% após warmup — margem comercial de 20x.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">6 pontos de segurança</strong> — todos fáceis, mas precisam estar lá.</div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Extensões fase 2</strong> — streaming, webhooks, dashboard, A/B.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">3 partes mínimas</strong> — frontend + función serverless + llamada LLM.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Serverless edge</strong> es el runtime correcto para este caso.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Tool use forzado</strong> es la única forma segura de salida estructurada.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Prompt cache</strong> ahorra ~89% tras warmup — margen comercial de 20x.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">6 puntos de seguridad</strong> — todos fáciles, pero necesitan estar ahí.</div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Extensiones fase 2</strong> — streaming, webhooks, dashboard, A/B.</div></div>
         </div>
-        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
-          <h3 class="font-semibold text-blue-400 mb-2">Próximo Módulo:</h3>
-          <p class="text-neutral-300">3.5 — Passo a passo: construindo a app do zero. Setup, primeiro prompt, tool use, frontend, deploy, iteração.</p>
+        <div class="bg-dark-800/50 ronded-lg p-4 mb-8">
+          <h3 class="font-semibold text-blue-400 mb-2">Siguiente Módulo:</h3>
+          <p class="text-neutral-300">3.5 — Paso a paso: construyendo la app desde cero. Setup, primer prompt, tool use, frontend, deploy, iteración.</p>
         </div>
         <div class="flex flex-col sm:flex-row gap-4">
-          <a href="modulo-3-3.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
-          <a href="modulo-3-5.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo Módulo →</a>
+          <a href="modulo-3-3.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 ronded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
+          <a href="modulo-3-5.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white ronded-lg font-semibold hover:bg-blue-500 transition-colors">Siguiente Módulo →</a>
         </div>
       </div>
     </section>
 
     <!-- GLOSSÁRIO -->
     <section class="mb-12">
-      <div class="bg-dark-800 rounded-xl border border-dark-600 p-8">
-        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📖</span> Glossário do módulo</h2>
+      <div class="bg-dark-800 ronded-xl border border-dark-600 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📖</span> Glosario del módulo</h2>
         <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
-          <div><dt class="text-blue-400 font-semibold">Serverless function</dt><dd class="text-neutral-300">Código que roda sob demanda em infraestrutura gerenciada. Escala automaticamente e cobra por execução.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Edge function</dt><dd class="text-neutral-300">Variante de serverless que roda na borda da rede (mais perto do usuário). Menor latência.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Netlify Functions</dt><dd class="text-neutral-300">Plataforma serverless da Netlify, simples para casos como este.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Vercel Serverless</dt><dd class="text-neutral-300">Alternativa à Netlify com funcionalidade similar. Free tier generoso.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Cloudflare Workers</dt><dd class="text-neutral-300">Outra alternativa, com presença global (latência menor). Usa V8 isolates.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">AWS Lambda</dt><dd class="text-neutral-300">Serverless da AWS. Mais flexível mas mais complexo de configurar.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">VPS</dt><dd class="text-neutral-300">Virtual Private Server. Máquina virtual permanente com custo fixo. Alternativa a serverless.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Cold start</dt><dd class="text-neutral-300">Primeira chamada de uma função serverless após período inativo. Mais lenta que chamadas warm.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Tool use forçado</dt><dd class="text-neutral-300"><code>tool_choice: {type: "tool", name: "X"}</code> — obriga o modelo a chamar exatamente essa tool.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">JSON mode / response_format</dt><dd class="text-neutral-300">Alternativa ao tool use que força JSON válido, mas não força schema específico. Menos seguro.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Prompt caching</dt><dd class="text-neutral-300">Mecanismo de reusar tokens de system prompt entre chamadas. Economiza custo.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">cache_control ephemeral</dt><dd class="text-neutral-300">Tipo de cache com TTL de 5 minutos. Ideal para uso ocasional.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Warmup</dt><dd class="text-neutral-300">Período após o qual o cache está ativo e as chamadas pagam apenas tokens variáveis.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Margem comercial</dt><dd class="text-neutral-300">Razão entre preço cobrado e custo direto. 20x significa que você cobra 20 vezes o custo de API.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">HMAC-SHA256</dt><dd class="text-neutral-300">Algoritmo criptográfico que gera assinatura a partir de payload + secret. Tamperproof.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">JWT (JSON Web Token)</dt><dd class="text-neutral-300">Padrão de token com payload JSON assinado. Alternativa ao HMAC puro, mais complexa.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Allowlist</dt><dd class="text-neutral-300">Lista de usuários/emails autorizados a usar funcionalidades específicas (ex: "pro").</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Rate limit</dt><dd class="text-neutral-300">Limite de chamadas por unidade de tempo por IP/usuário. Protege contra abuso.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">CORS (Cross-Origin Resource Sharing)</dt><dd class="text-neutral-300">Política que define quais domínios podem chamar sua API. Nunca use <code>*</code> em produção.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Streaming response (SSE)</dt><dd class="text-neutral-300">Server-Sent Events — stream de tokens em tempo real. Melhora UX percebida.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Webhook orchestration</dt><dd class="text-neutral-300">Encadear chamadas entre serviços via webhooks para pipeline automático.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Observability</dt><dd class="text-neutral-300">Visibilidade sobre o que seu app está fazendo em produção: logs, métricas, traces.</dd></div>
-          <div><dt class="text-blue-400 font-semibold">Upstash Redis</dt><dd class="text-neutral-300">Redis serverless pay-per-use. Ideal para rate limit distribuído em multi-region.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Serverless function</dt><dd class="text-neutral-300">Código que corre bajo demanda en infraestructura gestionada. Escala automáticamente y cobra por ejecución.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Edge function</dt><dd class="text-neutral-300">Variante de serverless que corre en el borde de la red (más cerca del usuario). Menor latencia.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Netlify Functions</dt><dd class="text-neutral-300">Plataforma serverless de Netlify, simple para casos como este.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Vercel Serverless</dt><dd class="text-neutral-300">Alternativa a Netlify con funcionalidad similar. Free tier generoso.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Clodflare Workers</dt><dd class="text-neutral-300">Otra alternativa, con presencia global (latencia menor). Usa V8 isolates.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">AWS Lambda</dt><dd class="text-neutral-300">Serverless de AWS. Más flexible pero más complejo de configurar.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">VPS</dt><dd class="text-neutral-300">Virtual Private Server. Máquina virtual permanente con costo fijo. Alternativa a serverless.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Cold start</dt><dd class="text-neutral-300">Primera llamada de una función serverless tras período inactivo. Más lenta que llamadas warm.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Tool use forzado</dt><dd class="text-neutral-300"><code>tool_choice: {type: "tool", name: "X"}</code> — obliga al modelo a llamar exactamente esa tool.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">JSON mode / response_format</dt><dd class="text-neutral-300">Alternativa al tool use que fuerza JSON válido, pero no fuerza schema específico. Menos seguro.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Prompt caching</dt><dd class="text-neutral-300">Mecanismo de reusar tokens de system prompt entre llamadas. Ahorra costo.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">cache_control ephemeral</dt><dd class="text-neutral-300">Tipo de cache con TTL de 5 minutos. Ideal para uso ocasional.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Warmup</dt><dd class="text-neutral-300">Período tras el cual el cache está activo y las llamadas pagan solo tokens variables.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Margen comercial</dt><dd class="text-neutral-300">Razón entre precio cobrado y costo directo. 20x significa que cobras 20 veces el costo de API.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">HMAC-SHA256</dt><dd class="text-neutral-300">Algoritmo criptográfico que genera firma a partir de payload + secret. Tamperproof.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">JWT (JSON Web Token)</dt><dd class="text-neutral-300">Estándar de token con payload JSON firmado. Alternativa al HMAC puro, más compleja.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Allowlist</dt><dd class="text-neutral-300">Lista de usuarios/emails autorizados a usar funcionalidades específicas (ej: "pro").</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Rate limit</dt><dd class="text-neutral-300">Límite de llamadas por unidad de tiempo por IP/usuario. Protege contra abuso.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">CORS (Cross-Origin Resorce Sharing)</dt><dd class="text-neutral-300">Política que define qué dominios pueden llamar tu API. Nunca uses <code>*</code> en producción.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Streaming response (SSE)</dt><dd class="text-neutral-300">Server-Sent Events — stream de tokens en tiempo real. Mejora UX percibida.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Webhook orchestration</dt><dd class="text-neutral-300">Encadenar llamadas entre servicios vía webhooks para pipeline automático.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Observability</dt><dd class="text-neutral-300">Visibilidad sobre lo que tu app está haciendo en producción: logs, métricas, traces.</dd></div>
+          <div><dt class="text-blue-400 font-semibold">Upstash Redis</dt><dd class="text-neutral-300">Redis serverless pay-per-use. Ideal para rate limit distribuido en multi-region.</dd></div>
         </dl>
       </div>
     </section>
